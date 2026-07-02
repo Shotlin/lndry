@@ -1,0 +1,20 @@
+{"level":"info","timestamp":"2026-06-20T11:38:26.152Z","pid":34856,"hostname":"MSI","event":"boot","port":3001,"tls":false,"queueMaxDepth":1000}
+{"level":"info","timestamp":"2026-06-20T11:38:33.251Z","pid":34856,"hostname":"MSI","event":"client_connected","clientId":"c61a6ea2-bcb0-465d-bf7d-688180a9e070","ip":"::1"}
+{"level":"info","timestamp":"2026-06-20T11:38:54.647Z","pid":34856,"hostname":"MSI","event":"agent_connected","agentId":"6294215c-5b11-4087-ac70-aebf3d57f14f","ip":"::1"}
+{"level":"info","timestamp":"2026-06-20T11:38:54.685Z","pid":34856,"hostname":"MSI","event":"agent_status_from","agentId":"6294215c-5b11-4087-ac70-aebf3d57f14f","status":"restarting"}
+{"level":"info","timestamp":"2026-06-20T11:39:38.084Z","pid":34856,"hostname":"MSI","event":"agent_status_from","agentId":"6294215c-5b11-4087-ac70-aebf3d57f14f","status":"login_required"}
+{"level":"info","timestamp":"2026-06-20T11:39:51.931Z","pid":34856,"hostname":"MSI","event":"agent_status_from","agentId":"6294215c-5b11-4087-ac70-aebf3d57f14f","status":"ready"}
+{"level":"info","timestamp":"2026-06-20T12:20:07.970Z","pid":34856,"hostname":"MSI","event":"agent_status_from","agentId":"6294215c-5b11-4087-ac70-aebf3d57f14f","status":"restarting"}
+{"level":"info","timestamp":"2026-06-20T12:20:48.921Z","pid":34856,"hostname":"MSI","event":"agent_status_from","agentId":"6294215c-5b11-4087-ac70-aebf3d57f14f","status":"login_required"}
+{"level":"info","timestamp":"2026-06-20T12:21:23.690Z","pid":34856,"hostname":"MSI","event":"agent_status_from","agentId":"6294215c-5b11-4087-ac70-aebf3d57f14f","status":"ready"}
+{"level":"info","timestamp":"2026-06-20T15:53:02.631Z","pid":34856,"hostname":"MSI","event":"agent_status_from","agentId":"6294215c-5b11-4087-ac70-aebf3d57f14f","status":"restarting"}
+{"level":"info","timestamp":"2026-06-21T00:48:54.006Z","pid":34856,"hostname":"MSI","event":"agent_disconnected","agentId":"6294215c-5b11-4087-ac70-aebf3d57f14f","reason":"transport close"}
+{"level":"info","timestamp":"2026-06-21T00:48:54.037Z","pid":34856,"hostname":"MSI","event":"client_disconnected","clientId":"c61a6ea2-bcb0-465d-bf7d-688180a9e070","reason":"transport error"}
+{"level":"info","timestamp":"2026-06-21T00:48:54.071Z","pid":34856,"hostname":"MSI","event":"agent_connected","agentId":"4a596d7e-8ee0-4612-b9c1-749c4a68da0e","ip":"::1"}
+{"level":"info","timestamp":"2026-06-21T00:48:54.087Z","pid":34856,"hostname":"MSI","event":"agent_status_from","agentId":"4a596d7e-8ee0-4612-b9c1-749c4a68da0e","status":"restarting"}
+{"level":"info","timestamp":"2026-06-21T00:48:54.285Z","pid":34856,"hostname":"MSI","event":"client_connected","clientId":"fb89dc0e-e3ad-45b7-8856-fd4ba3762c9e","ip":"::1"}
+{"level":"info","timestamp":"2026-06-21T00:53:30.543Z","pid":34856,"hostname":"MSI","event":"agent_connected","agentId":"d91de8e6-6dbe-4371-823d-04c91754b8e2","ip":"::1"}
+{"level":"info","timestamp":"2026-06-21T00:53:30.547Z","pid":34856,"hostname":"MSI","event":"agent_disconnected","agentId":"4a596d7e-8ee0-4612-b9c1-749c4a68da0e","reason":"transport close"}
+{"level":"info","timestamp":"2026-06-21T00:53:30.556Z","pid":34856,"hostname":"MSI","event":"agent_status_from","agentId":"d91de8e6-6dbe-4371-823d-04c91754b8e2","status":"restarting"}
+{"level":"info","timestamp":"2026-06-21T00:53:30.607Z","pid":34856,"hostname":"MSI","event":"client_disconnected","clientId":"fb89dc0e-e3ad-45b7-8856-fd4ba3762c9e","reason":"transport error"}
+{"level":"info","timestamp":"2026-06-21T00:53:31.481Z","pid":34856,"hostname":"MSI","event":"client_connected","clientId":"c59c65fb-5dac-485e-b1f7-d176aa399126","ip":"::1"}

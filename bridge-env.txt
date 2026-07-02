@@ -1,0 +1,29 @@
+# ── KIRO-GPT Bridge .env ──────────────────────────────────────
+# Copy this file to:  C:\Users\sayan\Desktop\image-gpt\.env
+# (the .env.example is already there — just overwrite/replace it)
+# ──────────────────────────────────────────────────────────────
+
+KIRO_SECRET=DZP8ZFbG4PpBw8MwOs2KdBXuNO80Viwe
+AGENT_SECRET=B29WE8hEO4nDEINMTPmrWAE2Mry9SRus
+
+PORT=3001
+RELAY_URL=ws://localhost:3001
+
+# Persistent Chrome profile — Kiro will create this folder automatically
+AGENT_PROFILE_DIR=C:\Users\sayan\AppData\Local\kiro-gpt-bridge-profile
+
+QUEUE_MAX_DEPTH=1000
+
+RELAY_TLS_ENABLED=false
+RELAY_TLS_CERT=
+RELAY_TLS_KEY=
+
+# These must match KIRO_SECRET above
+KIRO_GPT_MCP_SECRET=DZP8ZFbG4PpBw8MwOs2KdBXuNO80Viwe
+KIRO_GPT_MCP_RELAY_URL=ws://localhost:3001
+
+# Generated assets land here (inside the Lndry project)
+KIRO_GPT_MCP_WORKSPACE=C:\Users\sayan\Desktop\lndry
+
+# Optional: prompt rewriting through ChatGPT before DALL-E (adds ~10s per image)
+KIRO_GPT_MCP_PROMPT_REWRITE=true

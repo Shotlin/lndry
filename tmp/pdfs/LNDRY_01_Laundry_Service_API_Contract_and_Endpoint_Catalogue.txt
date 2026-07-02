@@ -1,0 +1,961 @@
+
+
+===== PAGE 1 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 1
+SHOTLIN
+DIGITAL PRODUCT STUDIO
+LNDRY Phase 1 MVP - Laundry Service API Contract and 
+Endpoint Catalogue
+Service booking, vendor operations, rider handovers, admin operations and platform services
+Document code LNDRY-API-001
+Prepared for LNDRY Phase 1 MVP
+Baseline date 18 June 2026
+Source baseline Approved 34-page workflow and Bakaloo repositories
+CONFIDENTIAL - IMPLEMENTATION ANNEXURE
+This document is a target implementation contract. It does not state that every listed endpoint already exists in the Bakaloo codebase.
+
+===== PAGE 2 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 2
+Document purpose
+This document is the target REST and real-time API contract for implementing the LNDRY Phase 1 laundry-service marketplace on the reusable Bakaloo technical 
+foundation. It is intended for backend, Flutter, dashboard, QA and project-management use. Endpoint names may be refined during implementation, but the capability, 
+access control and business outcome must remain equivalent.
+Important implementation status
+The Bakaloo backend already contains reusable authentication, orders, payments, addresses, delivery, reviews, notifications, shops, staff, finance, reporting, uploads and 
+operational infrastructure. The LNDRY-specific endpoints below are the agreed target surface; some are adaptations of existing endpoints and others are new.
+Service-domain declaration
+LNDRY is exclusively a laundry-service booking and fulfilment platform. Garment types such as shirts, trousers, sarees, blankets and shoes are customer-owned articles 
+submitted to a vendor for cleaning or care. They are used only to calculate the service charge by piece, pair or kilogram. The MVP workflow is service selection, garment 
+declaration, pickup scheduling, payment, collection, laundry processing and return delivery.
+Service-domain vocabulary
+Term Meaning in LNDRY
+Laundry service A vendor-offered operation such as Wash & Fold, Wash & Iron, Dry Cleaning, Ironing or 
+Shoe Care.
+Garment type A customer-owned article or service-measurement category, such as Shirt, Saree, Blanket, 
+Shoes or Regular Clothes by kilogram.
+Service rate The vendor charge for processing a garment type, expressed per piece, per pair or per 
+kilogram.
+Service quotation A server-calculated estimated service charge based on selected service, garment quantities 
+or estimated weight.
+Laundry service order A booked service job covering pickup, vendor processing and return delivery of the 
+customer's garments.
+Pickup and delivery Collection and return handover of the customer's own garments.
+
+===== PAGE 3 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 3
+1. API-wide conventions
+Convention Required rule
+Base URL /api/v1 for application APIs; /api/webhook for verified third-party callbacks.
+Authentication Bearer JWT access token plus rotating refresh token. Dashboard uses HttpOnly secure 
+cookies or equivalent secure token storage.
+Role scopes CUSTOMER, VENDOR_APPLICANT, VENDOR_OWNER, VENDOR_STAFF, RIDER, 
+ADMIN, FINANCE_ADMIN, SUPER_ADMIN.
+Identifiers UUIDs for users, vendors, services, orders, assignments, payments and documents.
+Date/time ISO 8601 UTC in API. UI renders India Standard Time unless platform configuration 
+changes.
+Money Integer paise in API and database. Never use floating-point currency calculations.
+Pagination page, limit, total, total_pages. Default 20; hard maximum 100 unless export endpoint.
+Idempotency Required on payment, order acceptance, refunds and critical state-changing retries.
+Errors Stable code, message, field_errors, request_id and safe metadata. No stack traces in 
+production.
+Audit All vendor approval, price adjustment, assignment, OTP verification, admin override, refund 
+and 2FA actions are auditable.
+Caching Public categories may be cached. Authenticated, order, capacity and payment responses 
+use no-store.
+Versioning Breaking changes require /api/v2 or compatible deprecation period.
+2. Standard response and error envelope
+Success
+{
+  "success": true,
+  "data": { ... },
+  "meta": { "request_id": "...", "page": 1, "total": 42 }
+}
+Error
+{
+
+===== PAGE 4 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 4
+  "success": false,
+  "error": {
+    "code": "SLOT_FULL",
+    "message": "The selected pickup slot is no longer available.",
+    "field_errors": {},
+    "request_id": "..."
+  }
+}
+3. Order state and transition rules
+PAYMENT_PENDING -> WAITING_VENDOR_CONFIRMATION -> VENDOR_ACCEPTED -> PICKUP_ASSIGNED -> GOING_FOR_PICKUP -> PICKUP_OTP_VERIFIED -> 
+PICKED_UP -> RECEIVED_AT_VENDOR -> PROCESSING -> PACKED -> DELIVERY_ASSIGNED -> OUT_FOR_DELIVERY -> DELIVERY_OTP_VERIFIED -> DELIVERED
+ Vendor processing detail may be RECEIVED, WASHING, DRYING, IRONING and PACKED; the customer sees grouped statuses such as At Partner and 
+Processing.
+ Alternative terminal states include PAYMENT_FAILED, VENDOR_REJECTED, AUTO_REJECTED, CUSTOMER_CANCELLED, ADMIN_CANCELLED and 
+REFUNDED.
+ No client application may directly write an arbitrary status string. The backend validates every transition and actor permission.
+4. Complete endpoint catalogue
+A. Platform, session and authentication APIs
+Method Endpoint Access Used by Purpose Key input / output
+GET / Public Monitoring Root service status. Returns service, timestamp, uptime 
+and health URL.
+GET /health Public Monitoring Liveness probe for process health. Returns OK and uptime.
+GET /health/ready Public/internal Deployment Checks PostgreSQL and Redis 
+readiness.
+Returns dependency states; 503 if 
+unavailable.
+POST /api/v1/auth/send-otp Public Customer/Vendor/Rider login Sends mobile login OTP with role 
+intent.
+Input: phone, account_type. 
+Output: challenge_id, expires_in.
+POST /api/v1/auth/verify-otp Public Customer/Vendor/Rider login Verifies login OTP and issues 
+JWT/refresh token.
+Input: phone, challenge_id, otp, 
+device. Output: user, roles, tokens.
+POST /api/v1/auth/refresh-token Refresh token All apps Rotates access token. Input: refresh_token/device_id. 
+Output: new access token.
+POST /api/v1/auth/logout Authenticated All apps Revokes current refresh token and 
+device session.
+Input: device_id or refresh token. 
+Output: success.
+GET /api/v1/auth/session Authenticated All apps Restores app session and resolved 
+role.
+Returns profile summary, 
+permissions and onboarding state.
+
+===== PAGE 5 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 5
+Method Endpoint Access Used by Purpose Key input / output
+GET /api/v1/auth/my-roles Authenticated Vendor/Rider app Lists available roles for a phone 
+linked to multiple roles.
+Returns CUSTOMER, 
+VENDOR_OWNER, 
+VENDOR_STAFF or RIDER 
+assignments.
+POST /api/v1/auth/select-role Authenticated Vendor/Rider app Issues role-scoped token after user 
+chooses workspace.
+Input: role, vendor_id. Output: 
+scoped JWT.
+POST /api/v1/devices Authenticated All apps Registers FCM device token. Input: device_id, platform, 
+fcm_token, app_version.
+DELETE /api/v1/devices/:deviceId Authenticated All apps Removes stale notification device 
+token. Output: removed=true.
+B. Customer profile and address APIs
+Method Endpoint Access Used by Purpose Key input / output
+GET /api/v1/customer/me Customer Profile screen Loads customer profile. Returns name, phone, email, photo 
+and account status.
+PATCH /api/v1/customer/me Customer Edit profile Updates permitted customer 
+details. Input: name, email, photo_url.
+DELETE /api/v1/customer/account Customer + re-auth Account settings Requests account 
+deletion/anonymisation.
+Input: reason, confirmation OTP if 
+configured.
+GET /api/v1/addresses Customer Address selector Lists saved addresses. Returns address text, label, lat/lng, 
+default flag and instructions.
+POST /api/v1/addresses Customer Add address Creates exact pickup/delivery 
+address.
+Input: house, road, landmark, city, 
+postal_code, lat, lng, label, 
+instructions.
+GET /api/v1/addresses/:id Customer Address details Loads one saved address. Returns full address and 
+coordinates.
+PUT /api/v1/addresses/:id Customer Edit address Updates address fields and exact 
+pin. Input: editable address fields.
+DELETE /api/v1/addresses/:id Customer Address settings Soft-deletes a saved address. Output: success.
+PUT /api/v1/addresses/:id/default Customer Address selector Marks one address as default. Output: selected default address.
+POST /api/v1/addresses/validate-location Customer Address confirmation Checks whether any approved 
+vendor serves the coordinate.
+Input: lat, lng. Output: serviceable, 
+eligible_vendor_count.
+GET /api/v1/maps/place-autocomplete Authenticated Address search Server proxy for Google Places 
+predictions.
+Input: query, session_token, 
+location bias. Output: place 
+predictions.
+GET /api/v1/maps/place-details/:placeId Authenticated Exact pin screen Resolves selected place to address Returns formatted address, lat, lng, 
+
+===== PAGE 6 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 6
+Method Endpoint Access Used by Purpose Key input / output
+and coordinates. postal code.
+C. Customer discovery, search and vendor comparison APIs
+Method Endpoint Access Used by Purpose Key input / output
+GET /api/v1/laundry/categories Public/Customer Home and category screen Lists active laundry categories. Supports locale, image, display 
+order and availability.
+GET /api/v1/laundry/categories/:id Public/Customer Category details Loads category metadata and 
+garment-type filters.
+Returns category and supported 
+common garment types.
+GET /api/v1/discovery/home Customer Home screen Returns address-aware home 
+content in one response.
+Categories, nearby vendors, active 
+order and previous orders.
+GET /api/v1/discovery/vendors Customer Vendor results Returns eligible vendors for 
+location/category/slot.
+Query: 
+lat,lng,category_id,date,slot,sort, 
+price, garment_type_id, page.
+GET /api/v1/discovery/vendors/:vendorId Customer Vendor profile Loads public vendor profile. Returns rating, distance, hours, 
+services, policies and images.
+GET /api/v1/discovery/
+vendors/:vendorId/services Customer Vendor service list Lists published services and 
+starting prices.
+Query: category_id, 
+garment_type_id.
+GET /api/v1/discovery/
+services/:serviceId Customer Service detail
+Loads inclusions, exclusions, 
+garment-rate lines and completion 
+time.
+Returns garment rates, rate units, 
+min/max and slot summary.
+GET /api/v1/search Customer Global search Searches service, category, 
+garment type and vendor name.
+Query: q, lat,lng. Returns grouped 
+results.
+GET /api/v1/search/suggestions Customer Search suggestions Returns fast autocomplete 
+suggestions.
+Query: q. Output: typed 
+suggestions.
+GET /api/v1/discovery/filters Customer Filter sheet
+Returns supported sorts and 
+garment-type filters for current 
+result.
+Returns nearest, price, rating, 
+value, available-now.
+POST /api/v1/discovery/value-score Internal/Customer Value-for-money sort
+Calculates stable ranking using 
+price, rating, distance and 
+completion rate.
+Input: result context. Output: 
+ranked vendor IDs and score 
+explanation.
+D. Customer service quotation, pickup-slot reservation and payment APIs
+Method Endpoint Access Used by Purpose Key input / output
+POST /api/v1/quotes Customer Garment selection Creates a server-side price 
+quotation.
+Input: vendor_id, service_id, 
+garment_lines with quantity or 
+
+===== PAGE 7 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 7
+Method Endpoint Access Used by Purpose Key input / output
+estimated_weight_kg. Output: 
+quote_id, estimate, expiry.
+PATCH /api/v1/quotes/:quoteId Customer Garment selection Updates quotation after quantity or 
+weight changes. Returns recalculated estimate.
+GET /api/v1/vendors/:vendorId/pickup-
+slots Customer Pickup slot screen Returns only slots with remaining 
+capacity. Query: date, service_id, quote_id.
+POST /api/v1/slot-holds Customer Booking confirmation Temporarily holds selected slot to 
+prevent oversell.
+Input: vendor_id, date, slot_id, 
+quote_id. Output: hold_id, 
+expires_at.
+DELETE /api/v1/slot-holds/:holdId Customer Booking cancellation Releases temporary slot hold. Output: released=true.
+POST /api/v1/orders/prepare Customer Booking review Validates quote, address, slot and 
+vendor eligibility before payment.
+Output: order_draft_id, payable 
+amount, snapshot.
+POST /api/v1/payments/create-order Customer Razorpay payment Creates Razorpay order for a 
+prepared LNDRY order.
+Input: order_draft_id. Output: 
+razorpay_order_id, amount, 
+currency, key.
+POST /api/v1/payments/verify Customer Payment result Verifies Razorpay signature and 
+confirms payment.
+Input: payment_id, order_id, 
+signature, order_draft_id.
+GET /api/v1/payments/:paymentId Customer Payment status Loads payment/refund status. Returns captured, failed, refunded 
+or pending.
+GET /api/v1/payments/history Customer Payment history Lists customer payment records. Paginated payment list.
+POST /api/v1/orders Customer Post-payment order submission
+Creates marketplace order from 
+paid draft and sends it to selected 
+vendor.
+Input: order_draft_id/payment_id. 
+Output: order and 
+WAITING_VENDOR_CONFIRMAT
+ION.
+E. Customer order lifecycle, OTP, history and review APIs
+Method Endpoint Access Used by Purpose Key input / output
+GET /api/v1/orders Customer Order history Lists current and past orders. Query: status,page,date range.
+GET /api/v1/orders/active Customer Home/active order Loads latest active order and 
+timeline.
+Returns customer status, detailed 
+activity and OTP visibility flags.
+GET /api/v1/orders/:orderId Customer Order detail Loads full order snapshot.
+Garment lines, quantities/weight, 
+service rates, vendor, slot, 
+address, payment and 
+assignments.
+GET /api/v1/orders/:orderId/timeline Customer Tracking screen Returns immutable status events. Customer label, internal detail, 
+timestamp and actor.
+
+===== PAGE 8 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 8
+Method Endpoint Access Used by Purpose Key input / output
+GET /api/v1/orders/:orderId/pickup-otp Customer Pickup handover Shows active pickup OTP only at 
+permitted stage.
+Returns masked purpose, OTP and 
+expiry.
+GET /api/v1/orders/:orderId/delivery-otp Customer Delivery handover Shows active delivery OTP only at 
+permitted stage. Returns OTP and expiry.
+POST /api/v1/orders/:orderId/cancel Customer Order detail Cancels within allowed status and 
+triggers refund rules. Input: reason_code, comment.
+POST /api/v1/orders/:orderId/select-
+another-vendor Customer Rejected order recovery Creates a new quote/order attempt 
+without auto-assigning vendor. Input: new_vendor_id and slot.
+GET /api/v1/orders/:orderId/invoice Customer Completed order Downloads final invoice/receipt. Returns PDF or signed URL.
+GET /api/v1/reviews/vendors/:vendorId Public/Customer Vendor profile Lists verified vendor reviews. Paginated ratings and comments.
+GET /api/v1/reviews/eligibility/:orderId Customer Delivered order Checks whether delivered order 
+can be rated. Returns eligible and reason.
+POST /api/v1/reviews Customer Rating screen Creates rating for delivered order. Input: order_id, vendor_rating, 
+optional rider_rating, comment.
+PATCH /api/v1/reviews/:reviewId Customer My reviews Updates review within permitted 
+period. Input: rating/comment.
+DELETE /api/v1/reviews/:reviewId Customer My reviews Removes own review subject to 
+policy. Output: deleted=true.
+GET /api/v1/notifications Customer Notification centre Lists user notifications. Query: unread,page,type.
+PATCH /api/v1/notifications/:id/read Customer Notification centre Marks one notification read. Output: notification.
+PATCH /api/v1/notifications/read-all Customer Notification centre Marks all notifications read. Output: updated_count.
+GET /api/v1/notification-preferences Customer Settings Loads communication preferences. Push, SMS and email categories.
+PUT /api/v1/notification-preferences Customer Settings Updates notification preferences. Input: preference matrix.
+F. Vendor onboarding, application and public profile APIs
+Method Endpoint Access Used by Purpose Key input / output
+POST /api/v1/vendor/applications Vendor applicant Vendor onboarding Creates temporary vendor 
+application.
+Input: owner and business basics. 
+Output: application_id, DRAFT.
+GET /api/v1/vendor/applications/me Vendor applicant Onboarding resume Loads current application and 
+missing steps.
+Returns status, sections and 
+correction notes.
+PATCH /api/v1/vendor/applications/:id/
+owner Vendor applicant Owner details step Updates owner identity and 
+contacts.
+Input: owner name, alternate 
+phone, email, identity metadata.
+PATCH /api/v1/vendor/applications/:id/ Vendor applicant Business details step Updates laundry name, description, Input: business fields and 
+
+===== PAGE 9 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 9
+Method Endpoint Access Used by Purpose Key input / output
+business hours and working days. availability.
+PATCH /api/v1/vendor/applications/:id/
+location Vendor applicant Location step Stores exact business pin and 
+address. Input: address, lat, lng, place_id.
+PATCH /api/v1/vendor/applications/:id/
+radius Vendor applicant Radius request step Stores requested service radius. Input: requested_radius_km.
+POST /api/v1/vendor/applications/:id/
+documents Vendor applicant Document step Uploads and classifies 
+owner/business documents.
+Multipart: document_type, file. 
+Output: secure document 
+reference.
+DELETE /api/v1/vendor/applications/:id/
+documents/:documentId Vendor applicant Document correction Removes a draft/resubmittable 
+document. Output: removed=true.
+POST /api/v1/vendor/applications/:id/
+submit Vendor applicant Final review Validates and submits application.
+Output: 
+WAITING_FOR_APPROVAL and 
+submitted_at.
+POST /api/v1/vendor/applications/:id/
+resubmit Vendor applicant Correction workflow Resubmits after admin-requested 
+correction.
+Input: correction 
+acknowledgement.
+GET /api/v1/vendor/profile Vendor owner/staff Vendor home/profile Loads approved vendor profile and 
+operational flags.
+Returns approved radius, 
+activation, publication and 
+completion status.
+PATCH /api/v1/vendor/profile Vendor owner Edit vendor profile Updates public profile fields. Input: public name, description, 
+contact, logo, hours.
+PATCH /api/v1/vendor/profile/location Vendor owner + admin reapproval Business location Requests location change. Input: address, lat,lng; may set 
+PENDING_REVIEW.
+GET /api/v1/vendor/profile/public-
+preview Vendor owner Preview Shows customer-facing 
+representation before publish. Returns public profile preview.
+POST /api/v1/vendor/profile/publish Vendor owner Publish control
+Publishes profile only when 
+approved and at least one active 
+service exists.
+Output: published=true or 
+validation errors.
+G. Vendor service catalogue, pricing and capacity APIs
+Method Endpoint Access Used by Purpose Key input / output
+GET /api/v1/vendor/categories Vendor owner/staff Service setup Lists admin-created categories 
+available to vendor. Returns active categories.
+GET /api/v1/vendor/services Vendor owner/staff Services screen Lists vendor services with 
+publication state. Query: status,category,page.
+POST /api/v1/vendor/services Vendor owner/staff with permission Create service Creates draft laundry service.
+Input: 
+category_id,name,description,inclu
+sions,exclusions,completion_time.
+
+===== PAGE 10 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 10
+Method Endpoint Access Used by Purpose Key input / output
+GET /api/v1/vendor/services/:serviceId Vendor owner/staff Service editor Loads service, garment types and 
+rates and capacity link. Returns complete editable service.
+PATCH /api/v1/vendor/services/:serviceId Vendor owner/staff with permission Service editor Updates service details. Input: editable service fields.
+DELETE /api/v1/vendor/services/:serviceId Vendor owner Services screen Soft-deletes unused service or 
+deactivates active one. Output: state.
+POST /api/v1/vendor/services/:serviceId/
+garment-rates Vendor owner/staff Pricing setup Adds a customer garment type and 
+its applicable laundry service rate.
+Input: garment_type_name, 
+rate_unit PIECE/KG/PAIR, 
+rate_paise, min, max.
+PATCH /api/v1/vendor/services/:serviceId/
+garment-rates/:garmentRateId Vendor owner/staff Pricing setup Updates garment service rate and 
+quantity/weight rules. Input: price/unit/min/max/active.
+DELETE /api/v1/vendor/services/:serviceId/
+garment-rates/:garmentRateId Vendor owner/staff Pricing setup Deactivates garment type for this 
+service. Output: inactive=true.
+POST /api/v1/vendor/services/:serviceId/
+garment-rates/bulk Vendor owner/staff Bulk pricing Creates or updates multiple 
+garment-rate lines efficiently. Input: garment_rates[].
+POST /api/v1/vendor/services/:serviceId/
+publish Vendor owner Publish service Publishes valid service. Validates category, garment rates, 
+capacity and profile.
+POST /api/v1/vendor/services/:serviceId/
+unpublish Vendor owner Publish service Temporarily removes service from 
+discovery. Input: reason.
+GET /api/v1/vendor/capacity Vendor owner/staff Capacity screen Loads daily limit and weekly 
+availability.
+Returns days, slots and booked 
+counts.
+PUT /api/v1/vendor/capacity/daily-limit Vendor owner Capacity screen Sets daily maximum order count. Input: max_orders_per_day.
+GET /api/v1/vendor/pickup-slots Vendor owner/staff Slot screen Lists recurring 60-minute slots. Returns enabled, capacity and 
+exceptions.
+POST /api/v1/vendor/pickup-slots Vendor owner Slot screen Creates recurring slot.
+Input: 
+day_of_week,start,end,max_orders
+.
+PATCH /api/v1/vendor/pickup-slots/:slotId Vendor owner Slot screen Updates or enables/disables slot. Input: times, capacity, active.
+DELETE /api/v1/vendor/pickup-slots/:slotId Vendor owner Slot screen Removes future slot when safe. Output: deleted/deactivated.
+POST /api/v1/vendor/capacity/exceptions Vendor owner Holiday/full-day controls Adds date-specific closure or 
+capacity override. Input: date, type, limit, reason.
+DELETE /api/v1/vendor/capacity/
+exceptions/:id Vendor owner Capacity exceptions Removes exception. Output: removed=true.
+
+===== PAGE 11 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 11
+H. Vendor delivery-employee and order-operation APIs
+Method Endpoint Access Used by Purpose Key input / output
+GET /api/v1/vendor/employees Vendor owner Employee management Lists vendor employees and 
+current availability.
+Returns role, phone, status, 
+assignments.
+POST /api/v1/vendor/employees Vendor owner Add employee Creates rider/employee account 
+invitation.
+Input: name, phone, employee_ref, 
+role.
+GET /api/v1/vendor/
+employees/:employeeId Vendor owner Employee details Loads employee, documents and 
+metrics. Returns assignment summary.
+PATCH /api/v1/vendor/
+employees/:employeeId Vendor owner Employee details Updates 
+name/reference/permissions. Input: editable fields.
+PATCH /api/v1/vendor/
+employees/:employeeId/status Vendor owner Employee management Activates or deactivates employee. Input: active, reason.
+POST
+/api/v1/vendor/
+employees/:employeeId/reset-
+session
+Vendor owner Security Revokes employee sessions after 
+device loss. Output: revoked count.
+GET /api/v1/vendor/orders Vendor owner/staff Orders board Lists vendor orders by operational 
+status.
+Query: 
+status,date,slot,employee,page.
+GET /api/v1/vendor/orders/:orderId Vendor owner/staff Order details Loads paid order, customer, 
+garment lines, slot and assignment.
+Returns permitted customer 
+contact and address.
+POST /api/v1/vendor/orders/:orderId/
+accept Vendor owner/staff with permission Incoming order Accepts order before deadline.
+Input: optional employee_id. 
+Output: accepted order and 
+assignment.
+POST /api/v1/vendor/orders/:orderId/
+reject Vendor owner/staff with permission Incoming order Rejects with reason and triggers 
+refund/release. Input: reason_code, comment.
+POST /api/v1/vendor/orders/:orderId/
+assign-pickup Vendor owner/staff Assignment Assigns/reassigns pickup 
+employee. Input: employee_id.
+POST /api/v1/vendor/orders/:orderId/
+received Vendor owner/staff Received at partner Confirms laundry reached vendor. Input: received_at, notes.
+PATCH /api/v1/vendor/orders/:orderId/
+actuals Vendor owner/staff Verification Stores actual garment count or 
+measured weight and final amount.
+Input: actual_garment_lines or 
+actual_weight_kg, 
+adjustment_reason.
+POST /api/v1/vendor/orders/:orderId/
+request-balance Vendor owner/staff Price adjustment Creates additional payable amount 
+where policy permits.
+Input: final_amount, breakdown. 
+Output: payment request.
+POST /api/v1/vendor/orders/:orderId/
+status Vendor owner/staff Processing board Moves order only through allowed 
+state transition.
+Input: next_status, note. Output: 
+event.
+POST /api/v1/vendor/orders/:orderId/pack Vendor owner/staff Processing board Marks packed and ready for 
+delivery. Output: packed timestamp.
+POST /api/v1/vendor/orders/:orderId/ Vendor owner/staff Assignment Assigns/reassigns delivery Input: employee_id.
+
+===== PAGE 12 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 12
+Method Endpoint Access Used by Purpose Key input / output
+assign-delivery employee.
+GET /api/v1/vendor/orders/:orderId/audit Vendor owner/admin Order audit Returns status, assignment and 
+price-change history. Immutable events.
+GET /api/v1/vendor/performance Vendor owner Performance dashboard Returns acceptance, completion, 
+delivery time and rating metrics. Query: date range.
+GET /api/v1/vendor/revenue/summary Vendor owner Revenue dashboard Returns daily, weekly and monthly 
+totals. Query: date range.
+GET /api/v1/vendor/revenue/orders Vendor owner Revenue details Lists per-order earnings and 
+payment state. Paginated records.
+I. Rider/Delivery Partner APIs inside the Vendor Partner application
+Method Endpoint Access Used by Purpose Key input / output
+GET /api/v1/rider/profile Rider Rider profile Loads employee identity, vendor 
+and status. Returns permitted profile fields.
+PATCH /api/v1/rider/profile Rider Rider profile Updates permitted personal fields. Input: name, photo, emergency 
+contact.
+PATCH /api/v1/rider/availability Rider Rider home Sets AVAILABLE or OFFLINE for 
+assignment. Input: availability.
+GET /api/v1/rider/assignments Rider Assignment list Lists only rider-assigned 
+pickup/delivery jobs. Query: type,status,date.
+GET /api/v1/rider/
+assignments/:assignmentId Rider assigned only Assignment detail Loads customer address, 
+instructions, contact and time slot.
+Returns map coordinates and 
+Google Maps deep link.
+POST
+/api/v1/rider/
+assignments/:assignmentId/
+acknowledge
+Rider Assignment detail Acknowledges assignment 
+notification. Output: acknowledged_at.
+POST
+/api/v1/rider/
+assignments/:assignmentId/going-
+to-pickup
+Rider Pickup action Sets customer-facing Pickup 
+Partner Coming. Output: timeline event.
+POST
+/api/v1/rider/
+assignments/:assignmentId/verify-
+pickup-otp
+Rider Pickup OTP screen Verifies purpose-bound pickup 
+OTP.
+Input: otp. Output: verified or retry 
+state.
+POST
+/api/v1/rider/
+assignments/:assignmentId/pickup-
+complete
+Rider Pickup action Completes pickup only after OTP 
+verification. Input: optional proof/notes.
+POST
+/api/v1/rider/
+assignments/:assignmentId/
+arrived-at-vendor
+Rider Vendor handover Records laundry return to vendor. Output: handover timestamp.
+
+===== PAGE 13 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 13
+Method Endpoint Access Used by Purpose Key input / output
+POST
+/api/v1/rider/
+assignments/:assignmentId/out-for-
+delivery
+Rider Delivery action Sets Out for Delivery. Output: timeline event.
+POST
+/api/v1/rider/
+assignments/:assignmentId/verify-
+delivery-otp
+Rider Delivery OTP screen Verifies delivery OTP. Input: otp. Output: verified or retry 
+state.
+POST
+/api/v1/rider/
+assignments/:assignmentId/
+delivery-complete
+Rider Delivery action Completes order after OTP. Input: optional proof/notes.
+POST
+/api/v1/rider/
+assignments/:assignmentId/report-
+issue
+Rider Exception action Reports customer unavailable, 
+wrong address or other issue.
+Input: issue_type, note, optional 
+photo.
+GET /api/v1/rider/history Rider History Lists completed pickup/delivery 
+jobs. Paginated records.
+GET /api/v1/rider/stats Rider Rider home
+Shows 
+assigned/completed/pending 
+counts.
+Date range summary.
+GET /api/v1/rider/navigation-link Rider Open in Google Maps Builds external Google Maps 
+navigation URL.
+Query: assignment_id, 
+target=customer|vendor.
+J. Admin dashboard authentication, two-factor OTP and team APIs
+Method Endpoint Access Used by Purpose Key input / output
+POST /api/v1/admin/auth/login Public Dashboard login Validates email and password, 
+then requires second factor.
+Output: 2FA_REQUIRED, 
+login_challenge_id.
+POST /api/v1/admin/auth/2fa/send Login challenge Dashboard login
+Sends direct email/SMS OTP 
+fallback where TOTP is not 
+configured.
+Input: challenge_id, channel.
+POST /api/v1/admin/auth/2fa/verify Login challenge Dashboard login Verifies TOTP/direct OTP and 
+issues admin session.
+Input: challenge_id, otp, 
+trust_device.
+POST /api/v1/admin/auth/2fa/setup Admin + recent password Security settings Creates authenticator TOTP secret 
+and QR.
+Returns provisioning URI and 
+masked secret.
+POST /api/v1/admin/auth/2fa/confirm Admin Security settings Confirms authenticator code and 
+generates recovery codes. Input: otp.
+POST /api/v1/admin/auth/2fa/disable Admin + step-up OTP Security settings Disables TOTP with explicit 
+confirmation. Input: password, otp.
+POST /api/v1/admin/auth/recovery-code Login challenge Dashboard login Uses one-time recovery code. Input: challenge_id, 
+recovery_code.
+
+===== PAGE 14 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 14
+Method Endpoint Access Used by Purpose Key input / output
+GET /api/v1/admin/auth/me Admin Dashboard shell Loads admin identity, role, 
+permissions and 2FA status. Returns HQ/shop scope.
+POST /api/v1/admin/auth/change-
+password Admin Security settings Changes password and rotates 
+sessions.
+Input: 
+current_password,new_password.
+POST /api/v1/admin/auth/logout Admin Dashboard shell Clears/revokes dashboard session. Output: success.
+GET /api/v1/admin/team Admin with permission Team management Lists dashboard users. Returns roles, scope, 2FA and 
+status.
+POST /api/v1/admin/team Super admin Team management Creates admin/team member.
+Input: 
+name,email,role,scope,force_pass
+word_change.
+PATCH /api/v1/admin/team/:id Super admin Team management Updates role, scope or state. Input: role/permissions/status.
+POST /api/v1/admin/team/:id/reset-2fa Super admin Team security Resets compromised 2FA after 
+audit. Input: reason.
+GET /api/v1/admin/roles Admin Role management Lists roles and permission strings. Returns permission matrix.
+PUT /api/v1/admin/roles/:id Super admin Role management Updates custom role permissions. Input: permissions[].
+K. Admin operations: vendors, categories, customers and riders
+Method Endpoint Access Used by Purpose Key input / output
+GET /api/v1/admin/dashboard/summary Admin Dashboard home Returns KPI cards and exception 
+counts.
+Vendors, orders, GMV, pending 
+applications and stuck orders.
+GET /api/v1/admin/vendor-applications Admin reviewer Vendor applications Lists applications by status. Query: status,search,date,page.
+GET /api/v1/admin/vendor-
+applications/:id Admin reviewer Application detail
+Loads owner, business, 
+documents, map and radius 
+request.
+Includes secure signed document 
+links.
+POST /api/v1/admin/vendor-
+applications/:id/approve Admin reviewer Application detail Approves vendor and final service 
+radius. Input: approved_radius_km, notes.
+POST /api/v1/admin/vendor-
+applications/:id/reject Admin reviewer Application detail Rejects with customer-readable 
+reason. Input: reason_code, message.
+POST /api/v1/admin/vendor-
+applications/:id/request-correction Admin reviewer Application detail Requests section-level corrections. Input: fields[], message.
+GET /api/v1/admin/vendors Admin Vendor management Lists vendors with status, 
+service/radius/capacity summary. Query: active,city,search,page.
+GET /api/v1/admin/vendors/:vendorId Admin Vendor detail Loads complete vendor operations 
+profile.
+Includes services, employees, 
+metrics and documents.
+
+===== PAGE 15 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 15
+Method Endpoint Access Used by Purpose Key input / output
+PATCH /api/v1/admin/vendors/:vendorId/
+status Admin Vendor detail Activates, suspends or deactivates 
+vendor. Input: status,reason.
+PATCH /api/v1/admin/vendors/:vendorId/
+radius Admin Vendor detail Changes approved radius. Input: approved_radius_km, 
+reason.
+GET /api/v1/admin/vendors/:vendorId/
+services Admin Vendor detail Reviews vendor service listings. Returns active/draft services and 
+prices.
+GET /api/v1/admin/vendors/:vendorId/
+capacity Admin Vendor detail Reviews daily and slot capacity. Returns upcoming utilisation.
+PUT /api/v1/admin/vendors/:vendorId/
+capacity-override Admin Vendor detail Applies temporary capacity 
+override. Input: date/slot/limit/reason.
+GET /api/v1/admin/laundry-categories Admin Category management Lists categories including inactive. Paginated list.
+POST /api/v1/admin/laundry-categories Admin Category management Creates category.
+Input: 
+name,description,image,display_or
+der.
+PATCH /api/v1/admin/laundry-
+categories/:id Admin Category management Updates category. Input: editable fields.
+PATCH /api/v1/admin/laundry-
+categories/:id/status Admin Category management Activates/deactivates category. Input: active.
+DELETE /api/v1/admin/laundry-
+categories/:id Admin Category management Soft-deletes unused category. Output: state.
+GET /api/v1/admin/customers Admin Customer management Lists customers and order 
+summary. Query: status,search,page.
+GET /api/v1/admin/
+customers/:customerId Admin Customer detail Loads profile, addresses and 
+orders. Returns permitted PII under audit.
+PATCH /api/v1/admin/
+customers/:customerId/status Admin Customer detail Suspends or reactivates customer. Input: status, reason.
+GET /api/v1/admin/riders Admin Rider oversight Lists vendor employees/riders. Query: vendor,status,search,page.
+GET /api/v1/admin/riders/:riderId Admin Rider detail Loads assignments, documents 
+and metrics. Returns vendor link and status.
+PATCH /api/v1/admin/riders/:riderId/status Admin Rider detail Suspends/reactivates rider. Input: status, reason.
+L. Admin orders, payments, reports, exceptions and settings
+Method Endpoint Access Used by Purpose Key input / output
+GET /api/v1/admin/orders Admin Order management Lists all orders with filters. Query: 
+status,vendor,rider,date,payment,e
+
+===== PAGE 16 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 16
+Method Endpoint Access Used by Purpose Key input / output
+xception,page.
+GET /api/v1/admin/orders/:orderId Admin Order detail
+Loads complete order, timeline, 
+assignments, payments and OTP 
+audit.
+Sensitive values remain masked.
+POST /api/v1/admin/orders/:orderId/
+override-status Authorised admin + 2FA step-up Exception handling Moves stuck order through 
+controlled administrative transition.
+Input: target_status, reason; 
+creates audit event.
+POST /api/v1/admin/orders/:orderId/
+cancel Authorised admin Order detail Cancels with reason and refund 
+handling. Input: reason, refund_action.
+POST /api/v1/admin/orders/:orderId/
+reassign Authorised admin Order detail Reassigns vendor employee where 
+operationally valid.
+Input: assignment_type, 
+employee_id.
+GET /api/v1/admin/exceptions Admin Exception queue Lists payment, status, capacity, 
+OTP and assignment exceptions. Query: type,severity,status.
+POST /api/v1/admin/exceptions/:id/
+resolve Admin Exception queue Resolves exception with action 
+note. Input: resolution_code, note.
+GET /api/v1/admin/payments Finance admin Payments Lists payments and refunds. Query: 
+status,date,vendor,order,page.
+GET /api/v1/admin/payments/:id Finance admin Payment detail Loads Razorpay references and 
+ledger events. Returns payment/refund audit.
+POST /api/v1/admin/payments/:id/refund Finance admin + 2FA step-up Payment detail Initiates full/partial Razorpay 
+refund.
+Input: amount, reason, 
+idempotency_key.
+GET /api/v1/admin/reports/orders Admin Reports Order volume, status and trend 
+report. Query: from,to,group_by.
+GET /api/v1/admin/reports/gmv Finance admin Reports GMV and refund report. Query: from,to,vendor.
+GET /api/v1/admin/reports/vendors Admin Reports Vendor acceptance, completion, 
+rating and time report. Query: from,to,sort.
+GET /api/v1/admin/reports/customers Admin Reports Customer activity and repeat usage 
+report. Query: from,to.
+GET /api/v1/admin/reports/export Admin Reports Exports authorised report to 
+CSV/XLSX. Query: report_type, filters.
+GET /api/v1/admin/settings Super admin Platform settings Loads operational configuration. Auto-reject minutes, OTP limits, 
+rating threshold, defaults.
+PUT /api/v1/admin/settings Super admin + 2FA step-up Platform settings Updates validated platform 
+settings.
+Input: changed settings and 
+reason.
+GET /api/v1/admin/audit-logs Admin auditor Audit logs Lists security and operational audit 
+events.
+Query: 
+actor,action,entity,date,page.
+GET /api/v1/admin/notifications/
+templates Admin Notification templates Lists SMS/email/push templates. Returns variables and active 
+versions.
+
+===== PAGE 17 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 17
+Method Endpoint Access Used by Purpose Key input / output
+PUT /api/v1/admin/notifications/
+templates/:id Admin Notification templates Updates template content with 
+preview validation. Input: title/body/channel/variables.
+POST /api/v1/admin/notifications/test Admin Notification templates Sends test push/SMS/email. Input: channel,target,template_id.
+M. Watermark, secure document and upload APIs
+Method Endpoint Access Used by Purpose Key input / output
+POST /api/v1/uploads/image Authenticated Customer/Vendor/Admin Uploads one allowed image to 
+Cloudinary.
+Multipart file, context. Returns 
+URL/public_id/dimensions.
+POST /api/v1/uploads/document Vendor/Admin Vendor KYC Uploads private document to 
+restricted storage.
+Multipart file,type. Returns 
+document_id; not public URL.
+GET /api/v1/secure-
+documents/:documentId Authorised signed access Admin/vendor document screen Streams short-lived protected 
+document.
+Audits viewer and denies cross-
+tenant access.
+DELETE /api/v1/uploads/:assetId Owner/admin Asset management Deletes unused asset. Input: reason.
+GET /api/v1/admin/watermark-settings Admin Watermark settings Loads 
+logo/text/position/opacity/modes.
+Returns marketing and KYC 
+watermark profiles.
+PUT /api/v1/admin/watermark-settings Super admin Watermark settings Updates watermark configuration. Input: logo, text template, opacity, 
+position, apply_to.
+POST /api/v1/admin/watermark-settings/
+preview Admin Watermark settings Creates non-persistent preview. Input: sample asset/profile. Output: 
+preview URL.
+POST /api/v1/admin/assets/:assetId/
+apply-watermark Admin Media library Generates watermarked derivative. Output: original_url and 
+watermarked_url.
+GET /api/v1/admin/watermark-jobs Admin Watermark processing Lists queued/completed watermark 
+jobs. Query: status,type,page.
+POST /api/v1/admin/watermark-jobs/:id/
+retry Admin Watermark processing Retries failed background job. Output: queued=true.
+N. Webhooks, real-time events and operational APIs
+Method Endpoint Access Used by Purpose Key input / output
+POST /api/webhook/razorpay Razorpay signature System Receives payment/refund events. Raw body signature verification; 
+idempotent processing.
+POST /api/webhook/cloudinary Cloudinary signature System Receives asynchronous asset 
+processing events where enabled.
+Validates signature and updates 
+asset state.
+POST /api/webhook/sms-delivery SMS provider signature System Receives OTP/SMS delivery Updates message delivery state.
+
+===== PAGE 18 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 18
+Method Endpoint Access Used by Purpose Key input / output
+receipts.
+GET /api/v1/realtime/token Authenticated Apps/dashboard Issues short-lived Socket.IO 
+subscription token. Returns allowed rooms and expiry.
+WS order.updated Scoped subscription Customer/Vendor/Rider/Admin Pushes order status/timeline 
+update.
+Payload: 
+order_id,status,event_version.
+WS assignment.updated Vendor/Rider Vendor app Pushes new/reassigned pickup or 
+delivery assignment. Payload: assignment summary.
+WS notification.created User-scoped All apps Pushes in-app notification. Payload: notification summary.
+POST /api/v1/internal/jobs/auto-reject Worker secret/internal only BullMQ worker Rejects expired vendor-
+confirmation orders.
+Not exposed publicly; idempotent 
+worker action.
+POST /api/v1/internal/jobs/expire-slot-
+holds Worker secret/internal only BullMQ worker Releases expired booking capacity 
+holds. Internal only.
+5. Key request examples
+Create vendor search request
+GET /api/v1/discovery/vendors?lat=22.5726&lng=88.3639&category_id=cat_dry_cleaning&date=2026-06-
+22&slot_id=slot_10_11&sort=nearest&page=1
+Create quotation
+POST /api/v1/quotes
+Authorization: Bearer <customer-token>
+{
+  "vendor_id": "vendor_uuid",
+  "service_id": "service_uuid",
+  "garment_lines": [
+    {"garment_type_id":"shirt_uuid","quantity":3},
+    {"garment_type_id":"trouser_uuid","quantity":1}
+  ]
+}
+Vendor accepts order
+POST /api/v1/vendor/orders/{orderId}/accept
+Authorization: Bearer <vendor-token>
+Idempotency-Key: <uuid>
+{ "pickup_employee_id": "employee_uuid" }
+
+===== PAGE 19 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 19
+Verify pickup OTP
+POST /api/v1/rider/assignments/{assignmentId}/verify-pickup-otp
+Authorization: Bearer <rider-token>
+{ "otp": "482193" }
+Admin approval
+POST /api/v1/admin/vendor-applications/{applicationId}/approve
+Authorization: Bearer <admin-token>
+X-Step-Up-Token: <recent-2fa-token>
+{ "approved_radius_km": 6, "notes": "Documents verified" }
+6. Access-control matrix
+Role Allowed Explicit restriction
+Customer Own profile, addresses, discovery, quote, payment, own orders, 
+own OTP display, own reviews.
+Cannot access vendor private settings, rider data, other 
+customers or admin operations.
+Vendor applicant Own application and resubmission. Cannot publish services or receive orders until approval.
+Vendor owner Own profile, services, prices, capacity, employees, vendor 
+orders, revenue and performance. Cannot approve applications or access other vendors.
+Vendor staff Permission-limited service/order operations. Cannot change ownership, documents, approved radius or high-
+risk settings unless granted.
+Rider Only own assigned pickup/delivery jobs and permitted customer 
+address/contact.
+Cannot change price, service, vendor profile, documents or 
+arbitrary order status.
+Platform admin Vendor approvals, customers, orders, exceptions, reports and 
+configuration under permission model. High-risk actions require recent 2FA step-up and audit reason.
+7. Backend implementation rules
+ Reuse the existing Fastify route -> controller -> service -> repository architecture.
+ Generate and maintain Swagger/OpenAPI documentation from route schemas.
+ Use PostgreSQL transactions and row-level or advisory locking for slot holds, order creation and final capacity decrement.
+ Hash login, pickup, delivery and direct 2FA OTP values; never store plaintext OTPs after verification.
+ Use Redis for OTP challenges, rate limits, short-lived slot holds, idempotency keys and job coordination.
+ Use BullMQ for vendor auto-reject, notification fan-out, watermark processing, payment expiry and retryable background work.
+ Use server-side Razorpay signature validation and idempotent webhook processing as payment source of truth.
+ Use Cloudinary restricted assets or equivalent signed delivery for sensitive documents; KYC originals must never be public URLs.
+
+===== PAGE 20 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 20
+ Create immutable order-event and security-audit records for all critical operations.
+8. Definition of API completion
+1. Every endpoint has validation schema, role/permission guard, service logic, repository query and documented response.
+2. Swagger accurately reflects production request/response contracts.
+3. Critical endpoints have positive, negative, permission, idempotency and concurrency tests.
+4. Flutter and dashboard consume only documented endpoints; no direct database access or undocumented status mutation exists.
+5. All high-risk operations produce an audit entry and a stable error code on rejection.

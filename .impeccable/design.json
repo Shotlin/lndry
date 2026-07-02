@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-20T00:00:00+05:30",
+  "title": "Design System: LNDRY",
+  "extensions": {
+    "colorMeta": {
+      "primary-violet": { "role": "primary", "displayName": "Care Violet", "canonical": "#6C63E8", "tonalRamp": ["#17133D", "#292266", "#40379A", "#5046C8", "#6C63E8", "#887CF6", "#B7B1FB", "#EAE8FF"] },
+      "teal-accent": { "role": "secondary", "displayName": "Operational Teal", "canonical": "#0FB5A6", "tonalRamp": ["#082F2C", "#07544E", "#08766D", "#0A9488", "#0FB5A6", "#56CFC4", "#A4E8E2", "#DDF7F3"] },
+      "near-black-ink": { "role": "neutral", "displayName": "Near Black Ink", "canonical": "#080F14", "tonalRamp": ["#080F14", "#1C252C", "#34404A", "#495467", "#677382", "#7E8998", "#BEC4CD", "#F4F3FB"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero and onboarding statements only." },
+      "headline": { "displayName": "Headline", "purpose": "Screen titles and major greetings." },
+      "title": { "displayName": "Title", "purpose": "Service, vendor, and component titles." },
+      "body": { "displayName": "Body", "purpose": "Descriptions and guidance." },
+      "label": { "displayName": "Label", "purpose": "Controls, chips, and compact metadata." }
+    },
+    "shadows": [
+      { "name": "soft-surface", "value": "0 4px 16px rgba(42, 36, 95, 0.08)", "purpose": "Cards, search fields, and compact groups." },
+      { "name": "elevated-surface", "value": "0 12px 32px rgba(67, 55, 145, 0.10)", "purpose": "Sheets, floating booking actions, and confirmation dialogs." }
+    ],
+    "motion": [
+      { "name": "state-standard", "value": "180ms cubic-bezier(0.2, 0, 0, 1)", "purpose": "Selection, button, and chip state changes." },
+      { "name": "surface-enter", "value": "240ms cubic-bezier(0.2, 0.8, 0.2, 1)", "purpose": "Sheets, cards, and navigation transitions." }
+    ],
+    "breakpoints": [
+      { "name": "compact", "value": "390px" },
+      { "name": "expanded-mobile", "value": "480px" },
+      { "name": "tablet", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single dominant booking or confirmation action.",
+      "html": "<button class=\"ds-btn-primary\">Schedule pickup</button>",
+      "css": ".ds-btn-primary{height:52px;padding:0 20px;border:0;border-radius:12px;background:#6C63E8;color:#fff;font:600 17px/22px Sora,Inter,sans-serif;box-shadow:0 4px 16px rgba(42,36,95,.08);transition:background 180ms,transform 180ms}.ds-btn-primary:hover{background:#5046C8}.ds-btn-primary:active{transform:translateY(1px)}.ds-btn-primary:focus-visible{outline:2px solid #887CF6;outline-offset:2px}"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "service-card",
+      "description": "Compact marketplace service choice with branded icon, name, and timing.",
+      "html": "<article class=\"ds-service-card\"><span class=\"ds-service-icon\">L</span><strong>Wash &amp; Fold</strong><small>24–36 hrs</small></article>",
+      "css": ".ds-service-card{width:132px;padding:16px;border:1px solid #E7E8F0;border-radius:16px;background:#fff;color:#080F14;box-shadow:0 4px 16px rgba(42,36,95,.08);font-family:Inter,sans-serif}.ds-service-card strong,.ds-service-card small{display:block}.ds-service-card strong{margin-top:10px;font-size:15px}.ds-service-card small{margin-top:4px;color:#7E8998}.ds-service-card:focus-within,.ds-service-card:hover{border-color:#6C63E8}.ds-service-icon{display:grid;width:40px;height:40px;place-items:center;border-radius:12px;background:#EAE8FF;color:#6C63E8;font:600 18px Sora,sans-serif}"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "chip-selected",
+      "description": "Touch-safe marketplace filter with unambiguous selected state.",
+      "html": "<button class=\"ds-chip\">Nearest</button>",
+      "css": ".ds-chip{height:44px;padding:0 14px;border:1px solid #6C63E8;border-radius:999px;background:#6C63E8;color:#fff;font:500 13px/18px Inter,sans-serif;transition:background 180ms}.ds-chip:hover{background:#5046C8}.ds-chip:focus-visible{outline:2px solid #887CF6;outline-offset:2px}"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "search-field",
+      "description": "Primary discovery field for services, garments, and vendors.",
+      "html": "<input class=\"ds-search\" placeholder=\"Search services or nearby laundries\" />",
+      "css": ".ds-search{width:100%;height:56px;padding:0 20px;border:1px solid #E7E8F0;border-radius:999px;background:#fff;color:#080F14;font:400 15px/22px Inter,sans-serif;box-shadow:0 4px 16px rgba(42,36,95,.08);outline:0}.ds-search::placeholder{color:#7E8998}.ds-search:focus{border-color:#6C63E8;box-shadow:0 0 0 2px #EAE8FF}"
+    },
+    {
+      "name": "Operational Status",
+      "kind": "chip",
+      "refersTo": "chip-operational",
+      "description": "Verified, available, and in-progress feedback only.",
+      "html": "<span class=\"ds-status\">Available today</span>",
+      "css": ".ds-status{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:999px;background:#DDF7F3;color:#087E74;font:600 13px/18px Inter,sans-serif}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Careline Marketplace",
+    "overview": "LNDRY combines the calm precision of a garment care label with the transparent choice of a modern marketplace. White and cool-lavender surfaces keep comparison effortless; violet carries identity and primary action; teal appears only for verified trust, availability, or operational progress.",
+    "keyCharacteristics": ["Bright, quiet, and reassuring", "Familiar marketplace controls", "Violet-led identity with disciplined teal semantics", "Careline duotone icons", "Premium transparent 3D garment-care objects"],
+    "rules": [
+      { "name": "The Teal Has a Job Rule", "body": "Teal always means verified, available, successful, or in progress. Decorative teal is prohibited.", "section": "colors" },
+      { "name": "The No Halo Rule", "body": "Dark outer glows, turquoise bloom, and neon edge lighting are forbidden.", "section": "elevation" }
+    ],
+    "dos": ["Do use the LndryUI sheet as the source of truth.", "Do make production icons true transparent SVGs.", "Do integrate the careline into the construction of every icon."],
+    "donts": ["Don't use generic laundry clip art or stock blue gradients.", "Don't bake checkerboards into transparent deliverables.", "Don't imply unsupported subscriptions, loyalty, live rider maps, or surge pricing."]
+  }
+}

@@ -1,0 +1,331 @@
+
+
+===== PAGE 1 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 1
+SHOTLIN
+DIGITAL PRODUCT STUDIO
+LNDRY Phase 1 MVP - Laundry Service 
+Platform Requirements and Technical 
+Annexure
+Service scope, third-party services, security, maps, payment, watermark and acceptance 
+terms
+Document code LNDRY-REQ-002
+Prepared for LNDRY Phase 1 MVP
+Baseline date 18 June 2026
+Source baseline Approved 34-page workflow and Bakaloo repositories
+CONFIDENTIAL - IMPLEMENTATION ANNEXURE
+This document is a target implementation contract. It does not state that every listed endpoint already exists in the Bakaloo codebase.
+
+===== PAGE 2 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 2
+Document status and hierarchy
+This document is designed to be attached to the project agreement as the technical and functional annexure. It 
+consolidates the approved workflow into implementable requirements. Where this annexure conflicts with an informal 
+message or verbal statement, the signed agreement and signed annexure control.
+Scope lock
+Phase 1 includes the customer application, a role-based Vendor Partner application containing Vendor Owner/Staff and 
+Delivery Partner modes, and the Admin Operations Dashboard. Continuous live rider tracking is explicitly excluded.
+Service-only commercial model
+LNDRY is a laundry-service booking and fulfilment platform. Shirts, trousers, sarees, blankets, shoes and weight-based 
+clothes are customer-owned articles handed over for cleaning or care. They function as garment-rate lines used to calculate 
+the service charge by piece, pair or kilogram.
+Service model interpretation
+ The customer books a vendor-defined laundry service and selects the garment types, quantities or estimated weight to 
+be processed.
+ The amount displayed before pickup is an estimated service charge based on published vendor rates.
+ After pickup, the vendor may confirm the actual garment count or measured weight. Any permitted final adjustment 
+uses the same published service rates and is fully audited.
+ Pickup and delivery refer to collection of the customer's garments and return of those garments after the selected 
+laundry service is completed.
+ The Phase 1 architecture must remain centred on service categories, vendor services, garment rates, pickup-slot 
+capacity, service quotations, laundry processing and return delivery.
+1. Service-platform objective
+LNDRY is a multi-vendor laundry marketplace where customers discover eligible nearby laundry vendors, compare 
+services and prices, select a vendor, schedule a 60-minute pickup slot, pay through Razorpay, and track status from 
+vendor confirmation through pickup, processing and OTP-verified delivery.
+2. Platform surfaces and roles
+Surface Role Primary responsibility
+Customer Mobile App Customer Discover, compare, book, pay, track, verify 
+pickup/delivery and review.
+Vendor Partner App Vendor Owner / permitted Vendor Staff
+Onboard business, publish services, set 
+prices/capacity, accept orders, assign 
+employees, process orders and view 
+performance.
+Vendor Partner App - Rider Mode Delivery Employee / Rider
+View only assigned jobs, open external 
+Google Maps, verify pickup/delivery OTP 
+and complete assigned handovers.
+Admin Operations Dashboard Platform Admin / Finance / Super Admin
+Approve vendors, control 
+radius/categories, manage 
+orders/exceptions, reports, security, 
+watermark and platform settings.
+
+===== PAGE 3 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 3
+3. Functional requirements by module
+3.1 Authentication and account security
+ Customer, vendor and rider login through mobile OTP.
+ OTP challenge expiry, retry limit, resend cooldown and rate limiting.
+ Role-scoped sessions when one phone belongs to more than one role.
+ Admin dashboard login uses email/password plus mandatory second factor.
+ Second factor supports authenticator TOTP; direct email/SMS OTP may be configured as fallback.
+ Recovery codes, session revocation, forced password change and audit logs for admin security.
+3.2 Vendor application and approval
+ Owner details, business details, operating hours, working days, pickup/delivery availability and optional GST.
+ Owner identity, shop photograph, registration document, GST certificate and configurable document types.
+ Exact business pin with latitude and longitude.
+ Requested radius is not final; admin approves the effective radius.
+ Statuses: DRAFT, WAITING_FOR_APPROVAL, CORRECTION_REQUIRED, APPROVED, REJECTED, 
+SUSPENDED.
+ Approval, rejection and correction notifications by enabled channels.
+3.3 Vendor public profile and service catalogue
+ Public laundry name, logo/shop image, description, contact, hours, working days and pickup/delivery capability.
+ Admin-managed categories such as Wash & Fold, Wash & Iron, Dry Cleaning, Ironing, Shoe Care, Blanket, Curtain 
+and Carpet Cleaning.
+ Vendor-defined service name, description, inclusions, exclusions, completion time and optional image.
+ Clothing/garment types priced per piece, kilogram or pair with minimum and maximum quantity.
+ A profile becomes discoverable only after vendor approval, activation, effective radius and at least one published valid 
+service.
+3.4 Capacity and pickup slots
+ Vendor defines daily order limit, active days, 60-minute slots and maximum orders per slot.
+ A vendor without configured capacity is unavailable.
+ Only slots with remaining capacity are shown to customers.
+ Booking confirmation creates a short-lived slot hold; payment failure, timeout or rejection releases capacity.
+ Database-level atomic enforcement prevents two customers booking the final slot.
+ Admin may inspect and apply audited temporary overrides.
+3.5 Customer discovery and comparison
+ Customer chooses current location, searches address or selects a saved address, then confirms an exact pin.
+ Eligibility checks customer coordinates, vendor coordinates, approved radius, vendor status, service status, capacity 
+and slot availability.
+ Nearest eligible vendors appear first by default; the customer makes the final selection.
+ Sorting: nearest, price low-to-high, price high-to-low, best rating and value for money.
+ Filtering: available now and service/garment type.
+ Search supports service name, category name, garment type and vendor name.
+3.6 Quotation, order and payment
+ Customer selects a laundry service, garment quantities or estimated weight, slot and address.
+ Server calculates estimate using a service-rate snapshot; the mobile client cannot be source of truth for amount.
+ Razorpay supports enabled UPI, card, net banking and wallet methods.
+ After verified payment, order is sent only to the customer-selected vendor.
+ Initial business status is Waiting for Vendor Confirmation.
+ Vendor accepts or rejects; no response triggers configurable auto-reject.
+ The system does not automatically assign another vendor after rejection.
+
+===== PAGE 4 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 4
+3.7 Pickup, processing and delivery
+ Accepted order receives an available pickup employee assignment; vendor may reassign.
+ Rider opens exact customer location in external Google Maps and marks Going for Pickup.
+ Pickup requires purpose-bound pickup OTP before completion.
+ Vendor confirms Received at Partner and may confirm actual garment count or measured weight.
+ Processing stages support Received, Washing, Drying, Ironing and Packed; irrelevant stages may be skipped through 
+permitted transitions.
+ Packed order receives delivery assignment; rider marks Out for Delivery.
+ Delivery requires separate purpose-bound delivery OTP before Delivered.
+3.8 Tracking, history, ratings and reports
+ Customer sees status timeline and notifications, not a continuously moving rider marker.
+ Order history includes vendor, garment lines, quantities/weight, timestamps, payment, final amount and status history.
+ Only delivered orders are review-eligible.
+ Vendor performance includes acceptance, completion, average delivery time, rating and counts.
+ Vendor revenue includes daily, weekly, monthly and per-order details.
+ Admin reports include order volume, GMV, customer activity, vendor performance, completion and cancellation.
+4. Map and location implementation
+Use case Required technology Behaviour
+Customer mobile address picker Google Maps SDK for Flutter plus Google 
+Places Autocomplete and Geocoding.
+Search, current location, draggable exact pin 
+and saved lat/lng.
+Vendor business pin Same Google Places and pin-selection flow. Stores address, place ID, latitude and 
+longitude.
+Admin map preview
+Reuse React-Leaflet/Leaflet in Bakaloo 
+dashboard or approved Google Maps web 
+component.
+Read-only verification of stored coordinates 
+and approved radius.
+Distance/radius eligibility Backend Haversine calculation using 
+PostgreSQL query or PostGIS if introduced.
+Avoids a paid route API for straight-line 
+service-radius decisions.
+Rider navigation External Google Maps deep link / URL intent. Google Maps handles route, travel time, 
+traffic and turn-by-turn directions.
+Customer tracking No embedded live navigation map and no 
+continuous rider GPS feed. Status timeline and push notifications only.
+Map billing responsibility
+Google Maps Platform keys, billing account, quotas and any per-request charges must be provided and paid by the client 
+unless the commercial agreement explicitly includes them.
+5. Third-party services and infrastructure
+Service Purpose LNDRY use Status
+PostgreSQL Primary transactional database
+Users, vendors, services, service 
+rates, slots, orders, payments, 
+events and audit logs.
+Required
+Redis Cache and short-lived state
+OTP challenges, rate limits, slot 
+holds, idempotency and BullMQ 
+coordination.
+Required
+
+===== PAGE 5 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 5
+Service Purpose LNDRY use Status
+BullMQ Background queue
+Auto-reject, slot expiry, 
+notifications, watermark jobs and 
+retryable work.
+Required
+Razorpay Payment gateway Order creation, signature 
+verification, webhooks and refunds. Required
+Firebase Cloud Messaging Push notifications Customer, vendor and rider 
+operational notifications. Required
+Firebase Crashlytics Mobile diagnostics Crash reports for Flutter 
+applications. Recommended
+Firebase Analytics Service-platform usage analytics
+Screen and funnel events without 
+storing sensitive OTP/payment 
+values.
+Recommended
+Cloudinary Image/document asset processing Public media, transformations and 
+signed/restricted document access. Required or equivalent
+Google Maps Platform Places, map pin, geocoding Address search and exact 
+coordinates. Required
+Google Maps external navigation Rider route app Deep-link to customer/vendor 
+coordinates. Required
+SMS provider - Twilio or India DLT-
+compliant provider Mobile OTP and transactional SMS Login OTP and selected operational 
+notifications. Required
+Email provider - Resend/SMTP Email notifications
+Vendor approval, rejection, 
+correction and administrative 
+messages.
+Recommended
+Socket.IO Real-time application events Order, assignment and notification 
+updates; FCM remains fallback. Recommended
+Cloud/VPS and reverse proxy Runtime hosting
+Node/Fastify API, worker, 
+PostgreSQL/managed DB, Redis, 
+HTTPS and backups.
+Required
+6. Watermark and secure-document requirements
+ Admin Dashboard includes a configurable watermark module with logo or text, position, scale, opacity and application 
+profile.
+ Marketing watermark may be applied to vendor service/shop images as a generated derivative while retaining the 
+original according to policy.
+ Sensitive KYC previews must display a dynamic visible watermark such as "For LNDRY Verification Only", 
+vendor/application reference and view date.
+ Original KYC files remain private; access uses short-lived signed URLs or authenticated streaming with audit logging.
+ Watermark processing is server-side using Sharp/Cloudinary transformations and BullMQ for batch processing.
+ Admin can preview, enable/disable, apply, retry failed jobs and inspect watermark history.
+ Watermark is not a substitute for encryption, access control or document retention policy.
+7. OTP and two-factor requirements
+OTP type Use Mandatory control
+Login OTP Customer/Vendor/Rider login Mobile-number challenge; hashed, expiring, 
+rate-limited and device/session linked.
+Pickup OTP Customer to assigned pickup rider Order-specific, PICKUP purpose, unavailable 
+before assignment, single-use.
+
+===== PAGE 6 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 6
+OTP type Use Mandatory control
+Delivery OTP Customer to assigned delivery rider Order-specific, DELIVERY purpose, single-
+use and independent from pickup OTP.
+Admin second factor Dashboard security TOTP authenticator preferred; direct 
+email/SMS OTP fallback if enabled.
+Step-up OTP/2FA Refund, admin override, security changes Recent second-factor proof required for high-
+risk action.
+8. Data model requirements
+ Core entities: users, roles, devices, addresses, vendors, vendor applications, documents, employees, categories, 
+services, garment types, prices, recurring slots, slot exceptions, slot holds, orders, order garment lines, assignments, 
+OTP challenges, payments, refunds, reviews, notifications, audit logs, watermark settings and asset jobs.
+ Orders store immutable snapshots of vendor identity, address, service, service rate, selected garment 
+quantity/estimated weight, slot and estimated amount.
+ Price changes after booking do not retroactively change existing order snapshots.
+ Final quantity/weight adjustments retain original and confirmed values plus reason and actor.
+ Soft deletion is used for records that must remain referenced by historical orders.
+ Every critical state change writes an order event with actor, old state, new state, timestamp and request ID.
+9. Security and non-functional requirements
+Area Requirement
+Transport HTTPS only in production; secure headers and trusted proxy 
+configuration.
+Authentication Short-lived JWT access tokens, rotating refresh tokens, session 
+revocation and role scope.
+Authorization Backend-enforced RBAC/permission strings and tenant scoping on 
+every protected endpoint.
+Input safety AJV/Zod validation, multipart file validation, sanitisation and safe error 
+responses.
+Rate limiting OTP, login, payment, upload and high-risk endpoints have tighter 
+limits.
+Secrets Environment/secret manager only; never committed to GitHub or 
+mobile source.
+Payments Amounts computed server-side; webhook signature and idempotency 
+required.
+PII Least-privilege access, masked logs, audited document views and 
+retention/deletion policy.
+Availability Health/readiness checks, graceful shutdown, database backups and 
+worker retry strategy.
+Observability Structured logs with request IDs, error monitoring and operational 
+dashboards.
+Performance Pagination, indexes, cached public data and no unbounded queries.
+Accessibility Readable contrast, scalable text, labelled controls and keyboard-
+accessible dashboard.
+
+===== PAGE 7 =====
+SHOTLIN DIGITAL PRODUCT STUDIO
+SHOTLIN DIGITAL PRODUCT STUDIO | GSTIN: 19HATPM4170H1Z1 | Confidential
+Page 7
+10. Explicit Phase 1 exclusions
+ Continuous live rider movement on the Customer App.
+ Automatic reassignment to another vendor after rejection or timeout.
+ Dynamic surge pricing, subscription plans, loyalty programmes or unrelated marketplace modules unless separately 
+approved.
+ In-app turn-by-turn navigation; rider uses external Google Maps.
+ Automated government KYC verification unless a separate provider and commercial scope are approved.
+ App Store/Play Store account fees, Google Maps charges, SMS charges, Razorpay charges, Cloudinary charges and 
+cloud-hosting fees unless explicitly included in the commercial agreement.
+11. Client-provided dependencies
+ Approved brand assets, legal business name, privacy policy, terms, refund/cancellation policy and support contacts.
+ Razorpay account and production keys with webhook access.
+ Google Cloud project, Maps billing, API keys and package/domain restrictions.
+ Firebase project access and platform configuration files.
+ Cloudinary account or approved alternative.
+ SMS/DLT account, approved templates and sender/entity details for India.
+ Production domain, server/VPS or cloud account and DNS access.
+ Final category, service, pricing, cancellation, auto-reject and refund business decisions.
+12. Acceptance criteria
+Area Acceptance condition
+Vendor onboarding Vendor submits full application; admin can approve, reject or request 
+correction; effective radius is admin-controlled.
+Discovery Only eligible vendors within approved radius and with active 
+service/capacity appear.
+Capacity Concurrent attempts cannot exceed slot or daily capacity.
+Payment Successful Razorpay signature creates one paid order; duplicate 
+webhook does not duplicate order.
+Vendor confirmation Vendor can accept/reject; configured timeout auto-rejects and notifies 
+customer.
+Pickup Only assigned rider can verify pickup OTP and complete pickup.
+Processing Vendor can use permitted laundry states; customer sees grouped 
+timeline.
+Delivery Only assigned rider can verify delivery OTP and mark delivered.
+Security Admin 2FA is enforced; high-risk actions are audited and step-up 
+protected.
+Watermark Configured watermark preview and derivative generation work; private 
+documents remain access-controlled.
+Reports Vendor and admin metrics match underlying 
+delivered/rejected/cancelled orders.
+13. Change-control rule
+Any new feature not stated in this annexure is a change request. The change must record scope, API/database impact, 
+user-interface impact, third-party cost, delivery impact and commercial approval before development begins.

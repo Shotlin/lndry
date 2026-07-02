@@ -1,0 +1,377 @@
+
+
+===== PAGE 1 =====
+ 
+SHOTLIN 
+DIGITAL  PRODUCT  STUDIO 
+ 
+  PASTE  /  INSERT  THE  FINAL  APPROVED  WORKFLOW  HERE    
+LNDRY  PHASE  1  MVP  —  COMPLETE  CLIENT  WORKFLOW  
+1.  Platform  Overview  
+LNDRY  is  a  marketplace  where  customers  can  find  nearby  laundry  vendors,  compare  their  services  and  prices,  select  a  vendor,  schedule  a  pickup,  pay  online,  and  track  the  laundry  order  until  delivery.   The  Phase  1  system  consists  of:   1.  Customer  Mobile  App  2.  Vendor  Partner  Mobile  App  3.  Vendor  Delivery  Partner  access  4.  Admin  Operations  Dashboard    
+2.  Main  User  Roles  
+2.1  Customer  
+The  customer  can:   ●  Register  through  mobile  OTP  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 2 =====
+ 
+●  Select  an  exact  address  using  Google  Maps  ●  Search  laundry  services  ●  Browse  service  categories  ●  View  nearby  vendors  ●  Compare  vendor  prices  and  ratings  ●  Select  a  vendor  ●  Select  clothing  items  and  quantities  ●  Select  a  60-minute  pickup  slot  ●  Pay  through  Razorpay  ●  Track  order  status  ●  Provide  pickup  and  delivery  OTPs  ●  View  order  history  ●  Rate  and  review  the  vendor  
+2.2  Vendor  Owner/Admin  
+The  Vendor  Owner/Admin  manages  the  laundry  business.   The  Vendor  Owner/Admin  can:   ●  Register  the  laundry  business  ●  Submit  documents  for  approval  ●  Create  the  public  vendor  profile  ●  Add  GST  details  when  available  ●  Set  the  business  location  ●  Set  the  service  radius  ●  Create  services  and  pricing  ●  Add  clothing  items  under  services  ●  Manage  daily  capacity  ●  Manage  available  pickup  slots  ●  Receive  and  accept  or  reject  orders  ●  Add  delivery  employees  ●  Assign  or  reassign  delivery  employees  ●  Update  laundry-processing  statuses  ●  View  earnings  and  performance  
+2.3  Vendor  Delivery  Partner/Employee  
+The  Delivery  Partner  handles  pickup  and  delivery.   The  Delivery  Partner  can:   ●  Log  in  using  an  employee  account  ●  View  assigned  pickup  and  delivery  orders  ●  View  the  customer's  confirmed  address  ●  Open  the  location  in  the  Google  Maps  application  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 3 =====
+ 
+●  Enter  pickup  OTP  ●  Confirm  pickup  completion  ●  Enter  delivery  OTP  ●  Confirm  delivery  completion   The  Delivery  Partner  cannot:   ●  Change  vendor  prices  ●  Create  services  ●  Edit  the  vendor  profile  ●  Approve  or  reject  vendor  applications  ●  Change  business  documents  ●  View  the  vendor's  full  administrative  settings  
+2.4  Platform  Admin  
+The  Platform  Admin  manages:   ●  Vendor  applications  ●  Vendor  approvals  ●  Vendor  service  radius  ●  Service  categories  ●  Vendor  activation  and  deactivation  ●  Customer  accounts  ●  Orders  ●  Exceptions  ●  Vendor  capacity  ●  Vendor  performance  ●  Reports  and  analytics    
+3.  Vendor  Registration  Workflow  
+Step  1:  Vendor  opens  the  Vendor  App  
+The  vendor  selects:   Register  as  a  Vendor   The  vendor  enters  a  mobile  number.   The  system  sends  an  OTP.  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 4 =====
+ 
+Step  2:  Mobile  OTP  verification  
+The  vendor  enters  the  OTP.   After  successful  verification:   ●  The  mobile  number  is  verified  ●  A  temporary  vendor  account  is  created  ●  The  vendor  is  taken  to  the  application  form   The  vendor  does  not  yet  have  permission  to  publish  services  or  receive  orders.  
+Step  3:  Vendor  enters  personal  details  
+The  vendor  submits:   ●  Owner's  full  name  ●  Primary  mobile  number  ●  Alternative  mobile  number,  if  available  ●  Email  address  ●  Owner  identity  details  
+Step  4:  Vendor  enters  business  details  
+The  vendor  submits:   ●  Laundry  or  business  name  ●  Business  description  ●  Full  business  address  ●  Opening  time  ●  Closing  time  ●  Working  days  ●  Pickup  availability  ●  Delivery  availability  
+Step  5:  Vendor  uploads  documents  
+The  vendor  uploads:   ●  Owner  identity  document  ●  Shop  or  business  photograph  ●  Business  registration  document,  if  available  ●  GST  certificate,  if  available  ●  Other  documents  required  by  the  business   
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 5 =====
+ 
+GST  remains  optional  when  the  vendor  does  not  have  a  GST  registration,  unless  the  client  makes  it  mandatory.  
+Step  6:  Vendor  selects  exact  business  location  
+The  Vendor  App  provides:   ●  Address  search  ●  Current-location  detection  ●  Google  Maps  location  selection  ●  Exact  map-pin  placement   The  vendor  searches  for  the  business  address  or  uses  the  current  location.   The  vendor  can  move  the  pin  and  confirm  the  exact  business  location.   The  location  is  saved  with:   ●  Address  ●  Latitude  ●  Longitude  ●  Exact  map-pin  position  
+Step  7:  Vendor  requests  a  service  radius  
+The  vendor  selects  the  required  service  area.   Example:   ●  5  km  ●  6  km  ●  10  km   The  vendor's  selected  radius  is  treated  as  a  request.   The  Platform  Admin  makes  the  final  decision.   Example:   ●  Vendor  requests  10  km  ●  Admin  approves  6  km  ●  The  vendor  is  visible  only  to  customers  within  the  approved  6  km  radius  
+Step  8:  Vendor  submits  the  application  
+The  vendor  reviews:  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 6 =====
+ 
+ ●  Owner  details  ●  Business  details  ●  Documents  ●  GST  information  ●  Business  location  ●  Requested  service  radius   The  vendor  submits  the  application.   The  application  status  becomes:   Waiting  for  Approval   The  vendor  sees:   Your  vendor  application  has  been  submitted  successfully.  You  will  be  notified  after  verification.    
+4.  Admin  Vendor-Approval  Workflow  
+Step  1:  New  application  appears  in  the  Admin  Dashboard  
+The  Admin  Dashboard  shows  a  new  request  under:   New  Vendor  Applications   The  admin  can  review:   ●  Owner's  name  ●  Business  name  ●  Phone  number  ●  Email  address  ●  Business  description  ●  Business  address  ●  Google  Maps  location  ●  Uploaded  identity  document  ●  Business  documents  ●  GST  details  ●  Shop  photograph  ●  Requested  service  radius  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 7 =====
+ 
+Step  2:  Admin  verifies  the  application  
+The  admin  checks:   ●  Whether  the  vendor  identity  is  valid  ●  Whether  the  business  details  are  correct  ●  Whether  the  location  is  valid  ●  Whether  the  documents  are  readable  ●  Whether  the  selected  service  radius  is  acceptable  
+Step  3:  Admin  decision  
+The  admin  can:   ●  Approve  the  vendor  ●  Reject  the  vendor  ●  Request  corrections  
+When  approved  The  vendor  receives:   ●  SMS  ●  Email  ●  In-app  notification   The  message  confirms  that  the  vendor  can  log  in  and  complete  the  business  setup.  
+When  rejected  The  vendor  receives:   ●  Rejection  reason  ●  SMS  ●  Email  ●  In-app  notification  
+When  correction  is  requested  The  vendor  receives:   ●  Details  of  the  required  correction  ●  Access  to  edit  the  application  ●  Option  to  resubmit    
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 8 =====
+ 
+5.  Approved  Vendor  Setup  
+After  approval,  the  vendor  logs  in  using  mobile  number  and  OTP.   The  Vendor  App  now  opens  the  full  Vendor  Owner/Admin  dashboard.   The  vendor  completes  the  public  business  profile.   The  vendor  enters:   ●  Public  laundry  name  ●  Logo  or  shop  image  ●  Business  description  ●  Contact  information  ●  Business  address  ●  Confirmed  Google  Maps  location  ●  Opening  and  closing  times  ●  Working  days  ●  Pickup  availability  ●  Delivery  availability  ●  GST  number,  when  applicable   The  profile  becomes  visible  to  customers  after  the  vendor  publishes  at  least  one  active  service.    
+6.  Vendor  Delivery  Employee  Setup  
+The  Vendor  Owner/Admin  can  add  delivery  employees.   For  each  employee,  the  vendor  enters:   ●  Employee  name  ●  Mobile  number  ●  Employee  ID  or  reference  ●  Active  or  inactive  status   The  employee  receives  login  access  through  mobile  OTP.   The  employee  sees  only  assigned  pickup  and  delivery  orders.   When  an  order  is  accepted:   ●  The  system  can  automatically  assign  an  available  delivery  employee  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 9 =====
+ 
+●  The  Vendor  Owner/Admin  can  change  the  assigned  employee  when  required   The  employee  receives  an  order  notification.    
+7.  Service  Category  Structure  
+The  Platform  Admin  manages  the  main  laundry  categories.   Example  categories:   ●  Wash  &  Fold  ●  Wash  &  Iron  ●  Dry  Cleaning  ●  Ironing  ●  Shoe  Care  ●  Premium  Laundry  ●  Blanket  Cleaning  ●  Curtain  Cleaning  ●  Carpet  Cleaning   Multiple  vendors  can  publish  services  under  the  same  category.   Example:   Wash  &  Iron   Inside  this  category,  the  customer  may  see:   ●  Vendor  A  —  Wash  &  Iron  ●  Vendor  B  —  Premium  Wash  &  Iron  ●  Vendor  C  —  Express  Wash  &  Iron  ●  Vendor  D  —  Budget  Wash  &  Iron   This  allows  the  customer  to  compare  different  vendors  offering  the  same  type  of  service.    
+8.  Vendor  Service  and  Pricing  Setup  
+Step  1:  Vendor  selects  a  category  
+The  vendor  selects  an  active  category  created  by  the  Platform  Admin.  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 10 =====
+ 
+ Example:   Wash  &  Iron  
+Step  2:  Vendor  creates  the  service  
+The  vendor  enters:   ●  Service  name  ●  Service  description  ●  What  is  included  ●  What  is  not  included  ●  Estimated  completion  time  ●  Pickup  availability  ●  Delivery  availability  ●  Service  image,  when  required  
+Step  3:  Vendor  adds  clothing  items  
+The  vendor  creates  the  item  list  under  that  service.   Example:   Item  Price  Type  
+T-shirt  Per  piece  
+Shirt  Per  piece  
+Trouser  Per  piece  
+Saree  Per  piece  
+Regular  clothes  Per  kilogram  
+Blanket  Per  piece  
+Shoes  Per  pair  
+Step  4:  Vendor  adds  prices  
+For  every  item,  the  vendor  adds:   ●  Item  name  ●  Item  price  ●  Price  type  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 11 =====
+ 
+●  Minimum  quantity  ●  Maximum  quantity   Example:   Item  Vendor  Price  
+T-shirt  ₹20  per  piece  
+Shirt  ₹25  per  piece  
+Trouser  ₹35  per  piece  
+Saree  ₹150  per  piece  
+Regular  clothes  ₹80  per  kilogram  
+Shoes  ₹250  per  pair  
+Step  5:  Vendor  manages  capacity  
+The  vendor  sets:   ●  Daily  maximum  orders  ●  Available  pickup  slots  ●  Number  of  orders  allowed  per  slot   When  the  vendor  reaches  the  limit:   ●  The  vendor  stops  receiving  new  orders  for  that  slot  ●  The  service  remains  unavailable  until  capacity  becomes  available   A  vendor  without  configured  capacity  is  treated  as  unavailable.  
+Step  6:  Vendor  publishes  the  service  
+The  vendor  reviews  and  publishes  the  service.   The  service  becomes  visible  to  customers  who  are:   ●  Within  the  approved  radius  ●  Searching  the  relevant  category  ●  Selecting  an  available  pickup  slot    
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 12 =====
+ 
+9.  Customer  Registration  Workflow  
+Step  1:  Customer  opens  the  Customer  App  
+The  customer  enters  a  mobile  number.   The  system  sends  an  OTP.  
+Step  2:  Customer  verifies  OTP  
+After  successful  verification:   ●  A  new  customer  account  is  created,  or  ●  The  existing  account  is  opened   A  new  customer  enters:   ●  Full  name  ●  Email  address,  optional  ●  Profile  photograph,  optional    
+10.  Customer  Address  and  Exact  Location  Workflow  
+Step  1:  Customer  selects  an  address  
+The  customer  can:   ●  Use  current  location  ●  Search  for  an  address  ●  Select  a  saved  address  
+Step  2:  Google  Maps  location  selection  
+Google  Maps  is  used  only  during  address  selection.   The  customer  can:   ●  Search  an  address  ●  Detect  the  current  location  ●  Move  the  location  pin  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 13 =====
+ 
+●  Confirm  the  exact  pickup  point   The  customer  then  enters:   ●  House  or  flat  number  ●  Building  ●  Road  or  area  ●  Landmark  ●  City  ●  Postal  code  ●  Address  label  ●  Pickup  instructions   The  address  is  saved.  
+Important  map  behaviour  
+The  Customer  Dashboard  does  not  show  an  embedded  live  map.   After  the  address  is  confirmed:   ●  The  application  displays  the  selected  address  as  text  ●  The  exact  coordinates  remain  saved  ●  The  vendor  or  delivery  employee  can  open  the  location  in  the  normal  Google  Maps  application   The  customer  tracking  screen  shows  statuses,  not  a  continuously  moving  vendor  map.    
+11.  Customer  Home  Screen  
+The  Customer  Home  Screen  shows:   ●  Current  selected  address  ●  Search  bar  ●  Service  categories  ●  Recommended  nearby  vendors  ●  Available  services  ●  Active  order  status  ●  Previous  orders  
+Search  bar  
+The  customer  can  search  using:   
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 14 =====
+ 
+●  Service  name  ●  Category  name  ●  Clothing  item  ●  Vendor  name   Example  searches:   ●  Wash  and  Iron  ●  Shoe  Cleaning  ●  Shirt  Dry  Cleaning  ●  Blanket  ●  Vendor  name    
+12.  Category  and  Vendor  Discovery  Workflow  
+Step  1:  Customer  selects  a  category  
+Example:   Dry  Cleaning  
+Step  2:  The  system  checks  eligible  vendors  
+The  system  checks:   ●  Customer's  confirmed  location  ●  Vendor's  confirmed  location  ●  Admin-approved  vendor  radius  ●  Vendor  active  status  ●  Service  active  status  ●  Vendor  capacity  ●  Available  pickup  slots   Only  eligible  vendors  are  shown.  
+Step  3:  Multiple  vendors  are  displayed  
+The  customer  sees  all  nearby  vendors  offering  the  selected  service.   Each  vendor  card  shows:   ●  Vendor  name  ●  Service  title  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 15 =====
+ 
+●  Starting  price  ●  Approximate  distance  ●  Rating  ●  Estimated  completion  time  ●  Available  pickup  time  ●  Pickup  and  delivery  availability  
+Default  recommendation  
+The  default  result  order  is:   Nearest  Recommended  Vendors   The  nearest  eligible  vendor  is  shown  first.   The  system  does  not  automatically  assign  that  vendor.   The  customer  makes  the  final  selection.    
+13.  Search,  Sorting  and  Filters  
+The  customer  can  filter  or  sort  the  vendor  results.  
+Nearest  
+Shows  the  closest  eligible  vendors  first.  
+Price:  Low  to  High  
+Shows  the  lowest-priced  service  first.  
+Price:  High  to  Low  
+Shows  premium  or  higher-priced  services  first.  
+Best  Rating  
+Shows  vendors  with  the  highest  customer  rating  first.  
+Value  for  Money  
+Shows  recommended  vendors  based  on  a  balance  of:   
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 16 =====
+ 
+●  Competitive  price  ●  Good  rating  ●  Reasonable  distance  ●  Reliable  order  completion  
+Available  Now  
+Shows  vendors  with  an  available  pickup  slot  and  open  capacity.  
+Service  item  filter  
+The  customer  can  filter  by  a  particular  item.   Example:   ●  T-shirt  ●  Shirt  ●  Saree  ●  Blanket  ●  Shoes    
+14.  Vendor  Selection  Workflow  
+The  revised  marketplace  flow  is:   Customer  selects  a  category   →  System  displays  eligible  nearby  vendors   →  Default  recommendation  shows  nearest  vendors  first   →  Customer  applies  filters  if  required   →  Customer  compares  services  and  prices   →  Customer  opens  a  vendor  listing   →  Customer  selects  the  vendor   The  customer,  not  the  system,  selects  the  final  vendor.    
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 17 =====
+ 
+15.  Service  Details  and  Item  Selection  
+After  opening  the  service,  the  customer  sees:   ●  Vendor  profile  ●  Vendor  rating  ●  Approximate  distance  ●  Service  description  ●  Included  services  ●  Excluded  services  ●  Clothing-item  list  ●  Price  per  item  or  kilogram  ●  Estimated  completion  time  ●  Available  pickup  slots   The  customer  selects  clothing  items.   Example:   ●  T-shirt  ×  2  ●  Shirt  ×  3  ●  Trouser  ×  1  ●  Saree  ×  1   For  weight-based  services:   ●  Customer  enters  estimated  weight   Example:   ●  Wash  &  Fold  —  approximately  5  kg   The  estimated  amount  updates  automatically.   Example:   Item  Quantity  Price  Amount  
+T-shirt  2  ₹20  ₹40  
+Shirt  3  ₹25  ₹75  
+Trouser  1  ₹35  ₹35   
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 18 =====
+ 
+Estimated  service  amount:  ₹150    
+16.  Pickup  Slot  Selection  
+The  customer  selects  a  60-minute  pickup  slot.   Example:   ●  9:00  AM–10:00  AM  ●  10:00  AM–11:00  AM  ●  11:00  AM–12:00  PM  ●  4:00  PM–5:00  PM   Only  available  slots  are  shown.   A  slot  is  unavailable  when:   ●  The  vendor  has  disabled  the  slot  ●  The  vendor  has  reached  the  slot  capacity  ●  The  vendor  has  reached  the  daily  order  limit    
+17.  Checkout  and  Payment  
+Before  placing  the  order,  the  customer  reviews:   ●  Selected  vendor  ●  Selected  service  ●  Clothing  items  ●  Quantities  ●  Estimated  weight,  when  applicable  ●  Pickup  slot  ●  Pickup  address  ●  Estimated  amount   The  customer  pays  through  Razorpay.   Supported  payment  methods:   ●  UPI  ●  Debit  card  ●  Credit  card  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 19 =====
+ 
+●  Net  banking  ●  Supported  wallet  options  available  through  Razorpay   After  successful  payment,  the  order  is  submitted  to  the  selected  vendor.    
+18.  Waiting  for  Vendor  Confirmation  
+The  initial  order  status  is:   Waiting  for  Vendor  Confirmation   The  selected  vendor  receives:   ●  Push  notification  ●  In-app  new-order  notification   The  Vendor  Owner/Admin  sees:   ●  Customer  name  ●  Service  ●  Clothing  items  ●  Quantities  ●  Estimated  weight  ●  Pickup  slot  ●  Pickup  address  ●  Approximate  distance  ●  Payment  status  ●  Customer  instructions   The  vendor  can:   ●  Accept  ●  Reject  
+Auto-reject  
+If  the  vendor  does  not  respond  within  the  configured  time:   ●  The  request  is  automatically  rejected  ●  The  customer  receives  a  notification  ●  The  customer  can  select  another  vendor   The  system  does  not  automatically  move  the  order  to  another  vendor  in  this  revised  workflow.  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 20 =====
+ 
+  
+19.  Vendor  Accepts  the  Order  
+When  the  vendor  accepts:   ●  The  customer  receives  an  acceptance  notification  ●  The  order  becomes  confirmed  ●  An  available  delivery  employee  is  assigned  ●  The  Vendor  Owner/Admin  can  change  the  assigned  employee  ●  The  delivery  employee  receives  the  pickup  assignment   The  customer  sees:   Your  order  has  been  accepted.   The  Customer  App  shows:   ●  Vendor  name  ●  Pickup  slot  ●  Assigned  pickup  status  ●  Order  items  ●  Order  amount  ●  Status  timeline   The  Customer  App  does  not  show  a  live  vendor  map.    
+20.  Delivery  Employee  Pickup  Workflow  
+The  assigned  Delivery  Partner  opens  the  order.   The  employee  sees:   ●  Customer  name  ●  Pickup  address  ●  Landmark  ●  Pickup  instructions  ●  Pickup  slot  ●  Customer  phone  contact  option  ●  Open  in  Google  Maps  button   The  employee  taps:  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 21 =====
+ 
+ Open  in  Google  Maps   The  normal  Google  Maps  application  opens  with  the  customer's  exact  pinned  location.   Google  Maps  handles:   ●  Navigation  ●  Route  ●  Travel  time  ●  Directions   The  LNDRY  app  itself  does  not  display  the  navigation  map.   The  employee  changes  the  status  to:   Going  for  Pickup   The  customer  receives:   The  pickup  partner  is  coming  to  collect  your  laundry.    
+21.  Pickup  OTP  Verification  
+When  the  employee  reaches  the  customer:   ●  The  Customer  App  displays  a  pickup  OTP  ●  The  customer  tells  the  OTP  to  the  employee  ●  The  employee  enters  the  OTP  in  the  Vendor  App   If  the  OTP  is  correct:   ●  Pickup  is  verified  ●  The  order  becomes  Picked  Up ●  Pickup  time  is  recorded  ●  The  customer  receives  confirmation   If  the  OTP  is  incorrect:   ●  Pickup  is  not  completed  ●  The  employee  cannot  move  the  order  forward  ●  The  employee  can  retry   
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 22 =====
+ 
+ 
+22.  Laundry  Received  at  Vendor  
+After  pickup,  the  delivery  employee  returns  the  laundry  to  the  vendor.   The  Vendor  Owner/Admin  confirms:   Received  at  Partner   The  customer  receives:   Your  laundry  has  reached  the  vendor.   The  vendor  can  now  verify:   ●  Clothing  items  ●  Quantities  ●  Estimated  weight  ●  Actual  received  quantity   When  necessary,  the  vendor  corrects  the  actual  item  count  or  weight.   The  customer  sees:   ●  Original  quantity  ●  Confirmed  quantity  ●  Updated  final  amount,  when  applicable   Any  final  amount  must  be  based  on  the  vendor's  already  published  prices.    
+23.  Vendor  Processing  Status  Workflow  
+The  Vendor  App  uses  the  agreed  detailed  statuses:   1.  Received  2.  Washing  3.  Drying  4.  Ironing  5.  Packed  6.  Out  for  Delivery  7.  Delivered   
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 23 =====
+ 
+The  vendor  selects  the  relevant  next  status.   Not  every  order  must  use  every  cleaning  stage.   Example:   ●  Shoe  Care  may  not  require  Ironing  ●  Ironing-only  service  may  not  require  Washing  or  Drying  ●  Dry  Cleaning  can  use  the  relevant  processing  stage  
+Customer-facing  status  view  
+To  keep  the  Customer  App  easy  to  understand,  the  detailed  vendor  stages  are  grouped  into  the  agreed  customer  timeline:   1.  Scheduled  2.  Picked  Up  3.  At  Partner  4.  Processing  5.  Out  for  Delivery  6.  Delivered   While  the  order  is  in  Washing,  Drying,  or  Ironing,  the  customer  sees:   Processing   The  detailed  current  activity  can  also  appear  below  it,  such  as:   Current  activity:  Washing    
+24.  Packing  and  Delivery  Assignment  
+When  cleaning  is  complete,  the  vendor  marks:   Packed   The  order  is  now  ready  for  delivery.   The  system:   ●  Assigns  an  available  delivery  employee  ●  Notifies  the  assigned  employee  ●  Allows  the  Vendor  Owner/Admin  to  reassign  the  employee  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 24 =====
+ 
+ The  customer  receives:   Your  laundry  has  been  packed  and  is  ready  for  delivery.    
+25.  Delivery  Workflow  
+The  assigned  Delivery  Partner  opens  the  delivery  order.   The  employee  sees:   ●  Customer  address  ●  Landmark  ●  Delivery  instructions  ●  Customer  contact  option  ●  Open  in  Google  Maps  button   The  employee  opens  the  customer's  exact  location  in  the  normal  Google  Maps  application.   The  employee  changes  the  order  status  to:   Out  for  Delivery   The  customer  receives:   Your  laundry  is  out  for  delivery.   The  Customer  App  shows  only  the  status  and  order  details,  not  a  live  map.    
+26.  Delivery  OTP  Verification  
+When  the  employee  reaches  the  customer:   ●  The  Customer  App  displays  a  delivery  OTP  ●  The  customer  tells  the  OTP  to  the  employee  ●  The  employee  enters  the  OTP   If  the  OTP  is  correct:   ●  Delivery  is  verified  ●  The  order  becomes  Delivered 
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 25 =====
+ 
+●  Delivery  time  is  recorded  ●  The  order  is  completed   If  the  OTP  is  incorrect:   ●  The  order  cannot  be  completed  ●  The  employee  can  retry  ●  Delivery  remains  pending    
+27.  Customer  Active  Order  Screen  
+The  customer  sees:   ●  Order  number  ●  Vendor  name  ●  Selected  service  ●  Clothing  items  ●  Quantities  ●  Pickup  slot  ●  Pickup  address  ●  Payment  status  ●  Current  status  ●  Detailed  timeline  ●  Pickup  OTP  when  required  ●  Delivery  OTP  when  required   The  customer  does  not  see:   ●  Embedded  live  route  ●  Moving  delivery  employee  marker  ●  Continuous  live  employee  location   The  customer  receives  status  notifications  instead.    
+28.  Complete  Customer  Status  Timeline  
+Order  Submitted   →  Waiting  for  Vendor  Confirmation   →  Vendor  Accepted  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 26 =====
+ 
+ →  Scheduled   →  Pickup  Partner  Coming   →  Pickup  OTP  Verified   →  Picked  Up   →  At  Partner   →  Processing   →  Packed   →  Out  for  Delivery   →  Delivery  OTP  Verified   →  Delivered   When  rejected:   Waiting  for  Vendor  Confirmation   →  Rejected  by  Vendor   →  Customer  Selects  Another  Vendor   When  the  vendor  does  not  respond:   Waiting  for  Vendor  Confirmation   →  Auto-Rejected   →  Customer  Selects  Another  Vendor    
+29.  Order  History  and  Rating  
+After  delivery,  the  order  appears  in  Customer  Order  History.   The  customer  can  see:   ●  Vendor  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 27 =====
+ 
+●  Service  ●  Items  ●  Quantities  ●  Pickup  and  delivery  timestamps  ●  Payment  ●  Final  amount  ●  Full  status  history   The  customer  can  submit:   ●  Rating  from  1  to  5  ●  Review  comment   Only  delivered  orders  can  be  rated.    
+30.  Vendor  Capacity  Workflow  
+The  Vendor  Owner/Admin  manages:   ●  Daily  order  limit  ●  Available  days  ●  Available  60-minute  slots  ●  Maximum  orders  per  slot   When  capacity  is  reached:   ●  The  vendor  stops  appearing  for  that  unavailable  slot  ●  Existing  accepted  orders  continue  ●  New  customers  cannot  choose  the  full  slot   The  Platform  Admin  can  review  and  override  vendor  capacity  when  necessary.    
+31.  Vendor  Performance  Dashboard  
+The  Vendor  Owner/Admin  sees:   ●  Acceptance  Rate  ●  Completion  Rate  ●  Average  Delivery  Time  ●  Average  Customer  Rating   
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 28 =====
+ 
+The  dashboard  also  shows:   ●  Total  completed  orders  ●  Rejected  orders  ●  Cancelled  orders   The  vendor  score  is  treated  as  provisional  until  the  vendor  has  completed  at  least  10  orders.    
+32.  Vendor  Revenue  Dashboard  
+The  Vendor  Owner/Admin  sees:   ●  Daily  earnings  ●  Weekly  earnings  ●  Monthly  earnings  ●  Per-order  earning  details   Each  completed  order  shows:   ●  Order  number  ●  Service  ●  Amount  ●  Payment  status  ●  Completion  date    
+33.  Admin  Operations  Workflow  
+Vendor  management  
+Admin  can:   ●  Review  applications  ●  Approve  vendors  ●  Reject  vendors  ●  Request  corrections  ●  Activate  vendors  ●  Deactivate  vendors  ●  Control  service  radius  ●  View  service  listings  ●  View  vendor  capacity  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 29 =====
+ 
+●  View  vendor  performance  
+Customer  management  
+Admin  can:   ●  View  customer  profiles  ●  View  saved  addresses  ●  View  order  history  ●  Activate  or  suspend  an  account  
+Order  management  
+Admin  can:   ●  View  all  orders  ●  View  current  status  ●  View  assigned  vendor  ●  View  assigned  delivery  employee  ●  View  pickup  and  delivery  OTP  verification  status  ●  Override  a  stuck  status  ●  Cancel  an  order  with  a  reason  ●  View  rejected  and  auto-rejected  orders  ●  View  the  exception  queue  
+Reports  
+Admin  can  view:   ●  Order  volume  ●  GMV  by  date  range  ●  Vendor  performance  ●  Customer  activity  ●  Completed  orders  ●  Cancelled  orders  ●  Vendor  acceptance  and  completion  rates    
+34.  Final  Complete  Workflow  
+VENDOR  ONBOARDING   Vendor  Mobile  OTP   
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 30 =====
+ 
+→  Vendor  Application   →  Owner  and  Business  Details   →  Document  Upload   →  GST  Details  if  Available   →  Exact  Google  Maps  Business  Pin   →  Requested  Service  Radius   →  Application  Submission   →  Admin  Verification   →  Admin  Approves  Radius  and  Vendor   →  Vendor  Receives  SMS,  Email  and  Notification   →  Vendor  Gets  Full  Access   VENDOR  SETUP   Vendor  Creates  Public  Profile   →  Adds  Delivery  Employees   →  Selects  Laundry  Category   →  Creates  Service   →  Adds  Clothing  Items   →  Adds  Prices  and  Quantity  Limits   →  Sets  Daily  Capacity   →  Sets  60-Minute  Slots   →  Publishes  Service   CUSTOMER  DISCOVERY   Customer  Mobile  OTP   
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 31 =====
+ 
+→  Customer  Selects  Current  Location  or  Searches  Address   →  Customer  Confirms  Exact  Google  Maps  Pin   →  Customer  Opens  Home   →  Customer  Uses  Search  or  Category   →  System  Shows  Eligible  Nearby  Vendors   →  Nearest  Vendors  Appear  First   →  Customer  Uses  Nearest,  Price,  Rating  or  Value-for-Money  Filters   →  Customer  Compares  Vendors   →  Customer  Selects  Vendor   ORDER  PLACEMENT   Customer  Opens  Service   →  Selects  Clothing  Items   →  Selects  Quantities  or  Estimated  Weight   →  Selects  60-Minute  Pickup  Slot   →  Confirms  Address   →  Pays  Through  Razorpay   →  Order  Goes  to  Selected  Vendor   →  Waiting  for  Vendor  Confirmation   VENDOR  CONFIRMATION   Vendor  Reviews  Order   →  Vendor  Accepts  or  Rejects   →  No  Response  Causes  Auto-Reject   →  If  Accepted,  Delivery  Employee  Is  Assigned   
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 32 =====
+ 
+→  Customer  Receives  Acceptance   PICKUP   Delivery  Employee  Opens  Customer  Location  in  Google  Maps   →  Employee  Goes  for  Pickup   →  Customer  Sees  Pickup  Status   →  Customer  Provides  Pickup  OTP   →  Employee  Enters  OTP   →  Pickup  Is  Confirmed   →  Laundry  Reaches  Vendor   PROCESSING   Vendor  Confirms  Items  or  Weight   →  Received   →  Washing   →  Drying   →  Ironing   →  Packed   →  Customer  Sees  At  Partner  and  Processing  Statuses   DELIVERY   Packed  Order  Is  Assigned  to  Delivery  Employee   →  Employee  Opens  Customer  Location  in  Google  Maps   →  Order  Becomes  Out  for  Delivery   →  Customer  Sees  Delivery  Status   →  Customer  Provides  Delivery  OTP   
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 33 =====
+ 
+→  Employee  Enters  OTP   →  Order  Becomes  Delivered   →  Customer  Submits  Rating    
+35.  Included  MVP  Features  
+●  Customer  OTP  login  ●  Vendor  OTP  login  ●  Delivery  employee  OTP  login  ●  Vendor  application  and  document  verification  ●  Vendor  approval  notifications  ●  Vendor  and  delivery-employee  role  separation  ●  Vendor  service  creation  ●  Clothing-item  pricing  ●  Google  Maps  address  search  ●  Exact  location  pin  selection  ●  External  Google  Maps  navigation  ●  Admin-controlled  service  radius  ●  Search  bar  ●  Laundry  categories  ●  Multiple  vendors  under  the  same  category  ●  Nearest-vendor  recommendation  ●  Price  sorting  ●  Rating  sorting  ●  Value-for-money  recommendation  ●  Customer  vendor  selection  ●  Item  quantities  ●  Per-kilogram  quantity  ●  60-minute  pickup  slots  ●  Vendor  capacity  ●  Razorpay  payment  ●  Vendor  accept  and  reject  ●  Configurable  auto-reject  ●  Automatic  delivery-employee  assignment  ●  Pickup  OTP  ●  Agreed  laundry-processing  statuses  ●  Delivery  OTP  ●  Customer  order-status  timeline  ●  Order  history  ●  Ratings  and  reviews  ●  Vendor  performance  metrics  ●  Vendor  revenue  summary  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 
+
+===== PAGE 34 =====
+ 
+●  Admin  order  and  vendor  management    
+36.  Explicit  MVP  Behaviour  
+The  customer  selects  a  vendor.   The  platform  recommends  the  nearest  eligible  vendors  first,  but  does  not  automatically  assign  a  vendor.   Google  Maps  is  used  for:   ●  Address  search  ●  Current-location  detection  ●  Exact  location-pin  selection  ●  Distance  calculation  ●  Opening  external  navigation  for  the  delivery  employee   The  Customer  App  does  not  display  continuous  live  delivery  movement.   The  Customer  App  displays:   ●  Current  order  status  ●  Notifications  ●  Pickup  OTP  ●  Delivery  OTP  ●  Order  timeline   ________________________________________________________________________________
+  
+  
+Shotlin  Digital  Product  Studio   |   GSTIN:  19HATPM4170H1Z1   |   Confidential
+ 

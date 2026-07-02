@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LNDRY customer workflow completion</title>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;width:390px;height:844px;overflow:hidden}
+    body{background:#f7f6fc;color:#080f14;font-family:Inter,Arial,sans-serif}
+    .screen{display:none;width:390px;height:844px;padding:17px 20px 22px;background:radial-gradient(circle at 82% 6%,rgba(136,124,246,.14),transparent 27%),#f8f8fd}
+    .screen.active{display:flex;flex-direction:column}.status{height:24px;display:flex;justify-content:space-between;align-items:center;padding:0 7px;font-size:13px;font-weight:700}
+    .signals{letter-spacing:2px}.bar{height:64px;display:flex;align-items:center;gap:14px}.bar h1{margin:0;font:600 21px/1.2 Sora,Inter,sans-serif}
+    .back{width:44px;height:44px;border:1px solid #e7e8f0;border-radius:14px;background:#fff;display:grid;place-items:center}
+    .back:before{content:"";width:12px;height:12px;border-left:2px solid #080f14;border-bottom:2px solid #080f14;transform:rotate(45deg);margin-left:5px}
+    h2{margin:18px 0 8px;font:600 27px/1.18 Sora,Inter,sans-serif;letter-spacing:-.02em}.sub{margin:0 0 20px;color:#667083;font-size:14px;line-height:1.45}
+    .card{background:#fff;border:1px solid #e7e8f0;border-radius:16px;padding:15px;box-shadow:0 4px 12px rgba(42,36,95,.055)}
+    .row{display:flex;align-items:center;gap:12px}.between{justify-content:space-between}.stack{display:grid;gap:12px}.muted{color:#7e8998;font-size:12px}.violet{color:#5046c8}.teal{color:#0a9488}
+    .icon{width:48px;height:48px;padding:8px;border-radius:13px;background:#f1efff;object-fit:contain}.thumb{width:64px;height:64px;object-fit:contain}
+    .title{font-weight:700;font-size:15px}.price{font-weight:700}.stepper{display:flex;align-items:center;gap:13px;padding:6px;border:1px solid #e7e8f0;border-radius:999px}
+    .stepper b{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#eae8ff;color:#5046c8;font-size:18px}.divider{height:1px;background:#ececf2;margin:13px 0}
+    .footer{margin-top:auto;background:#fff;border:1px solid #e7e8f0;border-radius:18px;padding:14px}.button{height:52px;border-radius:14px;display:grid;place-items:center;background:#655be4;color:#fff;font-weight:700}
+    .secondary{background:#fff;border:1.5px solid #6c63e8;color:#5046c8}.link{text-align:center;padding:14px;color:#5046c8;font-weight:600;font-size:13px}
+    .hero{height:215px;display:flex;align-items:center;justify-content:center}.hero img{max-width:290px;max-height:205px;object-fit:contain}
+    .center{text-align:center}.center h2{margin-top:0}.pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:8px 11px;background:#ddf7f3;color:#087f76;font-size:12px;font-weight:700}
+    .warn{background:#fff5df;color:#a56b00}.danger{background:#fff0f2;color:#c7374b}.timeline{display:grid;gap:0;margin-top:10px}.event{display:grid;grid-template-columns:28px 1fr;gap:10px;min-height:63px}
+    .node{position:relative;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#eae8ff;color:#5046c8;font-size:11px;font-weight:700}.node:after{content:"";position:absolute;top:22px;bottom:-42px;width:2px;background:#e2e2eb}.event:last-child .node:after{display:none}.event strong{font-size:14px}.event p{margin:4px 0 0;color:#7e8998;font-size:12px;line-height:1.35}
+    .otp{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:18px 0}.otp i{height:54px;border:1.5px solid #6c63e8;border-radius:13px;background:#fff;display:grid;place-items:center;font-style:normal;font:700 21px Sora,Inter,sans-serif;color:#5046c8}
+    .codebox{padding:15px;border-radius:16px;background:#eae8ff;color:#5046c8;text-align:center}.codebox small{display:block;margin-bottom:6px}.codebox strong{font:700 30px/1 Sora,Inter,sans-serif;letter-spacing:.16em}
+    .stars{display:flex;justify-content:center;gap:10px;font-size:38px;color:#f3a929;margin:14px 0}.textarea{height:116px;padding:14px;border:1px solid #e7e8f0;border-radius:15px;background:#fff;color:#7e8998;font-size:13px}
+    .notice{padding:13px;border-radius:14px;background:#f1efff;color:#5046c8;font-size:12px;line-height:1.45}.notification{display:grid;grid-template-columns:42px 1fr auto;gap:11px;align-items:start}
+    .bell{width:42px;height:42px;border-radius:13px;background:#eae8ff;color:#5046c8;display:grid;place-items:center;font-size:19px}.dot{width:8px;height:8px;border-radius:50%;background:#0fb5a6;margin-top:8px}
+  </style>
+</head>
+<body>
+  <section class="screen" data-screen="garments">
+    <div class="status"><span>9:41</span><span class="signals">▮ ◒ ▰</span></div><div class="bar"><div class="back"></div><h1>Select garments</h1></div>
+    <h2>What are we caring for?</h2><p class="sub">Choose items for Dry Cleaning. The estimate updates as you add garments.</p>
+    <div class="stack">
+      <div class="card row"><img class="icon" src="../icons/services/dry-cleaning.svg"><div style="flex:1"><div class="title">Shirt</div><div class="muted">₹79 per item</div></div><div class="stepper"><b>−</b><span>3</span><b>+</b></div></div>
+      <div class="card row"><img class="icon" src="../icons/services/premium-garment-care.svg"><div style="flex:1"><div class="title">Suit, 2 piece</div><div class="muted">₹299 per set</div></div><div class="stepper"><b>−</b><span>1</span><b>+</b></div></div>
+      <div class="card row"><img class="icon" src="../icons/services/dry-cleaning.svg"><div style="flex:1"><div class="title">Saree</div><div class="muted">₹199 per item</div></div><div class="stepper"><b>−</b><span>1</span><b>+</b></div></div>
+    </div>
+    <div class="footer"><div class="row between"><div><div class="muted">5 items</div><div class="price">Estimated ₹735</div></div><span class="pill">Quote valid 10 min</span></div><div class="button" style="margin-top:13px">Review order</div></div>
+  </section>
+
+  <section class="screen" data-screen="waiting">
+    <div class="status"><span>9:41</span><span class="signals">▮ ◒ ▰</span></div><div class="bar"><div class="back"></div><h1>Order status</h1></div>
+    <div class="hero"><img src="../illustrations/journey-processing-v1.png"></div><div class="center"><span class="pill warn">Awaiting partner response</span><h2>We’ve sent your order</h2><p class="sub">Luxe Fabric Care is reviewing your pickup request. We’ll notify you as soon as they respond.</p></div>
+    <div class="card"><div class="row between"><div><div class="title">Order #LN4827</div><div class="muted">Today, 5:30–6:30 PM</div></div><strong class="violet">₹649</strong></div><div class="divider"></div><div class="muted">If the partner does not respond in time, this request will close and you can choose another partner.</div></div>
+    <div class="footer"><div class="button secondary">View order details</div><div class="link">Get help</div></div>
+  </section>
+
+  <section class="screen" data-screen="rejected">
+    <div class="status"><span>9:41</span><span class="signals">▮ ◒ ▰</span></div><div class="bar"><div class="back"></div><h1>Order update</h1></div>
+    <div class="hero"><img src="../illustrations/state-no-service-area.svg"></div><div class="center"><span class="pill danger">Partner unavailable</span><h2>Choose another partner</h2><p class="sub">Luxe Fabric Care could not accept this order. Your selected items and pickup details are still saved.</p></div>
+    <div class="notice">Payment status: refund initiated. Your bank may take the standard processing time to show the amount.</div>
+    <div class="footer"><div class="button">Compare available partners</div><div class="link">View refund details</div></div>
+  </section>
+
+  <section class="screen" data-screen="pickup-otp">
+    <div class="status"><span>9:41</span><span class="signals">▮ ◒ ▰</span></div><div class="bar"><div class="back"></div><h1>Pickup handover</h1></div>
+    <div class="hero"><img src="../illustrations/journey-pickup-v1.png"></div><div class="center"><span class="pill">Pickup partner has arrived</span><h2>Share this pickup code</h2><p class="sub">Only share it after your laundry has been handed to the assigned pickup partner.</p></div>
+    <div class="codebox"><small>Pickup OTP</small><strong>482193</strong></div>
+    <div class="card" style="margin-top:13px"><div class="title">Safety check</div><div class="muted" style="margin-top:6px">The partner enters this one-time code. LNDRY never asks for payment details during pickup.</div></div>
+    <div class="footer"><div class="button secondary">Call pickup partner</div><div class="link">Report a problem</div></div>
+  </section>
+
+  <section class="screen" data-screen="delivery-otp">
+    <div class="status"><span>9:41</span><span class="signals">▮ ◒ ▰</span></div><div class="bar"><div class="back"></div><h1>Delivery handover</h1></div>
+    <div class="hero"><img src="../illustrations/journey-delivery-v1.png"></div><div class="center"><span class="pill">Order is at your address</span><h2>Check your order first</h2><p class="sub">Confirm the package and then share this code with the delivery partner.</p></div>
+    <div class="codebox"><small>Delivery OTP</small><strong>736842</strong></div>
+    <div class="card" style="margin-top:13px"><div class="row between"><div><div class="title">7 items</div><div class="muted">Wash &amp; Fold · Order #LN4827</div></div><strong>₹649</strong></div></div>
+    <div class="footer"><div class="button secondary">Call delivery partner</div><div class="link">Report an issue</div></div>
+  </section>
+
+  <section class="screen" data-screen="rating">
+    <div class="status"><span>9:41</span><span class="signals">▮ ◒ ▰</span></div><div class="bar"><div class="back"></div><h1>Rate your order</h1></div>
+    <div class="hero" style="height:180px"><img src="../illustrations/journey-home-relief-v2.png"></div><div class="center"><h2>How was the care?</h2><p class="sub">Your review helps customers choose confidently and helps partners improve.</p></div>
+    <div class="stars">★ ★ ★ ★ ★</div>
+    <div class="card row"><div class="bell">L</div><div><div class="title">Luxe Fabric Care</div><div class="muted">Wash &amp; Fold · Delivered today</div></div></div>
+    <label class="title" style="display:block;margin:18px 0 9px">Add a review</label><div class="textarea">Tell us about cleaning quality, pickup, packaging, or delivery...</div>
+    <div class="footer"><div class="button">Submit review</div><div class="link">Maybe later</div></div>
+  </section>
+
+  <section class="screen" data-screen="payment-pending">
+    <div class="status"><span>9:41</span><span class="signals">▮ ◒ ▰</span></div><div class="bar"><div class="back"></div><h1>Payment status</h1></div>
+    <div class="hero"><img src="../illustrations/state-payment-failure.svg"></div><div class="center"><span class="pill warn">Verification in progress</span><h2>We’re checking your payment</h2><p class="sub">Your bank response is taking longer than usual. Don’t pay again while we verify the transaction.</p></div>
+    <div class="card"><div class="row between"><div><div class="title">₹649</div><div class="muted">UPI · Order attempt #LN4827</div></div><span class="pill warn">Pending</span></div><div class="divider"></div><div class="muted">We’ll update this screen and notify you when Razorpay confirms the final status.</div></div>
+    <div class="footer"><div class="button secondary">Check payment again</div><div class="link">Get payment help</div></div>
+  </section>
+
+  <section class="screen" data-screen="notifications">
+    <div class="status"><span>9:41</span><span class="signals">▮ ◒ ▰</span></div><div class="bar"><div class="back"></div><h1>Notifications</h1></div>
+    <h2>Order updates</h2><p class="sub">Important handovers and care-stage changes appear here.</p>
+    <div class="stack">
+      <div class="card notification"><div class="bell">✓</div><div><div class="title">Your order was accepted</div><div class="muted" style="margin-top:5px">Luxe Fabric Care confirmed today’s 5:30 PM pickup.</div><div class="violet muted" style="margin-top:7px">View order</div></div><div class="dot"></div></div>
+      <div class="card notification"><div class="bell">L</div><div><div class="title">Pickup partner is coming</div><div class="muted" style="margin-top:5px">Keep your pickup OTP ready. Share it only after handover.</div><div class="muted" style="margin-top:7px">18 min ago</div></div><div class="dot"></div></div>
+      <div class="card notification"><div class="bell">♢</div><div><div class="title">Laundry reached the partner</div><div class="muted" style="margin-top:5px">The partner is verifying the received items and weight.</div><div class="muted" style="margin-top:7px">Yesterday</div></div><span></span></div>
+      <div class="card notification"><div class="bell">₹</div><div><div class="title">Refund initiated</div><div class="muted" style="margin-top:5px">The unavailable partner order was closed. Bank processing time applies.</div><div class="muted" style="margin-top:7px">12 Jun</div></div><span></span></div>
+    </div>
+  </section>
+  <section class="screen" data-screen="slot-full">
+    <div class="status"><span>9:41</span><span class="signals">▮ ◒ ▰</span></div><div class="bar"><div class="back"></div><h1>Choose pickup time</h1></div>
+    <div class="hero" style="height:185px"><img src="../illustrations/journey-pickup-v1.png"></div><div class="center"><span class="pill warn">Selected slot just filled</span><h2>Pick another available time</h2><p class="sub">Your order details are saved. Choose a new 60-minute window to continue.</p></div>
+    <div class="stack">
+      <div class="card row between"><div><div class="title">Today, 6:30–7:30 PM</div><div class="muted">2 pickup spaces available</div></div><span class="pill">Available</span></div>
+      <div class="card row between"><div><div class="title">Tomorrow, 9:00–10:00 AM</div><div class="muted">4 pickup spaces available</div></div><span class="pill">Available</span></div>
+    </div>
+    <div class="footer"><div class="button">Confirm new pickup time</div><div class="link">Choose another partner</div></div>
+  </section>
+
+  <section class="screen" data-screen="location-permission">
+    <div class="status"><span>9:41</span><span class="signals">▮ ◒ ▰</span></div><div class="bar"><div class="back"></div><h1>Pickup location</h1></div>
+    <div class="hero"><img src="../deployment/map-pin-careline.svg"></div><div class="center"><span class="pill warn">Location access is off</span><h2>Choose your pickup address</h2><p class="sub">Allow location access to use your current position, or search and confirm an address manually.</p></div>
+    <div class="card"><div class="title">Why LNDRY needs location</div><div class="muted" style="margin-top:7px">We use the confirmed pin to show eligible partners, calculate approximate distance, and support pickup handover.</div></div>
+    <div class="footer"><div class="button">Open location settings</div><div class="button secondary" style="margin-top:10px">Enter address manually</div><div class="link">Not now</div></div>
+  </section>
+
+  <section class="screen" data-screen="otp-invalid">
+    <div class="status"><span>9:41</span><span class="signals">▮ ◒ ▰</span></div><div class="bar"><div class="back"></div><h1>Verify your number</h1></div>
+    <h2>That code doesn’t match</h2><p class="sub">Check the 6-digit code sent to +91 98••• •210 and try again.</p>
+    <div class="otp"><i>4</i><i>8</i><i>2</i><i>1</i><i>9</i><i style="border-color:#d94557;color:#d94557;background:#fff0f2">8</i></div>
+    <div class="notice" style="background:#fff0f2;color:#b92f43">Incorrect OTP. You have 2 attempts remaining before a short security lock.</div>
+    <div class="card" style="margin-top:18px"><div class="row between"><div><div class="title">Code expires in</div><div class="muted">Use the newest SMS only</div></div><strong class="violet">00:38</strong></div></div>
+    <div class="footer"><div class="button">Verify code</div><div class="button secondary" style="margin-top:10px">Clear and re-enter</div><div class="link">Resend available in 18 seconds</div></div>
+  </section>
+
+  <section class="screen" data-screen="otp-expired">
+    <div class="status"><span>9:41</span><span class="signals">▮ ◒ ▰</span></div><div class="bar"><div class="back"></div><h1>Verify your number</h1></div>
+    <div class="hero"><img src="../illustrations/state-offline.svg"></div><div class="center"><span class="pill warn">Code expired</span><h2>Request a new OTP</h2><p class="sub">For your security, verification codes work only for a short time. We’ll invalidate the older code.</p></div>
+    <div class="card"><div class="row between"><div><div class="title">SMS to +91 98••• •210</div><div class="muted">2 resend requests remaining</div></div><strong class="violet">Edit</strong></div></div>
+    <div class="footer"><div class="button">Send a new code</div><div class="link">Get verification help</div></div>
+  </section>
+
+  <section class="screen" data-screen="otp-locked">
+    <div class="status"><span>9:41</span><span class="signals">▮ ◒ ▰</span></div><div class="bar"><div class="back"></div><h1>Verification paused</h1></div>
+    <div class="hero"><img src="../illustrations/state-offline.svg"></div><div class="center"><span class="pill danger">Retry limit reached</span><h2>Try again in 15 minutes</h2><p class="sub">We paused verification after several incorrect attempts to protect this mobile number.</p></div>
+    <div class="card"><div class="row between"><div><div class="title">Security cooldown</div><div class="muted">No new codes can be requested yet</div></div><strong class="violet">14:32</strong></div></div>
+    <div class="notice" style="margin-top:13px">LNDRY support will never ask you to share an OTP. Keep every verification code private.</div>
+    <div class="footer"><div class="button secondary">Change mobile number</div><div class="link">Get verification help</div></div>
+  </section>
+
+  <section class="screen" data-screen="quote-adjustment">
+    <div class="status"><span>9:41</span><span class="signals">▮ ◒ ▰</span></div><div class="bar"><div class="back"></div><h1>Received items</h1></div>
+    <h2>Your final amount was updated</h2><p class="sub">The partner confirmed the received weight using the same published price.</p>
+    <div class="card"><div class="row between"><div><div class="title">Wash &amp; Fold</div><div class="muted">₹99 per kg</div></div><img class="icon" src="../icons/services/wash-fold.svg"></div><div class="divider"></div><div class="row between"><span class="muted">Estimated weight</span><strong>5.0 kg</strong></div><div class="row between" style="margin-top:12px"><span class="muted">Confirmed weight</span><strong class="violet">5.6 kg</strong></div></div>
+    <div class="card" style="margin-top:13px"><div class="row between"><span>Original estimate</span><strong>₹495</strong></div><div class="row between" style="margin-top:12px"><span>Adjustment</span><strong>+₹59</strong></div><div class="divider"></div><div class="row between"><span class="title">Final service amount</span><strong class="violet" style="font-size:20px">₹554</strong></div></div>
+    <div class="notice" style="margin-top:13px">The confirmed quantity and price change are recorded in the order audit trail.</div>
+    <div class="footer"><div class="button">Acknowledge update</div><div class="button secondary" style="margin-top:10px">Get help with this change</div></div>
+  </section>
+  <script>const s=new URLSearchParams(location.search).get('screen')||'garments';document.querySelector(`[data-screen="${s}"]`)?.classList.add('active');</script>
+</body>
+</html>

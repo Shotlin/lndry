@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "kiro-gpt-bridge": {
+      "command": "node",
+      "args": ["C:\\Users\\sayan\\Desktop\\image-gpt\\mcp-server\\dist\\index.js"],
+      "env": {
+        "KIRO_GPT_MCP_SECRET": "DZP8ZFbG4PpBw8MwOs2KdBXuNO80Viwe",
+        "KIRO_GPT_MCP_RELAY_URL": "ws://localhost:3001",
+        "KIRO_GPT_MCP_WORKSPACE": "C:\\Users\\sayan\\Desktop\\lndry"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "generate_image",
+        "generate_logo",
+        "generate_hero",
+        "generate_icon_set",
+        "generate_ui_mockup"
+      ]
+    }
+  }
+}
