@@ -1,0 +1,40 @@
+# Dependency folders
+node_modules/
+*/node_modules/
+
+# Next.js build output
+.next/
+*/.next/
+out/
+*/out/
+build/
+*/build/
+
+# Local env and generated TypeScript
+.env
+.env*.local
+*.tsbuildinfo
+next-env.d.ts
+*/next-env.d.ts
+
+# Logs and OS/editor noise
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+.vscode/
+
+# Nested Git metadata should not be committed into this repo
+*/.git/
+
+# Temporary/reference clone created during research
+LNDRY_SUPPORTING_FILES/
+
+# Local Codex/Claude skill installs inside the website project
+lndry_website/.agents/
+lndry_website/.claude/
+
+# Local generated source kits duplicated by public/brand assets
+lndry_website/LNDRY-WEBSITE-FINISHING-KIT/
+lndry_website/website-story/
+lndry_website/ChatGPT Image*.png

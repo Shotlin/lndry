@@ -1,0 +1,90 @@
+export interface ServiceEntry {
+  title: string;
+  description: string;
+  icon: string;
+  illustration: string;
+  tag: { label: string; tone: "teal" | "violet" };
+}
+
+export const SERVICES: ServiceEntry[] = [
+  {
+    title: "Wash & fold",
+    description: "Daily laundry by weight",
+    icon: "/brand/icons/wash-fold.svg",
+    illustration: "/brand/illustrations/service-wash-fold-v1.png",
+    tag: { label: "Popular", tone: "teal" },
+  },
+  {
+    title: "Wash & iron",
+    description: "Cleaned and pressed garments",
+    icon: "/brand/icons/wash-iron.svg",
+    illustration: "/brand/illustrations/service-wash-iron-v1.png",
+    tag: { label: "Popular", tone: "teal" },
+  },
+  {
+    title: "Dry cleaning",
+    description: "Eligible specialist partners",
+    icon: "/brand/icons/dry-cleaning.svg",
+    illustration: "/brand/illustrations/service-dry-cleaning-v1.png",
+    tag: { label: "Popular", tone: "teal" },
+  },
+  {
+    title: "Steam press",
+    description: "Crisp finish and folds",
+    icon: "/brand/icons/steam-press.svg",
+    illustration: "/brand/illustrations/service-steam-press-v1.png",
+    tag: { label: "Popular", tone: "teal" },
+  },
+  {
+    title: "Shoe care",
+    description: "Brush, clean and finish",
+    icon: "/brand/icons/shoe-care.svg",
+    illustration: "/brand/illustrations/service-shoe-care-v1.png",
+    tag: { label: "Popular", tone: "teal" },
+  },
+  {
+    title: "Bag care",
+    description: "Gentle accessory handling",
+    icon: "/brand/icons/bag-care.svg",
+    illustration: "/brand/illustrations/service-bag-care-v1.png",
+    tag: { label: "Popular", tone: "teal" },
+  },
+  {
+    title: "Premium garment",
+    description: "Care for delicate items",
+    icon: "/brand/icons/premium-garment-care.svg",
+    illustration: "/brand/illustrations/service-premium-garment-care-v1.png",
+    tag: { label: "Specialist", tone: "violet" },
+  },
+  {
+    title: "Tailoring",
+    description: "Alteration-ready partner flow",
+    icon: "/brand/icons/tailoring.svg",
+    illustration: "/brand/illustrations/service-tailoring-v1.png",
+    tag: { label: "Specialist", tone: "violet" },
+  },
+  {
+    title: "Curtains",
+    description: "Large-format cleaning",
+    icon: "/brand/icons/curtain-cleaning.svg",
+    illustration: "/brand/illustrations/service-curtain-cleaning-v1.png",
+    tag: { label: "Specialist", tone: "violet" },
+  },
+  {
+    title: "Carpets",
+    description: "Roll pickup and care",
+    icon: "/brand/icons/carpet-cleaning.svg",
+    illustration: "/brand/illustrations/service-carpet-cleaning-v1.png",
+    tag: { label: "Specialist", tone: "violet" },
+  },
+  {
+    title: "Blankets",
+    description: "Bulky-care service",
+    icon: "/brand/icons/blanket-cleaning.svg",
+    illustration: "/brand/illustrations/service-blanket-cleaning-v1.png",
+    tag: { label: "Specialist", tone: "violet" },
+  },
+];
+
+/** Homepage teaser — the 4 "Popular" services featured in the Act 2 interlude. */
+export const FEATURED_SERVICES = SERVICES.slice(0, 4);

@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Brand colors (exact, from DESIGN.md) ---- */
+  --color-violet: #6c63e8;
+  --color-violet-deep: #5046c8;
+  --color-lavender-electric: #887cf6;
+  --color-lavender-soft: #eae8ff;
+  --color-teal: #0fb5a6;
+  --color-teal-tint: #ddf7f3;
+  --color-ink: #080f14;
+  --color-ink-soft: #495467;
+  --color-muted: #7e8998;
+  --color-ink-raised: #121b24;
+  --color-ink-line: #29323f;
+  --color-bg-app: #f4f3fb;
+  --color-surface: #ffffff;
+  --color-surface-cool: #f7f8fc;
+  --color-hairline: #e7e8f0;
+  --color-success: #16a36a;
+  --color-warning: #f3a929;
+  --color-error: #d94557;
+
+  /* ---- Radii ---- */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-sheet: 28px;
+
+  /* ---- Elevation ---- */
+  --shadow-soft: 0 4px 16px rgba(42, 36, 95, 0.08);
+  --shadow-elevated: 0 12px 32px rgba(67, 55, 145, 0.1);
+
+  /* ---- Fonts ---- */
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* ---- Marketing type scale (fluid, distinct from the in-app DESIGN.md scale) ---- */
+  --text-hero: clamp(2.75rem, 6vw, 5rem);
+  --text-hero--line-height: 1.02;
+  --text-hero--letter-spacing: -0.02em;
+  --text-hero--font-weight: 700;
+
+  --text-headline: clamp(2rem, 3.6vw, 3rem);
+  --text-headline--line-height: 1.08;
+  --text-headline--letter-spacing: -0.015em;
+  --text-headline--font-weight: 700;
+
+  --text-subhead: clamp(1.25rem, 1.6vw, 1.5rem);
+  --text-subhead--line-height: 1.2;
+  --text-subhead--font-weight: 600;
+
+  --text-body-lg: clamp(1.05rem, 1.2vw, 1.25rem);
+  --text-body-lg--line-height: 1.5;
+  --text-body-lg--font-weight: 400;
+
+  --text-label: 0.8125rem;
+  --text-label--line-height: 1.385;
+  --text-label--font-weight: 500;
+  --text-label--letter-spacing: 0.01em;
+
+  --text-price: 1.125rem;
+  --text-price--line-height: 1.2;
+  --text-price--font-weight: 700;
+
+  /* ---- Signature motion curve, shared between CSS transitions and GSAP/Motion JS ---- */
+  --ease-signature: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: auto; /* Lenis owns smooth scrolling; native smooth-scroll would fight it */
+}
+
+body {
+  background: var(--color-bg-app);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background: var(--color-lavender-soft);
+  color: var(--color-violet-deep);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-lavender-electric);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
