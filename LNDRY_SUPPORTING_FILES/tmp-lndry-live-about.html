@@ -1,0 +1,867 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>About Us — Lndry</title>
+<meta name="description" content="Meet the team behind India's AI-powered urban garment-care platform. Founded by Anmol Kumar, IIT Delhi alumnus."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script>
+(function(){var s=localStorage.getItem('lndry-theme');var p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='light'||(s===null&&!p))document.documentElement.classList.add('light');})();
+</script>
+
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#090909;
+  --black2:#111111;
+  --black3:#161616;
+  --black4:#1e1e1e;
+  --teal:#5CCFA9;
+  --teal-dark:#3db890;
+  --teal-dim:rgba(92,207,169,0.12);
+  --teal-border:rgba(92,207,169,0.25);
+  /* ── Extended Urban Palette ── */
+  --amber:#F5A623;
+  --amber-dim:rgba(245,166,35,0.10);
+  --amber-border:rgba(245,166,35,0.22);
+  --violet:#8A7FFB;
+  --violet-dim:rgba(138,127,251,0.10);
+  --violet-border:rgba(138,127,251,0.22);
+  --coral:#FF6B6B;
+  --coral-dim:rgba(255,107,107,0.10);
+  --white:#FFFFFF;
+  --white90:rgba(255,255,255,0.9);
+  --white60:rgba(255,255,255,0.6);
+  --white30:rgba(255,255,255,0.3);
+  --white10:rgba(255,255,255,0.08);
+  --white05:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --gray:#6A6A6A;
+  --gray2:#4a4a4a;
+  /* semantic tokens (dark default) */
+  --bg:#090909;--bg2:#111111;--bg3:#161616;--bg4:#1e1e1e;
+  --text:#FFFFFF;--text90:rgba(255,255,255,0.9);--text60:rgba(255,255,255,0.6);--text30:rgba(255,255,255,0.3);
+  --line:rgba(255,255,255,0.07);--line2:rgba(255,255,255,0.12);
+  --muted:#6A6A6A;--muted2:#4a4a4a;
+  --nav-bg:rgba(9,9,9,0.92);--mob-bg:rgba(9,9,9,0.97);
+  --card-bg:#161616;--inp-bg:#111111;--modal-bg:#161616;
+  --surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.08);
+  --shadow-color:rgba(0,0,0,0.5);
+}
+/* light theme for sub-pages */
+html.light{
+  --teal:#1E9E72;--teal-dark:#187d5a;
+  --teal-dim:rgba(30,158,114,0.09);--teal-border:rgba(30,158,114,0.25);
+  --bg:#F4F6F8;--bg2:#FFFFFF;--bg3:#EAECEF;--bg4:#DDE0E4;
+  --text:#0D0D0D;--text90:rgba(13,13,13,0.92);--text60:rgba(13,13,13,0.62);--text30:rgba(13,13,13,0.32);
+  --line:rgba(0,0,0,0.09);--line2:rgba(0,0,0,0.15);
+  --muted:#606060;--muted2:#999999;
+  --nav-bg:rgba(244,246,248,0.95);--mob-bg:rgba(255,255,255,0.99);
+  --card-bg:#FFFFFF;--inp-bg:#EAECEF;--modal-bg:#FFFFFF;
+  --surface:rgba(0,0,0,0.05);--surface2:rgba(0,0,0,0.09);
+  --border:rgba(0,0,0,0.09);--border2:rgba(0,0,0,0.15);
+  --shadow-color:rgba(0,0,0,0.10);
+  --white60:rgba(13,13,13,0.62);--white90:rgba(13,13,13,0.92);
+  --white:rgba(13,13,13,1);
+}
+html{scroll-behavior:smooth;transition:background 0.35s ease,color 0.35s ease}
+body{font-family:'Geist',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background 0.35s ease,color 0.35s ease}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:3px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;gap:40px;transition:background 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease;background:transparent}
+:root:not(.light) nav.scrolled,html:not(.light) nav.scrolled{background:rgba(9,9,9,0.92);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--border);box-shadow:0 1px 0 var(--border)}
+html.light nav,html.light nav.scrolled{background:rgba(244,246,248,0.98)!important;border-bottom:1px solid rgba(0,0,0,0.08)!important;box-shadow:0 1px 20px rgba(0,0,0,0.07)!important;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-icon{width:36px;height:36px;background:var(--teal);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Geist',sans-serif;font-size:13px;font-weight:700;color:var(--black);letter-spacing:-0.5px}
+.nav-wordmark{font-size:22px;font-weight:700;letter-spacing:-0.5px;color:var(--text)}
+.wm-d{color:var(--teal)}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;flex:1;justify-content:center}
+.nav-links a{color:var(--text60);text-decoration:none;font-size:14px;font-weight:400;letter-spacing:-0.1px;transition:color 0.2s ease;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1.5px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform 0.25s ease;border-radius:2px}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{transform:scaleX(0.5)}
+.nav-links a.active{color:var(--text);font-weight:500}
+.nav-links a.active::after{transform:scaleX(1)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.btn-ghost{padding:9px 20px;border-radius:8px;font-size:14px;font-weight:500;font-family:'Geist',sans-serif;color:var(--text60);background:transparent;border:1px solid var(--border2);cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:7px;letter-spacing:-0.1px}
+.btn-ghost:hover{color:var(--text);border-color:var(--line2)}
+.btn-teal{padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;font-family:'Geist',sans-serif;background:var(--teal);color:var(--black);border:none;cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:7px;letter-spacing:-0.1px}
+.btn-teal:hover{background:var(--teal-dark);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text60);border-radius:2px;transition:all 0.3s}
+.mobile-nav{display:none;position:fixed;top:68px;left:0;right:0;background:var(--mob-bg);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);z-index:998;padding:20px 24px;flex-direction:column;gap:4px;transform:translateY(-10px);opacity:0;pointer-events:none;transition:all 0.25s ease}
+.mobile-nav.open{display:flex;transform:translateY(0);opacity:1;pointer-events:all}
+.mobile-nav a{color:var(--text60);text-decoration:none;font-size:15px;font-weight:400;padding:12px 0;border-bottom:1px solid var(--border);transition:color 0.2s}
+.mobile-nav a:hover{color:var(--text)}
+.mob-cta{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+
+/* PAGE WRAPPER */
+.page-wrap{padding-top:68px;min-height:100vh}
+
+/* INNER HERO */
+.inner-hero{padding:80px 48px 60px;text-align:center;position:relative;overflow:hidden}
+.inner-hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(92,207,169,0.06) 0%,transparent 70%);pointer-events:none}
+.inner-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--teal-dim);border:1px solid var(--teal-border);border-radius:100px;padding:6px 16px;font-size:12px;font-weight:500;color:var(--teal);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:24px}
+.inner-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+.inner-title{font-size:clamp(2.4rem,5vw,4rem);font-weight:800;letter-spacing:-2px;line-height:1.1;margin-bottom:20px}
+.inner-sub{font-size:clamp(1rem,2vw,1.2rem);color:var(--text60);max-width:640px;margin:0 auto;line-height:1.7}
+
+/* CONTENT SECTIONS */
+.content-section{padding:80px 48px;max-width:1140px;margin:0 auto}
+.content-section.alt{background:var(--black2)}
+.content-section.full{max-width:100%;padding-left:0;padding-right:0}
+
+/* DIVIDER */
+.sec-divider{width:100%;height:1px;background:var(--border);margin:0}
+
+/* FOOTER */
+footer{background:var(--black2);border-top:1px solid var(--border)}
+.footer-inner{max-width:1140px;margin:0 auto;padding:80px 48px 40px}
+.footer-top{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr 1fr;gap:48px;padding-bottom:64px;border-bottom:1px solid var(--border)}
+.footer-brand-logo{display:flex;align-items:center;gap:12px;text-decoration:none;margin-bottom:16px}
+.footer-icon{width:36px;height:36px;background:var(--teal);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--black);letter-spacing:-0.5px}
+.footer-wordmark{font-size:22px;font-weight:700;letter-spacing:-0.5px;color:var(--text)}
+.fd{color:var(--teal)}
+.footer-tagline{color:var(--text60);font-size:13px;line-height:1.7;margin-bottom:24px;max-width:240px}
+.footer-socials{display:flex;gap:10px}
+.soc-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--text60);text-decoration:none;font-size:13px;transition:all 0.2s}
+.soc-btn:hover{color:var(--text);border-color:var(--border2);background:var(--surface)}
+.footer-col-title{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text30);margin-bottom:20px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer-links a{color:var(--text60);text-decoration:none;font-size:13.5px;transition:color 0.2s}
+.footer-links a:hover{color:var(--text)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:32px;flex-wrap:wrap;gap:16px}
+.footer-copy{color:var(--text30);font-size:12.5px;line-height:1.8}
+.footer-link{color:var(--text30);text-decoration:none;transition:color 0.2s}
+.footer-link:hover{color:var(--text60)}
+.footer-badges{display:flex;gap:16px;flex-wrap:wrap}
+.footer-badge-item{display:flex;align-items:center;gap:6px;color:var(--text30);font-size:12px}
+
+/* SCROLL REVEAL */
+.r{opacity:0;transform:translateY(24px);transition:opacity 0.55s ease,transform 0.55s ease}
+.r.visible{opacity:1;transform:translateY(0)}
+
+/* TOAST */
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card-bg);border:1px solid var(--teal-border);border-radius:12px;padding:14px 24px;display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text90);z-index:9999;opacity:0;pointer-events:none;transition:all 0.4s ease;white-space:nowrap;box-shadow:0 8px 32px var(--shadow-color)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast-icon{width:22px;height:22px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--black);font-weight:700;flex-shrink:0}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:768px){
+  .inner-hero{padding:60px 24px 40px}
+  .content-section{padding:60px 24px}
+  .footer-inner{padding:60px 24px 32px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  nav{padding:0 24px}
+  .hamburger{display:flex}
+  .nav-links,.nav-right{display:none}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+@media(max-width:480px){
+  .footer-top{grid-template-columns:1fr}
+}
+
+
+/* ── ABOUT-SPECIFIC ─────────────────────────────────────────── */
+.about-hero{
+  padding:110px 48px 80px;
+  text-align:center;position:relative;overflow:hidden;
+}
+.about-hero::before{
+  content:'';position:absolute;top:-100px;left:50%;
+  transform:translateX(-50%);
+  width:800px;height:800px;
+  background:radial-gradient(circle,rgba(92,207,169,0.07) 0%,transparent 65%);
+  pointer-events:none;
+}
+.about-hero::after{
+  content:'';position:absolute;
+  bottom:-60px;right:-60px;
+  width:350px;height:350px;
+  background:radial-gradient(circle,rgba(138,127,251,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+/* STORY SECTION */
+.story-section{
+  max-width:1140px;margin:0 auto;
+  padding:80px 48px;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.story-label{
+  font-size:11px;font-weight:600;letter-spacing:2px;
+  text-transform:uppercase;color:var(--teal);margin-bottom:16px;
+}
+.story-title{
+  font-size:clamp(2rem,3.5vw,3rem);font-weight:800;
+  letter-spacing:-1.5px;line-height:1.15;margin-bottom:24px;
+}
+.story-body{
+  color:var(--text60);font-size:15px;line-height:1.85;
+  display:flex;flex-direction:column;gap:16px;
+}
+.story-body b{color:var(--text90);font-weight:600}
+.story-right{
+  display:flex;flex-direction:column;gap:20px;
+}
+.story-stat-card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:16px;padding:28px 32px;
+  display:flex;align-items:center;gap:20px;
+  transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;
+}
+.story-stat-card:hover{border-color:var(--teal-border);transform:translateX(4px)}
+.story-stat-icon{
+  width:52px;height:52px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+}
+.story-stat-num{font-size:2rem;font-weight:800;letter-spacing:-1px;line-height:1}
+.story-stat-label{font-size:13px;color:var(--text60);margin-top:4px}
+
+/* FOUNDER SECTION */
+.founder-section{
+  background:var(--bg2);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:80px 48px;
+}
+.founder-inner{max-width:1140px;margin:0 auto}
+.section-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--teal-dim);border:1px solid var(--teal-border);
+  border-radius:100px;padding:6px 16px;
+  font-size:11px;font-weight:600;color:var(--teal);
+  letter-spacing:1px;text-transform:uppercase;margin-bottom:40px;
+}
+.founder-grid{
+  display:grid;grid-template-columns:420px 1fr;gap:60px;align-items:start;
+}
+.founder-card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:24px;padding:48px 36px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.founder-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--teal),var(--violet));
+}
+.founder-avatar{
+  width:120px;height:120px;border-radius:50%;
+  background:linear-gradient(135deg,var(--teal-dim),var(--violet-dim));
+  border:2px solid var(--teal-border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:40px;font-weight:800;color:var(--teal);
+  margin:0 auto 24px;letter-spacing:-2px;
+  font-family:'Geist',sans-serif;
+}
+.founder-name{font-size:1.8rem;font-weight:800;letter-spacing:-1px;margin-bottom:8px}
+.founder-role{
+  font-size:14px;font-weight:500;color:var(--teal);
+  background:var(--teal-dim);border-radius:6px;
+  display:inline-block;padding:4px 12px;margin-bottom:20px;
+}
+.founder-edu{
+  display:flex;align-items:center;gap:8px;
+  justify-content:center;
+  color:var(--text60);font-size:13px;margin-bottom:8px;
+}
+.founder-edu-badge{
+  background:var(--amber-dim);border:1px solid var(--amber-border);
+  color:var(--amber);font-size:11px;font-weight:600;
+  padding:3px 10px;border-radius:6px;letter-spacing:0.5px;
+}
+.founder-exp-badge{
+  background:var(--violet-dim);border:1px solid var(--violet-border);
+  color:var(--violet);font-size:11px;font-weight:600;
+  padding:3px 10px;border-radius:6px;letter-spacing:0.5px;margin-top:8px;display:inline-block;
+}
+.founder-social{
+  display:flex;gap:10px;justify-content:center;margin-top:24px;
+}
+.founder-right{display:flex;flex-direction:column;gap:0}
+.founder-quote{
+  font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;
+  letter-spacing:-0.8px;line-height:1.4;
+  color:var(--text90);margin-bottom:32px;
+  padding-left:24px;
+  border-left:3px solid var(--teal);
+}
+.founder-bio{
+  color:var(--text60);font-size:15px;line-height:1.85;
+  display:flex;flex-direction:column;gap:16px;margin-bottom:40px;
+}
+.founder-bio b{color:var(--text90);font-weight:600}
+.founder-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px}
+.chip{
+  padding:7px 16px;border-radius:100px;font-size:12.5px;font-weight:500;
+  border:1px solid;letter-spacing:-0.1px;
+}
+.chip-teal{background:var(--teal-dim);border-color:var(--teal-border);color:var(--teal)}
+.chip-violet{background:var(--violet-dim);border-color:var(--violet-border);color:var(--violet)}
+.chip-amber{background:var(--amber-dim);border-color:var(--amber-border);color:var(--amber)}
+.founder-timeline{
+  display:flex;flex-direction:column;gap:0;
+  border-left:2px solid var(--line2);
+  padding-left:24px;
+  margin-left:4px;
+}
+.timeline-item{
+  position:relative;padding-bottom:28px;
+}
+.timeline-item::before{
+  content:'';position:absolute;left:-29px;top:5px;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--teal);border:2px solid var(--bg2);
+}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-year{font-size:11px;font-weight:600;color:var(--teal);letter-spacing:1px;margin-bottom:4px}
+.timeline-title{font-size:15px;font-weight:600;color:var(--text90);margin-bottom:4px}
+.timeline-sub{font-size:13px;color:var(--text60);line-height:1.6}
+
+/* VALUES SECTION */
+.values-section{max-width:1140px;margin:0 auto;padding:80px 48px}
+.values-title{
+  font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;
+  letter-spacing:-1.2px;margin-bottom:16px;
+}
+.values-sub{color:var(--text60);font-size:15px;margin-bottom:56px;max-width:560px;line-height:1.7}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.value-card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:20px;padding:32px 28px;
+  transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;
+  position:relative;overflow:hidden;
+}
+.value-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  border-radius:0 0 20px 20px;
+  opacity:0;transition:opacity 0.3s;
+}
+.value-card.vc-teal::after{background:var(--teal)}
+.value-card.vc-violet::after{background:var(--violet)}
+.value-card.vc-amber::after{background:var(--amber)}
+.value-card:hover{transform:translateY(-4px)}
+.value-card.vc-teal:hover{border-color:var(--teal-border)}
+.value-card.vc-teal:hover::after{opacity:1}
+.value-card.vc-violet:hover{border-color:var(--violet-border)}
+.value-card.vc-violet:hover::after{opacity:1}
+.value-card.vc-amber:hover{border-color:var(--amber-border)}
+.value-card.vc-amber:hover::after{opacity:1}
+.value-icon{
+  width:48px;height:48px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;margin-bottom:20px;
+}
+.vi-teal{background:var(--teal-dim)}
+.vi-violet{background:var(--violet-dim)}
+.vi-amber{background:var(--amber-dim)}
+.value-title{font-size:18px;font-weight:700;letter-spacing:-0.5px;margin-bottom:10px}
+.value-desc{color:var(--text60);font-size:13.5px;line-height:1.75}
+
+/* MISSION VISION SECTION */
+.mv-section{
+  background:var(--bg2);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:80px 48px;
+}
+.mv-inner{max-width:1140px;margin:0 auto}
+.mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.mv-card{
+  border-radius:24px;padding:48px 40px;
+  position:relative;overflow:hidden;
+}
+.mv-card-m{
+  background:linear-gradient(135deg,rgba(92,207,169,0.08),rgba(92,207,169,0.02));
+  border:1px solid var(--teal-border);
+}
+.mv-card-v{
+  background:linear-gradient(135deg,rgba(138,127,251,0.08),rgba(138,127,251,0.02));
+  border:1px solid var(--violet-border);
+}
+.mv-label{
+  font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;margin-bottom:20px;
+}
+.mv-label-m{color:var(--teal)}
+.mv-label-v{color:var(--violet)}
+.mv-text{
+  font-size:clamp(1.1rem,2vw,1.4rem);font-weight:700;
+  letter-spacing:-0.5px;line-height:1.5;color:var(--text90);
+  margin-bottom:20px;
+}
+.mv-body{color:var(--text60);font-size:14px;line-height:1.8}
+
+/* JOIN SECTION */
+.join-section{
+  max-width:1140px;margin:0 auto;
+  padding:80px 48px;text-align:center;
+}
+.join-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--amber-dim);border:1px solid var(--amber-border);
+  border-radius:100px;padding:6px 16px;
+  font-size:12px;font-weight:600;color:var(--amber);
+  letter-spacing:0.5px;text-transform:uppercase;margin-bottom:28px;
+}
+.join-title{
+  font-size:clamp(2rem,4vw,3.2rem);font-weight:800;
+  letter-spacing:-1.5px;line-height:1.15;margin-bottom:20px;
+}
+.join-sub{color:var(--text60);font-size:15px;max-width:520px;margin:0 auto 40px;line-height:1.7}
+.join-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+@media(max-width:900px){
+  .story-section{grid-template-columns:1fr;gap:40px}
+  .founder-grid{grid-template-columns:1fr}
+  .values-grid{grid-template-columns:1fr 1fr}
+  .mv-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .about-hero{padding:90px 24px 60px}
+  .story-section,.values-section,.join-section{padding:60px 24px}
+  .founder-section,.mv-section{padding:60px 24px}
+  .values-grid{grid-template-columns:1fr}
+}
+
+/* ══ ABOUT LIGHT THEME OVERRIDES ══ */
+html.light body{background:var(--bg)}
+html.light .page-wrap{background:var(--bg)}
+
+/* hero */
+html.light .about-hero{background:linear-gradient(180deg,#EEF8F4 0%,var(--bg) 100%)}
+
+/* story section alternating */
+html.light .story-section{background:var(--bg)}
+html.light .story-stat-card{
+  background:#FFFFFF;
+  border-color:rgba(0,0,0,0.08);
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);
+}
+html.light .story-stat-card:hover{
+  border-color:var(--teal-border);
+  box-shadow:0 4px 20px rgba(30,158,114,0.12);
+}
+
+/* founder section */
+html.light .founder-section{
+  background:#FFFFFF;
+  border-color:rgba(0,0,0,0.07);
+}
+html.light .founder-card{
+  background:#F8FFFE;
+  border-color:rgba(30,158,114,0.15);
+  box-shadow:0 2px 16px rgba(0,0,0,0.06);
+}
+html.light .founder-timeline{border-color:rgba(0,0,0,0.12)}
+html.light .timeline-item::before{border-color:#FFFFFF}
+
+/* values section */
+html.light .values-section{background:var(--bg)}
+html.light .value-card{
+  background:#FFFFFF;
+  border-color:rgba(0,0,0,0.08);
+  box-shadow:0 2px 12px rgba(0,0,0,0.05);
+}
+html.light .value-card.vc-teal:hover{box-shadow:0 6px 24px rgba(30,158,114,0.12)}
+html.light .value-card.vc-violet:hover{box-shadow:0 6px 24px rgba(138,127,251,0.12)}
+html.light .value-card.vc-amber:hover{box-shadow:0 6px 24px rgba(245,166,35,0.12)}
+
+/* mission/vision section */
+html.light .mv-section{
+  background:#FFFFFF;
+  border-color:rgba(0,0,0,0.07);
+}
+html.light .mv-card-m{
+  background:linear-gradient(135deg,rgba(30,158,114,0.06),rgba(30,158,114,0.02));
+  border-color:rgba(30,158,114,0.2);
+}
+html.light .mv-card-v{
+  background:linear-gradient(135deg,rgba(138,127,251,0.06),rgba(138,127,251,0.02));
+  border-color:rgba(138,127,251,0.2);
+}
+
+/* join section */
+html.light .join-section{background:linear-gradient(180deg,var(--bg) 0%,#EEF8F4 100%)}
+
+/* inner hero eyebrow dot */
+html.light .inner-sub{color:var(--text60)}
+html.light .sec-divider{background:var(--border)}
+
+/* footer in light */
+html.light footer{background:#EAECEF}
+html.light .footer-copy{color:var(--text60)}
+</style>
+</head>
+<body>
+
+
+<nav id="nav">
+  <a href="/" class="nav-logo">
+    <div class="nav-icon">Ln</div>
+    <div class="nav-wordmark">Ln<span class="wm-d">d</span>ry</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#plans">Plans</a></li>
+    <li><a href="/#why">Why Lndry</a></li>
+    <li><a href="/#partner">For Partners</a></li>
+    <li><a href="/about" class="active">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Switch theme" aria-label="Toggle dark/light mode">
+      <span class="theme-toggle-track">
+        <span class="theme-toggle-thumb"></span>
+      </span>
+      <span class="theme-icon-light">☀️</span>
+      <span class="theme-icon-dark">🌙</span>
+    </button>
+    <a class="btn-ghost" href="/#partner" onclick="openModal('partner')">Partner With Us</a>
+    <a class="btn-teal" href="/#" onclick="openModal('book')">Book Pickup →</a>
+  </div>
+  <div class="hamburger" id="ham" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/#services" onclick="closeMob()">Services</a>
+  <a href="/#plans" onclick="closeMob()">Plans</a>
+  <a href="/#why" onclick="closeMob()">Why Lndry</a>
+  <a href="/#partner" onclick="closeMob()">For Partners</a>
+  <a href="/about" onclick="closeMob()">About Us</a>
+  <div class="mob-cta">
+    <a class="btn-teal" href="#" style="justify-content:center">Book Pickup →</a>
+    <a class="btn-ghost" href="#" style="justify-content:center">Partner With Us</a>
+  </div>
+</div>
+
+
+<div class="page-wrap">
+
+<!-- ABOUT HERO -->
+<section class="about-hero">
+  <div class="r" style="animation-delay:0s">
+    <div class="inner-eyebrow"><div class="inner-eyebrow-dot"></div>Our Story</div>
+  </div>
+  <h1 class="inner-title r" style="max-width:720px;margin:0 auto 20px">
+    We're Reimagining<br/><span style="color:var(--teal)">Garment Care</span> for India.
+  </h1>
+  <p class="inner-sub r">
+    A lean, bold team of builders obsessed with solving a problem
+    1.4 billion Indians deal with every single week — laundry.
+  </p>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- STORY -->
+<section id="story">
+<div class="story-section">
+  <div>
+    <div class="story-label r">The Beginning</div>
+    <h2 class="story-title r">Born from<br/>frustration.<br/><span style="color:var(--teal)">Built for scale.</span></h2>
+    <div class="story-body r">
+      <p>India's urban workforce — the fastest-growing in Asia — loses <b>4–6 hours every week</b> to laundry. The existing infrastructure is fragmented, unreliable, and stuck in 1990.</p>
+      <p>We asked a simple question: <b>What if getting clean clothes was as seamless as ordering food?</b></p>
+      <p>That question became <b>Lndry</b> — India's first AI-powered garment-care platform that connects urban professionals with vetted local laundry partners through a seamless, tech-driven experience.</p>
+      <p>We're not just a laundry app. We're building the <b>wardrobe-care operating system</b> for modern India — a platform that empowers thousands of local laundry entrepreneurs while serving millions of urban households.</p>
+    </div>
+  </div>
+  <div class="story-right">
+    <div class="story-stat-card r">
+      <div class="story-stat-icon vi-teal" style="background:var(--teal-dim)">🏙️</div>
+      <div>
+        <div class="story-stat-num" style="color:var(--teal)">12+</div>
+        <div class="story-stat-label">Cities in active expansion</div>
+      </div>
+    </div>
+    <div class="story-stat-card r">
+      <div class="story-stat-icon" style="background:var(--violet-dim)">🤝</div>
+      <div>
+        <div class="story-stat-num" style="color:var(--violet)">200+</div>
+        <div class="story-stat-label">Verified local partner businesses</div>
+      </div>
+    </div>
+    <div class="story-stat-card r">
+      <div class="story-stat-icon" style="background:var(--amber-dim)">✨</div>
+      <div>
+        <div class="story-stat-num" style="color:var(--amber)">50K+</div>
+        <div class="story-stat-label">Garments professionally cared</div>
+      </div>
+    </div>
+    <div class="story-stat-card r">
+      <div class="story-stat-icon" style="background:var(--teal-dim)">⭐</div>
+      <div>
+        <div class="story-stat-num" style="color:var(--teal)">4.9</div>
+        <div class="story-stat-label">Average customer rating</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- FOUNDER -->
+<section class="founder-section" id="team">
+  <div class="founder-inner">
+    <div class="section-eyebrow r">👤 Leadership</div>
+    <div class="founder-grid">
+      <!-- LEFT: Card -->
+      <div class="founder-card r">
+        <div class="founder-avatar">AK</div>
+        <div class="founder-name">Anmol Kumar</div>
+        <div class="founder-role">CEO &amp; Founder</div>
+        <div class="founder-edu">
+          <span class="founder-edu-badge">IIT Delhi</span>
+          <span style="color:var(--text30)">·</span>
+          <span class="founder-exp-badge">7+ Years</span>
+        </div>
+        <p style="color:var(--text60);font-size:13px;line-height:1.7;margin-top:20px">
+          Product &amp; Business builder. Former operator in consumer tech and logistics. Now building India's garment-care infrastructure from the ground up.
+        </p>
+        <div class="founder-social">
+          <a href="#" class="soc-btn" style="font-size:11px;font-weight:600">in</a>
+          <a href="#" class="soc-btn" style="font-size:11px;font-weight:600">𝕏</a>
+          <a href="#" class="soc-btn" style="font-size:12px">✉</a>
+        </div>
+      </div>
+      <!-- RIGHT: Story -->
+      <div class="r">
+        <blockquote class="founder-quote">
+          "Every urban Indian deserves the same wardrobe care that was once reserved for the privileged few. We're making that universal."
+        </blockquote>
+        <div class="founder-bio">
+          <p>Anmol Kumar is an <b>IIT Delhi alumnus</b> with over <b>7 years of deep product and business experience</b> across consumer tech, marketplace platforms, and urban logistics — giving him a rare ground-up view of India's infrastructure gaps.</p>
+          <p>Before founding Lndry, Anmol worked at the intersection of <b>product strategy, growth, and operations</b> — helping scale platforms from early traction to multi-city expansion. That experience forged his conviction: India's urban service economy was ripe for reimagination.</p>
+          <p>At Lndry, Anmol leads with a <b>builder's mindset</b> — obsessing over customer experience, partner economics, and the technology that connects them seamlessly.</p>
+        </div>
+        <div class="founder-chips">
+          <span class="chip chip-teal">Product Strategy</span>
+          <span class="chip chip-violet">AI &amp; Technology</span>
+          <span class="chip chip-amber">Marketplace Ops</span>
+          <span class="chip chip-teal">Urban Logistics</span>
+          <span class="chip chip-violet">Growth</span>
+          <span class="chip chip-amber">IIT Delhi</span>
+        </div>
+        <div class="founder-timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2024 — Present</div>
+            <div class="timeline-title">CEO &amp; Founder · Lndry</div>
+            <div class="timeline-sub">Building India's AI-powered urban garment-care platform from scratch — product, partnerships, team, and vision.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2020 — 2024</div>
+            <div class="timeline-title">Senior Product &amp; Business Lead</div>
+            <div class="timeline-sub">Led product and operations for high-growth consumer and marketplace companies across urban India.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2017 — 2020</div>
+            <div class="timeline-title">Product Manager · Early Stage Tech</div>
+            <div class="timeline-sub">Shipped consumer-facing features, scaled logistics operations, managed cross-functional growth teams.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2013 — 2017</div>
+            <div class="timeline-title">B.Tech · IIT Delhi</div>
+            <div class="timeline-sub">Engineering foundation. Developed a sharp lens for first-principles problem-solving and systems thinking.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="r">
+    <div class="story-label">What Drives Us</div>
+    <h2 class="values-title">Our Values</h2>
+    <p class="values-sub">The principles that guide every decision — from product to partnerships to people.</p>
+  </div>
+  <div class="values-grid">
+    <div class="value-card vc-teal r">
+      <div class="value-icon vi-teal">🎯</div>
+      <div class="value-title">Customer First, Always</div>
+      <div class="value-desc">Every feature, policy, and partnership decision starts with one question: does this make life genuinely better for our customer?</div>
+    </div>
+    <div class="value-card vc-violet r">
+      <div class="value-icon vi-violet">⚡</div>
+      <div class="value-title">Move Fast, Build Right</div>
+      <div class="value-desc">We ship quickly without cutting corners. Speed and quality aren't opposites — they're both non-negotiable at Lndry.</div>
+    </div>
+    <div class="value-card vc-amber r">
+      <div class="value-icon vi-amber">🤝</div>
+      <div class="value-title">Partners Win, We Win</div>
+      <div class="value-desc">Our local laundry partners aren't vendors — they're co-owners of the Lndry story. Their success is the foundation of ours.</div>
+    </div>
+    <div class="value-card vc-teal r">
+      <div class="value-icon vi-teal">🔬</div>
+      <div class="value-title">Data &amp; Intuition</div>
+      <div class="value-desc">We combine rigorous data analysis with deep customer empathy. Numbers tell you what happened; intuition tells you why it matters.</div>
+    </div>
+    <div class="value-card vc-violet r">
+      <div class="value-icon vi-violet">🌿</div>
+      <div class="value-title">Sustainable by Design</div>
+      <div class="value-desc">Eco-friendly processes, optimised routes, and reusable packaging. We're building a business that's good for India, not just profitable.</div>
+    </div>
+    <div class="value-card vc-amber r">
+      <div class="value-icon vi-amber">🏗️</div>
+      <div class="value-title">Build for Bharat</div>
+      <div class="value-desc">We're designing for the real India — diverse cities, varied incomes, different languages. Scale means reaching everyone, not just the metros.</div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- MISSION + VISION -->
+<section class="mv-section">
+  <div class="mv-inner">
+    <div class="section-eyebrow r">🧭 Direction</div>
+    <div class="mv-grid">
+      <div class="mv-card mv-card-m r">
+        <div class="mv-label mv-label-m">Our Mission</div>
+        <div class="mv-text">To make professional garment care effortless, affordable, and accessible for every urban Indian — powered by technology and delivered through local communities.</div>
+        <div class="mv-body">We do this by building the technology layer that connects urban customers with trusted local laundry businesses — creating a win-win ecosystem where quality, convenience, and livelihood all go up together.</div>
+      </div>
+      <div class="mv-card mv-card-v r">
+        <div class="mv-label mv-label-v">Our Vision</div>
+        <div class="mv-text">To be the wardrobe-care operating system for 500 million urban Indians — the invisible infrastructure that keeps India's workforce looking and feeling its best.</div>
+        <div class="mv-body">Just as the internet became invisible infrastructure for communication, Lndry will become invisible infrastructure for garment care — seamlessly integrated into the fabric of urban Indian life.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section class="join-section">
+  <div class="join-pill r">✦ We're Hiring</div>
+  <h2 class="join-title r">Want to build<br/><span style="color:var(--teal)">India's future</span> with us?</h2>
+  <p class="join-sub r">We're a small, high-conviction team. If you're obsessed with solving hard problems and building for real India, we'd love to talk.</p>
+  <div class="join-btns r">
+    <a href="/cdn-cgi/l/email-protection#a5cdc0c9c9cae5c9cbc1d7dc8bcccb" class="btn-teal">✉ Say Hello</a>
+    <a href="/" class="btn-ghost">← Back to Home</a>
+  </div>
+</section>
+
+</div><!-- /page-wrap -->
+
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="/" class="footer-brand-logo">
+          <div class="footer-icon">Ln</div>
+          <div class="footer-wordmark">Ln<span class="fd">d</span>ry</div>
+        </a>
+        <p class="footer-tagline">India's urban garment-care infrastructure platform. Building the wardrobe-care operating system for modern India.</p>
+        <div class="footer-socials">
+          <a href="#" class="soc-btn">in</a>
+          <a href="#" class="soc-btn">𝕏</a>
+          <a href="#" class="soc-btn">▶</a>
+          <a href="#" class="soc-btn">◉</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/about#story">Our Story</a></li>
+          <li><a href="/about#team">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="/#services">Wash &amp; Fold</a></li>
+          <li><a href="/#services">Dry Cleaning</a></li>
+          <li><a href="/#services">Shoe Care</a></li>
+          <li><a href="/#services">Bag Care</a></li>
+          <li><a href="/#services">Tailoring</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Partners</div>
+        <ul class="footer-links">
+          <li><a href="#">Become a Partner</a></li>
+          <li><a href="#">Partner Dashboard</a></li>
+          <li><a href="#">Training Program</a></li>
+          <li><a href="#">Partner Community</a></li>
+          <li><a href="#">Partner FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms &amp; Conditions</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Lndry Technologies Pvt. Ltd. · All rights reserved · Made with ♥ in India · <a href="/privacy" class="footer-link">Privacy</a> · <a href="/terms" class="footer-link">Terms</a></div>
+      <div class="footer-badges">
+        <div class="footer-badge-item"><i>🔒</i> Secure Payments</div>
+        <div class="footer-badge-item"><i>🌿</i> Eco-Friendly</div>
+        <div class="footer-badge-item"><i>✓</i> ISO Certified</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<div class="toast" id="toast"><div class="toast-icon">✓</div><div id="toastMsg"></div></div>
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>30)});
+function toggleNav(){document.getElementById('mobileNav').classList.toggle('open')}
+function closeMob(){document.getElementById('mobileNav').classList.remove('open')}
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const siblings=[...e.target.parentNode.children].filter(c=>c.classList.contains('r'));
+      const idx=siblings.indexOf(e.target);
+      setTimeout(()=>e.target.classList.add('visible'),idx*90);
+      ro.unobserve(e.target);
+    }
+  });
+},{threshold:0.08});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+function openModal(t){}
+function submit(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),4000);
+}
+function toggleTheme(){
+  const isLight=document.documentElement.classList.toggle('light');
+  localStorage.setItem('lndry-theme',isLight?'light':'dark');
+}
+</script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"8abda370a42546c88b373326c07da180","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

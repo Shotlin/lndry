@@ -1,0 +1,2291 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Lndry — Drop the dirty work.</title>
+<meta name="description" content="India's first AI-powered urban garment-care platform. Schedule pickups, track in real-time, and get fresh clothes delivered to your door."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script>
+// Apply theme before paint to prevent flash
+(function(){
+  var s=localStorage.getItem('lndry-theme');
+  var p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if(s==='light'||(s===null&&!p))document.documentElement.classList.add('light');
+})();
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ═══ DARK THEME (default) ═══ */
+:root{
+  --black:#090909;
+  --black2:#111111;
+  --black3:#161616;
+  --black4:#1e1e1e;
+  --teal:#5CCFA9;
+  --teal-dark:#3db890;
+  --teal-dim:rgba(92,207,169,0.12);
+  --teal-border:rgba(92,207,169,0.25);
+  --white:#FFFFFF;
+  --white90:rgba(255,255,255,0.9);
+  --white60:rgba(255,255,255,0.6);
+  --white30:rgba(255,255,255,0.3);
+  --white10:rgba(255,255,255,0.08);
+  --white05:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --gray:#6A6A6A;
+  --gray2:#4a4a4a;
+
+  /* semantic tokens - dark */
+  --bg:#090909;
+  --bg2:#111111;
+  --bg3:#161616;
+  --bg4:#1e1e1e;
+  --surface:rgba(255,255,255,0.04);
+  --surface2:rgba(255,255,255,0.08);
+  --text:#FFFFFF;
+  --text90:rgba(255,255,255,0.9);
+  --text60:rgba(255,255,255,0.6);
+  --text30:rgba(255,255,255,0.3);
+  --line:rgba(255,255,255,0.07);
+  --line2:rgba(255,255,255,0.12);
+  --muted:#6A6A6A;
+  --muted2:#4a4a4a;
+  --nav-bg:rgba(9,9,9,0.92);
+  --mob-bg:rgba(9,9,9,0.97);
+  --card-bg:#161616;
+  --card-bg2:#111111;
+  --inp-bg:#111111;
+  --modal-bg:#161616;
+  --footer-bg:#111111;
+  --hero-grid:rgba(255,255,255,0.03);
+  --prob-hover:#161616;
+  --shadow-color:rgba(0,0,0,0.5);
+}
+
+/* ═══ LIGHT THEME ═══ */
+html.light{
+  --black:#090909;
+  --black2:#111111;
+  --black3:#161616;
+  --black4:#1e1e1e;
+  --teal:#1E9E72;
+  --teal-dark:#187d5a;
+  --teal-dim:rgba(30,158,114,0.09);
+  --teal-border:rgba(30,158,114,0.25);
+  --white:#FFFFFF;
+
+  /* semantic tokens - light */
+  --bg:#F4F6F8;
+  --bg2:#FFFFFF;
+  --bg3:#EAECEF;
+  --bg4:#DDE0E4;
+  --surface:rgba(0,0,0,0.05);
+  --surface2:rgba(0,0,0,0.09);
+  --text:#0D0D0D;
+  --text90:rgba(13,13,13,0.92);
+  --text60:rgba(13,13,13,0.62);
+  --text30:rgba(13,13,13,0.32);
+  --line:rgba(0,0,0,0.09);
+  --line2:rgba(0,0,0,0.15);
+  --muted:#606060;
+  --muted2:#999999;
+  --nav-bg:rgba(244,246,248,0.95);
+  --mob-bg:rgba(255,255,255,0.99);
+  --card-bg:#FFFFFF;
+  --card-bg2:#F4F6F8;
+  --inp-bg:#EAECEF;
+  --modal-bg:#FFFFFF;
+  --footer-bg:#EAECEF;
+  --hero-grid:rgba(0,0,0,0.05);
+  --prob-hover:#F0F2F5;
+  --shadow-color:rgba(0,0,0,0.10);
+  --white90:rgba(13,13,13,0.92);
+  --white60:rgba(13,13,13,0.62);
+  --white30:rgba(13,13,13,0.32);
+  --white10:rgba(0,0,0,0.05);
+  --white05:rgba(0,0,0,0.03);
+  --border:rgba(0,0,0,0.09);
+  --border2:rgba(0,0,0,0.15);
+  --gray:#606060;
+  --gray2:#999999;
+}
+
+html{scroll-behavior:smooth;transition:background 0.35s ease,color 0.35s ease}
+body{font-family:'Geist',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;transition:background 0.35s ease,color 0.35s ease}
+
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:3px}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  height:68px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;gap:40px;
+  transition:background 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease;
+  /* dark default: transparent so hero gradient shows through */
+  background:transparent;
+}
+/* DARK: solid bg only when scrolled */
+:root:not(.light) nav.scrolled,
+html:not(.light) nav.scrolled{
+  background:rgba(9,9,9,0.92);
+  backdrop-filter:blur(24px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  border-bottom:1px solid var(--border);
+  box-shadow:0 1px 0 var(--border);
+}
+/* LIGHT: always solid — transparent nav = invisible dark text on dark bg */
+html.light nav,
+html.light nav.scrolled{
+  background:rgba(244,246,248,0.98) !important;
+  border-bottom:1px solid rgba(0,0,0,0.08) !important;
+  box-shadow:0 1px 20px rgba(0,0,0,0.07) !important;
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+}
+.nav-logo{
+  display:flex;align-items:center;gap:12px;text-decoration:none;
+}
+.nav-icon{
+  width:36px;height:36px;
+  background:var(--teal);
+  border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Geist',sans-serif;
+  font-size:13px;font-weight:700;
+  color:var(--black);letter-spacing:-0.5px;
+}
+.nav-wordmark{
+  font-size:22px;font-weight:700;letter-spacing:-0.5px;
+  color:var(--text);text-decoration:none;
+}
+.nav-wordmark .tl{color:var(--teal)}
+.wm-d{color:var(--teal)}
+
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;flex:1;justify-content:center}
+.nav-links a{
+  color:var(--text60);text-decoration:none;
+  font-size:14px;font-weight:400;letter-spacing:-0.1px;
+  transition:color 0.2s ease;
+  position:relative;
+}
+.nav-links a::after{
+  content:'';
+  position:absolute;bottom:-4px;left:0;right:0;
+  height:1.5px;background:var(--teal);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.25s ease;
+  border-radius:2px;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{transform:scaleX(0.5)}
+.nav-links a.active{color:var(--text);font-weight:500}
+.nav-links a.active::after{transform:scaleX(1)}
+
+.nav-right{display:flex;align-items:center;gap:10px}
+
+.btn-ghost{
+  padding:9px 20px;border-radius:8px;
+  font-size:14px;font-weight:500;font-family:'Geist',sans-serif;
+  color:var(--text60);background:transparent;
+  border:1px solid var(--border2);
+  cursor:pointer;text-decoration:none;
+  transition:all 0.2s;display:inline-flex;align-items:center;gap:7px;
+  letter-spacing:-0.1px;
+}
+.btn-ghost:hover{color:var(--text);border-color:var(--line2)}
+
+.btn-teal{
+  padding:9px 20px;border-radius:8px;
+  font-size:14px;font-weight:600;font-family:'Geist',sans-serif;
+  color:var(--black);background:var(--teal);
+  border:none;cursor:pointer;text-decoration:none;
+  transition:all 0.2s;display:inline-flex;align-items:center;gap:7px;
+  letter-spacing:-0.1px;
+}
+.btn-teal:hover{background:var(--teal-dark);transform:translateY(-1px)}
+
+/* hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--text);transition:all 0.3s;border-radius:2px}
+.mobile-nav{
+  display:none;position:fixed;top:68px;left:0;right:0;
+  background:var(--mob-bg);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:24px 24px 28px;flex-direction:column;gap:0;z-index:998;
+}
+.mobile-nav.open{display:flex}
+.mobile-nav a{
+  color:var(--white60);text-decoration:none;font-size:15px;font-weight:400;
+  padding:14px 0;border-bottom:1px solid var(--border);
+  transition:color 0.2s;display:block;
+}
+.mobile-nav a:hover{color:var(--text)}
+.mobile-nav .mob-cta{
+  margin-top:20px;display:flex;flex-direction:column;gap:10px;
+}
+
+/* ─── HERO ─── */
+#hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:120px 24px 80px;
+  position:relative;overflow:hidden;
+}
+
+/* animated noise/grid bg */
+.hero-noise{
+  position:absolute;inset:0;
+  background-image:
+    radial-gradient(ellipse 70% 50% at 50% -10%, rgba(92,207,169,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 90% 90%, rgba(92,207,169,0.05) 0%, transparent 60%);
+}
+.hero-grid-lines{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(ellipse 60% 60% at 50% 30%, black 20%, transparent 100%);
+}
+
+/* floating teal orb */
+.hero-orb{
+  position:absolute;
+  width:600px;height:600px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(92,207,169,0.08) 0%, transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-60%);
+  pointer-events:none;
+  animation:orbFloat 8s ease-in-out infinite;
+}
+@keyframes orbFloat{
+  0%,100%{transform:translate(-50%,-60%) scale(1)}
+  50%{transform:translate(-50%,-55%) scale(1.05)}
+}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 14px 6px 8px;
+  background:var(--teal-dim);
+  border:1px solid var(--teal-border);
+  border-radius:100px;
+  font-size:12px;font-weight:500;color:var(--teal);
+  margin-bottom:36px;position:relative;
+  animation:fadeUp 0.7s ease both;
+  letter-spacing:0.2px;
+}
+.hero-badge-dot{
+  width:6px;height:6px;background:var(--teal);border-radius:50%;
+  animation:blink 2s infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+.hero-logo-icon{
+  width:88px;height:88px;
+  background:var(--teal);
+  border-radius:22px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:30px;font-weight:800;
+  color:var(--black);letter-spacing:-1px;
+  margin:0 auto 28px;
+  animation:fadeUp 0.7s 0.05s ease both;
+  box-shadow:0 20px 60px rgba(92,207,169,0.2);
+}
+
+.hero-title{
+  font-size:clamp(64px,9vw,110px);
+  font-weight:800;line-height:1;
+  letter-spacing:-4px;
+  margin-bottom:24px;
+  position:relative;
+  animation:fadeUp 0.7s 0.1s ease both;
+}
+.hero-title .w{color:var(--text)}
+.hero-title .t{color:var(--teal)}
+.hero-title .wd{color:var(--text)}
+
+.hero-tagline{
+  font-size:clamp(18px,2.5vw,26px);
+  font-weight:400;color:var(--gray);
+  margin-bottom:16px;
+  letter-spacing:-0.3px;
+  animation:fadeUp 0.7s 0.15s ease both;
+}
+
+.hero-sub{
+  font-size:15px;color:var(--gray);
+  max-width:420px;line-height:1.65;
+  margin:0 auto 48px;
+  animation:fadeUp 0.7s 0.2s ease both;
+  font-weight:400;
+}
+
+.hero-buttons{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  animation:fadeUp 0.7s 0.25s ease both;
+}
+
+.btn-hero{
+  padding:14px 30px;border-radius:100px;
+  font-size:15px;font-weight:600;font-family:'Geist',sans-serif;
+  display:inline-flex;align-items:center;gap:8px;
+  text-decoration:none;cursor:pointer;border:none;
+  transition:all 0.22s;letter-spacing:-0.2px;
+}
+.btn-hero-primary{
+  background:var(--teal);color:var(--black);
+}
+.btn-hero-primary:hover{background:var(--teal-dark);transform:translateY(-2px);box-shadow:0 12px 32px rgba(92,207,169,0.25)}
+.btn-hero-secondary{
+  background:var(--surface);color:var(--text);
+  border:1px solid var(--border2);backdrop-filter:blur(10px);
+}
+.btn-hero-secondary:hover{background:rgba(255,255,255,0.12);transform:translateY(-2px)}
+
+.hero-stats{
+  display:flex;justify-content:center;gap:0;
+  margin-top:72px;position:relative;
+  animation:fadeUp 0.7s 0.35s ease both;
+  border:1px solid var(--border);border-radius:16px;
+  background:var(--white05);backdrop-filter:blur(10px);
+  overflow:hidden;max-width:600px;width:100%;margin-left:auto;margin-right:auto;
+}
+.hero-stat{
+  flex:1;padding:24px 20px;text-align:center;
+  border-right:1px solid var(--border);
+}
+.hero-stat:last-child{border-right:none}
+.hero-stat-num{
+  font-size:26px;font-weight:800;color:var(--text);
+  letter-spacing:-1px;line-height:1;margin-bottom:6px;
+}
+.hero-stat-num span{color:var(--teal)}
+.hero-stat-label{font-size:11px;color:var(--gray);font-weight:400;letter-spacing:0.3px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── SECTION COMMON ─── */
+section{padding:96px 24px}
+.si{max-width:1160px;margin:0 auto}
+
+.s-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:600;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--teal);margin-bottom:20px;
+}
+.s-eyebrow-dot{width:5px;height:5px;background:var(--teal);border-radius:50%}
+
+.s-title{
+  font-size:clamp(36px,5vw,58px);
+  font-weight:800;line-height:1.05;
+  letter-spacing:-2px;color:var(--text);
+  margin-bottom:18px;
+}
+.s-title .t{color:var(--teal)}
+
+.s-sub{
+  font-size:16px;color:var(--gray);
+  line-height:1.7;max-width:520px;font-weight:400;
+}
+
+/* ─── DIVIDER ─── */
+.divider{
+  height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);
+  max-width:1160px;margin:0 auto;
+}
+
+/* ─── PROBLEM ─── */
+#problem{background:var(--black2)}
+.prob-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  margin-top:56px;
+  background:var(--border);
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid var(--border);
+}
+.prob-card{
+  background:var(--black2);
+  padding:36px 32px;
+  position:relative;overflow:hidden;
+  transition:background 0.3s;
+}
+.prob-card:hover{background:var(--black3)}
+.prob-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,rgba(239,68,68,0.4),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.prob-card:hover::before{opacity:1}
+.prob-num{
+  font-family:'Geist Mono',monospace;
+  font-size:11px;color:var(--gray2);
+  margin-bottom:20px;letter-spacing:1px;
+}
+.prob-icon{font-size:28px;margin-bottom:16px;display:block}
+.prob-title{font-size:18px;font-weight:700;color:var(--text);margin-bottom:10px;letter-spacing:-0.3px}
+.prob-desc{font-size:13px;color:var(--gray);line-height:1.65}
+.prob-tag{
+  display:inline-block;margin-top:18px;
+  padding:4px 10px;
+  background:rgba(239,68,68,0.08);
+  border:1px solid rgba(239,68,68,0.15);
+  border-radius:6px;font-size:10px;
+  color:rgba(239,68,68,0.7);font-weight:600;letter-spacing:0.5px;
+}
+
+/* ─── SOLUTION ─── */
+#solution{background:var(--black)}
+.sol-layout{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:72px;align-items:center;margin-top:64px;
+}
+.sol-features{display:flex;flex-direction:column;gap:4px}
+.sol-feat{
+  display:flex;align-items:flex-start;gap:18px;
+  padding:24px;border-radius:14px;
+  border:1px solid transparent;
+  transition:all 0.25s;cursor:default;
+}
+.sol-feat:hover{
+  background:var(--white05);border-color:var(--border);
+}
+.sol-feat-icon{
+  width:42px;height:42px;flex-shrink:0;
+  background:var(--teal-dim);
+  border:1px solid var(--teal-border);
+  border-radius:11px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;
+}
+.sol-feat-body{}
+.sol-feat-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:5px;letter-spacing:-0.2px}
+.sol-feat-desc{font-size:13px;color:var(--gray);line-height:1.6}
+
+/* ecosystem card */
+.eco-card{
+  background:var(--black3);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:40px;
+  position:relative;overflow:hidden;
+}
+.eco-card::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(92,207,169,0.08),transparent);
+}
+.eco-flow{display:flex;flex-direction:column;gap:0}
+.eco-node{
+  display:flex;align-items:center;gap:16px;
+  padding:18px 20px;
+  background:var(--black2);
+  border:1px solid var(--border);
+  border-radius:14px;
+  transition:border-color 0.3s;
+}
+.eco-node:hover{border-color:var(--teal-border)}
+.eco-node-icon{
+  width:44px;height:44px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;border-radius:11px;
+  background:var(--white05);
+}
+.eco-node-title{font-size:14px;font-weight:700;color:var(--text);letter-spacing:-0.2px}
+.eco-node-sub{font-size:12px;color:var(--gray);margin-top:2px}
+.eco-arrow{
+  display:flex;align-items:center;justify-content:center;
+  padding:12px;color:var(--teal);font-size:18px;
+  position:relative;
+}
+.eco-arrow::before{
+  content:'';position:absolute;
+  left:50%;top:0;bottom:0;width:1px;
+  background:linear-gradient(180deg,transparent,var(--teal-border),transparent);
+  transform:translateX(-50%);
+}
+.eco-node.platform{
+  background:var(--teal-dim);
+  border-color:var(--teal-border);
+}
+.eco-node.platform .eco-node-icon{background:rgba(92,207,169,0.2)}
+
+/* ─── HOW IT WORKS ─── */
+#how{background:var(--black2)}
+.steps{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:24px;margin-top:60px;
+  position:relative;
+}
+.steps::before{
+  content:'';position:absolute;
+  top:40px;left:5%;right:5%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--teal-border),var(--teal-border),transparent);
+  pointer-events:none;
+}
+.step{text-align:center;position:relative}
+.step-num{
+  width:80px;height:80px;
+  background:var(--black3);
+  border:1px solid var(--border2);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 24px;
+  font-family:'Geist Mono',monospace;
+  font-size:22px;font-weight:700;color:var(--teal);
+  position:relative;transition:all 0.3s;
+}
+.step:hover .step-num{
+  background:var(--teal-dim);
+  border-color:var(--teal-border);
+  box-shadow:0 0 30px rgba(92,207,169,0.12);
+}
+.step-emoji{
+  position:absolute;top:-10px;right:-10px;
+  width:28px;height:28px;border-radius:50%;
+  background:var(--black2);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:13px;
+}
+.step-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px;letter-spacing:-0.3px}
+.step-desc{font-size:13px;color:var(--gray);line-height:1.6}
+
+/* ─── SERVICES ─── */
+#services{background:var(--black)}
+.srv-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;margin-top:56px;
+}
+.srv-card{
+  background:var(--black3);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:28px 22px;
+  text-align:center;
+  cursor:pointer;position:relative;
+  overflow:hidden;transition:all 0.25s;
+}
+.srv-card:hover{
+  border-color:var(--teal-border);
+  transform:translateY(-5px);
+  background:var(--teal-dim);
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+.srv-badge{
+  position:absolute;top:12px;right:12px;
+  padding:3px 8px;border-radius:5px;
+  font-size:9px;font-weight:700;
+  letter-spacing:0.5px;text-transform:uppercase;
+}
+.srv-badge.pop{background:var(--teal-dim);color:var(--teal);border:1px solid var(--teal-border)}
+.srv-badge.new{background:rgba(168,85,247,0.1);color:#a855f7;border:1px solid rgba(168,85,247,0.2)}
+.srv-badge.lux{background:rgba(234,179,8,0.1);color:#eab308;border:1px solid rgba(234,179,8,0.2)}
+.srv-emoji{font-size:36px;display:block;margin-bottom:16px}
+.srv-name{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;letter-spacing:-0.2px}
+.srv-price{font-size:13px;color:var(--teal);font-weight:500}
+
+/* ─── PLANS ─── */
+#plans{background:var(--black2)}
+.plans-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:20px;margin-top:60px;
+}
+.plan-card{
+  background:var(--black3);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:36px;position:relative;overflow:hidden;
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.plan-card:hover{transform:translateY(-6px);box-shadow:0 30px 60px rgba(0,0,0,0.5)}
+.plan-card.featured{
+  background:var(--teal-dim);
+  border-color:var(--teal-border);
+}
+.plan-card.featured:hover{box-shadow:0 30px 60px rgba(92,207,169,0.1)}
+.plan-popular{
+  position:absolute;top:0;right:28px;
+  padding:6px 14px;
+  background:var(--teal);color:var(--black);
+  font-size:10px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;
+  border-radius:0 0 10px 10px;
+}
+.plan-name{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+.plan-price{font-size:52px;font-weight:800;color:var(--text);line-height:1;letter-spacing:-2px;margin-bottom:4px}
+.plan-period{font-size:13px;color:var(--gray);margin-bottom:8px}
+.plan-save{
+  display:inline-block;padding:4px 10px;
+  background:rgba(92,207,169,0.1);
+  border:1px solid rgba(92,207,169,0.2);
+  border-radius:100px;font-size:11px;
+  color:var(--teal);font-weight:600;margin-bottom:20px;
+}
+.plan-desc{font-size:13px;color:var(--gray);margin-bottom:24px;line-height:1.5}
+.plan-items{list-style:none;margin-bottom:28px;display:flex;flex-direction:column;gap:0}
+.plan-item{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 0;border-bottom:1px solid var(--border);
+  font-size:13px;color:var(--white90);
+}
+.plan-item:last-child{border-bottom:none}
+.plan-check{
+  width:18px;height:18px;border-radius:50%;flex-shrink:0;
+  background:rgba(92,207,169,0.12);
+  border:1px solid rgba(92,207,169,0.25);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--teal);font-size:9px;
+}
+.plan-btn{
+  width:100%;padding:14px;border-radius:10px;
+  font-size:14px;font-weight:700;font-family:'Geist',sans-serif;
+  cursor:pointer;border:none;transition:all 0.2s;letter-spacing:-0.2px;
+}
+.plan-btn-teal{background:var(--teal);color:var(--black)}
+.plan-btn-teal:hover{background:var(--teal-dark)}
+.plan-btn-outline{
+  background:transparent;color:var(--text);
+  border:1px solid var(--border2);
+}
+.plan-btn-outline:hover{background:var(--surface)}
+
+/* ─── WHY LNDRY ─── */
+#why{background:var(--black)}
+.why-layout{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:72px;align-items:start;margin-top:64px;
+}
+.why-pts{display:flex;flex-direction:column;gap:6px}
+.why-pt{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:22px;border-radius:14px;
+  border:1px solid transparent;transition:all 0.25s;
+}
+.why-pt:hover{background:var(--white05);border-color:var(--border)}
+.why-pt-icon{
+  width:40px;height:40px;flex-shrink:0;
+  background:var(--teal-dim);border:1px solid var(--teal-border);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.why-pt-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;letter-spacing:-0.2px}
+.why-pt-desc{font-size:12px;color:var(--gray);line-height:1.6}
+
+.why-metrics{
+  background:var(--black3);
+  border:1px solid var(--border);
+  border-radius:22px;padding:36px;
+}
+.why-metrics-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:28px;letter-spacing:-0.2px}
+.metric-row{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.metric-label{font-size:12px;color:var(--muted);min-width:160px;flex-shrink:0}
+.metric-track{flex:1;height:4px;background:var(--bg4);border-radius:4px;overflow:hidden}
+.metric-fill{height:100%;background:var(--teal);border-radius:4px;animation:fillBar 1.5s ease-out both}
+@keyframes fillBar{from{width:0}}
+.metric-val{font-size:12px;font-weight:700;color:var(--teal);min-width:36px;text-align:right}
+
+.why-kpis{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;margin-top:28px;
+  border-top:1px solid var(--border);padding-top:24px;
+}
+.kpi{text-align:center}
+.kpi-num{font-size:28px;font-weight:800;color:var(--text);letter-spacing:-1px;line-height:1}
+.kpi-num span{color:var(--teal)}
+.kpi-label{font-size:10px;color:var(--gray);margin-top:4px;line-height:1.4}
+
+/* ─── MARKET ─── */
+#market{background:var(--black2)}
+.mkt-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;margin-top:56px;
+  background:var(--border);border-radius:20px;overflow:hidden;
+  border:1px solid var(--border);
+}
+.mkt-card{
+  background:var(--black2);padding:36px 28px;
+  position:relative;transition:background 0.3s;
+}
+.mkt-card:hover{background:var(--black3)}
+.mkt-trend{
+  position:absolute;top:20px;right:20px;
+  font-size:11px;font-weight:700;color:var(--teal);
+  display:flex;align-items:center;gap:3px;
+}
+.mkt-num{
+  font-size:44px;font-weight:800;
+  color:var(--text);letter-spacing:-2px;
+  line-height:1;margin-bottom:10px;
+}
+.mkt-num span{color:var(--teal)}
+.mkt-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-0.3px}
+.mkt-desc{font-size:12px;color:var(--gray);line-height:1.6}
+
+.mkt-expansion{
+  margin-top:24px;
+  background:var(--black3);border:1px solid var(--border);
+  border-radius:20px;padding:36px;
+}
+.mkt-phases{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:12px;overflow:hidden}
+.mkt-phase{background:var(--black3);padding:28px 24px}
+.mkt-phase-tag{
+  font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  margin-bottom:10px;display:inline-flex;align-items:center;gap:6px;
+}
+.tag-now{color:var(--teal)}
+.tag-soon{color:#eab308}
+.tag-future{color:#a855f7}
+.mkt-phase-num{font-size:38px;font-weight:800;color:var(--text);letter-spacing:-2px;margin-bottom:4px}
+.mkt-phase-label{font-size:12px;color:var(--gray)}
+
+/* ─── PARTNER ─── */
+#partner{background:var(--black)}
+.partner-layout{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:72px;align-items:start;margin-top:64px;
+}
+.partner-bens{display:flex;flex-direction:column;gap:12px}
+.partner-ben{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:22px 24px;background:var(--black3);
+  border:1px solid var(--border);border-radius:14px;
+  transition:all 0.25s;
+}
+.partner-ben:hover{border-color:var(--teal-border);background:var(--teal-dim)}
+.pb-icon{
+  width:44px;height:44px;flex-shrink:0;
+  background:var(--teal-dim);border:1px solid var(--teal-border);
+  border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.pb-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;letter-spacing:-0.2px}
+.pb-desc{font-size:12px;color:var(--gray);line-height:1.55}
+
+.partner-dashboard{
+  background:var(--black3);border:1px solid var(--border);
+  border-radius:22px;padding:32px;
+}
+.pd-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:24px;letter-spacing:-0.2px}
+.pd-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px}
+.pd-stat{background:var(--black2);border-radius:12px;padding:18px;text-align:center}
+.pd-stat-num{font-size:28px;font-weight:800;color:var(--text);letter-spacing:-1px;line-height:1}
+.pd-stat-num span{color:var(--teal)}
+.pd-stat-label{font-size:10px;color:var(--gray);margin-top:4px}
+.pd-orders{background:var(--black2);border-radius:12px;padding:18px;margin-bottom:20px}
+.pd-orders-title{font-size:11px;font-weight:700;color:var(--text);margin-bottom:14px;letter-spacing:0.3px;text-transform:uppercase}
+.pd-order-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}
+.pd-order-row:last-child{border-bottom:none}
+.pd-order-name{color:var(--gray)}
+.pd-order-amt{color:var(--teal);font-weight:700}
+.pd-order-pend{color:#eab308;font-weight:600}
+
+/* ─── APP PREVIEW ─── */
+#app-preview{background:var(--black2);text-align:center}
+.phones-row{
+  display:flex;justify-content:center;align-items:flex-end;
+  gap:20px;margin-top:64px;flex-wrap:wrap;
+}
+.phone{
+  width:200px;background:var(--black3);
+  border-radius:32px;border:1px solid var(--border2);
+  overflow:hidden;transition:transform 0.3s;
+  box-shadow:0 30px 60px rgba(0,0,0,0.5);
+}
+.phone:hover{transform:translateY(-8px)}
+.phone.center{
+  width:230px;transform:translateY(-28px);
+  border-color:var(--teal-border);
+  box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 40px rgba(92,207,169,0.08);
+}
+.phone.center:hover{transform:translateY(-40px)}
+.phone-inner{background:var(--black2);padding:20px 16px;min-height:380px}
+.phone-inner.tall{min-height:440px}
+
+/* phone ui components */
+.p-statusbar{display:flex;justify-content:space-between;align-items:center;font-size:9px;color:var(--gray);margin-bottom:18px}
+.p-logo{font-size:13px;font-weight:800;letter-spacing:-0.3px;color:var(--text);margin-bottom:14px}
+.p-logo .pd{color:var(--teal)}
+.p-greeting{font-size:10px;color:var(--gray);margin-bottom:16px;line-height:1.4}
+.p-card{background:var(--black3);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+.p-card-top{display:flex;justify-content:space-between;align-items:flex-start}
+.p-card-title{font-size:10px;font-weight:700;color:var(--text);margin-bottom:3px}
+.p-card-sub{font-size:9px;color:var(--gray)}
+.p-live{
+  padding:3px 6px;border-radius:4px;
+  background:rgba(92,207,169,0.12);
+  border:1px solid rgba(92,207,169,0.25);
+  font-size:8px;font-weight:700;color:var(--teal);letter-spacing:0.5px;
+}
+.p-bar{height:3px;background:var(--black4);border-radius:3px;margin-top:10px;overflow:hidden}
+.p-bar-fill{height:100%;background:var(--teal);border-radius:3px;animation:barAnim 3s ease-in-out infinite alternate}
+@keyframes barAnim{from{width:35%}to{width:80%}}
+.p-pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.p-pill{
+  padding:5px 9px;border-radius:20px;
+  font-size:8px;background:var(--black3);
+  border:1px solid var(--border);color:var(--gray);
+}
+.p-pill.active{
+  background:rgba(92,207,169,0.1);
+  border-color:rgba(92,207,169,0.3);color:var(--teal);font-weight:600;
+}
+.p-btn{
+  width:100%;padding:10px;border-radius:10px;
+  background:var(--teal);color:var(--black);
+  font-size:10px;font-weight:700;text-align:center;margin-top:10px;
+  font-family:'Geist',sans-serif;border:none;cursor:pointer;
+}
+.p-track{display:flex;flex-direction:column;gap:0}
+.p-track-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0}
+.p-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:2px}
+.p-dot-done{background:var(--teal)}
+.p-dot-active{background:var(--teal);box-shadow:0 0 8px rgba(92,207,169,0.5)}
+.p-dot-pending{background:var(--gray2);border:1px solid var(--border)}
+.p-track-label{font-size:9px;font-weight:600;color:var(--text)}
+.p-track-time{font-size:8px;color:var(--gray);margin-top:2px}
+.p-line{width:1px;height:16px;background:var(--border);margin:2px 0 2px 4px}
+.p-line-done{background:var(--teal)}
+
+.p-sub-card{
+  background:linear-gradient(135deg,rgba(92,207,169,0.1),rgba(92,207,169,0.04));
+  border:1px solid var(--teal-border);border-radius:12px;padding:14px;margin-bottom:10px;
+}
+.p-sub-plan{font-size:9px;font-weight:700;color:var(--teal);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.p-sub-price{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-1px;line-height:1}
+.p-sub-price span{font-size:10px;color:var(--gray);font-weight:400}
+.p-sub-status{font-size:8px;color:var(--teal);margin-top:3px}
+
+/* ─── TESTIMONIALS ─── */
+#testimonials{background:var(--black)}
+.test-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:16px;margin-top:56px;
+}
+.test-card{
+  background:var(--black3);border:1px solid var(--border);
+  border-radius:18px;padding:28px;
+  position:relative;overflow:hidden;transition:all 0.25s;
+}
+.test-card::before{
+  content:'"';position:absolute;top:16px;right:20px;
+  font-size:72px;color:var(--teal);opacity:0.1;
+  font-family:Georgia,serif;line-height:1;
+}
+.test-card:hover{border-color:var(--teal-border);transform:translateY(-3px)}
+.test-stars{display:flex;gap:2px;margin-bottom:14px}
+.test-star{color:#FBBF24;font-size:12px}
+.test-text{font-size:13px;color:var(--white90);line-height:1.7;margin-bottom:22px;position:relative;z-index:1}
+.test-author{display:flex;align-items:center;gap:12px}
+.test-avatar{
+  width:40px;height:40px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:800;color:var(--white);
+}
+.test-name{font-size:13px;font-weight:700;color:var(--text);letter-spacing:-0.2px}
+.test-role{font-size:11px;color:var(--gray);margin-top:2px}
+.test-badge{
+  margin-left:auto;padding:3px 8px;border-radius:6px;
+  font-size:9px;font-weight:700;
+  background:var(--teal-dim);border:1px solid var(--teal-border);color:var(--teal);
+}
+
+/* ─── VISION ─── */
+#vision{background:var(--black2)}
+.vision-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:16px;margin-top:56px;
+}
+.vis-card{
+  background:var(--black3);border:1px solid var(--border);
+  border-radius:18px;padding:28px;transition:all 0.25s;
+}
+.vis-card:hover{border-color:var(--teal-border);transform:translateY(-4px)}
+.vis-card.active{border-color:var(--teal-border);background:var(--teal-dim)}
+.vis-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  padding:4px 9px;border-radius:100px;margin-bottom:16px;
+}
+.vis-tag-now{background:rgba(92,207,169,0.1);border:1px solid rgba(92,207,169,0.2);color:var(--teal)}
+.vis-tag-soon{background:rgba(234,179,8,0.08);border:1px solid rgba(234,179,8,0.15);color:#eab308}
+.vis-tag-fut{background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.15);color:#a855f7}
+.vis-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:16px;letter-spacing:-0.3px}
+.vis-items{display:flex;flex-direction:column;gap:8px}
+.vis-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:12px;color:var(--gray);
+}
+.vis-item::before{content:'';width:4px;height:4px;background:var(--teal);border-radius:50%;flex-shrink:0}
+
+/* ─── FINAL CTA ─── */
+#cta{background:var(--black);position:relative;overflow:hidden}
+.cta-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(92,207,169,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 40% at 15% 60%, rgba(92,207,169,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 40% at 85% 60%, rgba(92,207,169,0.05) 0%, transparent 60%);
+}
+.cta-inner{position:relative;z-index:1;text-align:center;padding:120px 24px}
+.cta-title{
+  font-size:clamp(44px,6vw,80px);
+  font-weight:800;line-height:1.02;
+  letter-spacing:-3px;color:var(--text);margin-bottom:20px;
+}
+.cta-title span{color:var(--teal)}
+.cta-sub{font-size:16px;color:var(--gray);max-width:440px;margin:0 auto 48px;line-height:1.6}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.cta-trust{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--gray)}
+.trust-item i{color:var(--teal)}
+
+/* ─── FOOTER ─── */
+footer{background:var(--black2);border-top:1px solid var(--border);padding:56px 24px 36px}
+.footer-inner{max-width:1160px;margin:0 auto}
+.footer-top{
+  display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr 1fr;
+  gap:40px;margin-bottom:48px;
+}
+.footer-brand-logo{
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;margin-bottom:16px;
+}
+.footer-icon{
+  width:32px;height:32px;background:var(--teal);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;color:var(--black);letter-spacing:-0.5px;
+}
+.footer-wordmark{font-size:18px;font-weight:800;color:var(--text);letter-spacing:-0.5px}
+.footer-wordmark .fd{color:var(--teal)}
+.footer-tagline{font-size:12px;color:var(--gray);line-height:1.65;margin-bottom:20px;max-width:240px}
+.footer-socials{display:flex;gap:8px}
+.soc-btn{
+  width:34px;height:34px;border-radius:8px;
+  background:var(--white05);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gray);font-size:13px;text-decoration:none;
+  transition:all 0.2s;
+}
+.soc-btn:hover{background:var(--teal-dim);border-color:var(--teal-border);color:var(--teal)}
+.footer-col-title{
+  font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--gray2);margin-bottom:18px;
+}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-size:13px;color:var(--gray);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--text)}
+.footer-bottom{
+  border-top:1px solid var(--border);padding-top:24px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-copy{font-size:12px;color:var(--gray2)}
+.footer-badges{display:flex;gap:16px;flex-wrap:wrap}
+.footer-badge-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--gray2)}
+.footer-badge-item i{color:var(--teal);font-size:11px}
+
+/* ─── FLOATING ─── */
+.floating-cta{
+  position:fixed;bottom:28px;right:28px;
+  z-index:997;opacity:0;transform:translateY(12px);
+  transition:all 0.3s;pointer-events:none;
+}
+.floating-cta.show{opacity:1;transform:translateY(0);pointer-events:all}
+.float-btn{
+  padding:13px 26px;border-radius:100px;
+  background:var(--teal);color:var(--black);
+  font-size:14px;font-weight:700;font-family:'Geist',sans-serif;
+  border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+  box-shadow:0 8px 28px rgba(92,207,169,0.3);
+  transition:all 0.22s;text-decoration:none;letter-spacing:-0.2px;
+}
+.float-btn:hover{background:var(--teal-dark);transform:translateY(-2px);box-shadow:0 14px 36px rgba(92,207,169,0.35)}
+
+/* ─── MODAL ─── */
+.modal-ov{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);
+  z-index:9999;align-items:center;justify-content:center;padding:20px;
+}
+.modal-ov.open{display:flex}
+.modal-box{
+  background:var(--black3);border:1px solid var(--border2);
+  border-radius:22px;padding:44px;max-width:500px;width:100%;
+  position:relative;animation:fadeUp 0.25s ease;
+  max-height:90vh;overflow-y:auto;
+}
+.modal-box::-webkit-scrollbar{width:3px}
+.modal-box::-webkit-scrollbar-track{background:var(--black3)}
+.modal-box::-webkit-scrollbar-thumb{background:var(--teal-border);border-radius:3px}
+.modal-close{
+  position:absolute;top:18px;right:18px;
+  width:30px;height:30px;border-radius:7px;
+  background:var(--white05);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--gray);font-size:13px;transition:all 0.2s;
+}
+.modal-close:hover{background:var(--surface2);color:var(--text)}
+.modal-title{font-size:26px;font-weight:800;color:var(--text);margin-bottom:8px;letter-spacing:-1px}
+.modal-sub{font-size:13px;color:var(--gray);margin-bottom:28px;line-height:1.6}
+.m-inp{
+  width:100%;padding:13px 16px;margin-bottom:10px;
+  background:var(--black2);border:1px solid var(--border2);
+  border-radius:10px;color:var(--text);font-size:14px;
+  font-family:'Geist',sans-serif;outline:none;transition:border-color 0.2s;
+}
+.m-inp:focus{border-color:var(--teal)}
+.m-inp::placeholder{color:var(--gray2)}
+.m-sel{
+  width:100%;padding:13px 16px;margin-bottom:10px;
+  background:var(--black2);border:1px solid var(--border2);
+  border-radius:10px;color:var(--text);font-size:14px;
+  font-family:'Geist',sans-serif;outline:none;cursor:pointer;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236A6A6A'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;background-size:16px;
+  background-color:var(--black2);
+}
+.m-sel option{background:var(--black3)}
+.m-sel optgroup{background:var(--black3);color:var(--teal);font-size:11px;font-weight:600;letter-spacing:0.5px}
+.m-field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.m-field-row .m-sel,.m-field-row .m-inp{margin-bottom:0}
+.m-btn{
+  width:100%;padding:14px;border-radius:10px;margin-top:8px;
+  background:var(--teal);color:var(--black);
+  font-size:15px;font-weight:700;font-family:'Geist',sans-serif;
+  border:none;cursor:pointer;transition:all 0.2s;letter-spacing:-0.2px;
+}
+.m-btn:hover{background:var(--teal-dark);box-shadow:0 8px 24px rgba(92,207,169,0.2)}
+
+/* ─── TOAST ─── */
+.toast{
+  position:fixed;bottom:88px;right:28px;
+  background:var(--black3);border:1px solid rgba(92,207,169,0.25);
+  border-radius:12px;padding:14px 18px;
+  display:none;align-items:center;gap:10px;
+  z-index:9998;font-size:13px;color:var(--text);
+  box-shadow:0 8px 24px rgba(0,0,0,0.4);
+}
+.toast.show{display:flex}
+.toast-icon{color:var(--teal);font-size:17px}
+
+/* ─── THEME TOGGLE ─── */
+.theme-toggle{
+  background:none;border:none;cursor:pointer;padding:0;
+  display:flex;align-items:center;
+}
+.theme-toggle-track{
+  position:relative;
+  width:54px;height:28px;
+  background:var(--bg4);
+  border:1.5px solid var(--border2);
+  border-radius:100px;
+  display:flex;align-items:center;
+  transition:all 0.35s ease;
+  overflow:hidden;
+}
+html.light .theme-toggle-track{
+  background:#E8F8F2;
+  border-color:rgba(40,168,125,0.3);
+}
+.theme-toggle-thumb{
+  position:absolute;
+  left:3px;
+  width:20px;height:20px;
+  background:var(--teal);
+  border-radius:50%;
+  transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  z-index:2;
+  box-shadow:0 2px 6px rgba(0,0,0,0.25);
+}
+html.light .theme-toggle-thumb{
+  transform:translateX(26px);
+}
+.theme-icon-dark,.theme-icon-light{
+  position:absolute;font-size:12px;
+  transition:opacity 0.25s ease;
+  z-index:1;
+}
+.theme-icon-dark{right:6px;opacity:1}
+.theme-icon-light{left:6px;opacity:0}
+html.light .theme-icon-dark{opacity:0}
+html.light .theme-icon-light{opacity:1}
+
+/* ── LIGHT MODE OVERRIDES ── */
+html.light body{background:var(--bg)}
+
+/* Nav — light overrides already applied in base nav CSS above */
+html.light .hamburger span{background:var(--text)}
+
+/* Hero */
+html.light .hero-orb{background:radial-gradient(circle,rgba(30,158,114,0.07) 0%,transparent 70%)}
+html.light .hero-noise{
+  background-image:
+    radial-gradient(ellipse 70% 50% at 50% -10%,rgba(30,158,114,0.1) 0%,transparent 65%),
+    radial-gradient(ellipse 40% 40% at 90% 90%,rgba(30,158,114,0.05) 0%,transparent 60%);
+}
+html.light #hero{background:linear-gradient(180deg,#EEF8F4 0%,var(--bg) 100%)}
+
+/* Section alternating bg — keep clear separation */
+html.light #problem{background:#FFFFFF}
+html.light #solution{background:var(--bg)}
+html.light #how{background:#FFFFFF}
+html.light #services{background:var(--bg)}
+html.light #plans{background:#FFFFFF}
+html.light #why{background:var(--bg)}
+html.light #market{background:#FFFFFF}
+html.light #partner{background:var(--bg)}
+html.light #app-preview{background:#FFFFFF}
+html.light #testimonials{background:var(--bg)}
+html.light #vision{background:#FFFFFF}
+html.light #cta{background:linear-gradient(180deg,var(--bg) 0%,#EEF8F4 100%)}
+html.light footer{background:#EAECEF}
+
+/* Cards — white with subtle shadow */
+html.light .prob-card,
+html.light .srv-card,
+html.light .plan-card,
+html.light .test-card,
+html.light .vis-card,
+html.light .partner-ben,
+html.light .eco-card,
+html.light .why-metrics,
+html.light .partner-dashboard,
+html.light .mkt-expansion{
+  background:#FFFFFF;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);
+  border-color:rgba(0,0,0,0.08);
+}
+html.light .prob-card:hover,
+html.light .srv-card:hover,
+html.light .test-card:hover,
+html.light .vis-card:hover{
+  box-shadow:0 8px 28px rgba(0,0,0,0.10);
+  border-color:var(--teal-border);
+}
+html.light .plan-card.featured{
+  background:rgba(30,158,114,0.06);
+  border-color:var(--teal-border);
+  box-shadow:0 8px 32px rgba(30,158,114,0.12);
+}
+html.light .eco-node{background:#F4F6F8;border-color:rgba(0,0,0,0.08)}
+html.light .eco-node.platform{background:rgba(30,158,114,0.08);border-color:var(--teal-border)}
+html.light .step-num{
+  background:#FFFFFF;
+  border-color:rgba(0,0,0,0.12);
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+html.light .step:hover .step-num{
+  background:rgba(30,158,114,0.08);
+  border-color:var(--teal-border);
+  box-shadow:0 4px 16px rgba(30,158,114,0.12);
+}
+html.light .pd-stat{background:#F4F6F8}
+html.light .pd-orders{background:#F4F6F8}
+html.light .phone{
+  background:#FFFFFF;
+  box-shadow:0 20px 50px rgba(0,0,0,0.12);
+  border-color:rgba(0,0,0,0.10);
+}
+html.light .phone.center{
+  box-shadow:0 32px 72px rgba(0,0,0,0.16),0 0 32px rgba(30,158,114,0.10);
+  border-color:var(--teal-border);
+}
+html.light .phone-inner{background:#F4F6F8}
+html.light .p-card{background:#FFFFFF;border-color:rgba(0,0,0,0.08)}
+html.light .p-pill{background:#EAECEF;border-color:rgba(0,0,0,0.08)}
+html.light .hero-stats{
+  background:#FFFFFF;
+  box-shadow:0 4px 20px rgba(0,0,0,0.07);
+  border-color:rgba(0,0,0,0.08);
+}
+html.light .hero-stat{border-right-color:rgba(0,0,0,0.08)}
+
+/* Steps connector line */
+html.light .steps::before{
+  background:linear-gradient(90deg,transparent,var(--teal-border),var(--teal-border),transparent);
+}
+
+/* Dividers */
+html.light .divider{background:linear-gradient(90deg,transparent,rgba(0,0,0,0.10),transparent)}
+
+/* CTA */
+html.light .cta-bg{
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%,rgba(30,158,114,0.10) 0%,transparent 70%),
+    radial-gradient(ellipse 30% 40% at 15% 60%,rgba(30,158,114,0.05) 0%,transparent 60%),
+    radial-gradient(ellipse 30% 40% at 85% 60%,rgba(30,158,114,0.05) 0%,transparent 60%);
+}
+
+/* Modal */
+html.light .modal-ov{background:rgba(0,0,0,0.5)}
+html.light .modal-box{box-shadow:0 24px 60px rgba(0,0,0,0.18)}
+
+/* Sol feat hover */
+html.light .sol-feat:hover{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.10)}
+html.light .why-pt:hover{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.10)}
+
+/* Market grid gap lines */
+html.light .mkt-grid{background:rgba(0,0,0,0.08)}
+html.light .prob-grid{background:rgba(0,0,0,0.08)}
+html.light .mkt-phases{background:rgba(0,0,0,0.08)}
+
+/* Soc buttons */
+html.light .soc-btn{background:#FFFFFF;border-color:rgba(0,0,0,0.10);color:var(--muted)}
+html.light .soc-btn:hover{background:var(--teal-dim);border-color:var(--teal-border);color:var(--teal)}
+
+/* Float btn */
+html.light .float-btn{box-shadow:0 8px 24px rgba(30,158,114,0.28)}
+
+/* Mkt phase */
+html.light .mkt-phase{background:#FFFFFF}
+html.light .mkt-card{background:#FFFFFF}
+
+/* ─── REVEAL ─── */
+.r{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease}
+.r.visible{opacity:1;transform:translateY(0)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1080px){
+  .srv-grid{grid-template-columns:repeat(3,1fr)}
+  .mkt-grid{grid-template-columns:repeat(2,1fr)}
+  .vision-grid{grid-template-columns:repeat(2,1fr)}
+  .why-layout{grid-template-columns:1fr}
+  .sol-layout{grid-template-columns:1fr}
+  .partner-layout{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .steps::before{display:none}
+}
+@media(max-width:768px){
+  nav{padding:0 20px}
+  .nav-links,.nav-right{display:none}
+  .hamburger{display:flex}
+  section{padding:72px 20px}
+  .prob-grid{grid-template-columns:1fr}
+  .plans-grid{grid-template-columns:1fr}
+  .test-grid{grid-template-columns:1fr}
+  .why-kpis{grid-template-columns:repeat(3,1fr)}
+  .hero-stats{display:grid;grid-template-columns:repeat(2,1fr)}
+  .hero-stat:last-child{border-right:none}
+  .srv-grid{grid-template-columns:repeat(2,1fr)}
+  .pd-stats{grid-template-columns:repeat(2,1fr)}
+  .mkt-phases{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr;gap:24px}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .floating-cta{bottom:20px;right:16px}
+}
+@media(max-width:480px){
+  .hero-title{letter-spacing:-2px}
+  .hero-buttons{flex-direction:column;align-items:center}
+  .btn-hero{width:100%;max-width:280px;justify-content:center}
+  .vision-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .srv-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-top{grid-template-columns:1fr}
+  .mkt-grid{grid-template-columns:1fr}
+  .cta-btns{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-icon">Ln</div>
+    <div class="nav-wordmark">Ln<span class="wm-d">d</span>ry</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#plans">Plans</a></li>
+    <li><a href="#why">Why Lndry</a></li>
+    <li><a href="#partner">For Partners</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Switch theme" aria-label="Toggle dark/light mode">
+      <span class="theme-toggle-track">
+        <span class="theme-toggle-thumb"></span>
+        <span class="theme-icon-dark">🌙</span>
+        <span class="theme-icon-light">☀️</span>
+      </span>
+    </button>
+    <a class="btn-ghost" href="#" onclick="openModal('partner')">Partner With Us</a>
+    <a class="btn-teal" href="#" onclick="openModal('book')">Book Pickup →</a>
+  </div>
+  <div class="hamburger" id="ham" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#services" onclick="closeMob()">Services</a>
+  <a href="#plans" onclick="closeMob()">Plans</a>
+  <a href="#why" onclick="closeMob()">Why Lndry</a>
+  <a href="#partner" onclick="closeMob()">For Partners</a>
+  <a href="#market" onclick="closeMob()">Investors</a>
+  <div class="mob-cta">
+    <a class="btn-teal" href="#" onclick="openModal('book');closeMob()" style="justify-content:center">Book Pickup →</a>
+    <a class="btn-ghost" href="#" onclick="openModal('partner');closeMob()" style="justify-content:center">Partner With Us</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-orb"></div>
+
+  <div class="hero-badge">
+    <div class="hero-badge-dot"></div>
+    India's Urban Garment-Care Infrastructure
+  </div>
+
+  <div class="hero-logo-icon">Ln</div>
+
+  <h1 class="hero-title">
+    <span class="w">Ln</span><span class="t">d</span><span class="w">ry</span>
+  </h1>
+
+  <p class="hero-tagline">Drop the dirty work.</p>
+
+  <p class="hero-sub">
+    Schedule laundry pickups, track in real-time,
+    and get fresh clothes delivered to your door.
+  </p>
+
+  <div class="hero-buttons">
+    <a href="#" class="btn-hero btn-hero-primary" onclick="openModal('book')">
+      → Book Pickup
+    </a>
+    <a href="#" class="btn-hero btn-hero-secondary" onclick="openModal('waitlist')">
+      Join Waitlist
+    </a>
+  </div>
+
+  <div class="hero-stats r">
+    <div class="hero-stat">
+      <div class="hero-stat-num"><span>50K+</span></div>
+      <div class="hero-stat-label">Garments Cared</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num"><span>200+</span></div>
+      <div class="hero-stat-label">Verified Partners</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num"><span>4.9</span>★</div>
+      <div class="hero-stat-label">Customer Rating</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num"><span>12</span></div>
+      <div class="hero-stat-label">Cities Live</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="si">
+    <div class="r"><div class="s-eyebrow"><div class="s-eyebrow-dot"></div>The Problem</div></div>
+    <h2 class="s-title r">Urban India Deserves<br/>Better <span class="t">Garment Care.</span></h2>
+    <p class="s-sub r">Your clothes are your identity. Yet the systems caring for them are broken, unreliable, and stuck in the past.</p>
+    <div class="prob-grid">
+      <div class="prob-card r">
+        <div class="prob-num">01</div>
+        <div class="prob-icon">⏰</div>
+        <div class="prob-title">Unpredictable Timelines</div>
+        <div class="prob-desc">No committed pickup windows. No delivery ETAs. No accountability. Your schedule held hostage by someone else's convenience.</div>
+        <span class="prob-tag">Pain Point</span>
+      </div>
+      <div class="prob-card r">
+        <div class="prob-num">02</div>
+        <div class="prob-icon">📉</div>
+        <div class="prob-title">Inconsistent Quality</div>
+        <div class="prob-desc">Your ₹8,000 formal shirt washed like a ₹200 t-shirt. No care instructions followed. No garment protection. No standards.</div>
+        <span class="prob-tag">Quality Issue</span>
+      </div>
+      <div class="prob-card r">
+        <div class="prob-num">03</div>
+        <div class="prob-icon">🔍</div>
+        <div class="prob-title">Zero Transparency</div>
+        <div class="prob-desc">No live tracking. No updates. "Call karun toh batata hoon" is the only status you get. Your wardrobe goes dark.</div>
+        <span class="prob-tag">Trust Issue</span>
+      </div>
+      <div class="prob-card r">
+        <div class="prob-num">04</div>
+        <div class="prob-icon">📞</div>
+        <div class="prob-title">No Support Structure</div>
+        <div class="prob-desc">Lost item? Damaged garment? Nobody to escalate to. No refund. No accountability. No recourse whatsoever.</div>
+        <span class="prob-tag">Service Gap</span>
+      </div>
+      <div class="prob-card r">
+        <div class="prob-num">05</div>
+        <div class="prob-icon">🏘️</div>
+        <div class="prob-title">Fragmented & Informal</div>
+        <div class="prob-desc">₹32,000 Cr industry. 92% unorganized. No standards. No tech. No customer experience design whatsoever.</div>
+        <span class="prob-tag">Market Gap</span>
+      </div>
+      <div class="prob-card r">
+        <div class="prob-num">06</div>
+        <div class="prob-icon">📱</div>
+        <div class="prob-title">No Digital Experience</div>
+        <div class="prob-desc">Urban millennials manage their entire lives through apps — yet wardrobe care is still a WhatsApp text to a dhobi.</div>
+        <span class="prob-tag">Digital Gap</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="si">
+    <div class="r"><div class="s-eyebrow"><div class="s-eyebrow-dot"></div>The Solution</div></div>
+    <h2 class="s-title r">One Platform. <span class="t">Every Garment.</span><br/>Every City.</h2>
+    <p class="s-sub r">Lndry is the operating layer between urban customers and verified garment-care partners — delivering trust, technology, and premium experience at scale.</p>
+    <div class="sol-layout">
+      <div class="sol-features r">
+        <div class="sol-feat">
+          <div class="sol-feat-icon">🚗</div>
+          <div class="sol-feat-body">
+            <div class="sol-feat-title">Doorstep Pickup & Delivery</div>
+            <div class="sol-feat-desc">Scheduled pickups with 60-minute windows. Real-time driver tracking. Contactless handover. No waiting, no hassle, no chaos.</div>
+          </div>
+        </div>
+        <div class="sol-feat">
+          <div class="sol-feat-icon">🛡️</div>
+          <div class="sol-feat-body">
+            <div class="sol-feat-title">Verified Partner Network</div>
+            <div class="sol-feat-desc">Every partner undergoes Lndry's 21-point certification. Quality audits. Hygiene standards. Consistent care — every single time.</div>
+          </div>
+        </div>
+        <div class="sol-feat">
+          <div class="sol-feat-icon">📡</div>
+          <div class="sol-feat-body">
+            <div class="sol-feat-title">Live Order Tracking</div>
+            <div class="sol-feat-desc">Track your garments from pickup to delivery. Real-time updates. Push notifications. Zero anxiety, complete transparency.</div>
+          </div>
+        </div>
+        <div class="sol-feat">
+          <div class="sol-feat-icon">♻️</div>
+          <div class="sol-feat-body">
+            <div class="sol-feat-title">Wardrobe Subscriptions</div>
+            <div class="sol-feat-desc">Set-it-and-forget-it recurring care plans. Guaranteed pickups. Priority service. Your wardrobe runs on autopilot, permanently.</div>
+          </div>
+        </div>
+        <div class="sol-feat">
+          <div class="sol-feat-icon">🤖</div>
+          <div class="sol-feat-body">
+            <div class="sol-feat-title">AI-Powered Operations</div>
+            <div class="sol-feat-desc">Intelligent partner matching. Demand forecasting. Route optimization. Dynamic pricing. Operations that scale without friction.</div>
+          </div>
+        </div>
+      </div>
+      <div class="eco-card r">
+        <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:28px;letter-spacing:-0.2px">Platform Ecosystem</div>
+        <div class="eco-flow">
+          <div class="eco-node">
+            <div class="eco-node-icon">🏙️</div>
+            <div>
+              <div class="eco-node-title">Urban Customer</div>
+              <div class="eco-node-sub">Books via app in 60 seconds</div>
+            </div>
+          </div>
+          <div class="eco-arrow">↓</div>
+          <div class="eco-node platform">
+            <div class="eco-node-icon">⚡</div>
+            <div>
+              <div class="eco-node-title" style="color:var(--teal)">Lndry Platform</div>
+              <div class="eco-node-sub">AI routing · Tracking · Quality control · Trust layer</div>
+            </div>
+          </div>
+          <div class="eco-arrow">↓</div>
+          <div class="eco-node">
+            <div class="eco-node-icon">✅</div>
+            <div>
+              <div class="eco-node-title">Verified Partners</div>
+              <div class="eco-node-sub">Trained, audited & tech-enabled laundry units</div>
+            </div>
+          </div>
+          <div class="eco-arrow">↓</div>
+          <div class="eco-node">
+            <div class="eco-node-icon">📦</div>
+            <div>
+              <div class="eco-node-title">Fresh Delivery</div>
+              <div class="eco-node-sub">Premium packaging · On-time · Every time</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="si">
+    <div class="r"><div class="s-eyebrow"><div class="s-eyebrow-dot"></div>How It Works</div></div>
+    <h2 class="s-title r">Four Steps to a<br/><span class="t">Fresh Wardrobe.</span></h2>
+    <p class="s-sub r">From scheduling to delivery — Lndry handles everything. You just wear the clothes.</p>
+    <div class="steps">
+      <div class="step r">
+        <div class="step-num">01<div class="step-emoji">📅</div></div>
+        <div class="step-title">Schedule Pickup</div>
+        <div class="step-desc">Open the Lndry app. Select your services. Choose a 1-hour pickup window. Done in under 60 seconds.</div>
+      </div>
+      <div class="step r">
+        <div class="step-num">02<div class="step-emoji">✅</div></div>
+        <div class="step-title">Partner Assigned</div>
+        <div class="step-desc">Our AI matches your order to the nearest, best-rated certified partner. You see their profile and live location.</div>
+      </div>
+      <div class="step r">
+        <div class="step-num">03<div class="step-emoji">✨</div></div>
+        <div class="step-title">Expert Garment Care</div>
+        <div class="step-desc">Your clothes are processed with fabric-specific protocols. Washed, dried, pressed, folded — to Lndry standards.</div>
+      </div>
+      <div class="step r">
+        <div class="step-num">04<div class="step-emoji">📦</div></div>
+        <div class="step-title">Delivered Fresh</div>
+        <div class="step-desc">Your garments arrive in signature Lndry packaging. Neatly folded. Fragrant. Pressed. Ready to wear.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="si">
+    <div class="r"><div class="s-eyebrow"><div class="s-eyebrow-dot"></div>Services</div></div>
+    <h2 class="s-title r">Every Garment.<br/>Every <span class="t">Care Need.</span></h2>
+    <p class="s-sub r">From everyday laundry to your most prized possessions — Lndry handles it all with the precision it deserves.</p>
+    <div class="srv-grid">
+      <div class="srv-card r"><span class="srv-badge pop">Popular</span><span class="srv-emoji">👕</span><div class="srv-name">Wash & Fold</div><div class="srv-price">From ₹99/kg</div></div>
+      <div class="srv-card r"><span class="srv-badge pop">Bestseller</span><span class="srv-emoji">👔</span><div class="srv-name">Wash & Iron</div><div class="srv-price">From ₹149/kg</div></div>
+      <div class="srv-card r"><span class="srv-badge lux">Premium</span><span class="srv-emoji">🧥</span><div class="srv-name">Dry Cleaning</div><div class="srv-price">From ₹299/piece</div></div>
+      <div class="srv-card r"><span class="srv-badge new">New</span><span class="srv-emoji">👟</span><div class="srv-name">Shoe Cleaning</div><div class="srv-price">From ₹349/pair</div></div>
+      <div class="srv-card r"><span class="srv-emoji">👜</span><div class="srv-name">Bag Care</div><div class="srv-price">From ₹499/piece</div></div>
+      <div class="srv-card r"><span class="srv-emoji">✂️</span><div class="srv-name">Tailoring</div><div class="srv-price">From ₹199/piece</div></div>
+      <div class="srv-card r"><span class="srv-badge lux">Luxury</span><span class="srv-emoji">💎</span><div class="srv-name">Premium Garment Care</div><div class="srv-price">Custom Pricing</div></div>
+      <div class="srv-card r"><span class="srv-emoji">🧹</span><div class="srv-name">Steam Press</div><div class="srv-price">From ₹29/piece</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section id="plans">
+  <div class="si">
+    <div class="r"><div class="s-eyebrow"><div class="s-eyebrow-dot"></div>Subscriptions</div></div>
+    <h2 class="s-title r">Set It. Forget It.<br/><span class="t">Wear It.</span></h2>
+    <p class="s-sub r">Recurring garment care plans that put your wardrobe on autopilot. Save money. Save time. Stay fresh — always.</p>
+    <div class="plans-grid">
+      <div class="plan-card r">
+        <div class="plan-name">Bachelor Plan</div>
+        <div class="plan-price">₹799</div>
+        <div class="plan-period">per month · 4 pickups</div>
+        <div class="plan-save">Save ₹200/month</div>
+        <div class="plan-desc">Perfect for urban singles and working professionals. Your weekly laundry, handled.</div>
+        <ul class="plan-items">
+          <li class="plan-item"><span class="plan-check">✓</span>4 pickups/month (weekly)</li>
+          <li class="plan-item"><span class="plan-check">✓</span>Up to 10 kg per cycle</li>
+          <li class="plan-item"><span class="plan-check">✓</span>Wash & Fold included</li>
+          <li class="plan-item"><span class="plan-check">✓</span>Live tracking</li>
+          <li class="plan-item"><span class="plan-check">✓</span>24-hour turnaround</li>
+        </ul>
+        <button class="plan-btn plan-btn-outline" onclick="openModal('book')">Get Started</button>
+      </div>
+      <div class="plan-card featured r">
+        <div class="plan-popular">Most Popular</div>
+        <div class="plan-name">Couple Plan</div>
+        <div class="plan-price">₹1,399</div>
+        <div class="plan-period">per month · 4 pickups</div>
+        <div class="plan-save">Save ₹400/month</div>
+        <div class="plan-desc">Built for two. Double the laundry, premium care, priority scheduling every week.</div>
+        <ul class="plan-items">
+          <li class="plan-item"><span class="plan-check">✓</span>4 pickups/month (weekly)</li>
+          <li class="plan-item"><span class="plan-check">✓</span>Up to 18 kg per cycle</li>
+          <li class="plan-item"><span class="plan-check">✓</span>Wash & Fold + Ironing</li>
+          <li class="plan-item"><span class="plan-check">✓</span>Priority partner matching</li>
+          <li class="plan-item"><span class="plan-check">✓</span>Free 1 dry clean/month</li>
+          <li class="plan-item"><span class="plan-check">✓</span>Dedicated support</li>
+        </ul>
+        <button class="plan-btn plan-btn-teal" onclick="openModal('book')">Get Started</button>
+      </div>
+      <div class="plan-card r">
+        <div class="plan-name">Family Plan</div>
+        <div class="plan-price">₹2,299</div>
+        <div class="plan-period">per month · 8 pickups</div>
+        <div class="plan-save">Save ₹800/month</div>
+        <div class="plan-desc">Complete garment care for the whole family. Twice-weekly pickups. Maximum convenience.</div>
+        <ul class="plan-items">
+          <li class="plan-item"><span class="plan-check">✓</span>8 pickups/month (bi-weekly)</li>
+          <li class="plan-item"><span class="plan-check">✓</span>Up to 30 kg per cycle</li>
+          <li class="plan-item"><span class="plan-check">✓</span>Full-service care suite</li>
+          <li class="plan-item"><span class="plan-check">✓</span>Free 4 dry cleans/month</li>
+          <li class="plan-item"><span class="plan-check">✓</span>VIP priority service</li>
+          <li class="plan-item"><span class="plan-check">✓</span>Personal wardrobe advisor</li>
+        </ul>
+        <button class="plan-btn plan-btn-outline" onclick="openModal('book')">Get Started</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY LNDRY -->
+<section id="why">
+  <div class="si">
+    <div class="r"><div class="s-eyebrow"><div class="s-eyebrow-dot"></div>Why Ln<span style="color:var(--teal)">d</span>ry</div></div>
+    <h2 class="s-title r">More Than<br/>Laundry.</h2>
+    <p class="s-sub r" style="margin-bottom:0">Lndry is India's wardrobe-care operating system. We're building the infrastructure layer that powers urban garment care — city by city, partner by partner.</p>
+    <div class="why-layout">
+      <div class="why-pts r">
+        <div class="why-pt"><div class="why-pt-icon">🤖</div><div><div class="why-pt-title">AI-Powered Operations</div><div class="why-pt-desc">Intelligent demand prediction, dynamic routing, and smart partner matching — running silently in the background, 24/7.</div></div></div>
+        <div class="why-pt"><div class="why-pt-icon">🛡️</div><div><div class="why-pt-title">Verified Partner Network</div><div class="why-pt-desc">Every Lndry partner is certified through our 21-point quality protocol. Your clothes never go to an unknown vendor.</div></div></div>
+        <div class="why-pt"><div class="why-pt-icon">♻️</div><div><div class="why-pt-title">Recurring Convenience</div><div class="why-pt-desc">Subscription model drives habitual use. Once a customer subscribes, their wardrobe is never unattended again.</div></div></div>
+        <div class="why-pt"><div class="why-pt-icon">🗺️</div><div><div class="why-pt-title">Hyperlocal Optimization</div><div class="why-pt-desc">Neighborhood-level intelligence. We know where demand spikes, which partners perform best, and how to optimize every route.</div></div></div>
+        <div class="why-pt"><div class="why-pt-icon">🚀</div><div><div class="why-pt-title">Built to Scale</div><div class="why-pt-desc">Lean tech, asset-light model, partner-powered supply — infrastructure to reach 50 cities without owning a single machine.</div></div></div>
+      </div>
+      <div class="why-metrics r">
+        <div class="why-metrics-title">Platform Performance</div>
+        <div class="metric-row"><div class="metric-label">On-time Delivery Rate</div><div class="metric-track"><div class="metric-fill" style="width:96%"></div></div><div class="metric-val">96%</div></div>
+        <div class="metric-row"><div class="metric-label">Customer Satisfaction</div><div class="metric-track"><div class="metric-fill" style="width:98%"></div></div><div class="metric-val">4.9★</div></div>
+        <div class="metric-row"><div class="metric-label">Partner Retention</div><div class="metric-track"><div class="metric-fill" style="width:89%"></div></div><div class="metric-val">89%</div></div>
+        <div class="metric-row"><div class="metric-label">Subscription Retention</div><div class="metric-track"><div class="metric-fill" style="width:82%"></div></div><div class="metric-val">82%</div></div>
+        <div class="metric-row"><div class="metric-label">Order Quality Score</div><div class="metric-track"><div class="metric-fill" style="width:94%"></div></div><div class="metric-val">94%</div></div>
+        <div class="why-kpis">
+          <div class="kpi"><div class="kpi-num">₹<span>32K</span>Cr</div><div class="kpi-label">Total Addressable<br/>Market</div></div>
+          <div class="kpi"><div class="kpi-num"><span>28</span>%</div><div class="kpi-label">Annual Market<br/>Growth</div></div>
+          <div class="kpi"><div class="kpi-num"><span>92</span>%</div><div class="kpi-label">Still<br/>Unorganized</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section id="market">
+  <div class="si">
+    <div class="r"><div class="s-eyebrow"><div class="s-eyebrow-dot"></div>Market Opportunity</div></div>
+    <h2 class="s-title r">A ₹32,000 Crore<br/><span class="t">Untapped Opportunity.</span></h2>
+    <p class="s-sub r">India's laundry and garment care sector is one of the largest informal economies. The digital disruption hasn't even begun yet.</p>
+    <div class="mkt-grid">
+      <div class="mkt-card r">
+        <div class="mkt-trend">↑ 28% YoY</div>
+        <div class="mkt-num">₹<span>32K</span><br/>Cr</div>
+        <div class="mkt-title">Total Addressable Market</div>
+        <div class="mkt-desc">India's laundry & garment care market — growing at 28% annually driven by urbanization and rising disposable incomes.</div>
+      </div>
+      <div class="mkt-card r">
+        <div class="mkt-trend">↑ 18% YoY</div>
+        <div class="mkt-num"><span>500</span>M+</div>
+        <div class="mkt-title">Urban Working Population</div>
+        <div class="mkt-desc">Tier 1 & 2 urban households — time-starved, convenience-seeking, digitally native. Lndry's core demographic.</div>
+      </div>
+      <div class="mkt-card r">
+        <div class="mkt-trend">↑ 45% YoY</div>
+        <div class="mkt-num"><span>92</span>%</div>
+        <div class="mkt-title">Market Still Unorganized</div>
+        <div class="mkt-desc">No dominant organized player. No category-defining brand. The space is wide open for the right platform to own.</div>
+      </div>
+      <div class="mkt-card r">
+        <div class="mkt-trend">↑ 35% YoY</div>
+        <div class="mkt-num">₹<span>4,200</span></div>
+        <div class="mkt-title">Avg Monthly Urban Spend</div>
+        <div class="mkt-desc">Average urban household monthly spend on garment care. Subscription model captures 100% of this recurring revenue.</div>
+      </div>
+    </div>
+    <div class="mkt-expansion r">
+      <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:20px;letter-spacing:-0.3px">City Expansion Roadmap</div>
+      <div class="mkt-phases">
+        <div class="mkt-phase">
+          <div class="mkt-phase-tag tag-now">● Live Now</div>
+          <div class="mkt-phase-num">5</div>
+          <div class="mkt-phase-label">Mumbai · Delhi · Bengaluru<br/>Hyderabad · Pune</div>
+        </div>
+        <div class="mkt-phase">
+          <div class="mkt-phase-tag tag-soon">◎ 2025</div>
+          <div class="mkt-phase-num">20</div>
+          <div class="mkt-phase-label">Tier 1 + Tier 2<br/>City Expansion</div>
+        </div>
+        <div class="mkt-phase">
+          <div class="mkt-phase-tag tag-fut">◈ 2026+</div>
+          <div class="mkt-phase-num">50+</div>
+          <div class="mkt-phase-label">National Garment-Care<br/>Infrastructure</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER -->
+<section id="partner">
+  <div class="si">
+    <div class="r"><div class="s-eyebrow"><div class="s-eyebrow-dot"></div>For Partners</div></div>
+    <h2 class="s-title r">Grow Your Laundry<br/>Business with Ln<span class="t">d</span>ry.</h2>
+    <p class="s-sub r">Join India's fastest-growing garment-care network. Get more orders, recurring customers, technology support, and operational intelligence.</p>
+    <div class="partner-layout">
+      <div class="partner-bens r">
+        <div class="partner-ben"><div class="pb-icon">📈</div><div><div class="pb-title">3× More Orders Guaranteed</div><div class="pb-desc">Our demand engine channels verified orders directly to your unit. No cold outreach, no empty days. Pure, consistent revenue.</div></div></div>
+        <div class="partner-ben"><div class="pb-icon">♻️</div><div><div class="pb-title">Recurring, Loyal Customers</div><div class="pb-desc">Lndry's subscription customers come back weekly — building you a predictable, reliable revenue base month after month.</div></div></div>
+        <div class="partner-ben"><div class="pb-icon">💻</div><div><div class="pb-title">Full Technology Stack</div><div class="pb-desc">Partner dashboard, order management, inventory tracking, quality tools — all provided free. Tech that runs your business.</div></div></div>
+        <div class="partner-ben"><div class="pb-icon">🎓</div><div><div class="pb-title">Training & Certification</div><div class="pb-desc">Lndry University. Garment care protocols. Operational excellence certification. We invest in your growth seriously.</div></div></div>
+        <div class="partner-ben"><div class="pb-icon">💰</div><div><div class="pb-title">Transparent, Fast Payouts</div><div class="pb-desc">Zero payment delays. Clear commission structure. Real-time earnings dashboard. Your money, on time, every time.</div></div></div>
+      </div>
+      <div class="partner-dashboard r">
+        <div class="pd-title">Partner Dashboard Preview</div>
+        <div class="pd-stats">
+          <div class="pd-stat"><div class="pd-stat-num">₹<span>84K</span></div><div class="pd-stat-label">Monthly Revenue</div></div>
+          <div class="pd-stat"><div class="pd-stat-num"><span>247</span></div><div class="pd-stat-label">Orders This Month</div></div>
+          <div class="pd-stat"><div class="pd-stat-num"><span>4.9</span>★</div><div class="pd-stat-label">Quality Rating</div></div>
+          <div class="pd-stat"><div class="pd-stat-num"><span>92</span>%</div><div class="pd-stat-label">On-time Rate</div></div>
+        </div>
+        <div class="pd-orders">
+          <div class="pd-orders-title">Today's Orders</div>
+          <div class="pd-order-row"><span class="pd-order-name">Ananya S. · Wash & Fold · 5kg</span><span class="pd-order-amt">₹495</span></div>
+          <div class="pd-order-row"><span class="pd-order-name">Rohan M. · Dry Clean · 3 pieces</span><span class="pd-order-amt">₹897</span></div>
+          <div class="pd-order-row"><span class="pd-order-name">Priya K. · Family Plan Pickup</span><span class="pd-order-pend">Pending</span></div>
+          <div class="pd-order-row"><span class="pd-order-name">Aryan S. · Shoe Cleaning</span><span class="pd-order-amt">₹349</span></div>
+        </div>
+        <button class="plan-btn plan-btn-teal" onclick="openModal('partner')">Become a Lndry Partner →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP PREVIEW -->
+<section id="app-preview">
+  <div class="si">
+    <div class="r"><div class="s-eyebrow" style="justify-content:center"><div class="s-eyebrow-dot"></div>App Experience</div></div>
+    <h2 class="s-title r" style="text-align:center">Your Wardrobe.<br/>In Your <span class="t">Pocket.</span></h2>
+    <p class="s-sub r" style="text-align:center;margin:0 auto">Schedule pickups, track orders, manage subscriptions — from one beautifully designed app.</p>
+    <div class="phones-row">
+
+      <!-- Phone 1: Book -->
+      <div class="phone r">
+        <div class="phone-inner">
+          <div class="p-statusbar"><span>9:41</span><span>●●●</span></div>
+          <div class="p-logo">Ln<span class="pd">d</span>ry</div>
+          <div style="font-size:10px;font-weight:700;color:var(--text);margin-bottom:12px">📅 Book a Pickup</div>
+          <div class="p-pills">
+            <div class="p-pill active">👕 Wash & Fold</div>
+            <div class="p-pill">👔 Dry Clean</div>
+            <div class="p-pill">✂️ Tailoring</div>
+            <div class="p-pill">👟 Shoes</div>
+          </div>
+          <div class="p-card">
+            <div class="p-card-title">📍 Pickup Address</div>
+            <div class="p-card-sub">Koramangala, Bengaluru</div>
+          </div>
+          <div class="p-card">
+            <div class="p-card-title">⏰ Pickup Window</div>
+            <div class="p-card-sub" style="color:var(--teal)">Today · 4:00 PM – 5:00 PM ✓</div>
+          </div>
+          <button class="p-btn">Confirm Pickup · ₹249</button>
+        </div>
+      </div>
+
+      <!-- Phone 2 (center): Tracking -->
+      <div class="phone center r">
+        <div class="phone-inner tall">
+          <div class="p-statusbar"><span>9:41</span><span>●●● ■■</span></div>
+          <div class="p-logo">Ln<span class="pd">d</span>ry</div>
+          <div class="p-greeting">Hello, Aryan 👋<br/>Your order is on the move!</div>
+          <div class="p-card" style="background:linear-gradient(135deg,rgba(92,207,169,0.08),rgba(92,207,169,0.03));border-color:var(--teal-border)">
+            <div class="p-card-top">
+              <div>
+                <div class="p-card-title">Order #LN2847</div>
+                <div class="p-card-sub">Wash & Fold · 12 items</div>
+              </div>
+              <div class="p-live">LIVE</div>
+            </div>
+            <div class="p-bar"><div class="p-bar-fill"></div></div>
+          </div>
+          <div style="font-size:9px;font-weight:700;color:var(--text);margin-bottom:10px">Order Tracking</div>
+          <div class="p-track">
+            <div class="p-track-item">
+              <div style="display:flex;flex-direction:column;align-items:center">
+                <div class="p-dot p-dot-done"></div>
+                <div class="p-line p-line-done"></div>
+              </div>
+              <div><div class="p-track-label">Pickup Completed</div><div class="p-track-time">2:15 PM · 12 items</div></div>
+            </div>
+            <div class="p-track-item">
+              <div style="display:flex;flex-direction:column;align-items:center">
+                <div class="p-dot p-dot-done"></div>
+                <div class="p-line p-line-done"></div>
+              </div>
+              <div><div class="p-track-label">At Partner Facility</div><div class="p-track-time">3:00 PM · Processing</div></div>
+            </div>
+            <div class="p-track-item">
+              <div style="display:flex;flex-direction:column;align-items:center">
+                <div class="p-dot p-dot-active"></div>
+                <div class="p-line"></div>
+              </div>
+              <div><div class="p-track-label" style="color:var(--teal)">Washing in Progress</div><div class="p-track-time">Est. 6:00 PM</div></div>
+            </div>
+            <div class="p-track-item">
+              <div class="p-dot p-dot-pending"></div>
+              <div><div class="p-track-label" style="color:var(--gray)">Out for Delivery</div><div class="p-track-time">Tomorrow 10:00 AM</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone 3: Subscription -->
+      <div class="phone r">
+        <div class="phone-inner">
+          <div class="p-statusbar"><span>9:41</span><span>●●●</span></div>
+          <div class="p-logo">Ln<span class="pd">d</span>ry</div>
+          <div style="font-size:10px;font-weight:700;color:var(--text);margin-bottom:12px">♻️ My Subscription</div>
+          <div class="p-sub-card">
+            <div class="p-sub-plan">Couple Plan</div>
+            <div class="p-sub-price">₹1,399<span>/month</span></div>
+            <div class="p-sub-status">● Active · Renews June 1</div>
+          </div>
+          <div class="p-card">
+            <div class="p-card-title">Next Pickup</div>
+            <div class="p-card-sub" style="margin-top:4px">Thursday, May 30</div>
+            <div class="p-card-sub">10:00–11:00 AM · 18 items est.</div>
+          </div>
+          <div style="display:flex;gap:7px;margin-top:10px">
+            <button class="p-btn" style="flex:1;margin-top:0">Reschedule</button>
+            <button class="p-btn" style="flex:1;margin-top:0;background:var(--black4);color:var(--gray)">Add Items</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:40px;flex-wrap:wrap" class="r">
+      <a href="#" class="btn-hero btn-hero-primary" onclick="openModal('book')">↗ App Store</a>
+      <a href="#" class="btn-hero btn-hero-secondary" onclick="openModal('book')">↗ Google Play</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="si">
+    <div class="r"><div class="s-eyebrow"><div class="s-eyebrow-dot"></div>Customer Love</div></div>
+    <h2 class="s-title r">Urban India is<br/><span class="t">Already Talking.</span></h2>
+    <p class="s-sub r">Real stories from real customers who've made Lndry part of their daily life.</p>
+    <div class="test-grid">
+      <div class="test-card r">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-text">"I used to spend Sunday mornings managing laundry. Now Lndry handles it weekly. My formals are crisper than ever, and I've genuinely gotten my weekends back. This is what tech should feel like."</div>
+        <div class="test-author">
+          <div class="test-avatar" style="background:linear-gradient(135deg,#5CCFA9,#3db890)">A</div>
+          <div><div class="test-name">Aryan Mehta</div><div class="test-role">Product Manager · Bengaluru</div></div>
+          <span class="test-badge">Couple Plan</span>
+        </div>
+      </div>
+      <div class="test-card r">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-text">"As a startup founder, every hour matters. Lndry removed one of the most annoying recurring tasks from my life. My blazers come back perfectly pressed. Best ₹1,399 I spend each month."</div>
+        <div class="test-author">
+          <div class="test-avatar" style="background:linear-gradient(135deg,#a855f7,#7c3aed)">P</div>
+          <div><div class="test-name">Priya Krishnamurthy</div><div class="test-role">Founder, TechStartup · Mumbai</div></div>
+          <span class="test-badge">Couple Plan</span>
+        </div>
+      </div>
+      <div class="test-card r">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-text">"Two kids, both of us working — laundry was a weekend crisis. Lndry Family Plan is life-changing. Twice-weekly pickups, and even the school uniforms come back perfectly ironed. Cannot recommend enough."</div>
+        <div class="test-author">
+          <div class="test-avatar" style="background:linear-gradient(135deg,#059669,#5CCFA9)">R</div>
+          <div><div class="test-name">Rahul & Sneha Joshi</div><div class="test-role">Working Parents · Pune</div></div>
+          <span class="test-badge">Family Plan</span>
+        </div>
+      </div>
+      <div class="test-card r">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-text">"Honestly didn't expect this quality for a laundry app. The packaging alone impressed me. Clothes came back folded like a hotel would. The live tracking is super reassuring. Already recommended to my whole office."</div>
+        <div class="test-author">
+          <div class="test-avatar" style="background:linear-gradient(135deg,#eab308,#f97316)">K</div>
+          <div><div class="test-name">Kavya Nair</div><div class="test-role">UX Designer · Hyderabad</div></div>
+          <span class="test-badge">Bachelor Plan</span>
+        </div>
+      </div>
+      <div class="test-card r">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-text">"PG life + job hunt = zero time for laundry. Lndry Bachelor Plan saves me every week. The app is super clean, pickup is always on time, and the clothes smell amazing. Best discovery of my post-grad life."</div>
+        <div class="test-author">
+          <div class="test-avatar" style="background:linear-gradient(135deg,#06b6d4,#3b82f6)">S</div>
+          <div><div class="test-name">Siddharth Rao</div><div class="test-role">Software Engineer · Delhi</div></div>
+          <span class="test-badge">Bachelor Plan</span>
+        </div>
+      </div>
+      <div class="test-card r">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-text">"Got my leather bag and suede jacket cleaned through Lndry Premium. They handled it like specialists — came back in a dust bag with a care card. Felt like dealing with a luxury brand, not a laundry service."</div>
+        <div class="test-author">
+          <div class="test-avatar" style="background:linear-gradient(135deg,#ec4899,#a855f7)">A</div>
+          <div><div class="test-name">Ananya Singh</div><div class="test-role">Investment Banker · Mumbai</div></div>
+          <span class="test-badge">Premium Care</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section id="vision">
+  <div class="si">
+    <div class="r"><div class="s-eyebrow"><div class="s-eyebrow-dot"></div>Future Vision</div></div>
+    <h2 class="s-title r">Building the Future of<br/><span class="t">Urban Wardrobe Care.</span></h2>
+    <p class="s-sub r">Lndry isn't just a laundry app. We're building the complete garment-care operating system for modern urban India — from your daily wash to your most precious possessions.</p>
+    <div class="vision-grid">
+      <div class="vis-card active r">
+        <div class="vis-tag vis-tag-now">● Live Now</div>
+        <div class="vis-title">Core Garment Care</div>
+        <div class="vis-items">
+          <div class="vis-item">Wash & Fold</div>
+          <div class="vis-item">Wash & Iron</div>
+          <div class="vis-item">Dry Cleaning</div>
+          <div class="vis-item">Subscription Plans</div>
+          <div class="vis-item">Partner Network</div>
+          <div class="vis-item">Live Order Tracking</div>
+        </div>
+      </div>
+      <div class="vis-card r">
+        <div class="vis-tag vis-tag-soon">◎ Coming Soon</div>
+        <div class="vis-title">Wardrobe Expansion</div>
+        <div class="vis-items">
+          <div class="vis-item">Shoe Care Studio</div>
+          <div class="vis-item">Bag & Accessories Care</div>
+          <div class="vis-item">Expert Tailoring</div>
+          <div class="vis-item">Garment Repair</div>
+          <div class="vis-item">Wardrobe Organization</div>
+          <div class="vis-item">Fabric Protection</div>
+        </div>
+      </div>
+      <div class="vis-card r">
+        <div class="vis-tag vis-tag-fut">◈ The Future</div>
+        <div class="vis-title">Wardrobe OS</div>
+        <div class="vis-items">
+          <div class="vis-item">AI Wardrobe Advisor</div>
+          <div class="vis-item">Digital Wardrobe Inventory</div>
+          <div class="vis-item">Sustainable Care Programs</div>
+          <div class="vis-item">B2B Hotel/Corporate Laundry</div>
+          <div class="vis-item">Garment Insurance</div>
+          <div class="vis-item">Smart Wardrobe Integration</div>
+        </div>
+      </div>
+      <div class="vis-card r">
+        <div class="vis-tag vis-tag-fut">◈ National Scale</div>
+        <div class="vis-title">Infrastructure Play</div>
+        <div class="vis-items">
+          <div class="vis-item">50+ City Presence</div>
+          <div class="vis-item">5,000+ Verified Partners</div>
+          <div class="vis-item">Lndry Certified Hubs</div>
+          <div class="vis-item">Partner IPO Program</div>
+          <div class="vis-item">Category Leadership</div>
+          <div class="vis-item">India's Wardrobe OS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="cta" style="padding:0">
+  <div class="cta-bg"></div>
+  <div class="cta-inner">
+    <div class="r"><div class="s-eyebrow" style="justify-content:center;margin-bottom:24px"><div class="s-eyebrow-dot"></div>Get Started Today</div></div>
+    <h2 class="cta-title r">The Future of<br/>Garment Care<br/><span>Starts Here.</span></h2>
+    <p class="cta-sub r">Join thousands of urban professionals who've already handed their wardrobe care to Lndry.</p>
+    <div class="cta-btns r">
+      <a href="#" class="btn-hero btn-hero-primary" onclick="openModal('book')">→ Book Your First Pickup</a>
+      <a href="#" class="btn-hero btn-hero-secondary" onclick="openModal('waitlist')">Join Waitlist</a>
+      <a class="btn-ghost" href="#" onclick="openModal('partner')">Partner With Us</a>
+    </div>
+    <div class="cta-trust r">
+      <div class="trust-item"><i>✓</i> Safe & Trusted</div>
+      <div class="trust-item"><i>★</i> 4.9 Rating</div>
+      <div class="trust-item"><i>↺</i> Cancel Anytime</div>
+      <div class="trust-item"><i>⚡</i> 24hr Turnaround</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="#" class="footer-brand-logo">
+          <div class="footer-icon">Ln</div>
+          <div class="footer-wordmark">Ln<span class="fd">d</span>ry</div>
+        </a>
+        <p class="footer-tagline">India's urban garment-care infrastructure platform. Building the wardrobe-care operating system for modern India.</p>
+        <div class="footer-socials">
+          <a href="#" class="soc-btn">in</a>
+          <a href="#" class="soc-btn">𝕏</a>
+          <a href="#" class="soc-btn">▶</a>
+          <a href="#" class="soc-btn">◉</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/about#story">Our Story</a></li>
+          <li><a href="/about#team">Careers <span style="font-size:9px;color:var(--teal)">Hiring</span></a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Wash & Fold</a></li>
+          <li><a href="#">Dry Cleaning</a></li>
+          <li><a href="#">Shoe Care</a></li>
+          <li><a href="#">Bag Care</a></li>
+          <li><a href="#">Tailoring</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Partners</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="openModal('partner')">Become a Partner</a></li>
+          <li><a href="#">Partner Dashboard</a></li>
+          <li><a href="#">Training Program</a></li>
+          <li><a href="#">Partner Community</a></li>
+          <li><a href="#">Partner FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Investors</div>
+        <ul class="footer-links">
+          <li><a href="#">Investor Relations</a></li>
+          <li><a href="#">Pitch Deck</a></li>
+          <li><a href="#">Market Research</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Lndry Technologies Pvt. Ltd. · All rights reserved · Made with ♥ in India · <a href="/privacy" class="footer-link">Privacy Policy</a> · <a href="/terms" class="footer-link">Terms</a></div>
+      <div class="footer-badges">
+        <div class="footer-badge-item"><i>🔒</i> Secure Payments</div>
+        <div class="footer-badge-item"><i>🌿</i> Eco-Friendly</div>
+        <div class="footer-badge-item"><i>✓</i> ISO Certified</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING CTA -->
+<div class="floating-cta" id="floatCTA">
+  <a href="#" class="float-btn" onclick="openModal('book')">→ Book Pickup</a>
+</div>
+
+<!-- MODAL -->
+<div class="modal-ov" id="modalOv">
+  <div class="modal-box">
+    <div class="modal-close" onclick="closeModal()">✕</div>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-icon">✓</div>
+  <div id="toastMsg"></div>
+</div>
+
+<script>
+// ─── NAV SCROLL ───
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>30);
+  document.getElementById('floatCTA').classList.toggle('show',window.scrollY>500);
+});
+
+// ─── HAMBURGER ───
+function toggleNav(){document.getElementById('mobileNav').classList.toggle('open')}
+function closeMob(){document.getElementById('mobileNav').classList.remove('open')}
+
+// ─── SCROLL REVEAL ───
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      // stagger siblings
+      const siblings=[...e.target.parentNode.children].filter(c=>c.classList.contains('r'));
+      const idx=siblings.indexOf(e.target);
+      setTimeout(()=>e.target.classList.add('visible'),idx*90);
+      ro.unobserve(e.target);
+    }
+  });
+},{threshold:0.08});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+
+// ─── MODAL TEMPLATES ───
+const CITIES=`<option value="" disabled selected>Select City</option>
+  <optgroup label="🟢 Live Cities">
+    <option>Mumbai</option><option>Delhi / NCR</option><option>Bengaluru</option>
+    <option>Hyderabad</option><option>Chennai</option><option>Pune</option>
+    <option>Kolkata</option><option>Ahmedabad</option><option>Jaipur</option>
+    <option>Surat</option><option>Lucknow</option><option>Chandigarh</option>
+  </optgroup>
+  <optgroup label="🔜 Coming Soon">
+    <option>Indore</option><option>Bhopal</option><option>Nagpur</option>
+    <option>Coimbatore</option><option>Kochi</option><option>Vadodara</option>
+    <option>Patna</option><option>Guwahati</option><option>Dehradun</option>
+    <option>Mysuru</option><option>Visakhapatnam</option><option>Other City</option>
+  </optgroup>`;
+
+const modals={
+  book:`<div class="modal-title">Book a Pickup</div>
+  <div class="modal-sub">Schedule your first Lndry pickup in under 60 seconds.</div>
+  <input class="m-inp" type="text" placeholder="Full Name" required/>
+  <input class="m-inp" type="tel" placeholder="Mobile Number" maxlength="10" required/>
+  <div class="m-field-row">
+    <select class="m-sel">${CITIES}</select>
+    <input class="m-inp" type="text" placeholder="Area / Locality" required/>
+  </div>
+  <input class="m-inp" type="text" placeholder="Full Pickup Address (House No., Street…)" required/>
+  <select class="m-sel"><option value="" disabled selected>Select Service</option>
+  <option>Wash &amp; Fold</option><option>Wash &amp; Iron</option><option>Dry Cleaning</option>
+  <option>Shoe Cleaning</option><option>Premium Garment Care</option><option>Subscription Plan</option></select>
+  <select class="m-sel"><option value="" disabled selected>Preferred Pickup Slot</option>
+  <option>Morning (7am – 10am)</option><option>Afternoon (11am – 2pm)</option>
+  <option>Evening (4pm – 7pm)</option><option>Night (8pm – 10pm)</option></select>
+  <button class="m-btn" onclick="submit('Pickup booked! 🎉 Our team will reach you within 30 minutes.')">Confirm Pickup →</button>`,
+
+  partner:`<div class="modal-title">Become a Partner</div>
+  <div class="modal-sub">Join India's fastest-growing garment-care network. We'll reach out within 24 hours.</div>
+  <input class="m-inp" type="text" placeholder="Business Name" required/>
+  <input class="m-inp" type="text" placeholder="Owner / Contact Name" required/>
+  <input class="m-inp" type="tel" placeholder="Mobile Number" maxlength="10" required/>
+  <input class="m-inp" type="email" placeholder="Business Email (optional)"/>
+  <div class="m-field-row">
+    <select class="m-sel">${CITIES}</select>
+    <input class="m-inp" type="text" placeholder="Area / Locality" required/>
+  </div>
+  <input class="m-inp" type="text" placeholder="Business Address" required/>
+  <select class="m-sel"><option value="" disabled selected>Business Type</option>
+  <option>Traditional Laundry / Dhobi</option><option>Dry Cleaning Shop</option>
+  <option>Ironing Service</option><option>Full Laundry Service</option><option>Industrial Laundry</option></select>
+  <select class="m-sel"><option value="" disabled selected>Monthly Capacity (garments)</option>
+  <option>Under 500</option><option>500 – 2,000</option><option>2,000 – 5,000</option>
+  <option>5,000 – 10,000</option><option>10,000+</option></select>
+  <button class="m-btn" onclick="submit('Welcome aboard! 🤝 Our partnerships team will contact you within 24 hours.')">Apply as Partner →</button>`,
+
+  waitlist:`<div class="modal-title">Join the Waitlist</div>
+  <div class="modal-sub">Be the first to know when we launch in your city. Early members get exclusive pricing.</div>
+  <input class="m-inp" type="text" placeholder="Your Name" required/>
+  <input class="m-inp" type="email" placeholder="Email Address" required/>
+  <input class="m-inp" type="tel" placeholder="Mobile Number" maxlength="10" required/>
+  <select class="m-sel">${CITIES}</select>
+  <select class="m-sel"><option value="" disabled selected>I'm interested as...</option>
+  <option>Customer</option><option>Partner</option><option>Investor</option><option>Founding Team</option></select>
+  <button class="m-btn" onclick="submit('You are on the waitlist! 🚀 Early access pricing reserved for you.')">Join Waitlist →</button>`
+};
+
+function openModal(t){
+  document.getElementById('modalBody').innerHTML=modals[t]||modals.waitlist;
+  document.getElementById('modalOv').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modalOv').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('modalOv').addEventListener('click',function(e){if(e.target===this)closeModal()});
+
+function submit(msg){
+  closeModal();
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),4000);
+}
+
+// ─── PREMIUM SMOOTH SCROLL ───
+function lndryScroll(target,duration){
+  duration=duration||750;
+  var navH=76;
+  var targetPos=target.getBoundingClientRect().top+window.pageYOffset-navH;
+  var startPos=window.pageYOffset;
+  var distance=targetPos-startPos;
+  if(Math.abs(distance)<1)return;
+  var startTime=null;
+  // easeInOutQuart — snappier than cubic, silkier than linear
+  function ease(t){return t<0.5?8*t*t*t*t:1-Math.pow(-2*t+2,4)/2}
+  function step(now){
+    if(!startTime)startTime=now;
+    var elapsed=now-startTime;
+    var progress=Math.min(elapsed/duration,1);
+    window.scrollTo(0,startPos+distance*ease(progress));
+    if(progress<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var href=a.getAttribute('href');
+    if(href&&href.length>1){
+      var tgt=document.querySelector(href);
+      if(tgt){
+        e.preventDefault();
+        // close mobile nav if open
+        document.getElementById('mobileNav').classList.remove('open');
+        lndryScroll(tgt,750);
+      }
+    }
+  });
+});
+
+// ─── ACTIVE NAV HIGHLIGHT (IntersectionObserver) ───
+(function(){
+  var sections=[];
+  var navAs=[];
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach(function(a){
+    var id=a.getAttribute('href').replace('#','');
+    var sec=document.getElementById(id);
+    if(sec){sections.push(sec);navAs.push({el:a,id:id});}
+  });
+  if(!sections.length)return;
+
+  var activeId=null;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        activeId=entry.target.id;
+      }
+    });
+    // update active class
+    navAs.forEach(function(item){
+      item.el.classList.toggle('active',item.id===activeId);
+    });
+  },{rootMargin:'-64px 0px -55% 0px',threshold:0});
+
+  sections.forEach(function(s){obs.observe(s);});
+})();
+
+// ─── THEME TOGGLE ───
+function toggleTheme(){
+  const isLight=document.documentElement.classList.toggle('light');
+  localStorage.setItem('lndry-theme', isLight ? 'light' : 'dark');
+}
+// Apply saved theme instantly on load (before paint)
+(function(){
+  const saved=localStorage.getItem('lndry-theme');
+  const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if(saved==='light'||(saved===null&&!prefersDark)){
+    document.documentElement.classList.add('light');
+  }
+})();
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"8abda370a42546c88b373326c07da180","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="390" viewBox="0 0 640 390">
+  <defs>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#433791" flood-opacity=".14"/>
+    </filter>
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6C63E8"/><stop offset="1" stop-color="#5046C8"/>
+    </linearGradient>
+  </defs>
+  
+  <g filter="url(#softShadow)">
+      <rect x="62" y="40" width="516" height="304" rx="28" fill="#FFFFFF" stroke="#E7E8F0"/>
+      <circle cx="320" cy="112" r="42" fill="#DDF7F3" stroke="#0FB5A6" stroke-width="4"/>
+      <path d="M300 112 l15 16 l31 -38" fill="none" stroke="#0FB5A6" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="320" y="188" text-anchor="middle" font-family="Sora, Inter, Arial, sans-serif" font-size="32" font-weight="820" fill="#080F14">OTP handover verified</text>
+      <text x="320" y="228" text-anchor="middle" font-family="Sora, Inter, Arial, sans-serif" font-size="19" font-weight="600" fill="#495467">Pickup and delivery stay auditable</text>
+      <rect x="166" y="266" width="308" height="44" rx="14" fill="#EAE8FF"/>
+      <circle cx="202" cy="288" r="10" fill="#6C63E8"/>
+      <circle cx="246" cy="288" r="10" fill="#6C63E8"/>
+      <circle cx="290" cy="288" r="10" fill="#6C63E8"/>
+      <circle cx="334" cy="288" r="10" fill="#6C63E8"/>
+      <circle cx="438" cy="288" r="12" fill="#0FB5A6"/>
+    </g>
+  </svg>

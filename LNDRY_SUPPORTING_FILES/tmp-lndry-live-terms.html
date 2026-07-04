@@ -1,0 +1,573 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Terms & Conditions — Lndry</title>
+<meta name="description" content="Lndry Terms and Conditions — the rules that govern use of our garment-care platform."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script>
+(function(){var s=localStorage.getItem('lndry-theme');var p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='light'||(s===null&&!p))document.documentElement.classList.add('light');})();
+</script>
+
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#090909;
+  --black2:#111111;
+  --black3:#161616;
+  --black4:#1e1e1e;
+  --teal:#5CCFA9;
+  --teal-dark:#3db890;
+  --teal-dim:rgba(92,207,169,0.12);
+  --teal-border:rgba(92,207,169,0.25);
+  /* ── Extended Urban Palette ── */
+  --amber:#F5A623;
+  --amber-dim:rgba(245,166,35,0.10);
+  --amber-border:rgba(245,166,35,0.22);
+  --violet:#8A7FFB;
+  --violet-dim:rgba(138,127,251,0.10);
+  --violet-border:rgba(138,127,251,0.22);
+  --coral:#FF6B6B;
+  --coral-dim:rgba(255,107,107,0.10);
+  --white:#FFFFFF;
+  --white90:rgba(255,255,255,0.9);
+  --white60:rgba(255,255,255,0.6);
+  --white30:rgba(255,255,255,0.3);
+  --white10:rgba(255,255,255,0.08);
+  --white05:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --gray:#6A6A6A;
+  --gray2:#4a4a4a;
+  /* semantic tokens (dark default) */
+  --bg:#090909;--bg2:#111111;--bg3:#161616;--bg4:#1e1e1e;
+  --text:#FFFFFF;--text90:rgba(255,255,255,0.9);--text60:rgba(255,255,255,0.6);--text30:rgba(255,255,255,0.3);
+  --line:rgba(255,255,255,0.07);--line2:rgba(255,255,255,0.12);
+  --muted:#6A6A6A;--muted2:#4a4a4a;
+  --nav-bg:rgba(9,9,9,0.92);--mob-bg:rgba(9,9,9,0.97);
+  --card-bg:#161616;--inp-bg:#111111;--modal-bg:#161616;
+  --surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.08);
+  --shadow-color:rgba(0,0,0,0.5);
+}
+/* light theme for sub-pages */
+html.light{
+  --teal:#1E9E72;--teal-dark:#187d5a;
+  --teal-dim:rgba(30,158,114,0.09);--teal-border:rgba(30,158,114,0.25);
+  --bg:#F4F6F8;--bg2:#FFFFFF;--bg3:#EAECEF;--bg4:#DDE0E4;
+  --text:#0D0D0D;--text90:rgba(13,13,13,0.92);--text60:rgba(13,13,13,0.62);--text30:rgba(13,13,13,0.32);
+  --line:rgba(0,0,0,0.09);--line2:rgba(0,0,0,0.15);
+  --muted:#606060;--muted2:#999999;
+  --nav-bg:rgba(244,246,248,0.95);--mob-bg:rgba(255,255,255,0.99);
+  --card-bg:#FFFFFF;--inp-bg:#EAECEF;--modal-bg:#FFFFFF;
+  --surface:rgba(0,0,0,0.05);--surface2:rgba(0,0,0,0.09);
+  --border:rgba(0,0,0,0.09);--border2:rgba(0,0,0,0.15);
+  --shadow-color:rgba(0,0,0,0.10);
+  --white60:rgba(13,13,13,0.62);--white90:rgba(13,13,13,0.92);
+  --white:rgba(13,13,13,1);
+}
+html{scroll-behavior:smooth;transition:background 0.35s ease,color 0.35s ease}
+body{font-family:'Geist',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background 0.35s ease,color 0.35s ease}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:3px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;gap:40px;transition:background 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease;background:transparent}
+:root:not(.light) nav.scrolled,html:not(.light) nav.scrolled{background:rgba(9,9,9,0.92);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--border);box-shadow:0 1px 0 var(--border)}
+html.light nav,html.light nav.scrolled{background:rgba(244,246,248,0.98)!important;border-bottom:1px solid rgba(0,0,0,0.08)!important;box-shadow:0 1px 20px rgba(0,0,0,0.07)!important;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-icon{width:36px;height:36px;background:var(--teal);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Geist',sans-serif;font-size:13px;font-weight:700;color:var(--black);letter-spacing:-0.5px}
+.nav-wordmark{font-size:22px;font-weight:700;letter-spacing:-0.5px;color:var(--text)}
+.wm-d{color:var(--teal)}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;flex:1;justify-content:center}
+.nav-links a{color:var(--text60);text-decoration:none;font-size:14px;font-weight:400;letter-spacing:-0.1px;transition:color 0.2s ease;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1.5px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform 0.25s ease;border-radius:2px}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{transform:scaleX(0.5)}
+.nav-links a.active{color:var(--text);font-weight:500}
+.nav-links a.active::after{transform:scaleX(1)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.btn-ghost{padding:9px 20px;border-radius:8px;font-size:14px;font-weight:500;font-family:'Geist',sans-serif;color:var(--text60);background:transparent;border:1px solid var(--border2);cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:7px;letter-spacing:-0.1px}
+.btn-ghost:hover{color:var(--text);border-color:var(--line2)}
+.btn-teal{padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;font-family:'Geist',sans-serif;background:var(--teal);color:var(--black);border:none;cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:7px;letter-spacing:-0.1px}
+.btn-teal:hover{background:var(--teal-dark);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text60);border-radius:2px;transition:all 0.3s}
+.mobile-nav{display:none;position:fixed;top:68px;left:0;right:0;background:var(--mob-bg);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);z-index:998;padding:20px 24px;flex-direction:column;gap:4px;transform:translateY(-10px);opacity:0;pointer-events:none;transition:all 0.25s ease}
+.mobile-nav.open{display:flex;transform:translateY(0);opacity:1;pointer-events:all}
+.mobile-nav a{color:var(--text60);text-decoration:none;font-size:15px;font-weight:400;padding:12px 0;border-bottom:1px solid var(--border);transition:color 0.2s}
+.mobile-nav a:hover{color:var(--text)}
+.mob-cta{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+
+/* PAGE WRAPPER */
+.page-wrap{padding-top:68px;min-height:100vh}
+
+/* INNER HERO */
+.inner-hero{padding:80px 48px 60px;text-align:center;position:relative;overflow:hidden}
+.inner-hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(92,207,169,0.06) 0%,transparent 70%);pointer-events:none}
+.inner-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--teal-dim);border:1px solid var(--teal-border);border-radius:100px;padding:6px 16px;font-size:12px;font-weight:500;color:var(--teal);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:24px}
+.inner-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+.inner-title{font-size:clamp(2.4rem,5vw,4rem);font-weight:800;letter-spacing:-2px;line-height:1.1;margin-bottom:20px}
+.inner-sub{font-size:clamp(1rem,2vw,1.2rem);color:var(--text60);max-width:640px;margin:0 auto;line-height:1.7}
+
+/* CONTENT SECTIONS */
+.content-section{padding:80px 48px;max-width:1140px;margin:0 auto}
+.content-section.alt{background:var(--black2)}
+.content-section.full{max-width:100%;padding-left:0;padding-right:0}
+
+/* DIVIDER */
+.sec-divider{width:100%;height:1px;background:var(--border);margin:0}
+
+/* FOOTER */
+footer{background:var(--black2);border-top:1px solid var(--border)}
+.footer-inner{max-width:1140px;margin:0 auto;padding:80px 48px 40px}
+.footer-top{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr 1fr;gap:48px;padding-bottom:64px;border-bottom:1px solid var(--border)}
+.footer-brand-logo{display:flex;align-items:center;gap:12px;text-decoration:none;margin-bottom:16px}
+.footer-icon{width:36px;height:36px;background:var(--teal);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--black);letter-spacing:-0.5px}
+.footer-wordmark{font-size:22px;font-weight:700;letter-spacing:-0.5px;color:var(--text)}
+.fd{color:var(--teal)}
+.footer-tagline{color:var(--text60);font-size:13px;line-height:1.7;margin-bottom:24px;max-width:240px}
+.footer-socials{display:flex;gap:10px}
+.soc-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--text60);text-decoration:none;font-size:13px;transition:all 0.2s}
+.soc-btn:hover{color:var(--text);border-color:var(--border2);background:var(--surface)}
+.footer-col-title{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text30);margin-bottom:20px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer-links a{color:var(--text60);text-decoration:none;font-size:13.5px;transition:color 0.2s}
+.footer-links a:hover{color:var(--text)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:32px;flex-wrap:wrap;gap:16px}
+.footer-copy{color:var(--text30);font-size:12.5px;line-height:1.8}
+.footer-link{color:var(--text30);text-decoration:none;transition:color 0.2s}
+.footer-link:hover{color:var(--text60)}
+.footer-badges{display:flex;gap:16px;flex-wrap:wrap}
+.footer-badge-item{display:flex;align-items:center;gap:6px;color:var(--text30);font-size:12px}
+
+/* SCROLL REVEAL */
+.r{opacity:0;transform:translateY(24px);transition:opacity 0.55s ease,transform 0.55s ease}
+.r.visible{opacity:1;transform:translateY(0)}
+
+/* TOAST */
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card-bg);border:1px solid var(--teal-border);border-radius:12px;padding:14px 24px;display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text90);z-index:9999;opacity:0;pointer-events:none;transition:all 0.4s ease;white-space:nowrap;box-shadow:0 8px 32px var(--shadow-color)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast-icon{width:22px;height:22px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--black);font-weight:700;flex-shrink:0}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:768px){
+  .inner-hero{padding:60px 24px 40px}
+  .content-section{padding:60px 24px}
+  .footer-inner{padding:60px 24px 32px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  nav{padding:0 24px}
+  .hamburger{display:flex}
+  .nav-links,.nav-right{display:none}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+@media(max-width:480px){
+  .footer-top{grid-template-columns:1fr}
+}
+
+
+/* LEGAL PAGE (same as privacy) */
+.legal-hero{padding:110px 48px 60px;text-align:center;position:relative;overflow:hidden}
+.legal-hero::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(circle,rgba(138,127,251,0.05) 0%,transparent 70%);pointer-events:none}
+.legal-body{max-width:800px;margin:0 auto;padding:0 48px 100px}
+.legal-meta{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+.legal-meta-item{display:flex;align-items:center;gap:8px;color:var(--text60);font-size:13px}
+.legal-meta-dot{width:5px;height:5px;border-radius:50%;background:var(--violet)}
+.legal-toc{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:28px 32px;margin-bottom:56px}
+.legal-toc-title{font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text30);margin-bottom:16px}
+.legal-toc-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.legal-toc-list a{color:var(--violet);text-decoration:none;font-size:14px;transition:color 0.2s;display:flex;align-items:center;gap:8px}
+.legal-toc-list a:hover{color:var(--text)}
+.legal-toc-list a::before{content:'§';color:var(--text30);font-size:12px}
+.legal-section{margin-bottom:56px}
+.legal-section-num{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--violet);margin-bottom:8px}
+.legal-section h2{font-size:1.5rem;font-weight:700;letter-spacing:-0.5px;margin-bottom:20px;color:var(--text90)}
+.legal-section p{color:var(--text60);font-size:14.5px;line-height:1.85;margin-bottom:14px}
+.legal-section ul,.legal-section ol{color:var(--text60);font-size:14.5px;line-height:1.85;padding-left:20px;margin-bottom:14px;display:flex;flex-direction:column;gap:8px}
+.legal-section li b{color:var(--text90);font-weight:600}
+.legal-section strong{color:var(--text90)}
+.legal-divider{height:1px;background:var(--border);margin-bottom:56px}
+.legal-highlight{background:var(--violet-dim);border:1px solid var(--violet-border);border-radius:12px;padding:20px 24px;margin-bottom:24px;color:var(--text90);font-size:14px;line-height:1.7;display:flex;gap:14px;align-items:flex-start}
+.legal-highlight-icon{width:28px;height:28px;border-radius:8px;background:var(--violet);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--white);font-weight:700;flex-shrink:0;margin-top:1px}
+.legal-contact-card{background:var(--card-bg);border:1px solid var(--border2);border-radius:16px;padding:32px;margin-top:16px}
+.legal-contact-card p{color:var(--text60);font-size:14px;line-height:1.8;margin-bottom:6px}
+.legal-contact-card a{color:var(--teal);text-decoration:none}
+.legal-contact-card a:hover{text-decoration:underline}
+html.light .legal-toc{background:#FFFFFF;box-shadow:0 2px 12px rgba(0,0,0,0.05)}
+html.light .legal-contact-card{background:#FFFFFF;box-shadow:0 2px 12px rgba(0,0,0,0.05)}
+html.light .legal-highlight{background:rgba(138,127,251,0.06);border-color:rgba(138,127,251,0.2)}
+html.light .legal-hero{background:linear-gradient(180deg,rgba(138,127,251,0.05) 0%,var(--bg) 100%)}
+html.light footer{background:#EAECEF}
+@media(max-width:768px){.legal-hero{padding:90px 24px 40px}.legal-body{padding:0 24px 80px}}
+</style>
+</head>
+<body>
+
+
+<nav id="nav">
+  <a href="/" class="nav-logo">
+    <div class="nav-icon">Ln</div>
+    <div class="nav-wordmark">Ln<span class="wm-d">d</span>ry</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#plans">Plans</a></li>
+    <li><a href="/#why">Why Lndry</a></li>
+    <li><a href="/#partner">For Partners</a></li>
+    <li><a href="/about" class="">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Switch theme" aria-label="Toggle dark/light mode">
+      <span class="theme-toggle-track">
+        <span class="theme-toggle-thumb"></span>
+      </span>
+      <span class="theme-icon-light">☀️</span>
+      <span class="theme-icon-dark">🌙</span>
+    </button>
+    <a class="btn-ghost" href="/#partner" onclick="openModal('partner')">Partner With Us</a>
+    <a class="btn-teal" href="/#" onclick="openModal('book')">Book Pickup →</a>
+  </div>
+  <div class="hamburger" id="ham" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/#services" onclick="closeMob()">Services</a>
+  <a href="/#plans" onclick="closeMob()">Plans</a>
+  <a href="/#why" onclick="closeMob()">Why Lndry</a>
+  <a href="/#partner" onclick="closeMob()">For Partners</a>
+  <a href="/about" onclick="closeMob()">About Us</a>
+  <div class="mob-cta">
+    <a class="btn-teal" href="#" style="justify-content:center">Book Pickup →</a>
+    <a class="btn-ghost" href="#" style="justify-content:center">Partner With Us</a>
+  </div>
+</div>
+
+
+<div class="page-wrap">
+
+<section class="legal-hero">
+  <div class="inner-eyebrow r" style="background:var(--violet-dim);border-color:var(--violet-border);color:var(--violet)"><div class="inner-eyebrow-dot" style="background:var(--violet)"></div>Legal</div>
+  <h1 class="inner-title r" style="max-width:640px;margin:0 auto 16px">Terms &amp; Conditions</h1>
+  <p class="inner-sub r">The rules and agreements that govern your use of Lndry's platform and services.</p>
+  <div class="legal-meta r">
+    <div class="legal-meta-item"><div class="legal-meta-dot"></div>Effective: January 1, 2025</div>
+    <div class="legal-meta-item"><div class="legal-meta-dot"></div>Last Updated: May 2025</div>
+    <div class="legal-meta-item"><div class="legal-meta-dot"></div>Governed by Indian Law</div>
+  </div>
+</section>
+
+<div class="legal-body">
+
+  <div class="legal-highlight r">
+    <div class="legal-highlight-icon">!</div>
+    <div>Please read these Terms &amp; Conditions carefully before using Lndry's services. By accessing our platform, you agree to be bound by these terms. If you do not agree, please do not use our services.</div>
+  </div>
+
+  <!-- TOC -->
+  <div class="legal-toc r">
+    <div class="legal-toc-title">Contents</div>
+    <ol class="legal-toc-list">
+      <li><a href="#tc-1">Acceptance of Terms</a></li>
+      <li><a href="#tc-2">Platform &amp; Services</a></li>
+      <li><a href="#tc-3">User Eligibility &amp; Accounts</a></li>
+      <li><a href="#tc-4">Bookings, Pricing &amp; Payments</a></li>
+      <li><a href="#tc-5">Garment Care &amp; Liability</a></li>
+      <li><a href="#tc-6">Cancellations &amp; Refunds</a></li>
+      <li><a href="#tc-7">Partner Terms</a></li>
+      <li><a href="#tc-8">Prohibited Conduct</a></li>
+      <li><a href="#tc-9">Intellectual Property</a></li>
+      <li><a href="#tc-10">Disclaimers &amp; Limitation of Liability</a></li>
+      <li><a href="#tc-11">Governing Law &amp; Disputes</a></li>
+      <li><a href="#tc-12">Contact &amp; Grievances</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <div class="legal-section r" id="tc-1">
+    <div class="legal-section-num">Section 01</div>
+    <h2>Acceptance of Terms</h2>
+    <p>These Terms &amp; Conditions ("Terms") constitute a legally binding agreement between you ("User", "Customer", or "Partner") and <strong>Lndry Technologies Pvt. Ltd.</strong> ("Lndry", "we", "us", or "our"), governing your access to and use of the Lndry website, mobile application, and all associated services (collectively, the "Platform").</p>
+    <p>By creating an account, placing an order, or using any part of the Platform, you confirm that you have read, understood, and agree to be bound by these Terms and our Privacy Policy. If you do not agree, you must discontinue use of the Platform immediately.</p>
+    <p>We reserve the right to update these Terms at any time. Continued use after updates constitutes acceptance of the revised Terms.</p>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 2 -->
+  <div class="legal-section r" id="tc-2">
+    <div class="legal-section-num">Section 02</div>
+    <h2>Platform &amp; Services</h2>
+    <p>Lndry is a technology platform that connects urban customers with local, verified garment-care businesses ("Partners"). Lndry acts as an <strong>intermediary marketplace</strong> and facilitates:</p>
+    <ul>
+      <li>Scheduling and managing garment care service bookings</li>
+      <li>Real-time order tracking and status updates</li>
+      <li>Secure payment processing</li>
+      <li>Customer support and dispute resolution</li>
+      <li>Quality assurance and Partner vetting</li>
+    </ul>
+    <p><strong>Important:</strong> The actual garment care services (washing, dry cleaning, ironing, etc.) are performed by our Partner businesses, not directly by Lndry. Lndry maintains quality standards and liability frameworks but does not operate its own laundry facilities.</p>
+    <p>Services are currently available in select Indian cities and are expanding. We do not guarantee service availability in all areas.</p>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 3 -->
+  <div class="legal-section r" id="tc-3">
+    <div class="legal-section-num">Section 03</div>
+    <h2>User Eligibility &amp; Accounts</h2>
+    <ul>
+      <li>You must be at least <b>18 years of age</b> to create an account and use Lndry's services.</li>
+      <li>You must provide <b>accurate, complete, and current</b> account information. You are responsible for maintaining the confidentiality of your account credentials.</li>
+      <li>You are responsible for <b>all activities</b> that occur under your account. Notify us immediately at <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2c5f595c5c435e586c4042485e55024542">[email&#160;protected]</a></strong> if you suspect unauthorised account access.</li>
+      <li>We reserve the right to <b>suspend or terminate</b> accounts that violate these Terms, engage in fraudulent activity, or pose a risk to other users or Partners.</li>
+      <li>One person may maintain only <b>one personal account</b>. Creating multiple accounts to abuse promotions or circumvent bans is prohibited.</li>
+    </ul>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 4 -->
+  <div class="legal-section r" id="tc-4">
+    <div class="legal-section-num">Section 04</div>
+    <h2>Bookings, Pricing &amp; Payments</h2>
+    <ul>
+      <li><b>Pricing:</b> Service prices are displayed on the Platform at the time of booking. Prices may vary by location, service type, garment type, and demand. Lndry reserves the right to change prices with reasonable notice.</li>
+      <li><b>Order Confirmation:</b> A booking is confirmed only after you receive an official confirmation via the Platform or SMS/email. Lndry reserves the right to reject or cancel bookings at its discretion.</li>
+      <li><b>Payment Methods:</b> We accept UPI, credit/debit cards, net banking, and Lndry wallet credits, processed through secure third-party gateways. Cash on delivery may be available in select areas.</li>
+      <li><b>Subscription Plans:</b> Subscriptions auto-renew unless cancelled at least 24 hours before the renewal date. Subscription fees are non-refundable for the current billing cycle.</li>
+      <li><b>Promotional Offers:</b> Discounts and offers are subject to specific terms and may be withdrawn at any time without notice. One promotional offer per user per order unless stated otherwise.</li>
+      <li><b>GST:</b> Applicable Goods and Services Tax (GST) will be charged in addition to displayed prices as per Indian tax laws.</li>
+    </ul>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 5 -->
+  <div class="legal-section r" id="tc-5">
+    <div class="legal-section-num">Section 05</div>
+    <h2>Garment Care &amp; Liability</h2>
+    <p>Lndry takes garment care seriously. However, the following limitations apply:</p>
+    <ul>
+      <li><b>Pre-existing damage:</b> Lndry is not liable for damage that existed before pickup. Our Partners will note pre-existing conditions at the time of collection.</li>
+      <li><b>Care Label Compliance:</b> You are responsible for ensuring garments are submitted with accurate care label instructions visible. Lndry Partners follow care labels as provided.</li>
+      <li><b>Delicate &amp; High-Value Items:</b> For items valued over ₹5,000, please declare the value at the time of booking. Liability for high-value items is limited to the declared value or ₹5,000 whichever is lower, unless premium coverage is purchased.</li>
+      <li><b>Maximum Liability:</b> Lndry's aggregate liability for any damage claim is capped at <strong>5× the service fee paid</strong> for the specific order in question, subject to verification.</li>
+      <li><b>Claims Process:</b> Damage claims must be raised within <strong>24 hours</strong> of delivery with photographic evidence. Claims raised after this window may not be entertained.</li>
+      <li><b>Prohibited Items:</b> Lndry does not accept items contaminated with hazardous materials, biohazards, or substances that violate Indian law.</li>
+    </ul>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 6 -->
+  <div class="legal-section r" id="tc-6">
+    <div class="legal-section-num">Section 06</div>
+    <h2>Cancellations &amp; Refunds</h2>
+    <ul>
+      <li><b>Customer Cancellation (before pickup):</b> Orders cancelled more than 2 hours before the scheduled pickup receive a full refund to the original payment method within 5–7 business days.</li>
+      <li><b>Customer Cancellation (after pickup):</b> Once garments have been picked up, cancellation is not possible. You may still raise a complaint if service quality is unsatisfactory.</li>
+      <li><b>Lndry Cancellation:</b> If Lndry or a Partner cancels your order, you will receive a full refund or credit, plus a courtesy discount on your next order.</li>
+      <li><b>Quality Issues:</b> If garments are returned in unsatisfactory condition, raise a complaint within 24 hours. Verified quality issues will result in a re-service at no charge, or a partial/full refund at Lndry's discretion.</li>
+      <li><b>Subscription Refunds:</b> Subscription fees are non-refundable. However, if you cancel a subscription within 48 hours of first purchase and no services have been used, a full refund may be granted.</li>
+    </ul>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 7 -->
+  <div class="legal-section r" id="tc-7">
+    <div class="legal-section-num">Section 07</div>
+    <h2>Partner Terms</h2>
+    <p>If you register as a Partner Business on Lndry, additional terms apply:</p>
+    <ul>
+      <li><b>Eligibility:</b> Partners must be legally operating businesses with valid GST registration (where applicable) and must comply with all applicable Indian laws.</li>
+      <li><b>Quality Standards:</b> Partners agree to meet Lndry's quality benchmarks, turnaround commitments, and customer service standards as outlined in the Partner Agreement.</li>
+      <li><b>Commission Structure:</b> Lndry charges a platform commission on orders fulfilled through the platform, as specified in the Partner Agreement. This may change with 30 days' notice.</li>
+      <li><b>Account Suspension:</b> Partners with consistent quality complaints, policy violations, or fraudulent activity will be suspended or permanently removed from the platform.</li>
+      <li><b>Data Usage:</b> Partner business data may be used for platform analytics, marketing, and operational purposes in accordance with our Privacy Policy.</li>
+    </ul>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 8 -->
+  <div class="legal-section r" id="tc-8">
+    <div class="legal-section-num">Section 08</div>
+    <h2>Prohibited Conduct</h2>
+    <p>The following activities are strictly prohibited on the Lndry platform:</p>
+    <ul>
+      <li>Providing false or misleading information during registration or order placement</li>
+      <li>Attempting to reverse engineer, hack, or disrupt the Platform's technology</li>
+      <li>Using the Platform for money laundering, fraud, or any illegal activity</li>
+      <li>Harassing, abusing, or threatening Lndry staff, Partners, or other users</li>
+      <li>Creating fake reviews, ratings, or manipulating the Platform's reputation system</li>
+      <li>Circumventing the Platform by directly transacting with Partners outside Lndry</li>
+      <li>Submitting garments containing illegal substances or hazardous materials</li>
+      <li>Scraping, crawling, or systematically extracting Platform data without permission</li>
+    </ul>
+    <p>Violation of these prohibitions may result in immediate account termination and, where applicable, legal action.</p>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 9 -->
+  <div class="legal-section r" id="tc-9">
+    <div class="legal-section-num">Section 09</div>
+    <h2>Intellectual Property</h2>
+    <p>All content on the Lndry Platform — including the brand name, logo, website design, app interfaces, text, graphics, trademarks, and software — is the exclusive intellectual property of Lndry Technologies Pvt. Ltd. and is protected by Indian and international intellectual property laws.</p>
+    <p>You may not reproduce, distribute, modify, create derivative works of, publicly display, or commercially exploit any Platform content without prior written permission from Lndry.</p>
+    <p>User-generated content (reviews, ratings, feedback) submitted to the Platform grants Lndry a non-exclusive, royalty-free, worldwide licence to use such content for Platform improvement and marketing purposes.</p>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 10 -->
+  <div class="legal-section r" id="tc-10">
+    <div class="legal-section-num">Section 10</div>
+    <h2>Disclaimers &amp; Limitation of Liability</h2>
+    <p>The Lndry Platform is provided on an "as is" and "as available" basis. To the fullest extent permitted by law:</p>
+    <ul>
+      <li>Lndry makes no warranties, express or implied, about the Platform's reliability, accuracy, or fitness for a particular purpose.</li>
+      <li>Lndry is not liable for any indirect, incidental, special, or consequential damages arising from Platform use.</li>
+      <li>Lndry is not liable for Partner actions, delays, or quality issues beyond what is specified in Section 05 (Garment Care &amp; Liability).</li>
+      <li>Lndry's total aggregate liability to any user in any 12-month period shall not exceed ₹10,000 or the total amount paid by the user in that period, whichever is lower.</li>
+      <li>Lndry is not liable for service interruptions due to force majeure events including natural disasters, government actions, strikes, or infrastructure failures.</li>
+    </ul>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 11 -->
+  <div class="legal-section r" id="tc-11">
+    <div class="legal-section-num">Section 11</div>
+    <h2>Governing Law &amp; Disputes</h2>
+    <p>These Terms shall be governed by and construed in accordance with the laws of <strong>India</strong>, without regard to its conflict of law provisions.</p>
+    <p><strong>Dispute Resolution:</strong> In case of any dispute, the parties shall first attempt resolution through good-faith negotiation. If unresolved within 30 days, disputes shall be referred to binding arbitration under the Arbitration and Conciliation Act, 1996, with a sole arbitrator appointed by mutual agreement. The seat of arbitration shall be <strong>Delhi, India</strong>.</p>
+    <p>For consumer disputes that cannot be resolved through arbitration, you may approach the appropriate Consumer Disputes Redressal Forum under the Consumer Protection Act, 2019.</p>
+    <p>The courts of <strong>Delhi</strong> shall have exclusive jurisdiction for matters not subject to arbitration.</p>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 12 -->
+  <div class="legal-section r" id="tc-12">
+    <div class="legal-section-num">Section 12</div>
+    <h2>Contact &amp; Grievances</h2>
+    <p>For questions, complaints, or grievances related to these Terms, contact our Grievance Officer:</p>
+    <div class="legal-contact-card">
+      <p><strong style="color:var(--text90)">Grievance Officer — Lndry Technologies Pvt. Ltd.</strong></p>
+      <p>Email: <a href="/cdn-cgi/l/email-protection#93fff6f4f2ffd3fffdf7e1eabdfafd"><span class="__cf_email__" data-cfemail="076b6260666b476b6963757e296e69">[email&#160;protected]</span></a></p>
+      <p>Support: <a href="/cdn-cgi/l/email-protection#87f4f2f7f7e8f5f3c7ebe9e3f5fea9eee9"><span class="__cf_email__" data-cfemail="7605030606190402361a1812040f581f18">[email&#160;protected]</span></a></p>
+      <p>Response time: Within 48 hours on business days</p>
+      <p style="margin-top:12px;color:var(--text30);font-size:13px">As required under the Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021</p>
+    </div>
+    <div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap">
+      <a href="/privacy" class="btn-ghost">Privacy Policy →</a>
+      <a href="/" class="btn-ghost">← Back to Home</a>
+    </div>
+  </div>
+
+</div><!-- /legal-body -->
+</div><!-- /page-wrap -->
+
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="/" class="footer-brand-logo">
+          <div class="footer-icon">Ln</div>
+          <div class="footer-wordmark">Ln<span class="fd">d</span>ry</div>
+        </a>
+        <p class="footer-tagline">India's urban garment-care infrastructure platform. Building the wardrobe-care operating system for modern India.</p>
+        <div class="footer-socials">
+          <a href="#" class="soc-btn">in</a>
+          <a href="#" class="soc-btn">𝕏</a>
+          <a href="#" class="soc-btn">▶</a>
+          <a href="#" class="soc-btn">◉</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/about#story">Our Story</a></li>
+          <li><a href="/about#team">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="/#services">Wash &amp; Fold</a></li>
+          <li><a href="/#services">Dry Cleaning</a></li>
+          <li><a href="/#services">Shoe Care</a></li>
+          <li><a href="/#services">Bag Care</a></li>
+          <li><a href="/#services">Tailoring</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Partners</div>
+        <ul class="footer-links">
+          <li><a href="#">Become a Partner</a></li>
+          <li><a href="#">Partner Dashboard</a></li>
+          <li><a href="#">Training Program</a></li>
+          <li><a href="#">Partner Community</a></li>
+          <li><a href="#">Partner FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms &amp; Conditions</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Lndry Technologies Pvt. Ltd. · All rights reserved · Made with ♥ in India · <a href="/privacy" class="footer-link">Privacy</a> · <a href="/terms" class="footer-link">Terms</a></div>
+      <div class="footer-badges">
+        <div class="footer-badge-item"><i>🔒</i> Secure Payments</div>
+        <div class="footer-badge-item"><i>🌿</i> Eco-Friendly</div>
+        <div class="footer-badge-item"><i>✓</i> ISO Certified</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<div class="toast" id="toast"><div class="toast-icon">✓</div><div id="toastMsg"></div></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>30)});
+function toggleNav(){document.getElementById('mobileNav').classList.toggle('open')}
+function closeMob(){document.getElementById('mobileNav').classList.remove('open')}
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const siblings=[...e.target.parentNode.children].filter(c=>c.classList.contains('r'));
+      const idx=siblings.indexOf(e.target);
+      setTimeout(()=>e.target.classList.add('visible'),idx*90);
+      ro.unobserve(e.target);
+    }
+  });
+},{threshold:0.08});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+function openModal(t){}
+function submit(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),4000);
+}
+function toggleTheme(){
+  const isLight=document.documentElement.classList.toggle('light');
+  localStorage.setItem('lndry-theme',isLight?'light':'dark');
+}
+</script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"8abda370a42546c88b373326c07da180","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

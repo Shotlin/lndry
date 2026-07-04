@@ -1,0 +1,117 @@
+﻿ Privacy Policy — Lndry
+Ln d ry
+Services
+Plans
+Why Lndry
+For Partners
+About
+☀️ 🌙 Partner With Us Book Pickup →
+Services Plans Why Lndry For Partners About Us
+Book Pickup → Partner With Us
+Legal
+Privacy Policy
+How Lndry collects, uses, and protects your personal information.
+Effective: January 1, 2025
+Last Updated: May 2025
+Governed by Indian Law
+Your privacy matters deeply to us. This policy explains in plain language what data we collect, why we collect it, and how you can control it. If you have any questions, email us at [email protected] .
+Contents
+Information We Collect
+How We Use Your Information
+Sharing & Disclosure
+Data Storage & Security
+Cookies & Tracking
+Your Rights & Choices
+Children's Privacy
+Third-Party Services
+Changes to This Policy
+Contact Us
+Section 01
+When you use Lndry's services, website, or mobile application, we collect information necessary to provide, improve, and personalise your experience.
+Account Information: Name, email address, mobile number, and profile details you provide during registration.
+Location Data: Pickup and delivery address information you provide, and approximate device location (with your permission) to match you with nearby partners.
+Order & Service Data: Details of services requested, garment types, special instructions, preferences, and order history.
+Payment Information: Transaction metadata and payment method details. We do not store raw card data — payments are processed via PCI-DSS compliant third-party gateways (Razorpay / Stripe).
+Device & Usage Data: IP address, device type, operating system, browser type, pages visited, and interaction data collected automatically via cookies and analytics tools.
+Communications: Messages, feedback, support requests, and ratings you submit through the platform.
+Section 02
+We use your data to deliver and continuously improve our services:
+Service Delivery: Processing orders, coordinating pickups, tracking garments, and delivering clean clothes to you.
+Partner Matching: Using your location and preferences to connect you with the most suitable verified laundry partners.
+Communication: Sending order updates, notifications, receipts, and support responses via SMS, email, and in-app messages.
+Platform Improvement: Analysing usage patterns to improve features, fix bugs, and personalise recommendations.
+Safety & Security: Detecting and preventing fraud, verifying identities, and ensuring platform integrity.
+Legal Compliance: Meeting obligations under applicable Indian laws including the Information Technology Act, 2000 and DPDP Act, 2023.
+Marketing: Sending promotional content about Lndry services — only with your explicit consent, and you can opt out anytime.
+Section 03
+We do not sell your personal data . We share your information only in the following limited circumstances:
+Verified Partner Businesses: Your name, contact number, and pickup/delivery address are shared with the specific Lndry partner assigned to your order — solely to fulfil your service.
+Payment Processors: Transaction data is shared with PCI-DSS compliant payment gateways to process payments securely.
+Technology Service Providers: Trusted vendors providing cloud hosting, analytics, customer support tools, and communication services — bound by data processing agreements.
+Legal Requirements: When required by Indian law, court order, or regulatory authority, or to protect the safety and rights of users and the platform.
+Business Transfers: In the event of a merger, acquisition, or sale of assets, user data may be transferred as part of that transaction, with prior notice to users.
+Section 04
+Your data is stored on secure servers located in India, maintained by reputable cloud providers. We implement industry-standard security measures including:
+AES-256 encryption for data at rest
+TLS 1.3 encryption for data in transit
+Role-based access controls limiting who can access your data internally
+Regular security audits and penetration testing
+Automatic session timeouts and multi-factor authentication for administrative access
+We retain your personal data for as long as your account is active or as needed to provide services. You may request deletion of your account and associated data at any time.
+Section 05
+We use cookies and similar technologies to improve your experience on our platform:
+Essential Cookies: Required for core platform functionality — login sessions, order tracking, security. Cannot be disabled.
+Analytics Cookies: Help us understand how users interact with the platform (via Google Analytics or equivalent). You can opt out via browser settings.
+Preference Cookies: Remember your language, location, and personalisation settings.
+Marketing Cookies: Used to show relevant ads on third-party platforms, only with your consent.
+You can manage or delete cookies through your browser settings at any time. Disabling essential cookies may affect platform functionality.
+Section 06
+Under India's Digital Personal Data Protection Act (DPDP), 2023, you have the following rights:
+Right to Access: Request a copy of the personal data we hold about you.
+Right to Correction: Request correction of inaccurate or incomplete personal data.
+Right to Erasure: Request deletion of your personal data, subject to legal retention requirements.
+Right to Withdraw Consent: Withdraw consent for marketing communications or optional data processing at any time.
+Right to Grievance Redressal: Lodge a complaint with our Data Protection Officer or the Data Protection Board of India.
+Right to Nominate: Nominate another individual to exercise data rights on your behalf in case of death or incapacity.
+To exercise any of these rights, contact us at [email protected] . We will respond within 30 days as required by applicable law.
+Section 07
+Lndry's services are intended for users aged 18 and above. We do not knowingly collect personal data from children under 18. If we become aware that a child has provided us with personal data, we will take immediate steps to delete such information. If you believe we may have collected data from a child, please contact us at [email protected] .
+Section 08
+Our platform may contain links to third-party websites or services (payment gateways, social media, mapping services). This Privacy Policy applies only to Lndry's own services. We are not responsible for the privacy practices of third-party services. We encourage you to read the privacy policies of any third-party services you use.
+Section 09
+We may update this Privacy Policy periodically to reflect changes in our practices, technology, or legal requirements. We will notify you of material changes via email or prominent in-app notice at least 7 days before they take effect. Your continued use of Lndry after changes are posted constitutes your acceptance of the revised policy.
+Section 10
+For privacy-related questions, requests, or complaints, reach out to our Data Protection Officer:
+Lndry Technologies Pvt. Ltd.
+Data Protection Officer
+Email: [email protected]
+General Enquiries: [email protected]
+Registered in India · CIN: [Pending] · GST: [Pending]
+Terms & Conditions → ← Back to Home
+India's urban garment-care infrastructure platform. Building the wardrobe-care operating system for modern India.
+in 𝕏 ▶ ◉
+Company
+About Us
+Our Story
+Careers
+Press
+Blog
+Wash & Fold
+Dry Cleaning
+Shoe Care
+Bag Care
+Tailoring
+Partners
+Become a Partner
+Partner Dashboard
+Training Program
+Partner Community
+Partner FAQ
+Terms & Conditions
+Refund Policy
+Cookie Policy
+Disclaimer
+© 2025 Lndry Technologies Pvt. Ltd. · All rights reserved · Made with ♥ in India · Privacy · Terms
+🔒 Secure Payments
+🌿 Eco-Friendly
+✓ ISO Certified

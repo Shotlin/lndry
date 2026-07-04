@@ -1,0 +1,595 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Privacy Policy — Lndry</title>
+<meta name="description" content="Lndry Privacy Policy — how we collect, use, and protect your personal data."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script>
+(function(){var s=localStorage.getItem('lndry-theme');var p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='light'||(s===null&&!p))document.documentElement.classList.add('light');})();
+</script>
+
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#090909;
+  --black2:#111111;
+  --black3:#161616;
+  --black4:#1e1e1e;
+  --teal:#5CCFA9;
+  --teal-dark:#3db890;
+  --teal-dim:rgba(92,207,169,0.12);
+  --teal-border:rgba(92,207,169,0.25);
+  /* ── Extended Urban Palette ── */
+  --amber:#F5A623;
+  --amber-dim:rgba(245,166,35,0.10);
+  --amber-border:rgba(245,166,35,0.22);
+  --violet:#8A7FFB;
+  --violet-dim:rgba(138,127,251,0.10);
+  --violet-border:rgba(138,127,251,0.22);
+  --coral:#FF6B6B;
+  --coral-dim:rgba(255,107,107,0.10);
+  --white:#FFFFFF;
+  --white90:rgba(255,255,255,0.9);
+  --white60:rgba(255,255,255,0.6);
+  --white30:rgba(255,255,255,0.3);
+  --white10:rgba(255,255,255,0.08);
+  --white05:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --gray:#6A6A6A;
+  --gray2:#4a4a4a;
+  /* semantic tokens (dark default) */
+  --bg:#090909;--bg2:#111111;--bg3:#161616;--bg4:#1e1e1e;
+  --text:#FFFFFF;--text90:rgba(255,255,255,0.9);--text60:rgba(255,255,255,0.6);--text30:rgba(255,255,255,0.3);
+  --line:rgba(255,255,255,0.07);--line2:rgba(255,255,255,0.12);
+  --muted:#6A6A6A;--muted2:#4a4a4a;
+  --nav-bg:rgba(9,9,9,0.92);--mob-bg:rgba(9,9,9,0.97);
+  --card-bg:#161616;--inp-bg:#111111;--modal-bg:#161616;
+  --surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.08);
+  --shadow-color:rgba(0,0,0,0.5);
+}
+/* light theme for sub-pages */
+html.light{
+  --teal:#1E9E72;--teal-dark:#187d5a;
+  --teal-dim:rgba(30,158,114,0.09);--teal-border:rgba(30,158,114,0.25);
+  --bg:#F4F6F8;--bg2:#FFFFFF;--bg3:#EAECEF;--bg4:#DDE0E4;
+  --text:#0D0D0D;--text90:rgba(13,13,13,0.92);--text60:rgba(13,13,13,0.62);--text30:rgba(13,13,13,0.32);
+  --line:rgba(0,0,0,0.09);--line2:rgba(0,0,0,0.15);
+  --muted:#606060;--muted2:#999999;
+  --nav-bg:rgba(244,246,248,0.95);--mob-bg:rgba(255,255,255,0.99);
+  --card-bg:#FFFFFF;--inp-bg:#EAECEF;--modal-bg:#FFFFFF;
+  --surface:rgba(0,0,0,0.05);--surface2:rgba(0,0,0,0.09);
+  --border:rgba(0,0,0,0.09);--border2:rgba(0,0,0,0.15);
+  --shadow-color:rgba(0,0,0,0.10);
+  --white60:rgba(13,13,13,0.62);--white90:rgba(13,13,13,0.92);
+  --white:rgba(13,13,13,1);
+}
+html{scroll-behavior:smooth;transition:background 0.35s ease,color 0.35s ease}
+body{font-family:'Geist',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background 0.35s ease,color 0.35s ease}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:3px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;gap:40px;transition:background 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease;background:transparent}
+:root:not(.light) nav.scrolled,html:not(.light) nav.scrolled{background:rgba(9,9,9,0.92);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--border);box-shadow:0 1px 0 var(--border)}
+html.light nav,html.light nav.scrolled{background:rgba(244,246,248,0.98)!important;border-bottom:1px solid rgba(0,0,0,0.08)!important;box-shadow:0 1px 20px rgba(0,0,0,0.07)!important;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-icon{width:36px;height:36px;background:var(--teal);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Geist',sans-serif;font-size:13px;font-weight:700;color:var(--black);letter-spacing:-0.5px}
+.nav-wordmark{font-size:22px;font-weight:700;letter-spacing:-0.5px;color:var(--text)}
+.wm-d{color:var(--teal)}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;flex:1;justify-content:center}
+.nav-links a{color:var(--text60);text-decoration:none;font-size:14px;font-weight:400;letter-spacing:-0.1px;transition:color 0.2s ease;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1.5px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform 0.25s ease;border-radius:2px}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{transform:scaleX(0.5)}
+.nav-links a.active{color:var(--text);font-weight:500}
+.nav-links a.active::after{transform:scaleX(1)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.btn-ghost{padding:9px 20px;border-radius:8px;font-size:14px;font-weight:500;font-family:'Geist',sans-serif;color:var(--text60);background:transparent;border:1px solid var(--border2);cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:7px;letter-spacing:-0.1px}
+.btn-ghost:hover{color:var(--text);border-color:var(--line2)}
+.btn-teal{padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;font-family:'Geist',sans-serif;background:var(--teal);color:var(--black);border:none;cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:7px;letter-spacing:-0.1px}
+.btn-teal:hover{background:var(--teal-dark);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text60);border-radius:2px;transition:all 0.3s}
+.mobile-nav{display:none;position:fixed;top:68px;left:0;right:0;background:var(--mob-bg);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);z-index:998;padding:20px 24px;flex-direction:column;gap:4px;transform:translateY(-10px);opacity:0;pointer-events:none;transition:all 0.25s ease}
+.mobile-nav.open{display:flex;transform:translateY(0);opacity:1;pointer-events:all}
+.mobile-nav a{color:var(--text60);text-decoration:none;font-size:15px;font-weight:400;padding:12px 0;border-bottom:1px solid var(--border);transition:color 0.2s}
+.mobile-nav a:hover{color:var(--text)}
+.mob-cta{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+
+/* PAGE WRAPPER */
+.page-wrap{padding-top:68px;min-height:100vh}
+
+/* INNER HERO */
+.inner-hero{padding:80px 48px 60px;text-align:center;position:relative;overflow:hidden}
+.inner-hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(92,207,169,0.06) 0%,transparent 70%);pointer-events:none}
+.inner-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--teal-dim);border:1px solid var(--teal-border);border-radius:100px;padding:6px 16px;font-size:12px;font-weight:500;color:var(--teal);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:24px}
+.inner-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+.inner-title{font-size:clamp(2.4rem,5vw,4rem);font-weight:800;letter-spacing:-2px;line-height:1.1;margin-bottom:20px}
+.inner-sub{font-size:clamp(1rem,2vw,1.2rem);color:var(--text60);max-width:640px;margin:0 auto;line-height:1.7}
+
+/* CONTENT SECTIONS */
+.content-section{padding:80px 48px;max-width:1140px;margin:0 auto}
+.content-section.alt{background:var(--black2)}
+.content-section.full{max-width:100%;padding-left:0;padding-right:0}
+
+/* DIVIDER */
+.sec-divider{width:100%;height:1px;background:var(--border);margin:0}
+
+/* FOOTER */
+footer{background:var(--black2);border-top:1px solid var(--border)}
+.footer-inner{max-width:1140px;margin:0 auto;padding:80px 48px 40px}
+.footer-top{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr 1fr;gap:48px;padding-bottom:64px;border-bottom:1px solid var(--border)}
+.footer-brand-logo{display:flex;align-items:center;gap:12px;text-decoration:none;margin-bottom:16px}
+.footer-icon{width:36px;height:36px;background:var(--teal);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--black);letter-spacing:-0.5px}
+.footer-wordmark{font-size:22px;font-weight:700;letter-spacing:-0.5px;color:var(--text)}
+.fd{color:var(--teal)}
+.footer-tagline{color:var(--text60);font-size:13px;line-height:1.7;margin-bottom:24px;max-width:240px}
+.footer-socials{display:flex;gap:10px}
+.soc-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--text60);text-decoration:none;font-size:13px;transition:all 0.2s}
+.soc-btn:hover{color:var(--text);border-color:var(--border2);background:var(--surface)}
+.footer-col-title{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text30);margin-bottom:20px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer-links a{color:var(--text60);text-decoration:none;font-size:13.5px;transition:color 0.2s}
+.footer-links a:hover{color:var(--text)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:32px;flex-wrap:wrap;gap:16px}
+.footer-copy{color:var(--text30);font-size:12.5px;line-height:1.8}
+.footer-link{color:var(--text30);text-decoration:none;transition:color 0.2s}
+.footer-link:hover{color:var(--text60)}
+.footer-badges{display:flex;gap:16px;flex-wrap:wrap}
+.footer-badge-item{display:flex;align-items:center;gap:6px;color:var(--text30);font-size:12px}
+
+/* SCROLL REVEAL */
+.r{opacity:0;transform:translateY(24px);transition:opacity 0.55s ease,transform 0.55s ease}
+.r.visible{opacity:1;transform:translateY(0)}
+
+/* TOAST */
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card-bg);border:1px solid var(--teal-border);border-radius:12px;padding:14px 24px;display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text90);z-index:9999;opacity:0;pointer-events:none;transition:all 0.4s ease;white-space:nowrap;box-shadow:0 8px 32px var(--shadow-color)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast-icon{width:22px;height:22px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--black);font-weight:700;flex-shrink:0}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:768px){
+  .inner-hero{padding:60px 24px 40px}
+  .content-section{padding:60px 24px}
+  .footer-inner{padding:60px 24px 32px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  nav{padding:0 24px}
+  .hamburger{display:flex}
+  .nav-links,.nav-right{display:none}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+@media(max-width:480px){
+  .footer-top{grid-template-columns:1fr}
+}
+
+
+/* LEGAL PAGE */
+.legal-hero{
+  padding:110px 48px 60px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.legal-hero::before{
+  content:'';position:absolute;top:-60px;left:50%;
+  transform:translateX(-50%);
+  width:600px;height:400px;
+  background:radial-gradient(circle,rgba(92,207,169,0.05) 0%,transparent 70%);
+  pointer-events:none;
+}
+.legal-body{
+  max-width:800px;margin:0 auto;
+  padding:0 48px 100px;
+}
+.legal-meta{
+  display:flex;gap:24px;flex-wrap:wrap;
+  justify-content:center;margin-top:20px;
+}
+.legal-meta-item{
+  display:flex;align-items:center;gap:8px;
+  color:var(--text60);font-size:13px;
+}
+.legal-meta-dot{width:5px;height:5px;border-radius:50%;background:var(--teal)}
+
+.legal-toc{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:16px;padding:28px 32px;margin-bottom:56px;
+}
+.legal-toc-title{
+  font-size:13px;font-weight:600;letter-spacing:1px;
+  text-transform:uppercase;color:var(--text30);margin-bottom:16px;
+}
+.legal-toc-list{
+  list-style:none;display:flex;flex-direction:column;gap:8px;
+}
+.legal-toc-list a{
+  color:var(--teal);text-decoration:none;font-size:14px;
+  transition:color 0.2s;display:flex;align-items:center;gap:8px;
+}
+.legal-toc-list a:hover{color:var(--text)}
+.legal-toc-list a::before{content:'§';color:var(--text30);font-size:12px}
+
+.legal-section{margin-bottom:56px}
+.legal-section-num{
+  font-size:11px;font-weight:600;letter-spacing:2px;
+  text-transform:uppercase;color:var(--teal);margin-bottom:8px;
+}
+.legal-section h2{
+  font-size:1.5rem;font-weight:700;letter-spacing:-0.5px;
+  margin-bottom:20px;color:var(--text90);
+}
+.legal-section p{
+  color:var(--text60);font-size:14.5px;line-height:1.85;margin-bottom:14px;
+}
+.legal-section ul,.legal-section ol{
+  color:var(--text60);font-size:14.5px;line-height:1.85;
+  padding-left:20px;margin-bottom:14px;display:flex;flex-direction:column;gap:8px;
+}
+.legal-section li b{color:var(--text90);font-weight:600}
+.legal-section strong{color:var(--text90)}
+.legal-divider{height:1px;background:var(--border);margin-bottom:56px}
+
+.legal-highlight{
+  background:var(--teal-dim);border:1px solid var(--teal-border);
+  border-radius:12px;padding:20px 24px;margin-bottom:24px;
+  color:var(--text90);font-size:14px;line-height:1.7;
+  display:flex;gap:14px;align-items:flex-start;
+}
+.legal-highlight-icon{
+  width:28px;height:28px;border-radius:8px;
+  background:var(--teal);display:flex;align-items:center;
+  justify-content:center;font-size:13px;color:var(--black);
+  font-weight:700;flex-shrink:0;margin-top:1px;
+}
+.legal-contact-card{
+  background:var(--card-bg);border:1px solid var(--border2);
+  border-radius:16px;padding:32px;margin-top:16px;
+}
+.legal-contact-card p{color:var(--text60);font-size:14px;line-height:1.8;margin-bottom:6px}
+.legal-contact-card a{color:var(--teal);text-decoration:none}
+.legal-contact-card a:hover{text-decoration:underline}
+
+@media(max-width:768px){
+  .legal-hero{padding:90px 24px 40px}
+  .legal-body{padding:0 24px 80px}
+}
+html.light .legal-toc{background:#FFFFFF;box-shadow:0 2px 12px rgba(0,0,0,0.05)}
+html.light .legal-contact-card{background:#FFFFFF;box-shadow:0 2px 12px rgba(0,0,0,0.05)}
+html.light .legal-highlight{background:rgba(30,158,114,0.06);border-color:rgba(30,158,114,0.2)}
+html.light .legal-hero{background:linear-gradient(180deg,#EEF8F4 0%,var(--bg) 100%)}
+html.light footer{background:#EAECEF}
+</style>
+</head>
+<body>
+
+
+<nav id="nav">
+  <a href="/" class="nav-logo">
+    <div class="nav-icon">Ln</div>
+    <div class="nav-wordmark">Ln<span class="wm-d">d</span>ry</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#plans">Plans</a></li>
+    <li><a href="/#why">Why Lndry</a></li>
+    <li><a href="/#partner">For Partners</a></li>
+    <li><a href="/about" class="">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Switch theme" aria-label="Toggle dark/light mode">
+      <span class="theme-toggle-track">
+        <span class="theme-toggle-thumb"></span>
+      </span>
+      <span class="theme-icon-light">☀️</span>
+      <span class="theme-icon-dark">🌙</span>
+    </button>
+    <a class="btn-ghost" href="/#partner" onclick="openModal('partner')">Partner With Us</a>
+    <a class="btn-teal" href="/#" onclick="openModal('book')">Book Pickup →</a>
+  </div>
+  <div class="hamburger" id="ham" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/#services" onclick="closeMob()">Services</a>
+  <a href="/#plans" onclick="closeMob()">Plans</a>
+  <a href="/#why" onclick="closeMob()">Why Lndry</a>
+  <a href="/#partner" onclick="closeMob()">For Partners</a>
+  <a href="/about" onclick="closeMob()">About Us</a>
+  <div class="mob-cta">
+    <a class="btn-teal" href="#" style="justify-content:center">Book Pickup →</a>
+    <a class="btn-ghost" href="#" style="justify-content:center">Partner With Us</a>
+  </div>
+</div>
+
+
+<div class="page-wrap">
+
+<section class="legal-hero">
+  <div class="inner-eyebrow r"><div class="inner-eyebrow-dot"></div>Legal</div>
+  <h1 class="inner-title r" style="max-width:600px;margin:0 auto 16px">Privacy Policy</h1>
+  <p class="inner-sub r">How Lndry collects, uses, and protects your personal information.</p>
+  <div class="legal-meta r">
+    <div class="legal-meta-item"><div class="legal-meta-dot"></div>Effective: January 1, 2025</div>
+    <div class="legal-meta-item"><div class="legal-meta-dot"></div>Last Updated: May 2025</div>
+    <div class="legal-meta-item"><div class="legal-meta-dot"></div>Governed by Indian Law</div>
+  </div>
+</section>
+
+<div class="legal-body">
+
+  <div class="legal-highlight r">
+    <div class="legal-highlight-icon">i</div>
+    <div>Your privacy matters deeply to us. This policy explains in plain language what data we collect, why we collect it, and how you can control it. If you have any questions, email us at <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fc8c8e958a9d9f85bc9092988e85d29592">[email&#160;protected]</a></strong>.</div>
+  </div>
+
+  <!-- TOC -->
+  <div class="legal-toc r">
+    <div class="legal-toc-title">Contents</div>
+    <ol class="legal-toc-list">
+      <li><a href="#pp-1">Information We Collect</a></li>
+      <li><a href="#pp-2">How We Use Your Information</a></li>
+      <li><a href="#pp-3">Sharing &amp; Disclosure</a></li>
+      <li><a href="#pp-4">Data Storage &amp; Security</a></li>
+      <li><a href="#pp-5">Cookies &amp; Tracking</a></li>
+      <li><a href="#pp-6">Your Rights &amp; Choices</a></li>
+      <li><a href="#pp-7">Children's Privacy</a></li>
+      <li><a href="#pp-8">Third-Party Services</a></li>
+      <li><a href="#pp-9">Changes to This Policy</a></li>
+      <li><a href="#pp-10">Contact Us</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <div class="legal-section r" id="pp-1">
+    <div class="legal-section-num">Section 01</div>
+    <h2>Information We Collect</h2>
+    <p>When you use Lndry's services, website, or mobile application, we collect information necessary to provide, improve, and personalise your experience.</p>
+    <ul>
+      <li><b>Account Information:</b> Name, email address, mobile number, and profile details you provide during registration.</li>
+      <li><b>Location Data:</b> Pickup and delivery address information you provide, and approximate device location (with your permission) to match you with nearby partners.</li>
+      <li><b>Order &amp; Service Data:</b> Details of services requested, garment types, special instructions, preferences, and order history.</li>
+      <li><b>Payment Information:</b> Transaction metadata and payment method details. We do not store raw card data — payments are processed via PCI-DSS compliant third-party gateways (Razorpay / Stripe).</li>
+      <li><b>Device &amp; Usage Data:</b> IP address, device type, operating system, browser type, pages visited, and interaction data collected automatically via cookies and analytics tools.</li>
+      <li><b>Communications:</b> Messages, feedback, support requests, and ratings you submit through the platform.</li>
+    </ul>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 2 -->
+  <div class="legal-section r" id="pp-2">
+    <div class="legal-section-num">Section 02</div>
+    <h2>How We Use Your Information</h2>
+    <p>We use your data to deliver and continuously improve our services:</p>
+    <ul>
+      <li><b>Service Delivery:</b> Processing orders, coordinating pickups, tracking garments, and delivering clean clothes to you.</li>
+      <li><b>Partner Matching:</b> Using your location and preferences to connect you with the most suitable verified laundry partners.</li>
+      <li><b>Communication:</b> Sending order updates, notifications, receipts, and support responses via SMS, email, and in-app messages.</li>
+      <li><b>Platform Improvement:</b> Analysing usage patterns to improve features, fix bugs, and personalise recommendations.</li>
+      <li><b>Safety &amp; Security:</b> Detecting and preventing fraud, verifying identities, and ensuring platform integrity.</li>
+      <li><b>Legal Compliance:</b> Meeting obligations under applicable Indian laws including the Information Technology Act, 2000 and DPDP Act, 2023.</li>
+      <li><b>Marketing:</b> Sending promotional content about Lndry services — only with your explicit consent, and you can opt out anytime.</li>
+    </ul>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 3 -->
+  <div class="legal-section r" id="pp-3">
+    <div class="legal-section-num">Section 03</div>
+    <h2>Sharing &amp; Disclosure</h2>
+    <p>We <strong>do not sell your personal data</strong>. We share your information only in the following limited circumstances:</p>
+    <ul>
+      <li><b>Verified Partner Businesses:</b> Your name, contact number, and pickup/delivery address are shared with the specific Lndry partner assigned to your order — solely to fulfil your service.</li>
+      <li><b>Payment Processors:</b> Transaction data is shared with PCI-DSS compliant payment gateways to process payments securely.</li>
+      <li><b>Technology Service Providers:</b> Trusted vendors providing cloud hosting, analytics, customer support tools, and communication services — bound by data processing agreements.</li>
+      <li><b>Legal Requirements:</b> When required by Indian law, court order, or regulatory authority, or to protect the safety and rights of users and the platform.</li>
+      <li><b>Business Transfers:</b> In the event of a merger, acquisition, or sale of assets, user data may be transferred as part of that transaction, with prior notice to users.</li>
+    </ul>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 4 -->
+  <div class="legal-section r" id="pp-4">
+    <div class="legal-section-num">Section 04</div>
+    <h2>Data Storage &amp; Security</h2>
+    <p>Your data is stored on secure servers located in India, maintained by reputable cloud providers. We implement industry-standard security measures including:</p>
+    <ul>
+      <li>AES-256 encryption for data at rest</li>
+      <li>TLS 1.3 encryption for data in transit</li>
+      <li>Role-based access controls limiting who can access your data internally</li>
+      <li>Regular security audits and penetration testing</li>
+      <li>Automatic session timeouts and multi-factor authentication for administrative access</li>
+    </ul>
+    <p>We retain your personal data for as long as your account is active or as needed to provide services. You may request deletion of your account and associated data at any time.</p>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 5 -->
+  <div class="legal-section r" id="pp-5">
+    <div class="legal-section-num">Section 05</div>
+    <h2>Cookies &amp; Tracking</h2>
+    <p>We use cookies and similar technologies to improve your experience on our platform:</p>
+    <ul>
+      <li><b>Essential Cookies:</b> Required for core platform functionality — login sessions, order tracking, security. Cannot be disabled.</li>
+      <li><b>Analytics Cookies:</b> Help us understand how users interact with the platform (via Google Analytics or equivalent). You can opt out via browser settings.</li>
+      <li><b>Preference Cookies:</b> Remember your language, location, and personalisation settings.</li>
+      <li><b>Marketing Cookies:</b> Used to show relevant ads on third-party platforms, only with your consent.</li>
+    </ul>
+    <p>You can manage or delete cookies through your browser settings at any time. Disabling essential cookies may affect platform functionality.</p>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 6 -->
+  <div class="legal-section r" id="pp-6">
+    <div class="legal-section-num">Section 06</div>
+    <h2>Your Rights &amp; Choices</h2>
+    <p>Under India's Digital Personal Data Protection Act (DPDP), 2023, you have the following rights:</p>
+    <ul>
+      <li><b>Right to Access:</b> Request a copy of the personal data we hold about you.</li>
+      <li><b>Right to Correction:</b> Request correction of inaccurate or incomplete personal data.</li>
+      <li><b>Right to Erasure:</b> Request deletion of your personal data, subject to legal retention requirements.</li>
+      <li><b>Right to Withdraw Consent:</b> Withdraw consent for marketing communications or optional data processing at any time.</li>
+      <li><b>Right to Grievance Redressal:</b> Lodge a complaint with our Data Protection Officer or the Data Protection Board of India.</li>
+      <li><b>Right to Nominate:</b> Nominate another individual to exercise data rights on your behalf in case of death or incapacity.</li>
+    </ul>
+    <p>To exercise any of these rights, contact us at <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e8989a819e898b91a884868c9a91c68186">[email&#160;protected]</a></strong>. We will respond within 30 days as required by applicable law.</p>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 7 -->
+  <div class="legal-section r" id="pp-7">
+    <div class="legal-section-num">Section 07</div>
+    <h2>Children's Privacy</h2>
+    <p>Lndry's services are intended for users aged 18 and above. We do not knowingly collect personal data from children under 18. If we become aware that a child has provided us with personal data, we will take immediate steps to delete such information. If you believe we may have collected data from a child, please contact us at <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1a6a68736c7b79635a76747e6863347374">[email&#160;protected]</a></strong>.</p>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 8 -->
+  <div class="legal-section r" id="pp-8">
+    <div class="legal-section-num">Section 08</div>
+    <h2>Third-Party Services</h2>
+    <p>Our platform may contain links to third-party websites or services (payment gateways, social media, mapping services). This Privacy Policy applies only to Lndry's own services. We are not responsible for the privacy practices of third-party services. We encourage you to read the privacy policies of any third-party services you use.</p>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 9 -->
+  <div class="legal-section r" id="pp-9">
+    <div class="legal-section-num">Section 09</div>
+    <h2>Changes to This Policy</h2>
+    <p>We may update this Privacy Policy periodically to reflect changes in our practices, technology, or legal requirements. We will notify you of material changes via email or prominent in-app notice at least 7 days before they take effect. Your continued use of Lndry after changes are posted constitutes your acceptance of the revised policy.</p>
+  </div>
+  <div class="legal-divider"></div>
+
+  <!-- 10 -->
+  <div class="legal-section r" id="pp-10">
+    <div class="legal-section-num">Section 10</div>
+    <h2>Contact Us</h2>
+    <p>For privacy-related questions, requests, or complaints, reach out to our Data Protection Officer:</p>
+    <div class="legal-contact-card">
+      <p><strong style="color:var(--text90)">Lndry Technologies Pvt. Ltd.</strong></p>
+      <p>Data Protection Officer</p>
+      <p>Email: <a href="/cdn-cgi/l/email-protection#5c2c2e352a3d3f251c3032382e25723532"><span class="__cf_email__" data-cfemail="7202001b0413110b321e1c16000b5c1b1c">[email&#160;protected]</span></a></p>
+      <p>General Enquiries: <a href="/cdn-cgi/l/email-protection#553d3039393a15393b31272c7b3c3b"><span class="__cf_email__" data-cfemail="b1d9d4dddddef1dddfd5c3c89fd8df">[email&#160;protected]</span></a></p>
+      <p style="margin-top:12px;color:var(--text30);font-size:13px">Registered in India · CIN: [Pending] · GST: [Pending]</p>
+    </div>
+    <div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap">
+      <a href="/terms" class="btn-ghost">Terms &amp; Conditions →</a>
+      <a href="/" class="btn-ghost">← Back to Home</a>
+    </div>
+  </div>
+
+</div><!-- /legal-body -->
+</div><!-- /page-wrap -->
+
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="/" class="footer-brand-logo">
+          <div class="footer-icon">Ln</div>
+          <div class="footer-wordmark">Ln<span class="fd">d</span>ry</div>
+        </a>
+        <p class="footer-tagline">India's urban garment-care infrastructure platform. Building the wardrobe-care operating system for modern India.</p>
+        <div class="footer-socials">
+          <a href="#" class="soc-btn">in</a>
+          <a href="#" class="soc-btn">𝕏</a>
+          <a href="#" class="soc-btn">▶</a>
+          <a href="#" class="soc-btn">◉</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/about#story">Our Story</a></li>
+          <li><a href="/about#team">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="/#services">Wash &amp; Fold</a></li>
+          <li><a href="/#services">Dry Cleaning</a></li>
+          <li><a href="/#services">Shoe Care</a></li>
+          <li><a href="/#services">Bag Care</a></li>
+          <li><a href="/#services">Tailoring</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Partners</div>
+        <ul class="footer-links">
+          <li><a href="#">Become a Partner</a></li>
+          <li><a href="#">Partner Dashboard</a></li>
+          <li><a href="#">Training Program</a></li>
+          <li><a href="#">Partner Community</a></li>
+          <li><a href="#">Partner FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms &amp; Conditions</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Lndry Technologies Pvt. Ltd. · All rights reserved · Made with ♥ in India · <a href="/privacy" class="footer-link">Privacy</a> · <a href="/terms" class="footer-link">Terms</a></div>
+      <div class="footer-badges">
+        <div class="footer-badge-item"><i>🔒</i> Secure Payments</div>
+        <div class="footer-badge-item"><i>🌿</i> Eco-Friendly</div>
+        <div class="footer-badge-item"><i>✓</i> ISO Certified</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<div class="toast" id="toast"><div class="toast-icon">✓</div><div id="toastMsg"></div></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>30)});
+function toggleNav(){document.getElementById('mobileNav').classList.toggle('open')}
+function closeMob(){document.getElementById('mobileNav').classList.remove('open')}
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const siblings=[...e.target.parentNode.children].filter(c=>c.classList.contains('r'));
+      const idx=siblings.indexOf(e.target);
+      setTimeout(()=>e.target.classList.add('visible'),idx*90);
+      ro.unobserve(e.target);
+    }
+  });
+},{threshold:0.08});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+function openModal(t){}
+function submit(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),4000);
+}
+function toggleTheme(){
+  const isLight=document.documentElement.classList.toggle('light');
+  localStorage.setItem('lndry-theme',isLight?'light':'dark');
+}
+</script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"8abda370a42546c88b373326c07da180","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

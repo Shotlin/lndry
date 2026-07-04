@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="300" viewBox="0 0 520 300">
+  <defs>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#433791" flood-opacity=".14"/>
+    </filter>
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6C63E8"/><stop offset="1" stop-color="#5046C8"/>
+    </linearGradient>
+  </defs>
+  
+  <g filter="url(#softShadow)">
+      <rect x="54" y="46" width="412" height="208" rx="34" fill="#FFFFFF" stroke="#E7E8F0"/>
+      <circle cx="142" cy="150" r="54" fill="#DDF7F3" stroke="#0FB5A6" stroke-width="4"/>
+      <path d="M119 151 l17 18 l32 -42" fill="none" stroke="#0FB5A6" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="220" y="130" text-anchor="start" font-family="Sora, Inter, Arial, sans-serif" font-size="31" font-weight="820" fill="#080F14">Verified partner</text>
+      <text x="220" y="172" text-anchor="start" font-family="Sora, Inter, Arial, sans-serif" font-size="19" font-weight="650" fill="#495467">Eligible for this address</text>
+      <rect x="220" y="194" width="146" height="40" rx="20" fill="#DDF7F3" stroke="#DDF7F3"/>
+  <text x="293" y="219" text-anchor="middle" font-family="Sora, Inter, Arial, sans-serif" font-size="15" font-weight="700" fill="#0FB5A6">Available</text>
+    </g>
+  </svg>
