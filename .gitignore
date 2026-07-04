@@ -24,17 +24,20 @@ yarn-error.log*
 .DS_Store
 .vscode/
 
+# Local agent/editor runtime folders
+.agents/
+.claude/
+.impeccable/
+.kiro/
+
 # Nested Git metadata should not be committed into this repo
 */.git/
 
 # Temporary/reference clone created during research
 LNDRY_SUPPORTING_FILES/
-
-# Local Codex/Claude skill installs inside the website project
-lndry_website/.agents/
-lndry_website/.claude/
+lndry_website/
 
 # Local generated source kits duplicated by public/brand assets
-lndry_website/LNDRY-WEBSITE-FINISHING-KIT/
-lndry_website/website-story/
-lndry_website/ChatGPT Image*.png
+LNDRY-WEBSITE-FINISHING-KIT/
+website-story/
+ChatGPT Image*.png

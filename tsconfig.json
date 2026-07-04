@@ -37,6 +37,14 @@
   ],
   "exclude": [
     "node_modules",
-    "_brand-assets"
+    "_brand-assets",
+    "LNDRY_SUPPORTING_FILES",
+    "lndry_website",
+    ".agents",
+    ".claude",
+    ".impeccable",
+    ".kiro",
+    "website-story",
+    "LNDRY-WEBSITE-FINISHING-KIT"
   ]
 }
