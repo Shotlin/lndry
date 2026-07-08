@@ -55,6 +55,20 @@ export const privacySections: LegalSection[] = [
     ],
   },
   {
+    title: "Children and minors",
+    body: [
+      "LNDRY services are intended for adults or users acting with appropriate consent and supervision. If a parent or guardian believes a minor has shared personal information without consent, they can contact the privacy team for review.",
+    ],
+  },
+  {
+    title: "User rights and grievance requests",
+    bullets: [
+      "Users can request access, correction, deletion, withdrawal of consent, or grievance support where applicable under Indian law.",
+      "LNDRY may need to verify the requester before acting on privacy or account-related requests.",
+      "Some records may be retained where required for tax, accounting, fraud prevention, dispute handling, or legal compliance.",
+    ],
+  },
+  {
     title: "Contact",
     body: [
       `Privacy requests can be sent to ${company.privacyEmail}. General enquiries can be sent to ${company.email}.`,
@@ -121,6 +135,26 @@ export const termsSections: LegalSection[] = [
       "Harassing customers, partners, delivery support, or LNDRY staff.",
       "Submitting hazardous, illegal, contaminated, or undisclosed items.",
       "Scraping, reverse engineering, or disrupting the platform.",
+    ],
+  },
+  {
+    title: "Communications and support",
+    bullets: [
+      "Users may receive booking confirmations, status messages, receipts, support replies, and important service notices.",
+      "Promotional communication should follow user consent and applicable communication rules.",
+      "Support outcomes depend on order evidence, partner notes, garment condition, care labels, and the applicable policy.",
+    ],
+  },
+  {
+    title: "Intellectual property",
+    body: [
+      "The LNDRY name, logo, website design, copy, visual assets, and platform materials belong to LNDRY or its licensors. Users and partners may not copy or reuse them without permission.",
+    ],
+  },
+  {
+    title: "Changes to the platform and terms",
+    body: [
+      "LNDRY may update services, coverage, pricing, policies, or these Terms as the marketplace develops. Material updates should be reflected on the website or communicated through appropriate channels.",
     ],
   },
   {

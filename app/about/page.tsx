@@ -5,7 +5,7 @@ import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Button } from "@/components/ui/Button";
 import { Pill } from "@/components/ui/Pill";
 import { Reveal } from "@/components/ui/Reveal";
-import { company } from "@/lib/data/site";
+import { company, founder } from "@/lib/data/site";
 
 const title = "About Us | LNDRY";
 const description =
@@ -136,25 +136,52 @@ export default function AboutPage() {
       <section className="bg-white py-20 md:py-24">
         <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           <Reveal>
-            <div className="rounded-xl border border-hairline bg-surface-cool p-6">
-              <Image
-                src="/brand/website-launch/components/founder-info-placeholder.svg"
-                alt="LNDRY founder information placeholder"
-                width={1200}
-                height={640}
-                className="h-auto w-full rounded-lg"
-              />
+            <div className="relative overflow-hidden rounded-xl bg-ink p-6 text-white shadow-elevated md:p-8">
+              <div className="absolute -right-12 -top-12 h-44 w-44 rounded-full bg-violet/35 blur-3xl" />
+              <div className="absolute -bottom-16 left-8 h-36 w-36 rounded-full bg-teal/25 blur-3xl" />
+              <div className="relative">
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white font-display text-2xl font-bold text-violet-deep">
+                  AK
+                </div>
+                <p className="mt-8 font-body text-label font-semibold uppercase tracking-[0.14em] text-teal">
+                  Founder profile
+                </p>
+                <h3 className="mt-3 font-display text-3xl font-bold tracking-tight text-white">
+                  {founder.name}
+                </h3>
+                <p className="mt-2 font-body text-base font-semibold text-white/75">{founder.role}</p>
+                <div className="mt-6 grid gap-3">
+                  <div className="rounded-lg border border-white/10 bg-white/[0.06] p-4">
+                    <p className="font-body text-xs font-semibold uppercase tracking-[0.12em] text-white/45">
+                      Education
+                    </p>
+                    <p className="mt-1 font-display text-xl font-semibold text-white">{founder.education}</p>
+                  </div>
+                  <div className="rounded-lg border border-white/10 bg-white/[0.06] p-4">
+                    <p className="font-body text-xs font-semibold uppercase tracking-[0.12em] text-white/45">
+                      Operating background
+                    </p>
+                    <p className="mt-1 font-body text-sm leading-relaxed text-white/72">{founder.experience}</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
             <SectionEyebrow>Founder information</SectionEyebrow>
-            <h2 className="mt-3 font-display text-headline text-ink">A human founder story belongs here.</h2>
-            <p className="mt-4 max-w-xl font-body text-base leading-relaxed text-ink-soft">
-              The live LNDRY reference includes a founder narrative. Before launch, confirm the
-              final founder name, photo, role, and biography with the client, then replace this
-              placeholder with approved content. Do not publish unverified education, metric, or
-              career claims.
-            </p>
+            <h2 className="mt-3 font-display text-headline text-ink">
+              Founder-led, operations-first garment care.
+            </h2>
+            <div className="mt-5 flex max-w-xl flex-col gap-4 font-body text-base leading-relaxed text-ink-soft">
+              {founder.body.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Pill tone="violet">{founder.education}</Pill>
+              <Pill tone="teal">Marketplace operations</Pill>
+              <Pill tone="neutral">Urban logistics</Pill>
+            </div>
           </Reveal>
         </Container>
       </section>

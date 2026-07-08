@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   },
   description,
   icons: {
-    icon: "/brand/deployment/favicon-32.png",
-    apple: "/brand/deployment/ios-app-icon-1024.png",
+    icon: "/brand/logos/lndry-final-logo.png",
+    apple: "/brand/logos/lndry-final-logo.png",
   },
   openGraph: {
     title,

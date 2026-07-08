@@ -7,7 +7,9 @@ import { Button } from "@/components/ui/Button";
 import { PhoneFrame } from "@/components/ui/PhoneFrame";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { AudienceNav } from "@/components/partners/AudienceNav";
-import { partnerBenefits, partnerFormFields } from "@/lib/data/site";
+import { PartnerLeadForm } from "@/components/partners/PartnerLeadForm";
+import { PartnerServiceExplainer } from "@/components/partners/PartnerServiceExplainer";
+import { partnerBenefits } from "@/lib/data/site";
 
 const title = "Partner With Us | LNDRY";
 const description =
@@ -98,8 +100,8 @@ export default function PartnersPage() {
             <SectionEyebrow>Partner lead form</SectionEyebrow>
             <h2 className="mt-3 font-display text-headline text-ink">Become a LNDRY Partner</h2>
             <p className="mt-4 max-w-lg font-body text-base leading-relaxed text-ink-soft">
-              These are the exact fields requested in the client feedback. Wire this form to your
-              CRM, email workflow, or backend before launch.
+              Choose the service category first so the LNDRY team can understand what you can
+              fulfil, where you can operate, and how quickly orders can be assigned.
             </p>
             <Image
               src="/brand/website-launch/components/partner-benefit-grid.svg"
@@ -109,20 +111,13 @@ export default function PartnersPage() {
               className="mt-8 h-auto w-full rounded-lg shadow-soft"
             />
           </div>
-          <form className="grid gap-3 rounded-xl border border-hairline bg-white p-5 shadow-elevated sm:grid-cols-2">
-            {partnerFormFields.map((field) => (
-              <label key={field} className="flex flex-col gap-2 font-body text-sm font-semibold text-ink-soft">
-                {field}
-                <input
-                  className="h-12 rounded-sm border border-hairline bg-surface-cool px-4 font-body text-sm text-ink outline-none focus:border-violet"
-                  placeholder={field}
-                />
-              </label>
-            ))}
-            <Button type="button" className="mt-2 sm:col-span-2">
-              Become a LNDRY Partner
-            </Button>
-          </form>
+          <PartnerLeadForm />
+        </Container>
+      </section>
+
+      <section className="bg-bg-app pb-20 md:pb-24">
+        <Container>
+          <PartnerServiceExplainer />
         </Container>
       </section>
 

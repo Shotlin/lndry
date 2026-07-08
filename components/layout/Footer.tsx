@@ -24,11 +24,11 @@ export function Footer() {
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-sm">
             <Image
-              src="/brand/logos/wordmark-horizontal.svg"
+              src="/brand/logos/lndry-final-logo.png"
               alt="LNDRY"
-              width={116}
-              height={35}
-              className="brightness-0 invert"
+              width={88}
+              height={88}
+              className="h-16 w-16 rounded-full object-contain"
             />
             <p className="mt-5 font-body text-sm leading-relaxed text-white/70">
               A laundry marketplace that recommends an eligible nearby partner, supports clear

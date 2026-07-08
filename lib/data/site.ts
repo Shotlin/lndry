@@ -51,16 +51,82 @@ export const partnerBenefits = [
   "Capacity-led growth",
 ];
 
-export const partnerFormFields = [
-  "Laundry Name",
-  "Owner Name",
-  "Mobile Number",
-  "Email",
-  "Area",
-  "Existing Monthly Orders",
-  "Pickup & Delivery Available",
-  "Current Capacity Per Day",
+export const partnerServiceCategories = [
+  {
+    value: "wash-fold",
+    label: "Wash & Fold",
+    description:
+      "Everyday laundry by weight for regular clothes, towels, bedsheets, and daily household loads.",
+  },
+  {
+    value: "wash-iron",
+    label: "Wash & Iron",
+    description:
+      "Clean and pressed daily wear for customers who want ready-to-wear shirts, trousers, kurtas, and uniforms.",
+  },
+  {
+    value: "dry-cleaning",
+    label: "Dry Cleaning",
+    description:
+      "Care for suits, sarees, jackets, premium dresses, and garments that need solvent or delicate handling.",
+  },
+  {
+    value: "steam-press",
+    label: "Steam Press",
+    description:
+      "Press-only service for customers who need crisp finishing without a full wash cycle.",
+  },
+  {
+    value: "shoe-cleaning",
+    label: "Shoe Cleaning",
+    description:
+      "Sneaker, formal shoe, and casual footwear cleaning with material-sensitive care notes.",
+  },
+  {
+    value: "bag-care",
+    label: "Bag Care",
+    description:
+      "Cleaning and care for backpacks, handbags, laptop bags, and travel bags where available.",
+  },
+  {
+    value: "tailoring-repairs",
+    label: "Tailoring & Repairs",
+    description:
+      "Alterations, button replacement, minor stitching, hemming, and repair requests routed to eligible partners.",
+  },
+  {
+    value: "home-linen",
+    label: "Home Linen & Bulky Items",
+    description:
+      "Blankets, curtains, carpets, quilts, and other bulky items that need clear capacity confirmation.",
+  },
 ];
+
+export const partnerCapacityOptions = [
+  "Up to 25 orders/day",
+  "25 to 50 orders/day",
+  "50 to 100 orders/day",
+  "100+ orders/day",
+];
+
+export const partnerMonthlyOrderOptions = [
+  "Under 300 orders/month",
+  "300 to 750 orders/month",
+  "750 to 1,500 orders/month",
+  "1,500+ orders/month",
+];
+
+export const founder = {
+  name: "Anmol Kumar",
+  role: "CEO & Founder",
+  education: "IIT Delhi",
+  experience:
+    "7+ years across product, business building, consumer technology, marketplace operations, and urban logistics.",
+  body: [
+    "Anmol is shaping LNDRY as a practical garment-care marketplace for urban India, one that reduces customer effort while giving local laundry businesses a stronger digital operating layer.",
+    "The founder story should stay factual on the website: education, operating background, and the mission to make professional garment care easier to access, compare, and trust.",
+  ],
+};
 
 export const faqs = [
   {
