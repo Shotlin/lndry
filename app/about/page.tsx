@@ -7,9 +7,9 @@ import { Pill } from "@/components/ui/Pill";
 import { Reveal } from "@/components/ui/Reveal";
 import { company, founder } from "@/lib/data/site";
 
-const title = "About Us | LNDRY";
+const title = "About LNDRY | Laundry Marketplace for Urban India";
 const description =
-  "LNDRY is building a trust-first garment-care marketplace from Pune, connecting customers with eligible local laundry partners.";
+  "Learn about LNDRY, a Pune-based laundry and dry cleaning marketplace connecting customers with eligible local garment-care partners.";
 
 export const metadata: Metadata = {
   title,
@@ -88,8 +88,8 @@ export default function AboutPage() {
             <SectionEyebrow>Company details</SectionEyebrow>
             <h2 className="mt-3 font-display text-headline text-ink">Built as a real company, not a landing-page idea.</h2>
             <p className="mt-4 max-w-lg font-body text-base leading-relaxed text-ink-soft">
-              These details come from the client feedback document and should remain visible for
-              customer trust, business credibility, and payment gateway review.
+              LNDRY publishes company details clearly so customers, partners, payment providers,
+              and support teams can verify the business behind the marketplace.
             </p>
           </Reveal>
 

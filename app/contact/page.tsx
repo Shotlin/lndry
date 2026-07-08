@@ -7,12 +7,12 @@ import { Reveal } from "@/components/ui/Reveal";
 import { company } from "@/lib/data/site";
 
 export const metadata: Metadata = {
-  title: "Contact Us | LNDRY",
+  title: "Contact LNDRY | Laundry Support & Partner Enquiries in Pune",
   description:
-    "Contact LNDRY for customer support, partner enquiries, privacy requests, and registered office details.",
+    "Contact LNDRY for laundry service support, dry cleaning enquiries, partner onboarding, privacy requests, and registered office details in Pune.",
   openGraph: {
-    title: "Contact Us | LNDRY",
-    description: "Customer support, partner enquiries, privacy requests, and registered office details.",
+    title: "Contact LNDRY",
+    description: "Customer support, partner enquiries, privacy requests, and registered office details in Pune.",
     images: ["/brand/website-launch/og/contact-og-1200x630.png"],
   },
 };
@@ -35,11 +35,11 @@ export default function ContactPage() {
           <Reveal>
             <SectionEyebrow>Contact Us</SectionEyebrow>
             <h1 className="mt-3 max-w-2xl font-display text-hero text-ink">
-              Clear support paths for customers and partners.
+              Contact LNDRY for customer support and partner enquiries.
             </h1>
             <p className="mt-6 max-w-xl font-body text-body-lg text-ink-soft">
-              The client feedback marks this page as mandatory. Keep support information visible,
-              business details complete, and WhatsApp access ready before launch.
+              Get help with laundry pickup, dry cleaning, order status, privacy requests, legal
+              enquiries, and partner onboarding for the LNDRY Pune launch.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href={`mailto:${company.supportEmail}`}>Email support</Button>
@@ -68,9 +68,10 @@ export default function ContactPage() {
         <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <Reveal>
             <SectionEyebrow>Contact details</SectionEyebrow>
-            <h2 className="mt-3 font-display text-headline text-ink">Everything needed for launch credibility.</h2>
+            <h2 className="mt-3 font-display text-headline text-ink">Support details in one place.</h2>
             <p className="mt-4 font-body text-base leading-relaxed text-ink-soft">
-              Replace the phone and WhatsApp placeholders with official numbers before publishing.
+              Email support is open for early enquiries. Phone and WhatsApp support will be added
+              as operational coverage expands.
             </p>
           </Reveal>
 

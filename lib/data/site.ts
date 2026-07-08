@@ -1,6 +1,7 @@
 export const company = {
   legalName: "LNDRY CARE TECHNOLOGIES PRIVATE LIMITED",
   brandName: "LNDRY",
+  tagline: "Drop your dirty work",
   cin: "U96010PN2026PTC256972",
   registeredOffice:
     "301, FLOOR-3/SHAFT-1, TOWER-H, BRAMHA SKY CITY, Dhanori, Pune - 411015",
@@ -8,8 +9,8 @@ export const company = {
   supportEmail: "support@lndry.in",
   privacyEmail: "privacy@lndry.in",
   legalEmail: "legal@lndry.in",
-  phonePlaceholder: "Add official phone number",
-  whatsappPlaceholder: "Add official WhatsApp number",
+  phonePlaceholder: "Phone support coming soon",
+  whatsappPlaceholder: "WhatsApp support coming soon",
   businessHours: "Monday to Saturday, 10:00 AM to 7:00 PM",
 };
 

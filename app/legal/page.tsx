@@ -7,8 +7,9 @@ import { Reveal } from "@/components/ui/Reveal";
 import { legalPolicies } from "@/lib/data/site";
 
 export const metadata: Metadata = {
-  title: "Legal | LNDRY",
-  description: "LNDRY legal pages for privacy, terms, refund and cancellation, and delivery policy.",
+  title: "Legal Policies | LNDRY Privacy, Terms, Refund & Delivery",
+  description:
+    "Read LNDRY legal policies for privacy, terms and conditions, refund and cancellation, delivery, support, and marketplace use.",
 };
 
 export default function LegalHubPage() {
@@ -17,10 +18,10 @@ export default function LegalHubPage() {
       <Container className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <Reveal>
           <SectionEyebrow>Legal hub</SectionEyebrow>
-          <h1 className="mt-3 font-display text-hero text-ink">Payment gateway readiness starts with clear policies.</h1>
+          <h1 className="mt-3 font-display text-hero text-ink">Clear policies for a trusted laundry marketplace.</h1>
           <p className="mt-6 max-w-xl font-body text-body-lg text-ink-soft">
-            These pages cover the minimum policy set requested in the client feedback document.
-            They should be reviewed by legal counsel before payment gateway submission.
+            Review how LNDRY handles privacy, terms, refunds, cancellations, delivery expectations,
+            support requests, and marketplace responsibilities for customers and partners.
           </p>
         </Reveal>
         <Reveal delay={0.1}>

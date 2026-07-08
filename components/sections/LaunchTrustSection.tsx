@@ -4,7 +4,7 @@ import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Pill } from "@/components/ui/Pill";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
-import { launchAreas, trustSignals } from "@/lib/data/site";
+import { company, launchAreas, trustSignals } from "@/lib/data/site";
 
 export function LaunchTrustSection() {
   return (
@@ -14,15 +14,20 @@ export function LaunchTrustSection() {
           <Reveal>
             <SectionEyebrow>Launching soon in Pune</SectionEyebrow>
             <h2 className="mt-3 max-w-xl font-display text-headline text-ink">
-              Capture demand before the first public booking
+              Join early access for laundry pickup in Pune
             </h2>
             <p className="mt-4 max-w-lg font-body text-base leading-relaxed text-ink-soft">
-              The client feedback is clear: the website needs to build trust and capture leads.
-              Use this section to collect name, mobile number, and area without making the page
-              feel like a form-first funnel.
+              LNDRY is preparing launch coverage across selected Pune areas. Share your name,
+              mobile number, and neighbourhood so the team can notify you when laundry pickup,
+              dry cleaning, wash and iron, and order tracking become available near you.
             </p>
 
-            <form className="mt-8 grid gap-3 rounded-xl border border-hairline bg-bg-app p-4 shadow-soft sm:grid-cols-[1fr_1fr]">
+            <form
+              action={`mailto:${company.supportEmail}`}
+              method="post"
+              encType="text/plain"
+              className="mt-8 grid gap-3 rounded-xl border border-hairline bg-bg-app p-4 shadow-soft sm:grid-cols-[1fr_1fr]"
+            >
               <label className="sr-only" htmlFor="lead-name">
                 Name
               </label>
@@ -30,6 +35,7 @@ export function LaunchTrustSection() {
                 id="lead-name"
                 name="name"
                 placeholder="Name"
+                required
                 className="h-12 rounded-sm border border-hairline bg-white px-4 font-body text-sm text-ink outline-none focus:border-violet"
               />
               <label className="sr-only" htmlFor="lead-mobile">
@@ -40,6 +46,7 @@ export function LaunchTrustSection() {
                 name="mobile"
                 inputMode="tel"
                 placeholder="Mobile number"
+                required
                 className="h-12 rounded-sm border border-hairline bg-white px-4 font-body text-sm text-ink outline-none focus:border-violet"
               />
               <label className="sr-only" htmlFor="lead-area">
@@ -48,6 +55,7 @@ export function LaunchTrustSection() {
               <select
                 id="lead-area"
                 name="area"
+                required
                 className="h-12 rounded-sm border border-hairline bg-white px-4 font-body text-sm text-ink outline-none focus:border-violet sm:col-span-2"
                 defaultValue=""
               >
@@ -58,7 +66,7 @@ export function LaunchTrustSection() {
                   <option key={area}>{area}</option>
                 ))}
               </select>
-              <Button className="sm:col-span-2" type="button">
+              <Button className="sm:col-span-2" type="submit">
                 Join early access
               </Button>
             </form>

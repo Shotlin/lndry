@@ -11,9 +11,9 @@ import { PartnerLeadForm } from "@/components/partners/PartnerLeadForm";
 import { PartnerServiceExplainer } from "@/components/partners/PartnerServiceExplainer";
 import { partnerBenefits } from "@/lib/data/site";
 
-const title = "Partner With Us | LNDRY";
+const title = "Partner With LNDRY | Laundry Vendor Onboarding in Pune";
 const description =
-  "Why laundry partners should join LNDRY: recurring customers, more orders, digital presence, technology support, and a clear partner lead form.";
+  "Laundry vendors in Pune can join LNDRY for recurring customers, order visibility, digital presence, partner support, and service-category onboarding.";
 
 export const metadata: Metadata = {
   title,
@@ -80,8 +80,9 @@ export default function PartnersPage() {
               More demand, cleaner operations, no separate marketing engine.
             </h2>
             <p className="mt-4 max-w-lg font-body text-base leading-relaxed text-ink-soft">
-              The client feedback called this page critical because LNDRY is a marketplace. This
-              section answers the core partner question directly: why should a laundry business join?
+              LNDRY gives local laundry, dry cleaning, wash and iron, and garment-care partners a
+              clearer way to receive qualified demand while keeping customer handovers and order
+              status easier to manage.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -186,11 +187,11 @@ export default function PartnersPage() {
               <div>
                 <SectionEyebrow>Admin</SectionEyebrow>
                 <h2 className="mt-3 font-display text-headline text-ink">
-                  Admin proof for the client deck
+                  Admin visibility for marketplace operations
                 </h2>
                 <p className="mt-4 max-w-lg font-body text-base leading-relaxed text-ink-soft">
-                  The operations view makes the backend feel designed and credible while staying
-                  visually connected to the consumer site.
+                  Operations teams can review partners, orders, capacity, and marketplace signals
+                  in a visual system that stays connected to the customer and vendor experience.
                 </p>
               </div>
               <BrowserFrame
@@ -206,7 +207,7 @@ export default function PartnersPage() {
       <section className="bg-white py-20 text-center">
         <Container className="flex flex-col items-center">
           <h2 className="max-w-xl font-display text-headline text-ink">
-            Client-facing, investor-facing, and partner-facing
+            Customer-facing, partner-facing, and operations-ready
           </h2>
           <p className="mt-4 max-w-lg font-body text-base text-ink-soft">
             No claims outside the approved workflow, just one credible, connected system.

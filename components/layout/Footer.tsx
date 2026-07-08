@@ -31,8 +31,8 @@ export function Footer() {
               className="h-16 w-16 rounded-full object-contain"
             />
             <p className="mt-5 font-body text-sm leading-relaxed text-white/70">
-              A laundry marketplace that recommends an eligible nearby partner, supports clear
-              pickup handover, and keeps order status visible.
+              {company.tagline}. LNDRY is a Pune laundry and dry cleaning marketplace for pickup,
+              partner recommendation, secure handover, and visible order status.
             </p>
             <p className="mt-4 font-body text-xs leading-relaxed text-white/55">
               {company.legalName}

@@ -8,6 +8,7 @@ const ACTS = [
   { id: "act-recommend", label: "Recommend" },
   { id: "act-journey", label: "Journey" },
   { id: "act-trust", label: "Trust" },
+  { id: "act-apps", label: "Apps" },
   { id: "act-close", label: "Close" },
 ];
 

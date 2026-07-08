@@ -14,6 +14,7 @@ import { Button } from "../ui/Button";
 import { PhoneFrame } from "../ui/PhoneFrame";
 import { Thread } from "../ui/Thread";
 import { HeroThreadOverlay } from "../overlays/HeroThreadOverlay";
+import { company } from "@/lib/data/site";
 
 const AmbientRibbon = dynamic(() => import("../three/AmbientRibbon").then((m) => m.AmbientRibbon), {
   ssr: false,
@@ -90,22 +91,23 @@ export function Hero() {
       <Container className="relative flex flex-col gap-14 pb-24 pt-16 md:pt-24 lg:flex-row lg:items-center lg:gap-10">
         <div className="relative z-10 max-w-xl">
           <div className="hero-eyebrow">
-            <Pill tone="neutral">Multi-vendor garment care</Pill>
+            <Pill tone="violet">{company.tagline}</Pill>
           </div>
 
           <h1 className="hero-headline mt-6 font-display text-hero text-ink">
-            A laundry marketplace that feels handled, not handed off.
+            Laundry and dry cleaning in Pune, handled through one trusted marketplace.
           </h1>
 
           <p className="hero-sub mt-6 font-body text-body-lg text-ink-soft">
-            LNDRY helps customers enter an address, get one eligible recommended partner, book a
-            pickup slot, pay online, and follow order status without calling multiple shops.
+            Book laundry pickup, wash and iron, dry cleaning, and garment-care services from your
+            area. LNDRY recommends an eligible nearby partner and keeps order status visible from
+            pickup to delivery.
           </p>
 
           <div className="hero-actions mt-8 flex flex-wrap items-center gap-4">
-            <Button href="/how-it-works">Book a pickup</Button>
-            <Button href="/marketplace" variant="secondary">
-              See recommendation flow
+            <Button href="/#early-access">Join early access</Button>
+            <Button href="/services" variant="secondary">
+              View laundry services
             </Button>
           </div>
 
