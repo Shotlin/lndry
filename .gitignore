@@ -11,8 +11,8 @@ build/
 */build/
 
 # Local env and generated TypeScript
-.env
-.env*.local
+.env*
+!.env.example
 *.tsbuildinfo
 next-env.d.ts
 */next-env.d.ts
@@ -41,3 +41,6 @@ lndry_website/
 LNDRY-WEBSITE-FINISHING-KIT/
 website-story/
 ChatGPT Image*.png
+
+.vercel
+.env*

@@ -101,8 +101,8 @@ export default function PartnersPage() {
             <SectionEyebrow>Partner lead form</SectionEyebrow>
             <h2 className="mt-3 font-display text-headline text-ink">Become a LNDRY Partner</h2>
             <p className="mt-4 max-w-lg font-body text-base leading-relaxed text-ink-soft">
-              Choose the service category first so the LNDRY team can understand what you can
-              fulfil, where you can operate, and how quickly orders can be assigned.
+              Tell the LNDRY team what your business can fulfil, where you can operate, and the
+              capacity you can support. Your enquiry is reviewed before any onboarding step.
             </p>
             <Image
               src="/brand/website-launch/components/partner-benefit-grid.svg"

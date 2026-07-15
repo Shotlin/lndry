@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { Sora, Inter } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/lib/motion/SmoothScrollProvider";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { FloatingSupportCTA } from "@/components/layout/FloatingSupportCTA";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 import { company, launchAreas, partnerServiceCategories } from "@/lib/data/site";
 
 const sora = Sora({
@@ -151,10 +149,9 @@ export default function RootLayout({
           >
             Skip to main content
           </a>
-          <Header />
+          <SiteChrome position="header" />
           <main id="main-content">{children}</main>
-          <Footer />
-          <FloatingSupportCTA />
+          <SiteChrome position="footer" />
         </SmoothScrollProvider>
       </body>
     </html>
