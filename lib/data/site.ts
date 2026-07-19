@@ -119,13 +119,23 @@ export const partnerMonthlyOrderOptions = [
 
 export const founder = {
   name: "Anmol Kumar",
-  role: "CEO & Founder",
+  role: "Founder & CEO",
   education: "IIT Delhi",
-  experience:
-    "7+ years across product, business building, consumer technology, marketplace operations, and urban logistics.",
+  experience: "7+ Years in Product & Marketplace Technology",
+  location: "Pune, India",
+  descriptor: "Building technology for trusted garment care.",
+  quote:
+    "We aren't trying to become another laundry chain. We're building the technology that helps customers discover trusted garment-care professionals with confidence.",
+  timeline: [
+    "2019 — Graduated from IIT Delhi",
+    "Worked in Product Management",
+    "Built Marketplace Products",
+    "Founded LNDRY",
+    "Launching in Pune",
+  ],
   body: [
-    "Anmol is shaping LNDRY as a practical garment-care marketplace for urban India, one that reduces customer effort while giving local laundry businesses a stronger digital operating layer.",
-    "The founder story should stay factual on the website: education, operating background, and the mission to make professional garment care easier to access, compare, and trust.",
+    "Anmol is building LNDRY as a technology platform for trusted garment care, helping customers discover reliable local professionals while giving capable businesses a stronger digital operating layer.",
+    "The goal is not another laundry chain. It is a credible marketplace where discovery, transparent service information, support, and accountable operations work together.",
   ],
 };
 
@@ -135,8 +145,8 @@ export const faqs = [
     a: "Customers enter their pickup area, choose the service they need, and LNDRY recommends an eligible nearby partner. The customer confirms the booking, handover happens through the defined pickup flow, and the order moves through visible status stages.",
   },
   {
-    q: "Who picks up my clothes?",
-    a: "Pickup is handled through the LNDRY operating flow with assigned delivery support or partner-side handover, depending on the available area and service setup.",
+    q: "Who washes my clothes?",
+    a: "Verified laundry partners that match your service, area, availability, and delivery requirements handle garment care through the LNDRY marketplace flow.",
   },
   {
     q: "How are vendors selected?",
@@ -155,8 +165,12 @@ export const faqs = [
     a: "Customers should contact support quickly with order details and photos. The claim should be reviewed against partner notes, care labels, and the applicable refund or liability policy.",
   },
   {
-    q: "How can I contact support?",
-    a: `Customers can email ${company.supportEmail}. Add the official phone and WhatsApp number before launch so the Contact page and sticky help button are complete.`,
+    q: "How do I pay?",
+    a: "Digital payment options are shown before confirmation. Cash on delivery should only be offered where it is available for the selected service and area.",
+  },
+  {
+    q: "What if something goes wrong?",
+    a: `Our support team will help resolve the issue. Contact ${company.supportEmail} quickly with your order details and relevant photos where applicable.`,
   },
   {
     q: "How do refunds work?",

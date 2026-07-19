@@ -95,28 +95,26 @@ export function Hero() {
           </div>
 
           <h1 className="hero-headline mt-6 font-display text-hero text-ink">
-            Laundry and dry cleaning in Pune, handled through one trusted marketplace.
+            India&apos;s first garment-care marketplace.
           </h1>
 
           <p className="hero-sub mt-6 font-body text-body-lg text-ink-soft">
-            Book laundry pickup, wash and iron, dry cleaning, and garment-care services from your
-            area. LNDRY recommends an eligible nearby partner and keeps order status visible from
-            pickup to delivery.
+            Book verified laundry partners near you with doorstep pickup, live order tracking, and
+            transparent pricing.
           </p>
 
           <div className="hero-actions mt-8 flex flex-wrap items-center gap-4">
-            <Button href="/#early-access">Join early access</Button>
+            <Button href="/#early-access">Book pickup</Button>
             <Button href="/services" variant="secondary">
               View laundry services
             </Button>
           </div>
 
-          <div className="hero-area mt-8 flex max-w-md items-center justify-between gap-4 rounded-lg border border-hairline bg-white p-5 shadow-soft">
-            <div>
-              <p className="font-body text-xs font-semibold text-muted">Start with your area</p>
-              <p className="mt-1 font-display text-lg font-semibold text-ink">Pune launch areas</p>
+          <div className="hero-area mt-8 max-w-xl rounded-lg border border-hairline bg-white p-5 shadow-soft">
+            <div className="flex flex-wrap gap-x-4 gap-y-2 font-body text-sm font-semibold text-ink-soft">
+              <span>✓ Verified Laundry Partners</span><span>✓ Doorstep Pickup &amp; Delivery</span><span>✓ Live Order Tracking</span>
             </div>
-            <Pill tone="teal">Recommend partner</Pill>
+            <p className="mt-4 font-body text-sm text-muted">Serving: Baner · Wakad · Hinjewadi · Kharadi · Viman Nagar</p>
           </div>
         </div>
 

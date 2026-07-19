@@ -33,7 +33,7 @@ const jsonLd = {
       legalName: company.legalName,
       slogan: company.tagline,
       url: siteUrl,
-      logo: `${siteUrl}/brand/logos/lndry-final-logo.png`,
+      logo: `${siteUrl}/brand/logos/lndry-primary-app-icon.png`,
       email: company.email,
       address: {
         "@type": "PostalAddress",
@@ -111,8 +111,8 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: "/brand/logos/lndry-final-logo.png",
-    apple: "/brand/logos/lndry-final-logo.png",
+    icon: "/brand/logos/lndry-primary-app-icon.png",
+    apple: "/brand/logos/lndry-primary-app-icon.png",
   },
   openGraph: {
     title,

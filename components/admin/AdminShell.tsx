@@ -10,11 +10,11 @@ export function AdminShell({ children, email }: { children: ReactNode; email: st
         <div className="mx-auto flex min-h-18 max-w-[1440px] items-center justify-between gap-4 px-5 py-3 sm:px-8">
           <div className="flex min-w-0 items-center gap-3">
             <Image
-              src="/brand/logos/lndry-final-logo.png"
+              src="/brand/logos/lndry-primary-app-icon.png"
               alt="LNDRY"
               width={44}
               height={44}
-              className="size-10 rounded-sm object-cover"
+              className="size-10 object-contain"
               priority
             />
             <div className="min-w-0">

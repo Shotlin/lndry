@@ -58,6 +58,7 @@ function getResponseFieldErrors(value: unknown): FieldErrors {
 
 export function PartnerLeadForm() {
   const [form, setForm] = useState<PartnerFormState>(initialState);
+  const [step, setStep] = useState<"initial" | "details">("initial");
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [formError, setFormError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -112,6 +113,31 @@ export function PartnerLeadForm() {
     });
   }
 
+  function continueToDetails() {
+    const initialFields = [
+      { field: "businessName" as const, message: "Enter your business name." },
+      { field: "fullName" as const, message: "Enter the owner's name." },
+      { field: "phone" as const, message: "Enter a mobile number." },
+      { field: "city" as const, message: "Enter your city." },
+    ];
+    const errors: FieldErrors = {};
+
+    initialFields.forEach(({ field, message }) => {
+      if (!form[field].trim()) errors[field] = [message];
+    });
+
+    if (Object.keys(errors).length) {
+      setFieldErrors(errors);
+      setFormError("Please complete the four details below to continue.");
+      focusFirstError(errors);
+      return;
+    }
+
+    setFieldErrors({});
+    setFormError("");
+    setStep("details");
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (isSubmitting) return;
@@ -155,6 +181,7 @@ export function PartnerLeadForm() {
           ? payload.message
           : "Thanks. The LNDRY partner team has received your enquiry.";
       setForm(initialState);
+      setStep("initial");
       setSuccessMessage(message);
     } catch {
       setFormError("We could not submit your enquiry right now. Please check your connection and try again.");
@@ -189,8 +216,22 @@ export function PartnerLeadForm() {
         />
       </div>
 
+      <div className="sm:col-span-2">
+        <p className="font-body text-xs font-semibold uppercase tracking-[0.14em] text-violet">
+          Step {step === "initial" ? "1" : "2"} of 2
+        </p>
+        <h3 className="mt-1 font-display text-xl font-semibold text-ink">
+          {step === "initial" ? "Start your partner application" : "Tell us about your business"}
+        </h3>
+        {step === "initial" ? (
+          <p className="mt-1 font-body text-sm leading-relaxed text-ink-soft">
+            Begin with four essentials. You can add service and capacity information in the next step.
+          </p>
+        ) : null}
+      </div>
+
       <label className={labelClass}>
-        Laundry or business name
+        Business name
         <input
           required
           name="businessName"
@@ -206,7 +247,7 @@ export function PartnerLeadForm() {
       </label>
 
       <label className={labelClass}>
-        Contact person
+        Owner name
         <input
           required
           name="fullName"
@@ -222,7 +263,7 @@ export function PartnerLeadForm() {
       </label>
 
       <label className={labelClass}>
-        Mobile number
+        Mobile
         <input
           required
           name="phone"
@@ -238,6 +279,58 @@ export function PartnerLeadForm() {
         />
         {errorFor("phone") ? <span id="phone-error" className="text-xs font-medium text-error">{errorFor("phone")}</span> : null}
       </label>
+
+      {step === "initial" ? (
+        <label className={labelClass}>
+          City
+          <input
+            required
+            name="city"
+            autoComplete="address-level2"
+            aria-invalid={Boolean(errorFor("city"))}
+            aria-describedby={errorFor("city") ? "city-error" : undefined}
+            className={inputClass}
+            placeholder="Pune"
+            value={form.city}
+            onChange={(event) => updateField("city", event.target.value)}
+          />
+          {errorFor("city") ? <span id="city-error" className="text-xs font-medium text-error">{errorFor("city")}</span> : null}
+        </label>
+      ) : null}
+
+      {step === "initial" ? (
+        <div className="rounded-lg border border-hairline bg-bg-app p-4 sm:col-span-2">
+          <Button type="button" onClick={continueToDetails} className="w-full">
+            Continue to remaining details
+          </Button>
+          <p className="mt-3 font-body text-xs leading-relaxed text-muted">
+            Phone OTP verification can be enabled here once LNDRY connects an SMS provider. Until then, this two-step form securely collects the complete enquiry before review.
+          </p>
+        </div>
+      ) : null}
+
+      {step === "initial" && formError ? (
+        <p role="alert" className="rounded-sm bg-red-50 px-4 py-3 font-body text-sm font-semibold text-error sm:col-span-2">
+          {formError}
+        </p>
+      ) : null}
+      {step === "initial" && successMessage ? (
+        <p role="status" aria-live="polite" className="rounded-sm bg-teal-tint px-4 py-3 font-body text-sm font-semibold text-ink sm:col-span-2">
+          {successMessage}
+        </p>
+      ) : null}
+
+      <div className={step === "details" ? "contents" : "hidden"}>
+        <div className="flex items-center justify-between gap-4 sm:col-span-2">
+          <p className="font-body text-sm font-medium text-ink-soft">Step 1 saved — now add your service and capacity details.</p>
+          <button
+            type="button"
+            onClick={() => setStep("initial")}
+            className="font-body text-sm font-semibold text-violet underline underline-offset-4"
+          >
+            Edit basics
+          </button>
+        </div>
 
       <label className={labelClass}>
         Email address
@@ -462,6 +555,7 @@ export function PartnerLeadForm() {
       <Button type="submit" disabled={isSubmitting} className="mt-2 w-full disabled:cursor-not-allowed disabled:opacity-60 sm:col-span-2">
         {isSubmitting ? "Sending enquiry…" : "Send partner enquiry"}
       </Button>
+      </div>
     </form>
   );
 }

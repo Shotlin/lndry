@@ -9,7 +9,6 @@ import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { AudienceNav } from "@/components/partners/AudienceNav";
 import { PartnerLeadForm } from "@/components/partners/PartnerLeadForm";
 import { PartnerServiceExplainer } from "@/components/partners/PartnerServiceExplainer";
-import { partnerBenefits } from "@/lib/data/site";
 
 const title = "Partner With LNDRY | Laundry Vendor Onboarding in Pune";
 const description =
@@ -33,8 +32,14 @@ export const metadata: Metadata = {
   },
 };
 
-const ONBOARDING_STEPS = ["Application review", "Service editor", "Order assignment", "Processing audit"];
+const ONBOARDING_STEPS = ["Submit Application", "Business Verification", "Quality Review", "Agreement", "Training", "Go Live"];
 const OTP_STEPS = ["Pickup OTP", "Partner return", "Delivery OTP", "Completed"];
+const WHY_JOIN_CARDS = [
+  { title: "More Customers", body: "Receive online booking requests." },
+  { title: "Technology", body: "Manage orders digitally." },
+  { title: "Flexible Capacity", body: "Accept only the orders you can handle." },
+  { title: "Faster Growth", body: "Focus on garment care while LNDRY brings demand." },
+];
 
 export default function PartnersPage() {
   return (
@@ -47,8 +52,8 @@ export default function PartnersPage() {
               Grow your laundry business with LNDRY
             </h1>
             <p className="mt-5 max-w-xl font-body text-body-lg text-white/80">
-              Join a marketplace built to bring recurring customers, digital presence, order
-              visibility, and technology support to local garment-care businesses.
+              Receive online orders, reach more customers across Pune, and manage bookings through
+              one technology platform.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="#audience-vendors" variant="secondary" className="bg-white">
@@ -75,24 +80,31 @@ export default function PartnersPage() {
       <section className="bg-white py-20 md:py-24">
         <Container className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
-            <SectionEyebrow>Why partners join</SectionEyebrow>
+            <SectionEyebrow>Why Join LNDRY?</SectionEyebrow>
             <h2 className="mt-3 font-display text-headline text-ink">
-              More demand, cleaner operations, no separate marketing engine.
+              More Customers. Technology. Flexible Capacity. Faster Growth.
             </h2>
             <p className="mt-4 max-w-lg font-body text-base leading-relaxed text-ink-soft">
-              LNDRY gives local laundry, dry cleaning, wash and iron, and garment-care partners a
-              clearer way to receive qualified demand while keeping customer handovers and order
-              status easier to manage.
+              Receive online booking requests, manage orders digitally, accept only the orders you
+              can handle, and focus on garment care while LNDRY brings demand.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            {partnerBenefits.map((benefit, index) => (
-              <div key={benefit} className="rounded-lg border border-hairline bg-bg-app p-5">
-                <Pill tone={index < 2 ? "teal" : "neutral"}>{benefit}</Pill>
+            {WHY_JOIN_CARDS.map((benefit, index) => (
+              <div key={benefit.title} className="rounded-lg border border-hairline bg-bg-app p-5 shadow-soft">
+                <p className={`font-body text-xs font-bold uppercase tracking-[0.14em] ${index < 2 ? "text-teal" : "text-violet"}`}>
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-3 font-display text-xl font-semibold text-ink">{benefit.title}</h3>
+                <p className="mt-2 font-body text-sm leading-relaxed text-ink-soft">{benefit.body}</p>
               </div>
             ))}
           </div>
         </Container>
+      </section>
+
+      <section className="bg-white pb-20 md:pb-24">
+        <Container><div className="rounded-xl bg-ink p-8 text-white md:p-10"><SectionEyebrow tone="onDark">Partnership process</SectionEyebrow><h2 className="mt-3 font-display text-3xl font-semibold">What happens after I submit?</h2><div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-6">{ONBOARDING_STEPS.map((step, index) => <div key={step} className="rounded-lg border border-white/15 bg-white/[0.06] p-4"><p className="font-display text-lg text-teal">{index + 1}</p><p className="mt-2 font-body text-sm text-white/80">{step}</p></div>)}</div></div></Container>
       </section>
 
       <section id="partner-lead-form" className="bg-bg-app py-20 md:py-24">
@@ -101,8 +113,8 @@ export default function PartnersPage() {
             <SectionEyebrow>Partner lead form</SectionEyebrow>
             <h2 className="mt-3 font-display text-headline text-ink">Become a LNDRY Partner</h2>
             <p className="mt-4 max-w-lg font-body text-base leading-relaxed text-ink-soft">
-              Tell the LNDRY team what your business can fulfil, where you can operate, and the
-              capacity you can support. Your enquiry is reviewed before any onboarding step.
+              Start with Business Name, Owner Name, Mobile, and City. After your initial contact is
+              verified, LNDRY can collect the remaining business and service details.
             </p>
             <Image
               src="/brand/website-launch/components/partner-benefit-grid.svg"

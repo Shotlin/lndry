@@ -31,17 +31,18 @@ export const metadata: Metadata = {
 
 const values = [
   {
-    title: "Relief before promotion",
-    body: "Every surface should reduce customer effort before it sells a service.",
+    title: "🛡 Trust First",
+    body: "Verified partners and transparent service information before every booking.",
   },
   {
-    title: "Partners win, customers trust",
-    body: "LNDRY grows by helping local laundry businesses operate with clearer demand and better customer confidence.",
+    title: "🤝 Empower Local Businesses",
+    body: "Technology that helps local garment-care businesses reach and serve more customers.",
   },
   {
-    title: "Operational truth",
-    body: "The site shows what the workflow can support, including recommended partners, order status, and OTP handover.",
+    title: "💜 Customer First",
+    body: "A clearer booking, care, handover, and support experience from pickup to delivery.",
   },
+  { title: "🌱 Sustainable Growth", body: "Build a dependable marketplace that can grow city by city with quality at its core." },
 ];
 
 export default function AboutPage() {
@@ -52,12 +53,11 @@ export default function AboutPage() {
           <Reveal>
             <SectionEyebrow>About LNDRY</SectionEyebrow>
             <h1 className="mt-3 max-w-2xl font-display text-hero text-ink">
-              A careline marketplace for modern urban India.
+              We&apos;re building India&apos;s trusted garment care marketplace.
             </h1>
             <p className="mt-6 max-w-xl font-body text-body-lg text-ink-soft">
-              LNDRY exists to make garment care feel dependable again. Customers should not need
-              to call shops, guess quality, or browse a confusing vendor list. They should enter
-              an address, see a recommended eligible partner, and book with confidence.
+              From everyday laundry to premium garment care, LNDRY connects customers with
+              verified laundry partners through one trusted platform.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/#early-access">Book pickup</Button>
@@ -111,16 +111,20 @@ export default function AboutPage() {
       <section className="bg-bg-app py-20 md:py-24">
         <Container>
           <Reveal className="max-w-2xl">
-            <SectionEyebrow>Mission and vision</SectionEyebrow>
-            <h2 className="mt-3 font-display text-headline text-ink">Make professional garment care easier to trust.</h2>
+            <SectionEyebrow>Our mission &amp; vision</SectionEyebrow>
+            <h2 className="mt-3 font-display text-headline text-ink">Making Garment Care Trusted, Transparent and Accessible.</h2>
             <p className="mt-4 font-body text-base leading-relaxed text-ink-soft">
-              LNDRY is the technology layer between urban customers and local garment-care
-              businesses. The mission is practical: reduce uncertainty for customers and bring
-              better digital demand to partners.
+              We believe customers should never have to guess which laundry to trust, and local
+              laundry businesses should have access to technology that helps them grow.
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-5 lg:grid-cols-3">
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            <article className="rounded-lg border border-hairline bg-white p-6"><p className="font-body text-xs font-semibold uppercase tracking-[0.14em] text-violet">Mission</p><p className="mt-3 font-display text-xl font-semibold text-ink">Simplify garment care through verified partners and technology.</p></article>
+            <article className="rounded-lg border border-hairline bg-white p-6"><p className="font-body text-xs font-semibold uppercase tracking-[0.14em] text-violet">Vision</p><p className="mt-3 font-display text-xl font-semibold text-ink">Become India&apos;s most trusted garment-care marketplace.</p></article>
+          </div>
+
+          <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((value, index) => (
               <Reveal key={value.title} delay={index * 0.05}>
                 <article className="h-full rounded-lg border border-hairline bg-white p-6">
@@ -163,6 +167,12 @@ export default function AboutPage() {
                     </p>
                     <p className="mt-1 font-body text-sm leading-relaxed text-white/72">{founder.experience}</p>
                   </div>
+                  <div className="rounded-lg border border-white/10 bg-white/[0.06] p-4">
+                    <p className="font-body text-xs font-semibold uppercase tracking-[0.12em] text-white/45">
+                      Based in
+                    </p>
+                    <p className="mt-1 font-body text-sm font-semibold text-white/80">{founder.location}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -177,10 +187,26 @@ export default function AboutPage() {
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
+            <p className="mt-5 font-display text-xl font-semibold text-violet-deep">{founder.descriptor}</p>
+            <blockquote className="mt-6 max-w-xl border-l-2 border-violet bg-lavender-soft px-5 py-4 font-body text-base leading-relaxed text-ink-soft">
+              <p>&ldquo;{founder.quote}&rdquo;</p>
+              <footer className="mt-3 font-semibold text-ink">— Anmol Kumar</footer>
+            </blockquote>
             <div className="mt-8 flex flex-wrap gap-3">
               <Pill tone="violet">{founder.education}</Pill>
               <Pill tone="teal">Marketplace operations</Pill>
               <Pill tone="neutral">Urban logistics</Pill>
+            </div>
+            <div className="mt-8 rounded-lg border border-hairline bg-bg-app p-5">
+              <p className="font-body text-xs font-semibold uppercase tracking-[0.14em] text-violet">Founder timeline</p>
+              <ol className="mt-4 grid gap-3 sm:grid-cols-2">
+                {founder.timeline.map((step, index) => (
+                  <li key={step} className="flex items-start gap-3 font-body text-sm leading-relaxed text-ink-soft">
+                    <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-violet font-semibold text-white">{index + 1}</span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
             </div>
           </Reveal>
         </Container>

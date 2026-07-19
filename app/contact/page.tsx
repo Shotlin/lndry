@@ -18,13 +18,10 @@ export const metadata: Metadata = {
 };
 
 const contactRows = [
-  ["General enquiries", company.email],
-  ["Customer support", company.supportEmail],
-  ["Privacy requests", company.privacyEmail],
-  ["Legal and grievances", company.legalEmail],
-  ["Phone", company.phonePlaceholder],
-  ["WhatsApp", company.whatsappPlaceholder],
-  ["Business hours", company.businessHours],
+  ["Customer Support", "📱 WhatsApp — Quick responses for order support"],
+  ["Email", "support@lndry.in — Business enquiries"],
+  ["Partner Team", "partners@lndry.in — Become a laundry partner"],
+  ["Phone", "+91 XXXXX XXXXX — Available 8 AM–9 PM"],
 ];
 
 export default function ContactPage() {
@@ -35,7 +32,7 @@ export default function ContactPage() {
           <Reveal>
             <SectionEyebrow>Contact Us</SectionEyebrow>
             <h1 className="mt-3 max-w-2xl font-display text-hero text-ink">
-              Contact LNDRY for customer support and partner enquiries.
+              Customer support that stays with your order.
             </h1>
             <p className="mt-6 max-w-xl font-body text-body-lg text-ink-soft">
               Get help with laundry pickup, dry cleaning, order status, privacy requests, legal
@@ -67,11 +64,11 @@ export default function ContactPage() {
       <section className="bg-white py-20 md:py-24">
         <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <Reveal>
-            <SectionEyebrow>Contact details</SectionEyebrow>
+            <SectionEyebrow>Need Help?</SectionEyebrow>
             <h2 className="mt-3 font-display text-headline text-ink">Support details in one place.</h2>
             <p className="mt-4 font-body text-base leading-relaxed text-ink-soft">
-              Email support is open for early enquiries. Phone and WhatsApp support will be added
-              as operational coverage expands.
+              Customer Support · ✓ WhatsApp · Average reply: Within 10 minutes · Business Hours:
+              8:00 AM – 9:00 PM, Monday–Sunday.
             </p>
           </Reveal>
 

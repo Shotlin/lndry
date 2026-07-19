@@ -49,11 +49,11 @@ export default function ServicesPage() {
           <div className="max-w-2xl">
             <SectionEyebrow tone="onDark">Services</SectionEyebrow>
             <h1 className="mt-3 font-display text-headline text-white">
-              Every service, explained before you book
+              Laundry, Dry Cleaning &amp; Premium Garment Care
             </h1>
             <p className="mt-5 max-w-xl font-body text-body-lg text-white/70">
-              A premium web catalog that makes service scope, partner eligibility and rate basis
-              visible before you start booking.
+              From everyday laundry to premium dry cleaning, LNDRY connects you with verified
+              laundry partners for doorstep pickup, expert garment care, and secure delivery.
             </p>
           </div>
           <div className="flex flex-col gap-3">
@@ -78,17 +78,16 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      <section className="bg-lavender-soft py-20 md:py-24">
+      <section id="pricing" className="bg-lavender-soft py-20 md:py-24">
         <Container className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
             <SectionEyebrow>Spotlight</SectionEyebrow>
             <h2 className="mt-3 font-display text-headline text-ink">
-              Dry cleaning, handled the way a specialist would
+              Premium Dry Cleaning — Keep your premium garments looking new
             </h2>
             <p className="mt-5 max-w-lg font-body text-base leading-relaxed text-ink-soft">
-              The catalog can use larger service cutouts, while the product detail remains
-              grounded in marketplace facts: service basis, partner capability, pickup slots and
-              handover verification.
+              Expert care for suits, blazers, silk sarees, designer wear, winter jackets, and
+              delicate fabrics through verified specialist partners.
             </p>
           </div>
 
@@ -103,11 +102,10 @@ export default function ServicesPage() {
               />
             </div>
             <h3 className="mt-6 font-display text-lg font-semibold text-ink">
-              Example service detail
+              What can be dry cleaned
             </h3>
             <p className="mt-2 font-body text-sm leading-relaxed text-ink-soft">
-              Dry cleaning partners are shown only when eligible for the selected address. Rate
-              basis and expected completion are shown before payment.
+              Suit · Blazer · Gown · Saree · Shawl · Winter Jacket · Designer Wear
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Pill tone="neutral">₹ per item</Pill>

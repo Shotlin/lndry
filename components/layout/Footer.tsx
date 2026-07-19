@@ -24,11 +24,11 @@ export function Footer() {
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-sm">
             <Image
-              src="/brand/logos/lndry-final-logo.png"
-              alt="LNDRY"
-              width={88}
-              height={88}
-              className="h-16 w-16 rounded-full object-contain"
+              src="/brand/logos/lndry-white-horizontal.png"
+              alt="LNDRY — Drop your dirty work"
+              width={176}
+              height={57}
+              className="h-12 w-auto"
             />
             <p className="mt-5 font-body text-sm leading-relaxed text-white/70">
               {company.tagline}. LNDRY is a Pune laundry and dry cleaning marketplace for pickup,

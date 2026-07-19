@@ -11,11 +11,12 @@ import { legalPolicies } from "@/lib/data/site";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
   { label: "How it works", href: "/how-it-works" },
+  { label: "Services", href: "/services" },
+  { label: "Pricing", href: "/services#pricing" },
   { label: "Partners", href: "/partners" },
-  { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -39,18 +40,15 @@ export function Header() {
         }`}
       >
         <Container className="flex h-20 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2" aria-label="LNDRY home">
+          <Link href="/" className="flex items-center" aria-label="LNDRY home">
             <Image
-              src="/brand/logos/lndry-final-logo.png"
-              alt="LNDRY"
-              width={56}
-              height={56}
+              src="/brand/logos/lndry-primary-horizontal.png"
+              alt="LNDRY — Drop your dirty work"
+              width={156}
+              height={51}
               priority
-              className="h-12 w-12 rounded-full object-contain"
+              className="h-10 w-auto sm:h-11"
             />
-            <span className="hidden font-display text-lg font-bold tracking-tight text-violet-deep sm:inline">
-              LNDRY
-            </span>
           </Link>
 
           <nav className="hidden items-center gap-6 lg:flex lg:gap-8" aria-label="Primary">

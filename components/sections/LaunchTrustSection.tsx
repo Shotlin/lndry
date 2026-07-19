@@ -14,12 +14,11 @@ export function LaunchTrustSection() {
           <Reveal>
             <SectionEyebrow>Launching soon in Pune</SectionEyebrow>
             <h2 className="mt-3 max-w-xl font-display text-headline text-ink">
-              Join early access for laundry pickup in Pune
+              Join Pune&apos;s first garment-care marketplace
             </h2>
             <p className="mt-4 max-w-lg font-body text-base leading-relaxed text-ink-soft">
-              LNDRY is preparing launch coverage across selected Pune areas. Share your name,
-              mobile number, and neighbourhood so the team can notify you when laundry pickup,
-              dry cleaning, wash and iron, and order tracking become available near you.
+              Join the waitlist and we&apos;ll notify you when LNDRY launches in your area. Get access
+              to verified laundry partners, doorstep pickup, live tracking and launch-day offers.
             </p>
 
             <form
@@ -67,7 +66,7 @@ export function LaunchTrustSection() {
                 ))}
               </select>
               <Button className="sm:col-span-2" type="submit">
-                Join early access
+                Reserve My Spot
               </Button>
             </form>
           </Reveal>

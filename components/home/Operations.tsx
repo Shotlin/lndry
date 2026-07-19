@@ -14,17 +14,20 @@ export function Operations() {
     <section id="act-trust" ref={scope} className="bg-bg-app py-24">
       <Container>
         <div className="max-w-2xl">
-          <SectionEyebrow>Act five, Trust</SectionEyebrow>
+          <SectionEyebrow>Why choose LNDRY instead of your local laundry?</SectionEyebrow>
           <h2 className="mt-3 font-display text-headline text-ink">
-            Operational credibility for a big-industry feel
+            One booking platform. Clearer care. More confidence.
           </h2>
           <p className="mt-4 font-body text-base text-ink-soft">
-            The website shows that LNDRY is not only a customer app. Vendor fulfilment, rider
-            handovers and admin review are part of the same designed system.
+            Traditional laundry often means multiple calls, no tracking, cash payments and uncertain
+            delivery. LNDRY brings verified partners, digital payments, visible order stages, and dedicated support.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-[1.4fr_1fr_1fr_0.9fr] lg:items-stretch">
+        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {[['Call multiple shops','One booking platform'],['No tracking','Live tracking'],['Cash payments','Digital payments'],['No customer support','Dedicated support'],['Uncertain delivery','Scheduled delivery'],['Corporate Laundry · PGs · Hostels · Co-living · Hotels · Restaurants','Coming Soon']].map(([oldWay,newWay]) => <div key={oldWay} className="rounded-lg border border-hairline bg-white p-5"><p className="font-body text-sm text-muted">{oldWay}</p><p className="mt-2 font-display text-lg font-semibold text-violet-deep">{newWay}</p></div>)}
+        </div>
+        <div className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_1fr_1fr_0.9fr] lg:items-stretch">
           <BrowserFrame
             src="/brand/admin-mockups/dashboard-v1.png"
             alt="Admin operations overview dashboard"

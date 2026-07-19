@@ -33,33 +33,34 @@ export function MarketplaceCompare() {
 
       <Container className="relative grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
         <div>
-          <SectionEyebrow tone="onDark">Act three, Recommend</SectionEyebrow>
+          <SectionEyebrow tone="onDark">Recommended partner flow</SectionEyebrow>
           <h2 className="mt-3 max-w-lg font-display text-headline text-white">
-            One recommended partner after the customer enters an address
+            We find the best laundry for you — automatically
           </h2>
           <p className="mt-4 max-w-md font-body text-base text-white/70">
-            The marketplace logic can stay powerful behind the scenes. Customers should see a clear
-            recommended partner, visible trust signals, and one next booking action.
+            You don&apos;t need to compare dozens of laundries. LNDRY recommends the most suitable
+            verified partner based on your location, service type, availability, ratings, and delivery commitment.
           </p>
         </div>
 
         <div className="relative grid gap-5 sm:grid-cols-2">
           <Card tone="dark" className="recommend-card p-6">
-            <h3 className="font-display text-xl font-semibold text-white">Address checked</h3>
-            <p className="mt-2 font-body text-sm text-white/70">Area, service, capacity, and slot matched</p>
+            <h3 className="font-display text-xl font-semibold text-white">How we recommend</h3>
+            <p className="mt-2 font-body text-sm leading-relaxed text-white/70">📍 Enter your address<br />🔍 We check nearby verified partners<br />⭐ Compare rating, capacity &amp; delivery time<br />🏆 Best partner recommended<br />📦 Pickup confirmed</p>
             <Pill tone="teal" className="mt-4">
-              Eligible
+              Matched for you
             </Pill>
           </Card>
 
           <div className="recommend-card mt-0 rounded-lg bg-white p-6 shadow-elevated sm:mt-8">
-            <h3 className="font-display text-xl font-semibold text-ink">Recommended partner</h3>
+            <h3 className="font-display text-xl font-semibold text-ink">Luxe Fabric Care</h3>
             <p className="mt-2 font-body text-sm text-ink-soft">
-              A cleaner customer decision than manually comparing every vendor.
+              ★★★★★ 4.9 · 1.8 km away<br />Pickup Today · Delivery in 24 hrs
             </p>
             <Pill tone="teal" className="mt-4">
-              Verified signal
+              ✓ Verified by LNDRY
             </Pill>
+            <p className="mt-4 font-body text-xs leading-relaxed text-ink-soft">Why this partner? Highest rating nearby · Available pickup slot · Fastest delivery · Specialist for Dry Cleaning</p>
           </div>
         </div>
       </Container>

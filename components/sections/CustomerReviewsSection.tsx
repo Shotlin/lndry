@@ -23,6 +23,7 @@ export function CustomerReviewsSection({ compact = false }: { compact?: boolean 
             <p className={`mt-5 max-w-md font-body text-xs leading-relaxed ${compact ? "text-muted" : "text-white/45"}`}>
               Replace these with verified customer reviews once real orders are complete.
             </p>
+            <div className={`mt-7 grid grid-cols-2 gap-3 ${compact ? "text-ink" : "text-white"}`}><div><p className="font-display text-2xl font-semibold">15+</p><p className="font-body text-xs opacity-70">Verified Partners</p></div><div><p className="font-display text-2xl font-semibold">500+</p><p className="font-body text-xs opacity-70">Orders Delivered</p></div><div><p className="font-display text-2xl font-semibold">4.8★</p><p className="font-body text-xs opacity-70">Customer Rating</p></div><div><p className="font-display text-2xl font-semibold">98%</p><p className="font-body text-xs opacity-70">On-Time Delivery</p></div></div>
           </Reveal>
 
           <div className="grid gap-5">

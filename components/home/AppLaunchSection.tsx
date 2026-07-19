@@ -1,7 +1,8 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import { ArrowRight, Bell, Smartphone } from "lucide-react";
+import { Bell, Smartphone } from "lucide-react";
+import { FaApple, FaGooglePlay } from "react-icons/fa";
 import { Container } from "../ui/Container";
 import { PhoneFrame } from "../ui/PhoneFrame";
 import { gsap } from "@/lib/motion/gsap";
@@ -34,7 +35,10 @@ const APP_PREVIEWS = [
   },
 ];
 
-const STORE_BUTTONS = ["Google Play coming soon", "App Store coming soon"];
+const STORE_BUTTONS = [
+  { label: "Google Play", eyebrow: "GET IT ON", icon: FaGooglePlay },
+  { label: "App Store", eyebrow: "DOWNLOAD ON THE", icon: FaApple },
+];
 
 export function AppLaunchSection() {
   const reducedMotion = useReducedMotion();
@@ -109,38 +113,54 @@ export function AppLaunchSection() {
             Mobile apps coming soon
           </div>
           <h2 className="mt-5 font-display text-headline text-ink">
-            LNDRY is being shaped for customers, vendors, and delivery teams.
+            One app for customers. One platform powering every order.
           </h2>
           <p className="mt-5 font-body text-base leading-relaxed text-ink-soft md:text-lg">
-            The website is the front door. The mobile apps will carry the daily operating rhythm:
-            book, accept, verify, track, and complete garment-care orders with the same brand system.
+            Everything from booking your pickup to tracking your garments and secure delivery happens
+            in one connected experience.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            {STORE_BUTTONS.map((label) => (
-              <button
-                key={label}
-                type="button"
-                disabled
-                className="inline-flex h-13 items-center justify-center gap-2 rounded-sm bg-ink px-5 font-display text-sm font-semibold text-white opacity-85 transition-opacity disabled:cursor-not-allowed sm:px-6"
-                aria-label={label}
-              >
-                {label}
-                <ArrowRight size={16} />
-              </button>
-            ))}
+          <div className="relative mt-8 overflow-hidden rounded-xl border border-ink/10 bg-ink p-3 shadow-elevated">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-cover bg-center opacity-60"
+              style={{ backgroundImage: "url('/brand/banners/app-release-storebackdrop-v1.png')" }}
+            />
+            <div className="relative grid gap-3 sm:grid-cols-2">
+              {STORE_BUTTONS.map(({ label, eyebrow, icon: StoreIcon }) => (
+                <button
+                  key={label}
+                  type="button"
+                  disabled
+                  className="group flex min-h-17 items-center gap-3 rounded-lg border border-white/15 bg-ink/70 px-4 py-3 text-left text-white shadow-soft backdrop-blur-sm transition-transform disabled:cursor-not-allowed sm:px-5"
+                  aria-label={`${label} release coming soon`}
+                >
+                  <StoreIcon className="size-7 shrink-0 text-white" aria-hidden="true" />
+                  <span className="flex min-w-0 flex-1 flex-col">
+                    <span className="font-body text-[0.62rem] font-semibold tracking-[0.14em] text-white/65">{eyebrow}</span>
+                    <span className="font-display text-lg font-semibold leading-tight">{label}</span>
+                  </span>
+                  <span className="rounded-full border border-white/20 bg-white/10 px-2 py-1 font-body text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-white/85">
+                    Soon
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href="#early-access"
               className="inline-flex h-13 items-center justify-center gap-2 rounded-sm border border-hairline bg-white px-5 font-display text-sm font-semibold text-violet transition-colors hover:border-violet sm:px-6"
             >
               <Bell size={16} />
-              Join launch waitlist
+              Join Waitlist
             </a>
           </div>
 
           <p className="mt-4 font-body text-sm leading-relaxed text-muted">
-            When the apps go live, replace the coming-soon buttons with the official Play Store and
-            App Store URLs. The section is already prepared for that switch.
+            When the apps go live, switch these coming-soon cards to the official Google Play and
+            App Store URLs. The release section is already prepared for that change.
           </p>
         </div>
 
