@@ -9,9 +9,11 @@ export const company = {
   supportEmail: "support@lndry.in",
   privacyEmail: "privacy@lndry.in",
   legalEmail: "legal@lndry.in",
-  phonePlaceholder: "Phone support coming soon",
-  whatsappPlaceholder: "WhatsApp support coming soon",
-  businessHours: "Monday to Saturday, 10:00 AM to 7:00 PM",
+  phonePlaceholder: "+91 98101 46061",
+  whatsappPlaceholder: "+91 98101 46061",
+  supportPhoneHref: "tel:+919810146061",
+  whatsappHref: "https://wa.me/919810146061",
+  businessHours: "Monday–Sunday, 8:00 AM to 9:00 PM",
 };
 
 export const launchAreas = ["Baner", "Balewadi", "Wakad", "Hinjewadi", "Kharadi", "Viman Nagar"];
@@ -19,27 +21,31 @@ export const launchAreas = ["Baner", "Balewadi", "Wakad", "Hinjewadi", "Kharadi"
 export const trustSignals = [
   {
     title: "Verified partners",
-    body: "Laundry businesses are reviewed before they appear in the customer flow.",
+    body: "Every laundry partner is verified before joining LNDRY.",
   },
   {
     title: "OTP verification",
     body: "Pickup and delivery handovers can be confirmed through OTP-based checks.",
   },
   {
-    title: "Secure payments",
-    body: "Digital payments can run through compliant payment gateway partners.",
+    title: "Doorstep pickup & delivery",
+    body: "Schedule pickup at your preferred time and receive your garments back at your door.",
+  },
+  {
+    title: "Live order tracking",
+    body: "Track every stage from pickup to delivery without calling multiple shops.",
+  },
+  {
+    title: "Transparent pricing",
+    body: "See the applicable price basis before confirming your booking—no surprise pricing.",
   },
   {
     title: "Customer support",
-    body: "Customers and partners get a direct support path when an order needs attention.",
+    body: "One platform to resolve an order issue quickly when you need help.",
   },
   {
-    title: "Order status tracking",
-    body: "Customers can follow order stages without relying on phone calls.",
-  },
-  {
-    title: "Quality ratings",
-    body: "Post-order feedback helps the marketplace learn which partners perform well.",
+    title: "Secure digital payments",
+    body: "Pay online safely with trusted payment methods when payments are enabled for your booking.",
   },
 ];
 

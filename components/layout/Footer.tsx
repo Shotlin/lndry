@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "../ui/Container";
 import { Thread } from "../ui/Thread";
 import { Button } from "../ui/Button";
+import { DpiitRecognitionCard } from "../ui/DpiitRecognitionCard";
 import { company, legalPolicies, locationPages } from "@/lib/data/site";
 
 const NAV_ITEMS = [
@@ -38,10 +39,15 @@ export function Footer() {
               {company.legalName}
               <br />
               CIN: {company.cin}
+              <br />
+              GST: To be updated once registered
             </p>
+            <div className="mt-6">
+              <DpiitRecognitionCard compact />
+            </div>
           </div>
 
-          <nav className="grid gap-10 sm:grid-cols-3 lg:flex lg:gap-14" aria-label="Footer">
+          <nav className="grid gap-10 sm:grid-cols-2 lg:flex lg:gap-12" aria-label="Footer">
             <div className="flex flex-col gap-3">
               <p className="font-body text-label font-semibold uppercase tracking-[0.14em] text-white/50">
                 Explore
@@ -85,6 +91,16 @@ export function Footer() {
                   {item.title}
                 </Link>
               ))}
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <p className="font-body text-label font-semibold uppercase tracking-[0.14em] text-white/50">
+                Contact
+              </p>
+              <a href={`mailto:${company.supportEmail}`} className="font-body text-sm font-medium text-white/85 hover:text-white">{company.supportEmail}</a>
+              <a href={company.supportPhoneHref} className="font-body text-sm font-medium text-white/85 hover:text-white">{company.phonePlaceholder}</a>
+              <a href={company.whatsappHref} className="font-body text-sm font-medium text-white/85 hover:text-white">WhatsApp: {company.whatsappPlaceholder}</a>
+              <Link href="/contact" className="font-body text-sm font-medium text-white/85 hover:text-white">LinkedIn &amp; Instagram</Link>
             </div>
           </nav>
 

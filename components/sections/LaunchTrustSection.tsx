@@ -8,7 +8,7 @@ import { company, launchAreas, trustSignals } from "@/lib/data/site";
 
 export function LaunchTrustSection() {
   return (
-    <section id="early-access" className="bg-white py-24">
+    <section id="early-access" className="bg-white py-16 sm:py-20 md:py-24">
       <Container>
         <div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <Reveal>
@@ -25,7 +25,7 @@ export function LaunchTrustSection() {
               action={`mailto:${company.supportEmail}`}
               method="post"
               encType="text/plain"
-              className="mt-8 grid gap-3 rounded-xl border border-hairline bg-bg-app p-4 shadow-soft sm:grid-cols-[1fr_1fr]"
+              className="mt-7 grid gap-3 rounded-xl border border-hairline bg-bg-app p-4 shadow-soft sm:mt-8 sm:grid-cols-[1fr_1fr]"
             >
               <label className="sr-only" htmlFor="lead-name">
                 Name
@@ -84,7 +84,12 @@ export function LaunchTrustSection() {
           </Reveal>
         </div>
 
-        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 max-w-2xl">
+          <SectionEyebrow>Why thousands of customers will choose LNDRY</SectionEyebrow>
+          <h2 className="mt-3 font-display text-headline text-ink">Trust should be visible before pickup.</h2>
+          <p className="mt-4 font-body text-base leading-relaxed text-ink-soft">Every signal below answers a practical customer concern before they book.</p>
+        </div>
+        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {trustSignals.map((item, index) => (
             <Reveal key={item.title} delay={index * 0.035}>
               <div className="h-full rounded-lg border border-hairline bg-surface-cool p-6">

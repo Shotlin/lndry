@@ -4,6 +4,9 @@ export interface ServiceEntry {
   icon: string;
   illustration: string;
   tag: { label: string; tone: "teal" | "violet" };
+  bestFor?: string;
+  price?: string;
+  delivery?: string;
 }
 
 export const SERVICES: ServiceEntry[] = [
@@ -13,6 +16,9 @@ export const SERVICES: ServiceEntry[] = [
     icon: "/brand/icons/wash-fold.svg",
     illustration: "/brand/illustrations/service-wash-fold-v1.png",
     tag: { label: "Popular", tone: "teal" },
+    bestFor: "Daily wear",
+    price: "Starting ₹99/kg",
+    delivery: "24 hours",
   },
   {
     title: "Wash & iron",
@@ -20,6 +26,9 @@ export const SERVICES: ServiceEntry[] = [
     icon: "/brand/icons/wash-iron.svg",
     illustration: "/brand/illustrations/service-wash-iron-v1.png",
     tag: { label: "Popular", tone: "teal" },
+    bestFor: "Office wear",
+    price: "Starting ₹99/kg",
+    delivery: "24 hours",
   },
   {
     title: "Dry cleaning",
@@ -27,6 +36,9 @@ export const SERVICES: ServiceEntry[] = [
     icon: "/brand/icons/dry-cleaning.svg",
     illustration: "/brand/illustrations/service-dry-cleaning-v1.png",
     tag: { label: "Popular", tone: "teal" },
+    bestFor: "Premium garments",
+    price: "Starting ₹99/item",
+    delivery: "48 hours",
   },
   {
     title: "Steam press",
@@ -34,6 +46,9 @@ export const SERVICES: ServiceEntry[] = [
     icon: "/brand/icons/steam-press.svg",
     illustration: "/brand/illustrations/service-steam-press-v1.png",
     tag: { label: "Popular", tone: "teal" },
+    bestFor: "Crisp finishing",
+    price: "Starting ₹99/item",
+    delivery: "24 hours",
   },
   {
     title: "Shoe care",

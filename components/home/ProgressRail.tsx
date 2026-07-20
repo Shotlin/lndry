@@ -4,10 +4,13 @@ import { useEffect, useState } from "react";
 
 const ACTS = [
   { id: "act-discover", label: "Discover" },
+  { id: "how-it-works", label: "Journey" },
+  { id: "why-lndy", label: "Trust" },
   { id: "act-choose", label: "Choose" },
-  { id: "act-recommend", label: "Recommend" },
-  { id: "act-journey", label: "Journey" },
-  { id: "act-trust", label: "Trust" },
+  { id: "recommended-partner", label: "Recommend" },
+  { id: "careline-journey", label: "Careline" },
+  { id: "order-tracking", label: "Track" },
+  { id: "early-access", label: "Launch" },
   { id: "act-apps", label: "Apps" },
   { id: "act-close", label: "Close" },
 ];

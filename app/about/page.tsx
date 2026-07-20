@@ -5,6 +5,7 @@ import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Button } from "@/components/ui/Button";
 import { Pill } from "@/components/ui/Pill";
 import { Reveal } from "@/components/ui/Reveal";
+import { DpiitRecognitionCard } from "@/components/ui/DpiitRecognitionCard";
 import { company, founder } from "@/lib/data/site";
 
 const title = "About LNDRY | Laundry Marketplace for Urban India";
@@ -104,6 +105,26 @@ export default function AboutPage() {
                 Registered Office: {company.registeredOffice}
               </p>
             </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      <section className="bg-white py-20 md:py-24">
+        <Container className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+          <Reveal>
+            <SectionEyebrow>Official recognition</SectionEyebrow>
+            <h2 className="mt-3 max-w-xl font-display text-headline text-ink">A formal recognition, presented with restraint.</h2>
+            <p className="mt-5 max-w-xl font-body text-base leading-relaxed text-ink-soft">
+              LNDRY&apos;s DPIIT Startup Recognition is available as a concise proof card. The authentic certificate remains one click away for verification.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Pill tone="violet">Certificate no. DIPP269393</Pill>
+              <Pill tone="neutral">Issued 27 June 2026</Pill>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <DpiitRecognitionCard />
           </Reveal>
         </Container>
       </section>

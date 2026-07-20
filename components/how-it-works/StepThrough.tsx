@@ -60,9 +60,9 @@ const SERVICES = [
 ];
 
 const GARMENTS = [
-  { label: "Shirts", qty: "5", price: "₹175" },
-  { label: "Trousers", qty: "2", price: "₹110" },
-  { label: "Bedsheet", qty: "1", price: "₹90" },
+  { label: "Shirts", qty: "1", price: "₹99" },
+  { label: "Trousers", qty: "1", price: "₹99" },
+  { label: "Bedsheet", qty: "1", price: "₹99" },
 ];
 
 const STATUS = ["Pickup", "Processing", "Quality check", "Delivery"];
@@ -110,7 +110,7 @@ function StepVisual({ type }: { type: string }) {
         </div>
         <div className="mt-4 flex items-center justify-between rounded-md bg-lavender-soft px-4 py-3">
           <span className="font-body text-sm font-semibold text-ink">Estimated total</span>
-          <span className="font-display text-xl font-bold text-violet">₹375</span>
+          <span className="font-display text-xl font-bold text-violet">₹297</span>
         </div>
       </div>
     );
@@ -146,7 +146,7 @@ function StepVisual({ type }: { type: string }) {
       <div className="overflow-hidden rounded-lg border border-hairline bg-white shadow-soft">
         <div className="bg-violet-deep p-5 text-white">
           <p className="font-body text-xs text-white/65">Review and pay</p>
-          <p className="mt-1 font-display text-3xl font-bold">₹375</p>
+          <p className="mt-1 font-display text-3xl font-bold">₹297</p>
         </div>
         <div className="space-y-3 p-5">
           {["Order summary checked", "Pickup address confirmed", "Payment gateway ready"].map((item) => (

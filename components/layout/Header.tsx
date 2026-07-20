@@ -11,12 +11,12 @@ import { legalPolicies } from "@/lib/data/site";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
-  { label: "How it works", href: "/how-it-works" },
   { label: "Services", href: "/services" },
+  { label: "How it works", href: "/how-it-works" },
   { label: "Pricing", href: "/services#pricing" },
   { label: "Partners", href: "/partners" },
-  { label: "FAQ", href: "/faq" },
   { label: "About", href: "/about" },
+  { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -39,7 +39,7 @@ export function Header() {
           scrolled ? "border-hairline bg-white/90 shadow-soft backdrop-blur-xl" : "border-transparent bg-white/70 backdrop-blur-md"
         }`}
       >
-        <Container className="flex h-20 items-center justify-between">
+        <Container className="flex h-16 items-center justify-between sm:h-20">
           <Link href="/" className="flex items-center" aria-label="LNDRY home">
             <Image
               src="/brand/logos/lndry-primary-horizontal.png"
@@ -47,11 +47,11 @@ export function Header() {
               width={156}
               height={51}
               priority
-              className="h-10 w-auto sm:h-11"
+              className="h-9 w-auto sm:h-11"
             />
           </Link>
 
-          <nav className="hidden items-center gap-6 lg:flex lg:gap-8" aria-label="Primary">
+          <nav className="hidden items-center gap-4 xl:flex xl:gap-6" aria-label="Primary">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
@@ -65,7 +65,7 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-3 xl:flex">
             <Button href="/#early-access" size="md">
               Book pickup
             </Button>
@@ -77,7 +77,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
-            className="flex h-11 w-11 items-center justify-center rounded-sm text-ink lg:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-sm text-ink xl:hidden"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
           >
@@ -87,8 +87,8 @@ export function Header() {
       </header>
 
       {menuOpen && (
-        <div className="fixed inset-x-0 bottom-0 top-20 z-[100] overflow-y-auto border-t border-hairline bg-white shadow-elevated lg:hidden">
-          <Container className="flex min-h-full flex-col gap-6 py-5 lg:hidden">
+        <div className="fixed inset-x-0 bottom-0 top-16 z-[100] overflow-y-auto border-t border-hairline bg-white shadow-elevated sm:top-20 xl:hidden">
+          <Container className="flex min-h-full flex-col gap-6 py-5 xl:hidden">
             <nav aria-label="Mobile primary" className="grid gap-1">
               {NAV_ITEMS.map((item) => (
                 <Link

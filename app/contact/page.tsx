@@ -18,10 +18,10 @@ export const metadata: Metadata = {
 };
 
 const contactRows = [
-  ["Customer Support", "📱 WhatsApp — Quick responses for order support"],
+  ["Customer Support", `WhatsApp ${company.whatsappPlaceholder} — Quick responses for order support`],
   ["Email", "support@lndry.in — Business enquiries"],
   ["Partner Team", "partners@lndry.in — Become a laundry partner"],
-  ["Phone", "+91 XXXXX XXXXX — Available 8 AM–9 PM"],
+  ["Phone", `${company.phonePlaceholder} — Available 8 AM–9 PM`],
 ];
 
 export default function ContactPage() {

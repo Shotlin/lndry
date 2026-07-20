@@ -8,6 +8,9 @@ export interface ServiceCardData {
   icon: string;
   illustration: string;
   tag?: { label: string; tone: "teal" | "violet" };
+  bestFor?: string;
+  price?: string;
+  delivery?: string;
 }
 
 export function ServiceCard({
@@ -15,6 +18,9 @@ export function ServiceCard({
   description,
   illustration,
   tag,
+  bestFor,
+  price,
+  delivery,
   className = "",
   compact = false,
 }: ServiceCardData & { className?: string; compact?: boolean }) {
@@ -36,6 +42,14 @@ export function ServiceCard({
 
       <h3 className="mt-4 font-display text-lg font-semibold text-ink">{title}</h3>
       <p className="mt-1.5 flex-1 font-body text-sm leading-relaxed text-ink-soft">{description}</p>
+
+      {price ? (
+        <dl className="mt-4 grid grid-cols-2 gap-2 rounded-lg bg-surface-cool p-3 font-body text-xs">
+          <div><dt className="text-muted">Best for</dt><dd className="mt-1 font-semibold text-ink">{bestFor}</dd></div>
+          <div><dt className="text-muted">Starting price</dt><dd className="mt-1 font-semibold text-violet-deep">{price.replace("Starting ", "")}</dd></div>
+          {delivery ? <div className="col-span-2 border-t border-hairline pt-2 text-ink-soft">Delivery: <span className="font-semibold text-ink">{delivery}</span></div> : null}
+        </dl>
+      ) : null}
 
       <Link
         href="/marketplace"

@@ -18,30 +18,33 @@ export function ServicesInterlude() {
   useGSAP(
     () => {
       if (reducedMotion || !sectionRef.current || !trackRef.current) return;
-
-      const track = trackRef.current;
-      const distance = track.scrollWidth - track.parentElement!.clientWidth;
-      if (distance <= 0) return;
-
-      gsap.to(track, {
-        x: -distance,
-        ease: motionTokens.easeScrub,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: () => `+=${distance}`,
-          scrub: 1,
-          pin: true,
-          invalidateOnRefresh: true,
-        },
+      const media = gsap.matchMedia();
+      media.add("(min-width: 1024px)", () => {
+        const track = trackRef.current;
+        if (!track?.parentElement) return;
+        const distance = track.scrollWidth - track.parentElement.clientWidth;
+        if (distance <= 0) return;
+        gsap.to(track, {
+          x: -distance,
+          ease: motionTokens.easeScrub,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: () => `+=${distance}`,
+            scrub: 1,
+            pin: true,
+            invalidateOnRefresh: true,
+          },
+        });
       });
+      return () => media.revert();
     },
     { scope: sectionRef, dependencies: [reducedMotion] }
   );
 
   return (
-    <section ref={sectionRef} id="act-choose" className="relative bg-bg-app py-24 md:overflow-hidden">
-      <Container className="mb-10 md:mb-14">
+    <section ref={sectionRef} id="act-choose" className="relative bg-bg-app py-16 sm:py-20 lg:overflow-hidden lg:py-24">
+      <Container className="mb-8 sm:mb-10 md:mb-14">
         <SectionEyebrow>Act two, Choose</SectionEyebrow>
         <h2 className="mt-3 max-w-2xl font-display text-headline text-ink">
           Services built as a premium catalog, not a generic laundry grid
@@ -52,17 +55,13 @@ export function ServicesInterlude() {
         </p>
       </Container>
 
-      <div className={reducedMotion ? "px-6 md:px-11" : "overflow-hidden"}>
+      <div className="px-6 sm:px-11 lg:px-0 lg:overflow-hidden">
         <div
           ref={trackRef}
-          className={
-            reducedMotion
-              ? "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
-              : "flex w-max gap-6 px-6 md:px-11"
-          }
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:flex lg:w-max lg:gap-6 lg:px-11"
         >
           {FEATURED_SERVICES.map((service) => (
-            <ServiceCard key={service.title} {...service} className={reducedMotion ? "" : "w-72 md:w-80"} />
+            <ServiceCard key={service.title} {...service} className="lg:w-80" />
           ))}
         </div>
       </div>

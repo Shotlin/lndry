@@ -72,6 +72,9 @@ export function Hero() {
         },
       });
 
+      gsap.to(".hero-phone-primary", { y: -12, duration: 2.8, ease: "sine.inOut", repeat: -1, yoyo: true });
+      gsap.to(".hero-phone-review", { y: 10, duration: 3.3, ease: "sine.inOut", repeat: -1, yoyo: true, delay: 0.25 });
+
       return () => {
         split.revert();
       };
@@ -88,33 +91,33 @@ export function Hero() {
       <Thread className="pointer-events-none absolute -left-10 top-0 h-[640px] w-48" opacity={0.1} />
       <HeroThreadOverlay className="pointer-events-none absolute inset-x-0 top-0 h-full w-full opacity-[0.08]" />
 
-      <Container className="relative flex flex-col gap-14 pb-24 pt-16 md:pt-24 lg:flex-row lg:items-center lg:gap-10">
+      <Container className="relative flex flex-col gap-10 pb-16 pt-10 sm:pt-14 md:gap-14 md:pb-24 md:pt-24 lg:flex-row lg:items-center lg:gap-10">
         <div className="relative z-10 max-w-xl">
           <div className="hero-eyebrow">
             <Pill tone="violet">{company.tagline}</Pill>
           </div>
 
-          <h1 className="hero-headline mt-6 font-display text-hero text-ink">
+          <h1 className="hero-headline mt-5 max-w-[12ch] font-display text-hero text-ink sm:mt-6">
             India&apos;s first garment-care marketplace.
           </h1>
 
-          <p className="hero-sub mt-6 font-body text-body-lg text-ink-soft">
+          <p className="hero-sub mt-5 max-w-[38rem] font-body text-body-lg text-ink-soft sm:mt-6">
             Book verified laundry partners near you with doorstep pickup, live order tracking, and
             transparent pricing.
           </p>
 
-          <div className="hero-actions mt-8 flex flex-wrap items-center gap-4">
-            <Button href="/#early-access">Book pickup</Button>
+          <div className="hero-actions mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+            <Button href="/#early-access" className="w-full sm:w-auto">Book pickup</Button>
             <Button href="/services" variant="secondary">
               View laundry services
             </Button>
           </div>
 
-          <div className="hero-area mt-8 max-w-xl rounded-lg border border-hairline bg-white p-5 shadow-soft">
-            <div className="flex flex-wrap gap-x-4 gap-y-2 font-body text-sm font-semibold text-ink-soft">
+          <div className="hero-area mt-7 max-w-xl rounded-lg border border-hairline bg-white p-4 shadow-soft sm:mt-8 sm:p-5">
+            <div className="grid gap-2 font-body text-sm font-semibold text-ink-soft sm:flex sm:flex-wrap sm:gap-x-4">
               <span>✓ Verified Laundry Partners</span><span>✓ Doorstep Pickup &amp; Delivery</span><span>✓ Live Order Tracking</span>
             </div>
-            <p className="mt-4 font-body text-sm text-muted">Serving: Baner · Wakad · Hinjewadi · Kharadi · Viman Nagar</p>
+            <p className="mt-3 font-body text-sm text-muted sm:mt-4">Serving: Baner · Wakad · Hinjewadi · Kharadi · Viman Nagar</p>
           </div>
         </div>
 
@@ -124,7 +127,7 @@ export function Hero() {
             <AmbientRibbon reducedMotion={reducedMotion} />
           </div>
 
-          <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-xl shadow-elevated">
+          <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-xl shadow-elevated sm:aspect-[16/10] lg:aspect-[4/3]">
             <Image
               src="/brand/website-story/website-home-hero-indian-handoff-v1.png"
               alt="An LNDRY delivery partner handing a labeled garment bag to a couple at their doorstep"
@@ -135,8 +138,9 @@ export function Hero() {
             />
           </div>
 
-          <div className="relative -mt-16 flex justify-end gap-4 pr-4 sm:-mt-20 sm:gap-6">
-            <div className="w-28 rotate-[-4deg] sm:w-36">
+          <div className="relative -mt-12 flex justify-end gap-3 pr-3 sm:-mt-20 sm:gap-6 sm:pr-4">
+            <div className="absolute bottom-0 right-3 h-28 w-52 rounded-full bg-violet/20 blur-2xl sm:right-8 sm:h-40 sm:w-64" aria-hidden="true" />
+            <div className="hero-phone-primary relative w-24 rotate-[-4deg] sm:w-36">
               <PhoneFrame
                 src="/brand/mockups/location-serviceability-v1.png"
                 alt="Set your pickup location screen"
@@ -144,7 +148,7 @@ export function Hero() {
                 priority
               />
             </div>
-            <div className="mt-8 w-24 rotate-[4deg] sm:mt-10 sm:w-32">
+            <div className="hero-phone-review relative mt-6 w-20 rotate-[4deg] sm:mt-10 sm:w-32">
               <PhoneFrame
                 src="/brand/mockups/review-order-v1.png"
                 alt="Review order screen"

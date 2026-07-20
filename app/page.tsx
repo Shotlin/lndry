@@ -2,13 +2,16 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
 import { ServicesInterlude } from "@/components/home/ServicesInterlude";
 import { MarketplaceCompare } from "@/components/home/MarketplaceCompare";
-import { CarelineJourney } from "@/components/home/CarelineJourney";
+import { BookingJourney, CarelineJourney } from "@/components/home/CarelineJourney";
 import { Operations } from "@/components/home/Operations";
 import { AppLaunchSection } from "@/components/home/AppLaunchSection";
 import { CloseCTA } from "@/components/home/CloseCTA";
 import { ProgressRail } from "@/components/home/ProgressRail";
 import { LaunchTrustSection } from "@/components/sections/LaunchTrustSection";
 import { CustomerReviewsSection } from "@/components/sections/CustomerReviewsSection";
+import { PricingSupportSection } from "@/components/home/PricingSupportSection";
+import { FAQPreview } from "@/components/home/FAQPreview";
+import { OrderTrackingDemo } from "@/components/home/OrderTrackingDemo";
 
 export const metadata: Metadata = {
   title: "Laundry Service in Pune | Dry Cleaning, Wash & Iron | LNDRY",
@@ -40,13 +43,17 @@ export default function HomePage() {
     <>
       <ProgressRail />
       <Hero />
+      <BookingJourney />
+      <Operations />
       <ServicesInterlude />
       <MarketplaceCompare />
       <CarelineJourney />
-      <Operations />
-      <AppLaunchSection />
+      <OrderTrackingDemo />
+      <PricingSupportSection />
       <LaunchTrustSection />
+      <AppLaunchSection />
       <CustomerReviewsSection />
+      <FAQPreview />
       <CloseCTA />
     </>
   );
