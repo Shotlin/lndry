@@ -172,39 +172,36 @@ export function PartnerOnboardingJourney() {
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[0.73fr_1.27fr] lg:gap-12 lg:items-center">
-          <figure className="partner-journey-reveal relative min-h-[22rem] overflow-hidden rounded-md bg-[#121d29] p-5 sm:min-h-[25rem] sm:p-6">
-            <div aria-hidden="true" className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-violet/35 blur-3xl" />
-            <div aria-hidden="true" className="absolute -bottom-16 left-1/3 h-36 w-36 rounded-full bg-teal/20 blur-3xl" />
-            <div className="relative z-10">
-              <div className="inline-flex items-center rounded-full bg-white/10 px-3 py-1.5 font-body text-xs font-semibold text-teal ring-1 ring-white/10">
-                Your activation, made visible
+          <figure className="partner-journey-reveal relative min-h-[25rem] overflow-hidden rounded-md bg-[#121d29] sm:min-h-[29rem]">
+            <Image
+              src="/brand/illustrations/partner-activation-story-v1.png"
+              alt="Indian laundry owner moving from LNDRY application review to a ready-for-orders garment-care studio"
+              fill
+              sizes="(min-width: 1024px) 460px, 100vw"
+              className="object-cover object-[66%_center]"
+            />
+            <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,15,20,0.96)_0%,rgba(8,15,20,0.78)_35%,rgba(8,15,20,0.08)_82%)]" />
+            <div className="relative z-10 flex h-full min-h-[25rem] max-w-[13rem] flex-col justify-between p-5 sm:min-h-[29rem] sm:max-w-[15rem] sm:p-6">
+              <div>
+                <div className="inline-flex items-center rounded-full bg-white/10 px-3 py-1.5 font-body text-xs font-semibold text-teal ring-1 ring-white/10">
+                  Your activation, made visible
+                </div>
+                <h3 className="mt-3 font-display text-xl font-semibold leading-tight text-white sm:text-2xl">
+                  A partner journey with a visible destination.
+                </h3>
               </div>
-              <h3 className="mt-3 max-w-sm font-display text-xl font-semibold leading-tight text-white">
-                From application review to the first order your team can accept.
-              </h3>
-            </div>
-            <div className="relative z-10 mt-5 grid grid-cols-[0.8fr_1.2fr] items-end gap-3">
-              <div className="overflow-hidden rounded-sm bg-white p-1.5 shadow-[0_8px_16px_rgba(0,0,0,0.28)]">
-                <Image
-                  src="/brand/vendor-mockups/application-v1.png"
-                  alt="LNDRY vendor application workflow"
-                  width={390}
-                  height={844}
-                  sizes="(min-width: 1024px) 150px, 36vw"
-                  className="h-auto w-full"
-                />
-              </div>
-              <div className="relative overflow-hidden rounded-sm border border-white/10 bg-ink-raised p-2 shadow-[0_8px_16px_rgba(0,0,0,0.22)]">
-                <Image
-                  src="/brand/vendor-mockups/new-order-v1.png"
-                  alt="LNDRY vendor receiving a new order"
-                  width={500}
-                  height={1000}
-                  sizes="(min-width: 1024px) 220px, 48vw"
-                  className="h-auto w-full"
-                />
-                <div className="absolute bottom-3 left-3 rounded-full bg-teal px-2.5 py-1 font-body text-[10px] font-semibold text-ink">Ready for orders</div>
-              </div>
+              <ol className="space-y-2.5">
+                {[
+                  ["01", "Application received"],
+                  ["02", "Quality reviewed"],
+                  ["03", "Ready for orders"],
+                ].map(([number, label], index) => (
+                  <li key={label} className="flex items-center gap-2.5">
+                    <span className={`flex size-6 items-center justify-center rounded-full font-body text-[10px] font-bold ${index === 2 ? "bg-teal text-ink" : "bg-white/12 text-white"}`}>{number}</span>
+                    <span className="font-body text-xs font-medium text-white/85">{label}</span>
+                  </li>
+                ))}
+              </ol>
             </div>
           </figure>
 

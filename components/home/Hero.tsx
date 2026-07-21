@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
+import { ArrowUpRight, BadgeCheck, CalendarCheck2, ChevronDown, Radio, Truck } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger, SplitText } from "@/lib/motion/gsap";
 import { motionTokens } from "@/lib/motion/tokens";
@@ -74,6 +74,18 @@ export function Hero() {
 
       gsap.to(".hero-phone-primary", { y: -12, duration: 2.8, ease: "sine.inOut", repeat: -1, yoyo: true });
       gsap.to(".hero-phone-review", { y: 10, duration: 3.3, ease: "sine.inOut", repeat: -1, yoyo: true, delay: 0.25 });
+      gsap.to(".hero-trust-beacon", { scale: 1.45, opacity: 0.3, duration: 1.4, ease: "sine.inOut", repeat: -1, yoyo: true });
+      gsap.to(".hero-trust-card", {
+        y: -10,
+        rotation: 0.35,
+        boxShadow: "0 18px 40px rgba(66,55,145,0.16)",
+        duration: 2.8,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay: 0.35,
+      });
+      gsap.to(".hero-route-bead", { xPercent: 260, duration: 2.4, ease: "power1.inOut", repeat: -1, repeatDelay: 0.8 });
 
       return () => {
         split.revert();
@@ -113,7 +125,47 @@ export function Hero() {
             </Button>
           </div>
 
-          <div className="hero-area mt-7 max-w-xl rounded-lg border border-hairline bg-white p-4 shadow-soft sm:mt-8 sm:p-5">
+          <div className="hero-area hero-trust-card mt-7 max-w-xl rounded-lg border border-hairline bg-white p-4 shadow-soft will-change-transform sm:mt-8 sm:p-5">
+            <div className="flex items-start justify-between gap-3 border-b border-hairline pb-3">
+              <div>
+                <p className="font-body text-[10px] font-semibold uppercase tracking-[0.14em] text-violet">Pune care network</p>
+                <p className="mt-1 font-display text-base font-semibold text-ink">A clearer route starts here.</p>
+              </div>
+              <span className="relative inline-flex shrink-0 items-center gap-1.5 rounded-full bg-teal-tint px-2.5 py-1.5 font-body text-[10px] font-bold text-teal">
+                <span className="relative flex size-2"><span className="hero-trust-beacon absolute inset-0 rounded-full bg-teal" /><span className="relative size-2 rounded-full bg-teal" /></span>
+                Live
+              </span>
+            </div>
+            <div className="grid gap-2.5 py-3 sm:grid-cols-3 sm:gap-3">
+              <div className="flex items-center gap-2 sm:block">
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-lavender-soft text-violet sm:mb-2"><BadgeCheck className="size-4" aria-hidden="true" /></span>
+                <span className="font-body text-xs font-semibold leading-snug text-ink-soft">Verified partners</span>
+              </div>
+              <div className="flex items-center gap-2 sm:block">
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-teal-tint text-teal sm:mb-2"><Truck className="size-4" aria-hidden="true" /></span>
+                <span className="font-body text-xs font-semibold leading-snug text-ink-soft">Doorstep handover</span>
+              </div>
+              <div className="flex items-center gap-2 sm:block">
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-lavender-soft text-violet sm:mb-2"><CalendarCheck2 className="size-4" aria-hidden="true" /></span>
+                <span className="font-body text-xs font-semibold leading-snug text-ink-soft">Live order route</span>
+              </div>
+            </div>
+            <div className="relative flex items-center justify-between gap-2 border-t border-hairline py-3">
+              <span className="font-body text-[10px] font-semibold text-ink-soft">Your care route</span>
+              <div className="flex flex-1 items-center justify-end gap-1.5" aria-label="Booking route: choose, care, return">
+                <span className="flex size-6 items-center justify-center rounded-full bg-violet text-[9px] font-bold text-white">1</span>
+                <span className="relative h-px w-8 overflow-hidden bg-lavender-electric/45 sm:w-12"><span className="hero-route-bead absolute left-0 top-[-2px] size-1.5 rounded-full bg-teal" /></span>
+                <span className="flex size-6 items-center justify-center rounded-full bg-lavender-soft text-[9px] font-bold text-violet">2</span>
+                <span className="h-px w-8 bg-lavender-electric/45 sm:w-12" />
+                <span className="flex size-6 items-center justify-center rounded-full bg-teal text-[9px] font-bold text-ink">3</span>
+              </div>
+            </div>
+            <div className="flex items-center justify-between gap-3 border-t border-hairline pt-3">
+              <p className="font-body text-xs text-muted"><span className="font-semibold text-ink-soft">Serving</span> Baner · Wakad · Hinjewadi · Kharadi · Viman Nagar</p>
+              <ArrowUpRight className="size-4 shrink-0 text-violet" aria-hidden="true" />
+            </div>
+          </div>
+          <div className="hero-area hidden">
             <div className="grid gap-2 font-body text-sm font-semibold text-ink-soft sm:flex sm:flex-wrap sm:gap-x-4">
               <span>✓ Verified Laundry Partners</span><span>✓ Doorstep Pickup &amp; Delivery</span><span>✓ Live Order Tracking</span>
             </div>

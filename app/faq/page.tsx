@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Button } from "@/components/ui/Button";
 import { company } from "@/lib/data/site";
+import { FaqSupportVisual } from "@/components/faq/FaqSupportVisual";
 
 export const metadata: Metadata = {
   title: "FAQ | LNDRY",
@@ -126,7 +127,8 @@ export default function FAQPage() {
             </nav>
           </div>
 
-          <div className="relative isolate overflow-hidden rounded-xl bg-ink p-5 text-white sm:p-7">
+          <FaqSupportVisual />
+          <div className="hidden">
             <div className="pointer-events-none absolute -right-16 -top-16 size-56 rounded-full bg-violet/35 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-20 -left-12 size-48 rounded-full bg-teal/20 blur-3xl" />
 

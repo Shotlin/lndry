@@ -33,6 +33,13 @@ export function PartnerLeadVisual() {
         repeat: -1,
         ease: "none",
       });
+      gsap.to(".lead-visual-phone", {
+        y: -8,
+        duration: 1.7,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
     },
     { scope },
   );
@@ -71,7 +78,7 @@ export function PartnerLeadVisual() {
           </div>
         </div>
 
-        <div className="lead-visual-reveal relative self-end overflow-hidden rounded-sm border border-white/15 bg-[#202b37] shadow-[0_10px_16px_rgba(0,0,0,0.25)]">
+        <div className="lead-visual-reveal lead-visual-phone relative self-end overflow-hidden rounded-sm border border-white/15 bg-[#202b37] shadow-[0_10px_16px_rgba(0,0,0,0.25)] will-change-transform">
           <Image
             src="/brand/vendor-mockups/application-v1.png"
             alt="LNDRY vendor application screen"
@@ -80,9 +87,6 @@ export function PartnerLeadVisual() {
             sizes="136px"
             className="h-auto w-full translate-y-2 object-cover"
           />
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-teal px-2 py-1 font-body text-[9px] font-semibold text-ink">
-            Step-by-step
-          </div>
         </div>
       </div>
     </div>
