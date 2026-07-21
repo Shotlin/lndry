@@ -8,7 +8,7 @@ import { gsap } from "@/lib/motion/gsap";
 import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 
 export function FaqSupportVisual() {
-  const scope = useRef<HTMLDivElement>(null);
+  const scope = useRef<HTMLAnchorElement>(null);
   const reducedMotion = useReducedMotion();
 
   useGSAP(
