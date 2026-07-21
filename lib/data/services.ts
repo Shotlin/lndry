@@ -56,6 +56,9 @@ export const SERVICES: ServiceEntry[] = [
     icon: "/brand/icons/shoe-care.svg",
     illustration: "/brand/illustrations/service-shoe-care-v1.png",
     tag: { label: "Popular", tone: "teal" },
+    bestFor: "Footwear refresh",
+    price: "Starting ₹99/pair",
+    delivery: "48 hours",
   },
   {
     title: "Bag care",
@@ -63,6 +66,9 @@ export const SERVICES: ServiceEntry[] = [
     icon: "/brand/icons/bag-care.svg",
     illustration: "/brand/illustrations/service-bag-care-v1.png",
     tag: { label: "Popular", tone: "teal" },
+    bestFor: "Everyday accessories",
+    price: "Starting ₹99/item",
+    delivery: "48 hours",
   },
   {
     title: "Premium garment",
@@ -70,6 +76,9 @@ export const SERVICES: ServiceEntry[] = [
     icon: "/brand/icons/premium-garment-care.svg",
     illustration: "/brand/illustrations/service-premium-garment-care-v1.png",
     tag: { label: "Specialist", tone: "violet" },
+    bestFor: "Delicate garments",
+    price: "Starting ₹99/item",
+    delivery: "48 hours",
   },
   {
     title: "Tailoring",
@@ -77,6 +86,9 @@ export const SERVICES: ServiceEntry[] = [
     icon: "/brand/icons/tailoring.svg",
     illustration: "/brand/illustrations/service-tailoring-v1.png",
     tag: { label: "Specialist", tone: "violet" },
+    bestFor: "Alterations",
+    price: "Starting ₹99/item",
+    delivery: "Partner-led timing",
   },
   {
     title: "Curtains",
@@ -84,6 +96,9 @@ export const SERVICES: ServiceEntry[] = [
     icon: "/brand/icons/curtain-cleaning.svg",
     illustration: "/brand/illustrations/service-curtain-cleaning-v1.png",
     tag: { label: "Specialist", tone: "violet" },
+    bestFor: "Home textiles",
+    price: "Starting ₹99/panel",
+    delivery: "48 hours",
   },
   {
     title: "Carpets",
@@ -91,6 +106,9 @@ export const SERVICES: ServiceEntry[] = [
     icon: "/brand/icons/carpet-cleaning.svg",
     illustration: "/brand/illustrations/service-carpet-cleaning-v1.png",
     tag: { label: "Specialist", tone: "violet" },
+    bestFor: "Large-format care",
+    price: "Starting ₹99/item",
+    delivery: "Partner-led timing",
   },
   {
     title: "Blankets",
@@ -98,6 +116,9 @@ export const SERVICES: ServiceEntry[] = [
     icon: "/brand/icons/blanket-cleaning.svg",
     illustration: "/brand/illustrations/service-blanket-cleaning-v1.png",
     tag: { label: "Specialist", tone: "violet" },
+    bestFor: "Bulky seasonal care",
+    price: "Starting ₹99/item",
+    delivery: "48 hours",
   },
 ];
 

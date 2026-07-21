@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
-import { Pill } from "@/components/ui/Pill";
 import { Button } from "@/components/ui/Button";
 import { PhoneFrame } from "@/components/ui/PhoneFrame";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { AudienceNav } from "@/components/partners/AudienceNav";
 import { PartnerLeadForm } from "@/components/partners/PartnerLeadForm";
+import { PartnerLeadVisual } from "@/components/partners/PartnerLeadVisual";
 import { PartnerServiceExplainer } from "@/components/partners/PartnerServiceExplainer";
+import { PartnerOnboardingJourney, PartnerOperatingStory } from "@/components/partners/PartnerOperatingStory";
 
 const title = "Partner With LNDRY | Laundry Vendor Onboarding in Pune";
 const description =
@@ -32,14 +33,7 @@ export const metadata: Metadata = {
   },
 };
 
-const ONBOARDING_STEPS = ["Submit Application", "Business Verification", "Quality Review", "Agreement", "Training", "Go Live"];
 const OTP_STEPS = ["Pickup OTP", "Partner return", "Delivery OTP", "Completed"];
-const WHY_JOIN_CARDS = [
-  { title: "More Customers", body: "Receive online booking requests." },
-  { title: "Technology", body: "Manage orders digitally." },
-  { title: "Flexible Capacity", body: "Accept only the orders you can handle." },
-  { title: "Faster Growth", body: "Focus on garment care while LNDRY brings demand." },
-];
 
 export default function PartnersPage() {
   return (
@@ -77,35 +71,8 @@ export default function PartnersPage() {
         </Container>
       </section>
 
-      <section className="bg-white py-20 md:py-24">
-        <Container className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div>
-            <SectionEyebrow>Why Join LNDRY?</SectionEyebrow>
-            <h2 className="mt-3 font-display text-headline text-ink">
-              More Customers. Technology. Flexible Capacity. Faster Growth.
-            </h2>
-            <p className="mt-4 max-w-lg font-body text-base leading-relaxed text-ink-soft">
-              Receive online booking requests, manage orders digitally, accept only the orders you
-              can handle, and focus on garment care while LNDRY brings demand.
-            </p>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {WHY_JOIN_CARDS.map((benefit, index) => (
-              <div key={benefit.title} className="rounded-lg border border-hairline bg-bg-app p-5 shadow-soft">
-                <p className={`font-body text-xs font-bold uppercase tracking-[0.14em] ${index < 2 ? "text-teal" : "text-violet"}`}>
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-3 font-display text-xl font-semibold text-ink">{benefit.title}</h3>
-                <p className="mt-2 font-body text-sm leading-relaxed text-ink-soft">{benefit.body}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section className="bg-white pb-20 md:pb-24">
-        <Container><div className="rounded-xl bg-ink p-8 text-white md:p-10"><SectionEyebrow tone="onDark">Partnership process</SectionEyebrow><h2 className="mt-3 font-display text-3xl font-semibold">What happens after I submit?</h2><div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-6">{ONBOARDING_STEPS.map((step, index) => <div key={step} className="rounded-lg border border-white/15 bg-white/[0.06] p-4"><p className="font-display text-lg text-teal">{index + 1}</p><p className="mt-2 font-body text-sm text-white/80">{step}</p></div>)}</div></div></Container>
-      </section>
+      <PartnerOperatingStory />
+      <PartnerOnboardingJourney />
 
       <section id="partner-lead-form" className="bg-bg-app py-20 md:py-24">
         <Container className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
@@ -116,13 +83,9 @@ export default function PartnersPage() {
               Start with Business Name, Owner Name, Mobile, and City. After your initial contact is
               verified, LNDRY can collect the remaining business and service details.
             </p>
-            <Image
-              src="/brand/website-launch/components/partner-benefit-grid.svg"
-              alt="LNDRY partner benefit grid"
-              width={1200}
-              height={640}
-              className="mt-8 h-auto w-full rounded-lg shadow-soft"
-            />
+            <div className="mt-8">
+              <PartnerLeadVisual />
+            </div>
           </div>
           <PartnerLeadForm />
         </Container>
@@ -149,13 +112,12 @@ export default function PartnersPage() {
                   Application review, documents, service radius, capacity and order assignment are
                   presented as a trust system, not a generic business sign-up.
                 </p>
-                <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-                  {ONBOARDING_STEPS.map((label, i) => (
-                    <Pill key={label} tone={i === 0 ? "teal" : "neutral"}>
-                      {label}
-                    </Pill>
-                  ))}
-                </div>
+                <a
+                  href="#partner-story"
+                  className="mt-6 inline-flex font-body text-sm font-semibold text-violet underline decoration-violet/35 underline-offset-4 transition-colors hover:text-violet-deep"
+                >
+                  See the partner operating story
+                </a>
               </div>
               <PhoneFrame
                 src="/brand/vendor-mockups/new-order-v1.png"

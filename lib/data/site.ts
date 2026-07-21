@@ -148,39 +148,39 @@ export const founder = {
 export const faqs = [
   {
     q: "How does LNDRY work?",
-    a: "Customers enter their pickup area, choose the service they need, and LNDRY recommends an eligible nearby partner. The customer confirms the booking, handover happens through the defined pickup flow, and the order moves through visible status stages.",
+    a: "Enter your pickup area, choose the service you need, and continue with a suitable nearby laundry partner based on availability and coverage. You can review the booking details before confirming pickup.",
   },
   {
     q: "Who washes my clothes?",
-    a: "Verified laundry partners that match your service, area, availability, and delivery requirements handle garment care through the LNDRY marketplace flow.",
+    a: "LNDRY connects you with verified laundry partners that serve your area and selected service. Garment care is handled by the partner assigned to your booking.",
   },
   {
     q: "How are vendors selected?",
-    a: "Partners are selected through service eligibility, area coverage, capacity, timing, and marketplace quality signals. The goal is to recommend the right partner without forcing customers into a crowded vendor-selection screen.",
+    a: "Each partner is reviewed before joining LNDRY. Recommendations take into account service capability, coverage area, availability, and operational quality signals.",
   },
   {
     q: "Can I track my order?",
-    a: "LNDRY should show order status stages such as pickup scheduled, picked up, processing, ready, out for delivery, and completed. Continuous live rider tracking should only be shown if the backend supports it.",
+    a: "Your order updates keep you informed as the booking moves from pickup to processing, quality checks, and delivery. Available status details can vary by order.",
   },
   {
     q: "How long does delivery take?",
-    a: "Delivery time depends on service type, partner capacity, pickup slot, and garment care requirements. The booking flow should show the applicable estimate before confirmation.",
+    a: "Delivery timing depends on the service, pickup slot, partner capacity, and garment-care requirements. Your booking shows the available delivery estimate before you confirm.",
   },
   {
     q: "What if my clothes are damaged?",
-    a: "Customers should contact support quickly with order details and photos. The claim should be reviewed against partner notes, care labels, and the applicable refund or liability policy.",
+    a: "If you notice a problem, contact support as soon as possible with your order details and photos. Our team will review the case under the applicable service and refund policy.",
   },
   {
     q: "How do I pay?",
-    a: "Digital payment options are shown before confirmation. Cash on delivery should only be offered where it is available for the selected service and area.",
+    a: "Available payment options are shown during booking before you confirm. Availability can vary by service and location.",
   },
   {
     q: "What if something goes wrong?",
-    a: `Our support team will help resolve the issue. Contact ${company.supportEmail} quickly with your order details and relevant photos where applicable.`,
+    a: `Contact ${company.supportEmail} with your order details and relevant photos where useful. Our team will review the issue and guide you through the next steps.`,
   },
   {
     q: "How do refunds work?",
-    a: "Refunds and cancellations should follow the published Refund & Cancellation Policy. The policy needs to be visible before payment gateway review.",
+    a: "Cancellations, re-service, credits, or refunds may be available under the Refund & Cancellation Policy. Review the policy before booking or payment.",
   },
 ];
 

@@ -218,7 +218,7 @@ export const deliverySections: LegalSection[] = [
   {
     title: "Order status updates",
     body: [
-      "LNDRY should show order stages such as pickup scheduled, picked up, processing, ready, out for delivery, and completed. Continuous live rider tracking should only be shown if technically supported.",
+      "LNDRY keeps the available order stages visible, including pickup scheduled, picked up, processing, ready, out for delivery, and completed. If live rider tracking is available for an order, it is shown in the relevant order experience.",
     ],
   },
   {

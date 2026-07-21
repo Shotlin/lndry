@@ -9,6 +9,7 @@ import { company, legalPolicies, locationPages } from "@/lib/data/site";
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
+  { label: "Pricing", href: "/pricing" },
   { label: "How it works", href: "/how-it-works" },
   { label: "Partners", href: "/partners" },
   { label: "About", href: "/about" },
@@ -100,7 +101,7 @@ export function Footer() {
               <a href={`mailto:${company.supportEmail}`} className="font-body text-sm font-medium text-white/85 hover:text-white">{company.supportEmail}</a>
               <a href={company.supportPhoneHref} className="font-body text-sm font-medium text-white/85 hover:text-white">{company.phonePlaceholder}</a>
               <a href={company.whatsappHref} className="font-body text-sm font-medium text-white/85 hover:text-white">WhatsApp: {company.whatsappPlaceholder}</a>
-              <Link href="/contact" className="font-body text-sm font-medium text-white/85 hover:text-white">LinkedIn &amp; Instagram</Link>
+              <Link href="/contact" className="font-body text-sm font-medium text-white/85 hover:text-white">Support &amp; contact</Link>
             </div>
           </nav>
 

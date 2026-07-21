@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight, Clock3, Sparkles } from "lucide-react";
 import { Pill } from "./Pill";
 
 export interface ServiceCardData {
@@ -19,45 +20,66 @@ export function ServiceCard({
   illustration,
   tag,
   bestFor,
-  price,
-  delivery,
+  price = "Starting ₹99",
+  delivery = "Partner-led timing",
   className = "",
   compact = false,
 }: ServiceCardData & { className?: string; compact?: boolean }) {
   return (
-    <div
-      className={`service-card group relative flex h-full flex-col rounded-lg border border-hairline bg-white p-6 shadow-soft transition-transform duration-300 [transition-timing-function:var(--ease-signature)] hover:-translate-y-1.5 hover:shadow-elevated ${className}`}
+    <article
+      className={`service-card group flex h-full flex-col overflow-hidden rounded-xl bg-white ring-1 ring-hairline transition-transform duration-500 [transition-timing-function:var(--ease-signature)] hover:-translate-y-1 ${className}`}
     >
-      {tag && (
-        <span className="absolute right-5 top-5">
-          <Pill tone={tag.tone === "teal" ? "teal" : "violet"} className="h-8 px-3 text-xs">
-            {tag.label}
-          </Pill>
-        </span>
-      )}
-
-      <div className={`relative ${compact ? "h-24 w-24" : "h-28 w-28"} shrink-0`}>
-        <Image src={illustration} alt="" fill sizes="112px" className="object-contain" />
+      <div className={`relative overflow-hidden bg-[radial-gradient(circle_at_50%_18%,#ffffff_0%,#f2f0ff_54%,#e4e0ff_100%)] ${compact ? "h-44" : "h-52"}`}>
+        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/70 to-transparent" />
+        {tag && (
+          <span className="absolute right-4 top-4 z-10">
+            <Pill tone={tag.tone === "teal" ? "teal" : "violet"} className="h-7 px-2.5 text-[11px]">
+              {tag.label}
+            </Pill>
+          </span>
+        )}
+        <Image
+          src={illustration}
+          alt={`${title} service illustration`}
+          fill
+          sizes="(min-width: 1024px) 31vw, (min-width: 640px) 46vw, 100vw"
+          className="object-contain p-5 transition-transform duration-700 [transition-timing-function:var(--ease-signature)] group-hover:scale-[1.08]"
+        />
+        <div className="absolute bottom-4 left-4 z-10 inline-flex items-center gap-2 rounded-full bg-ink px-3 py-2 text-white shadow-[0_4px_8px_rgba(8,15,20,0.28)]">
+          <Sparkles className="size-3 text-teal" aria-hidden="true" />
+          <span className="font-body text-xs font-semibold">{price.replace("Starting ", "")}</span>
+        </div>
       </div>
 
-      <h3 className="mt-4 font-display text-lg font-semibold text-ink">{title}</h3>
-      <p className="mt-1.5 flex-1 font-body text-sm leading-relaxed text-ink-soft">{description}</p>
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <div>
+          <h3 className="font-display text-xl font-semibold text-ink">{title}</h3>
+          <p className="mt-2 font-body text-sm leading-relaxed text-ink-soft">{description}</p>
+        </div>
 
-      {price ? (
-        <dl className="mt-4 grid grid-cols-2 gap-2 rounded-lg bg-surface-cool p-3 font-body text-xs">
-          <div><dt className="text-muted">Best for</dt><dd className="mt-1 font-semibold text-ink">{bestFor}</dd></div>
-          <div><dt className="text-muted">Starting price</dt><dd className="mt-1 font-semibold text-violet-deep">{price.replace("Starting ", "")}</dd></div>
-          {delivery ? <div className="col-span-2 border-t border-hairline pt-2 text-ink-soft">Delivery: <span className="font-semibold text-ink">{delivery}</span></div> : null}
+        <dl className="mt-5 grid grid-cols-2 gap-3 rounded-lg bg-surface-cool p-3.5 font-body text-xs">
+          <div>
+            <dt className="text-muted">Best for</dt>
+            <dd className="mt-1 font-semibold text-ink">{bestFor ?? "Everyday care"}</dd>
+          </div>
+          <div>
+            <dt className="text-muted">Starting from</dt>
+            <dd className="mt-1 font-semibold text-violet-deep">{price.replace("Starting ", "")}</dd>
+          </div>
+          <div className="col-span-2 flex items-center gap-1.5 border-t border-hairline pt-2.5 text-ink-soft">
+            <Clock3 className="size-3.5 text-teal" aria-hidden="true" />
+            Typical turnaround: <span className="font-semibold text-ink">{delivery}</span>
+          </div>
         </dl>
-      ) : null}
 
-      <Link
-        href="/marketplace"
-        className="mt-4 inline-flex items-center gap-1 font-body text-sm font-semibold text-violet group-hover:gap-2 transition-all"
-      >
-        Get a recommended partner near you
-        <span aria-hidden>→</span>
-      </Link>
-    </div>
+        <Link
+          href="/marketplace"
+          className="mt-5 inline-flex items-center gap-1.5 font-body text-sm font-semibold text-violet transition-[gap] duration-300 hover:gap-2.5"
+        >
+          Find a suitable partner
+          <ArrowUpRight className="size-4" aria-hidden="true" />
+        </Link>
+      </div>
+    </article>
   );
 }

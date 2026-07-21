@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
-import { Pill } from "@/components/ui/Pill";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
-import { company, launchAreas, trustSignals } from "@/lib/data/site";
+import { TrustChoiceStory } from "@/components/sections/TrustChoiceStory";
+import { company, launchAreas } from "@/lib/data/site";
 
 export function LaunchTrustSection() {
   return (
@@ -84,22 +84,8 @@ export function LaunchTrustSection() {
           </Reveal>
         </div>
 
-        <div className="mt-14 max-w-2xl">
-          <SectionEyebrow>Why thousands of customers will choose LNDRY</SectionEyebrow>
-          <h2 className="mt-3 font-display text-headline text-ink">Trust should be visible before pickup.</h2>
-          <p className="mt-4 font-body text-base leading-relaxed text-ink-soft">Every signal below answers a practical customer concern before they book.</p>
-        </div>
-        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {trustSignals.map((item, index) => (
-            <Reveal key={item.title} delay={index * 0.035}>
-              <div className="h-full rounded-lg border border-hairline bg-surface-cool p-6">
-                <Pill tone={index === 4 ? "violet" : "teal"}>{item.title}</Pill>
-                <p className="mt-4 font-body text-sm leading-relaxed text-ink-soft">{item.body}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
       </Container>
+      <TrustChoiceStory />
     </section>
   );
 }

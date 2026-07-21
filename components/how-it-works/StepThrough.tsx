@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import { CalendarClock, CreditCard, PackageCheck, ScanSearch, ShieldCheck, Shirt } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "@/lib/motion/gsap";
 import { motionTokens } from "@/lib/motion/tokens";
@@ -12,44 +13,50 @@ const STEPS = [
   {
     label: "Service",
     title: "Choose the care your garments need",
-    desc: "The service list is framed around real garment decisions: daily laundry, dry cleaning, steam press, bedding, shoes, and premium care.",
+    desc: "Choose from everyday laundry, dry cleaning, steam press, bedding, shoes, and specialist garment care.",
     visual: "service",
-    proof: "Service eligibility",
+    proof: "Care route selected",
+    icon: Shirt,
   },
   {
     label: "Garments",
     title: "Build the basket with visible pricing",
-    desc: "Line items, quantities, and the estimate sit together so the customer understands the booking before pickup.",
+    desc: "Add the items you want cleaned. The price basis stays visible before your pickup is confirmed.",
     visual: "garments",
-    proof: "Transparent estimate",
+    proof: "Visible estimate",
+    icon: PackageCheck,
   },
   {
     label: "Slot",
     title: "Pick a pickup window that feels real",
-    desc: "A 60-minute slot is easier to trust than vague same-day language. The UI shows time as a committed operational object.",
+    desc: "Select a 60-minute pickup window that fits your day and keeps the handover clear.",
     visual: "slot",
     proof: "60-minute pickup slot",
+    icon: CalendarClock,
   },
   {
     label: "Payment",
     title: "Confirm the order with a clean payment state",
-    desc: "The payment screen should feel calm, focused, and reviewable, especially for first-time customers.",
+    desc: "Review your address, pickup window, and estimate before you confirm the order.",
     visual: "payment",
-    proof: "Gateway-ready checkout",
+    proof: "Order reviewed",
+    icon: CreditCard,
   },
   {
     label: "Status",
     title: "Follow the order without calling support",
-    desc: "Pickup, processing, quality check, and delivery are visible as stages. No unsupported live rider map is implied.",
+    desc: "Follow the order through pickup, care, quality check, and delivery without needing to call around.",
     visual: "status",
-    proof: "Order status clarity",
+    proof: "Care updates",
+    icon: ScanSearch,
   },
   {
     label: "OTP",
     title: "Close the loop with secure handover",
-    desc: "Pickup and delivery can be verified with OTP, turning the final moment into a clear trust signal.",
+    desc: "Pickup and delivery handovers are confirmed with OTP, so the final moment stays clear and secure.",
     visual: "otp",
     proof: "Verified handover",
+    icon: ShieldCheck,
   },
 ];
 
@@ -134,7 +141,7 @@ function StepVisual({ type }: { type: string }) {
           ))}
         </div>
         <div className="mt-5 rounded-md bg-ink px-4 py-3 text-white">
-          <p className="font-body text-xs text-white/60">Selected</p>
+              <p className="font-body text-xs text-white/60">Selected pickup</p>
           <p className="font-display text-base font-semibold">Today, 12:00 to 1:00 PM</p>
         </div>
       </div>
@@ -149,7 +156,7 @@ function StepVisual({ type }: { type: string }) {
           <p className="mt-1 font-display text-3xl font-bold">₹297</p>
         </div>
         <div className="space-y-3 p-5">
-          {["Order summary checked", "Pickup address confirmed", "Payment gateway ready"].map((item) => (
+          {["Order summary checked", "Pickup address confirmed", "Estimate ready to review"].map((item) => (
             <div key={item} className="flex items-center gap-3 rounded-sm bg-surface-cool px-4 py-3">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal text-xs font-bold text-white">
                 ✓
@@ -207,7 +214,7 @@ function StepVisual({ type }: { type: string }) {
         <p className="font-body text-xs font-semibold uppercase tracking-[0.14em] text-violet">Delivery OTP</p>
         <p className="mt-3 font-display text-4xl font-bold tracking-[0.16em] text-ink">4821</p>
         <p className="mt-3 font-body text-sm leading-relaxed text-ink-soft">
-          The order is handed over only after the code is confirmed.
+          Your delivery handover is completed after the code is confirmed.
         </p>
       </div>
     </div>
@@ -290,6 +297,26 @@ export function StepThrough() {
         return () => trigger.kill();
       });
 
+      mm.add("(max-width: 767px)", () => {
+        const cards = gsap.utils.toArray<HTMLElement>(".mobile-step-reveal");
+        const animations = cards.map((card) =>
+          gsap.from(card, {
+            autoAlpha: 0,
+            y: 22,
+            duration: 0.62,
+            ease: motionTokens.easeSignature,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 88%",
+              end: "bottom 42%",
+              toggleActions: "play reverse play reverse",
+            },
+          })
+        );
+
+        return () => animations.forEach((animation) => animation.kill());
+      });
+
       return () => mm.revert();
     },
     { scope: sectionRef, dependencies: [reducedMotion] }
@@ -298,24 +325,29 @@ export function StepThrough() {
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-bg-app py-16 md:flex md:min-h-screen md:flex-col md:justify-center">
       <Container>
-        <div className="md:hidden">
+        <div id="booking-story" className="scroll-mt-24 md:hidden">
           <div className="mb-8">
             <p className="font-body text-sm font-semibold text-violet">Six-step booking story</p>
-            <h2 className="mt-2 font-display text-headline text-ink">Every step now has something to see.</h2>
+            <h2 className="mt-2 font-display text-headline text-ink">See the booking story, one clear step at a time.</h2>
           </div>
           <div className="grid gap-5">
-            {STEPS.map((step, index) => (
-              <article key={step.label} className="rounded-lg border border-hairline bg-white p-5 shadow-soft">
-                <p className="font-body text-xs font-semibold uppercase tracking-[0.12em] text-violet">
-                  Step {index + 1}, {step.label}
-                </p>
-                <h3 className="mt-2 font-display text-xl font-semibold text-ink">{step.title}</h3>
-                <p className="mt-2 font-body text-sm leading-relaxed text-ink-soft">{step.desc}</p>
-                <div className="mt-5">
-                  <StepVisual type={step.visual} />
-                </div>
-              </article>
-            ))}
+            {STEPS.map((step, index) => {
+              const Icon = step.icon;
+              return (
+                <article key={step.label} className="mobile-step-reveal relative rounded-lg border border-hairline bg-white p-5 shadow-soft">
+                  <div className="flex items-center gap-3">
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-lavender-soft text-violet ring-1 ring-violet/10"><Icon className="size-4.5" aria-hidden="true" strokeWidth={1.9} /></span>
+                    <p className="font-body text-xs font-semibold uppercase tracking-[0.12em] text-violet">Step {index + 1}, {step.label}</p>
+                  </div>
+                  <h3 className="mt-4 font-display text-xl font-semibold text-ink">{step.title}</h3>
+                  <p className="mt-2 font-body text-sm leading-relaxed text-ink-soft">{step.desc}</p>
+                  <div className="mt-5">
+                    <StepVisual type={step.visual} />
+                  </div>
+                  {index < STEPS.length - 1 ? <span className="pointer-events-none absolute -bottom-5 left-[2.4rem] h-5 w-px bg-[linear-gradient(#664cf0_0%,rgba(102,76,240,0.18)_100%)]" aria-hidden="true" /> : null}
+                </article>
+              );
+            })}
           </div>
         </div>
 
