@@ -39,7 +39,7 @@ export function ProgressRail() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed right-3 top-1/2 z-40 hidden max-w-[calc(100vw-1.5rem)] -translate-y-1/2 flex-col items-end gap-4 overflow-visible xl:right-6 xl:flex"
+      className="pointer-events-none fixed right-3 top-1/2 z-[60] hidden max-w-[calc(100vw-1.5rem)] -translate-y-1/2 flex-col items-end gap-4 overflow-visible xl:right-6 xl:flex"
     >
       {ACTS.map((act, i) => (
         <div key={act.id} className="flex items-center gap-2.5">
