@@ -53,7 +53,7 @@ export function MarketplaceCompare() {
         style={{ background: "radial-gradient(520px circle at var(--x, 50%) var(--y, 50%), rgba(102,76,240,0.24), transparent 68%)" }}
       />
       <Container className="relative">
-        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-end">
           <div className="recommend-reveal max-w-xl">
             <SectionEyebrow tone="onDark">Act three, recommend</SectionEyebrow>
             <h2 className="mt-3 font-display text-headline text-white">Tell us where you are. We&apos;ll recommend who can care for it.</h2>
@@ -97,8 +97,8 @@ export function MarketplaceCompare() {
             </div>
           </div>
 
-          <div className="relative mx-auto -mt-6 flex w-[calc(100%-1rem)] max-w-4xl flex-col overflow-hidden rounded-xl bg-surface shadow-[0_8px_8px_rgba(2,6,15,0.32)] sm:-mt-12 sm:w-[calc(100%-3rem)] lg:grid lg:h-[14.5rem] lg:grid-cols-2">
-            <div className="order-2 flex min-h-[12.75rem] flex-col justify-between bg-[linear-gradient(145deg,#ffffff_0%,#f0efff_100%)] p-5 sm:min-h-[13.5rem] sm:p-6 lg:order-1 lg:min-h-0">
+          <div className="relative mx-auto -mt-6 flex w-[calc(100%-1rem)] max-w-4xl flex-col overflow-hidden rounded-xl bg-surface shadow-[0_8px_8px_rgba(2,6,15,0.32)] sm:-mt-12 sm:w-[calc(100%-3rem)] lg:grid lg:min-h-[14.5rem] lg:grid-cols-2">
+            <div className="order-2 flex min-h-[12.75rem] flex-col justify-between bg-[linear-gradient(145deg,#ffffff_0%,#f0efff_100%)] p-5 sm:min-h-[13.5rem] sm:p-6 lg:order-1 lg:min-h-[14.5rem]">
               <div>
                 <div className="inline-flex items-center gap-1.5 rounded-full bg-violet/10 px-2.5 py-1.5 font-body text-[10px] font-semibold uppercase tracking-[0.12em] text-violet-deep">
                   <Sparkles className="size-3" aria-hidden="true" />
@@ -112,7 +112,7 @@ export function MarketplaceCompare() {
                 <Button href="/#early-access" className="w-full shrink-0 sm:w-auto">Book now</Button>
               </div>
             </div>
-            <div className="order-1 min-h-[12.5rem] bg-[linear-gradient(135deg,#ffffff_0%,#e6e2ff_38%,#806cf5_68%,#efeefe_100%)] p-3 lg:order-2 lg:min-h-0">
+            <div className="order-1 min-h-[12.5rem] bg-[linear-gradient(135deg,#ffffff_0%,#e6e2ff_38%,#806cf5_68%,#efeefe_100%)] p-3 lg:order-2 lg:min-h-[14.5rem]">
               <div className="group/card relative min-h-[11rem] overflow-hidden rounded-lg bg-ink lg:min-h-0 lg:h-full">
                 <Image
                   src="/brand/illustrations/luxe-fabric-care-studio-v1.png"

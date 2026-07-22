@@ -71,12 +71,14 @@
 
 html {
   scroll-behavior: auto; /* Lenis owns smooth scrolling; native smooth-scroll would fight it */
+  overflow-x: clip;
 }
 
 body {
   background: var(--color-bg-app);
   color: var(--color-ink);
   font-family: var(--font-body);
+  overflow-x: clip;
 }
 
 ::selection {
