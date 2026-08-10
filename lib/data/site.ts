@@ -9,10 +9,10 @@ export const company = {
   supportEmail: "support@lndry.in",
   privacyEmail: "privacy@lndry.in",
   legalEmail: "legal@lndry.in",
-  phonePlaceholder: "+91 92705 62669",
-  whatsappPlaceholder: "+91 92705 62669",
-  supportPhoneHref: "tel:+919270562669",
-  whatsappHref: "https://wa.me/919270562669",
+  phonePlaceholder: "+91 92702 65669",
+  whatsappPlaceholder: "+91 92702 65669",
+  supportPhoneHref: "tel:+919270265669",
+  whatsappHref: "https://wa.me/919270265669",
   businessHours: "Monday–Sunday, 8:00 AM to 9:00 PM",
 };
 
