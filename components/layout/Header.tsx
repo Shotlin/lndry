@@ -5,15 +5,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { FaInstagram } from "react-icons/fa";
 import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
-import { legalPolicies } from "@/lib/data/site";
+import { company, legalPolicies } from "@/lib/data/site";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "How it works", href: "/how-it-works" },
   { label: "Pricing", href: "/pricing" },
+  { label: "Stores", href: "/stores" },
   { label: "Partners", href: "/partners" },
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },
@@ -66,6 +68,7 @@ export function Header() {
           </nav>
 
           <div className="hidden items-center gap-3 xl:flex">
+            <a href={company.instagramHref} target="_blank" rel="noreferrer" aria-label="Follow LNDRY on Instagram" className="flex size-11 items-center justify-center rounded-sm border border-hairline text-violet transition-colors hover:border-violet hover:bg-lavender-soft focus-visible:outline-2 focus-visible:outline-violet focus-visible:outline-offset-2"><FaInstagram className="size-5" aria-hidden="true" /></a>
             <Button href="/#early-access" size="md">
               Book pickup
             </Button>
@@ -125,6 +128,7 @@ export function Header() {
               <Button href="/partners#partner-lead-form" variant="secondary" className="w-full">
                 Partner With LNDRY
               </Button>
+              <a href={company.instagramHref} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-sm border border-hairline bg-white font-display text-sm font-semibold text-violet transition-colors hover:border-violet hover:bg-lavender-soft"><FaInstagram className="size-5" aria-hidden="true" />Follow @lndry.in</a>
             </div>
           </Container>
         </div>

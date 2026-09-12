@@ -9,6 +9,7 @@ import {
   Phone,
   ShieldCheck,
 } from "lucide-react";
+import { FaInstagram } from "react-icons/fa";
 import { Container } from "@/components/ui/Container";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Button } from "@/components/ui/Button";
@@ -50,6 +51,14 @@ const supportChannels = [
     href: `mailto:${company.supportEmail}`,
     icon: Mail,
     tone: "bg-surface-cool text-violet-deep",
+  },
+  {
+    label: "LNDRY on Instagram",
+    value: "Follow @lndry.in",
+    detail: "See care ideas, service updates, and the LNDRY House edit.",
+    href: company.instagramHref,
+    icon: FaInstagram,
+    tone: "bg-lavender-soft text-violet",
   },
   {
     label: "Partner team",
@@ -133,7 +142,7 @@ export default function ContactPage() {
             </h2>
             <p className="mt-4 max-w-lg font-body text-base leading-relaxed text-ink-soft">
               Start on WhatsApp for fast order support, call for an immediate conversation, email
-              when you need to share details, or speak to the partner team about joining LNDRY.
+              when you need to share details, follow LNDRY for care updates, or speak to the partner team about joining LNDRY.
             </p>
 
             <div className="mt-7 grid max-w-xl gap-3 sm:grid-cols-2">
