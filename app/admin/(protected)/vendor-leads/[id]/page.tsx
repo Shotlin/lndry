@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { ArrowLeft, Building2, CalendarClock, ClipboardCheck, MapPin, ShieldCheck } from "lucide-react";
 import { LeadContactActions } from "@/components/admin/LeadContactActions";
+import { LeadHandoffPanel } from "@/components/admin/LeadHandoffPanel";
 import { LeadWorkflowForm } from "@/components/admin/LeadWorkflowForm";
 import { VendorLeadStatusBadge } from "@/components/admin/VendorLeadStatusBadge";
 import { getAdminAccess } from "@/lib/auth/require-admin";
@@ -122,6 +123,7 @@ export default async function VendorLeadDetailPage({
           <p className="font-body text-sm font-semibold text-violet-deep">Internal workflow</p>
           <h2 className="mt-2 font-display text-xl font-semibold text-ink">Review this lead</h2>
           <p className="mt-2 font-body text-sm leading-relaxed text-ink-soft">Status and notes are visible only to authorized LNDRY administrators.</p>
+          <div className="mt-5"><LeadHandoffPanel leadId={lead.id} initial={{ canonical_handoff_status: lead.canonical_handoff_status, canonical_handoff_attempts: lead.canonical_handoff_attempts, canonical_handoff_last_error: lead.canonical_handoff_last_error, canonical_handoff_at: lead.canonical_handoff_at }} /></div>
           <div className="mt-5"><LeadWorkflowForm leadId={lead.id} initialStatus={lead.status} initialNotes={lead.admin_notes} /></div>
         </aside>
       </div>
