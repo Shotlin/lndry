@@ -1,6 +1,7 @@
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 import { isSameOriginRequest, jsonNoStore } from "@/lib/http/security";
 import { vendorLeadSubmissionSchema } from "@/lib/vendor-leads/schema";
+import { handoffVendorLead } from "@/lib/vendor-leads/backend-handoff";
 
 export const runtime = "nodejs";
 
@@ -51,7 +52,7 @@ export async function POST(request: Request) {
   }
 
   const lead = parsed.data;
-  const { error } = await supabase.from("vendor_leads").insert({
+  const { data: savedLead, error } = await supabase.from("vendor_leads").insert({
     full_name: lead.fullName,
     business_name: lead.businessName,
     email: lead.email,
@@ -69,13 +70,29 @@ export async function POST(request: Request) {
     privacy_consent: lead.privacyConsent,
     // Source is decided by the server, not by a browser-controlled form field.
     source: "website-partners",
-  });
+  }).select("id").single();
 
   if (error) {
     return jsonNoStore(
       { error: "We could not save your enquiry right now. Please try again shortly." },
       { status: 500 },
     );
+  }
+
+  // The Supabase lead remains durable even if LNDRY is unavailable. Record
+  // the handoff state truthfully; this does not turn a marketing enquiry into
+  // a vendor application or claim that onboarding has completed.
+  const handoff = await handoffVendorLead(savedLead.id, lead);
+  const { error: handoffStateError } = await supabase.from("vendor_leads").update({
+    canonical_handoff_status: handoff.state,
+    canonical_handoff_attempts: 1,
+    canonical_handoff_last_error: handoff.error,
+    canonical_handoff_at: handoff.state === "delivered" ? new Date().toISOString() : null,
+  }).eq("id", savedLead.id);
+  if (handoffStateError) {
+    // The lead itself is safely recorded. Do not disclose internal transport
+    // detail to a public applicant; platform staff can reconcile it later.
+    console.error("Unable to persist canonical handoff state", handoffStateError.message);
   }
 
   return jsonNoStore(

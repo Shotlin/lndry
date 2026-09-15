@@ -44,3 +44,4 @@ ChatGPT Image*.png
 
 .vercel
 .env*
+supabase/.temp/

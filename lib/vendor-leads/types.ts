@@ -9,6 +9,8 @@ export const VENDOR_LEAD_STATUSES = [
 
 export type VendorLeadStatus = (typeof VENDOR_LEAD_STATUSES)[number];
 
+export type VendorLeadHandoffStatus = "pending" | "delivered" | "not_configured" | "failed";
+
 export interface VendorLead {
   id: string;
   full_name: string;
@@ -27,6 +29,10 @@ export interface VendorLead {
   message: string | null;
   privacy_consent: boolean;
   status: VendorLeadStatus;
+  canonical_handoff_status: VendorLeadHandoffStatus;
+  canonical_handoff_attempts: number;
+  canonical_handoff_last_error: string | null;
+  canonical_handoff_at: string | null;
   admin_notes: string | null;
   source: string;
   created_at: string;
