@@ -1,12 +1,32 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useGSAP } from "@gsap/react";
-import { Bell, Smartphone } from "lucide-react";
-import { FaApple, FaGooglePlay } from "react-icons/fa";
+import { Download, Loader2, Smartphone } from "lucide-react";
+import { FaAndroid } from "react-icons/fa";
 import { Container } from "../ui/Container";
 import { PhoneFrame } from "../ui/PhoneFrame";
 import { gsap } from "@/lib/motion/gsap";
 import { useReducedMotion } from "@/lib/motion/useReducedMotion";
+
+type AppReleaseInfo = {
+  app: "CUSTOMER" | "VENDOR";
+  appName: string;
+  versionName: string;
+  versionCode: number;
+  fileSizeBytes: number;
+  downloadUrl: string;
+} | null;
+
+type ReleasesResponse = {
+  success: boolean;
+  data: { customer: AppReleaseInfo; vendor: AppReleaseInfo };
+};
+
+const DOWNLOAD_CARDS = [
+  { key: "customer" as const, label: "LNDRY", tagline: "Customer app · book & track pickups" },
+  { key: "vendor" as const, label: "Lndry Partner", tagline: "Vendor app · manage orders" },
+];
 
 const APP_PREVIEWS = [
   {
@@ -35,13 +55,25 @@ const APP_PREVIEWS = [
   },
 ];
 
-const STORE_BUTTONS = [
-  { label: "Google Play", eyebrow: "GET IT ON", icon: FaGooglePlay },
-  { label: "App Store", eyebrow: "DOWNLOAD ON THE", icon: FaApple },
-];
-
 export function AppLaunchSection() {
   const reducedMotion = useReducedMotion();
+  const [releases, setReleases] = useState<ReleasesResponse["data"] | null>(null);
+  const [loadFailed, setLoadFailed] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("https://api.lndry.in/api/v1/app-releases/all")
+      .then((res) => (res.ok ? (res.json() as Promise<ReleasesResponse>) : Promise.reject(res)))
+      .then((json) => {
+        if (!cancelled) setReleases(json.data);
+      })
+      .catch(() => {
+        if (!cancelled) setLoadFailed(true);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useGSAP(
     () => {
@@ -110,7 +142,7 @@ export function AppLaunchSection() {
         <div className="app-launch-copy max-w-xl">
           <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 font-body text-sm font-semibold text-violet-deep shadow-soft">
             <Smartphone size={16} />
-            Mobile apps coming soon
+            Download the apps directly
           </div>
           <h2 className="mt-5 font-display text-headline text-ink">
             One app for customers. One platform powering every order.
@@ -127,40 +159,52 @@ export function AppLaunchSection() {
               style={{ backgroundImage: "url('/brand/banners/app-release-storebackdrop-v1.png')" }}
             />
             <div className="relative grid gap-3 sm:grid-cols-2">
-              {STORE_BUTTONS.map(({ label, eyebrow, icon: StoreIcon }) => (
-                <button
-                  key={label}
-                  type="button"
-                  disabled
-                  className="group flex min-h-17 items-center gap-3 rounded-lg border border-white/15 bg-ink/70 px-4 py-3 text-left text-white shadow-soft backdrop-blur-sm transition-transform disabled:cursor-not-allowed sm:px-5"
-                  aria-label={`${label} release coming soon`}
-                >
-                  <StoreIcon className="size-7 shrink-0 text-white" aria-hidden="true" />
-                  <span className="flex min-w-0 flex-1 flex-col">
-                    <span className="font-body text-[0.62rem] font-semibold tracking-[0.14em] text-white/65">{eyebrow}</span>
-                    <span className="font-display text-lg font-semibold leading-tight">{label}</span>
-                  </span>
-                  <span className="rounded-full border border-white/20 bg-white/10 px-2 py-1 font-body text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-white/85">
-                    Soon
-                  </span>
-                </button>
-              ))}
+              {DOWNLOAD_CARDS.map(({ key, label, tagline }) => {
+                const release = releases?.[key] ?? null;
+                const isReady = !!release;
+                return isReady ? (
+                  <a
+                    key={key}
+                    href={release.downloadUrl}
+                    className="group flex min-h-17 items-center gap-3 rounded-lg border border-white/15 bg-ink/70 px-4 py-3 text-left text-white shadow-soft backdrop-blur-sm transition-colors hover:border-teal/60 hover:bg-ink/85 sm:px-5"
+                    aria-label={`Download ${label} for Android, version ${release.versionName}`}
+                  >
+                    <FaAndroid className="size-7 shrink-0 text-teal" aria-hidden="true" />
+                    <span className="flex min-w-0 flex-1 flex-col">
+                      <span className="font-body text-[0.62rem] font-semibold tracking-[0.14em] text-white/65">
+                        DOWNLOAD FOR ANDROID
+                      </span>
+                      <span className="font-display text-lg font-semibold leading-tight">{label}</span>
+                      <span className="font-body text-[0.68rem] text-white/60">
+                        v{release.versionName} · {(release.fileSizeBytes / (1024 * 1024)).toFixed(0)} MB
+                      </span>
+                    </span>
+                    <Download className="size-5 shrink-0 text-white/70 transition-transform group-hover:translate-y-0.5" aria-hidden="true" />
+                  </a>
+                ) : (
+                  <div
+                    key={key}
+                    className="group flex min-h-17 items-center gap-3 rounded-lg border border-white/15 bg-ink/70 px-4 py-3 text-left text-white shadow-soft backdrop-blur-sm sm:px-5"
+                    aria-label={`${label} download ${loadFailed ? "unavailable" : "loading"}`}
+                  >
+                    <FaAndroid className="size-7 shrink-0 text-white/40" aria-hidden="true" />
+                    <span className="flex min-w-0 flex-1 flex-col">
+                      <span className="font-body text-[0.62rem] font-semibold tracking-[0.14em] text-white/50">
+                        {loadFailed ? "NOT AVAILABLE YET" : "DOWNLOAD FOR ANDROID"}
+                      </span>
+                      <span className="font-display text-lg font-semibold leading-tight text-white/70">{label}</span>
+                      <span className="font-body text-[0.68rem] text-white/50">{tagline}</span>
+                    </span>
+                    {!loadFailed && <Loader2 className="size-5 shrink-0 animate-spin text-white/40" aria-hidden="true" />}
+                  </div>
+                );
+              })}
             </div>
           </div>
 
-          <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a
-              href="#early-access"
-              className="inline-flex h-13 items-center justify-center gap-2 rounded-sm border border-hairline bg-white px-5 font-display text-sm font-semibold text-violet transition-colors hover:border-violet sm:px-6"
-            >
-              <Bell size={16} />
-              Join Waitlist
-            </a>
-          </div>
-
           <p className="mt-4 font-body text-sm leading-relaxed text-muted">
-            When the apps go live, switch these coming-soon cards to the official Google Play and
-            App Store URLs. The release section is already prepared for that change.
+            Not on Google Play yet — download the APK directly and install it on your Android
+            phone. Once we launch on Play Store, these buttons switch over automatically.
           </p>
         </div>
 
