@@ -111,8 +111,12 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: "/brand/logos/lndry-final-logo.png",
-    apple: "/brand/logos/lndry-final-logo.png",
+    icon: [
+      { url: "/brand/deployment/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/brand/deployment/favicon-48.png", sizes: "48x48", type: "image/png" },
+    ],
+    shortcut: "/brand/deployment/favicon-32.png",
+    apple: "/brand/deployment/apple-touch-icon-180.png",
   },
   openGraph: {
     title,
