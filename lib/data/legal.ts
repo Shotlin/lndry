@@ -13,8 +13,8 @@ export const privacySections: LegalSection[] = [
       "When customers, partners, or visitors use LNDRY services, the website, or future app surfaces, LNDRY may collect information needed to provide and improve the marketplace experience.",
     ],
     bullets: [
-      "Account information such as name, email address, mobile number, and profile details.",
-      "Pickup and delivery address information, plus approximate location when permission is granted.",
+      "Account information such as name, email address, mobile number, profile details, and an optional profile photo.",
+      "Pickup and delivery address information, plus approximate or precise device location when permission is granted.",
       "Order and service details such as garment type, service selection, special instructions, preferences, and order history.",
       "Payment transaction metadata. Raw card data should be handled by compliant payment gateway providers, not stored by LNDRY.",
       "Device, browser, usage, support, rating, and communication data.",
