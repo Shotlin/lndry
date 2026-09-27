@@ -1,4 +1,4 @@
-import { company } from "./site";
+import { company, founder } from "./site";
 
 export type LegalSection = {
   title: string;
@@ -69,10 +69,63 @@ export const privacySections: LegalSection[] = [
     ],
   },
   {
+    title: "Account and data deletion",
+    body: [
+      "Customers can request permanent deletion of their LNDRY account and personal data at any time, either from within the LNDRY app or without installing the app. See the full Account & Data Deletion policy for what is deleted, what is retained, and how to request it.",
+    ],
+  },
+  {
+    title: "Grievance Officer",
+    body: [
+      `In accordance with the Information Technology Act, 2000, the Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021, and the Digital Personal Data Protection Act, 2023, the Grievance Officer for LNDRY is:`,
+      `${founder.name}, ${founder.role}`,
+      `Email: ${company.legalEmail} · Registered Office: ${company.registeredOffice}`,
+      "The Grievance Officer will acknowledge a complaint and work to resolve it within the timelines required under applicable Indian law.",
+    ],
+  },
+  {
     title: "Contact",
     body: [
       `Privacy requests can be sent to ${company.privacyEmail}. General enquiries can be sent to ${company.email}.`,
       `${company.legalName}, CIN ${company.cin}, Registered Office: ${company.registeredOffice}.`,
+    ],
+  },
+];
+
+export const deletionSections: LegalSection[] = [
+  {
+    title: "What this covers",
+    body: [
+      "This page explains how to permanently delete your LNDRY customer account, and exactly what happens to your data when you do — whether you request it from inside the app or from here, without needing the app installed.",
+    ],
+  },
+  {
+    title: "How to request deletion",
+    bullets: [
+      "From the LNDRY app: open Profile → Settings → Delete Account, and confirm the request.",
+      `Without the app: email ${company.privacyEmail} from the email address on your account, or with your registered mobile number, and write "Account Deletion Request" in the subject line.`,
+      "Our team reviews every request to confirm it is genuinely from the account holder before acting on it.",
+    ],
+  },
+  {
+    title: "What happens after you request it",
+    bullets: [
+      "Your account is closed and you are signed out of the LNDRY app immediately once the request is approved.",
+      "Your personal details — name, email, saved addresses, registered devices, and other identifying information — are permanently erased within 30 days of approval.",
+      "Past orders are kept, but only in an anonymised form with no link back to you, for accounting, tax, and legal record-keeping as required by Indian law.",
+      "Any unused LNDRY Wallet balance cannot be recovered once deletion is approved — please use or note this before requesting deletion.",
+    ],
+  },
+  {
+    title: "When a request may be delayed",
+    body: [
+      "If you have an order currently in progress, we may ask you to wait until it is completed (or cancelled) before we process the deletion, so pickup, delivery, and payment records stay accurate for everyone involved.",
+    ],
+  },
+  {
+    title: "Questions",
+    body: [
+      `Contact ${company.privacyEmail} for anything about this process, or see the full Privacy Policy for how LNDRY handles data more generally.`,
     ],
   },
 ];

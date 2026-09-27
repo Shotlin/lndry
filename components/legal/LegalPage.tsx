@@ -86,6 +86,9 @@ export function LegalPage({
           <Link href="/delivery-policy" className="rounded-full border border-hairline bg-white px-4 py-2 font-body text-sm font-semibold text-ink-soft hover:text-violet">
             Delivery Policy
           </Link>
+          <Link href="/account-deletion" className="rounded-full border border-hairline bg-white px-4 py-2 font-body text-sm font-semibold text-ink-soft hover:text-violet">
+            Account &amp; Data Deletion
+          </Link>
         </div>
       </Container>
     </article>

@@ -247,6 +247,11 @@ export const legalPolicies = [
     href: "/delivery-policy",
     body: "Explains pickup windows, handover checks, status updates, and delivery expectations.",
   },
+  {
+    title: "Account & Data Deletion",
+    href: "/account-deletion",
+    body: "How to permanently delete your LNDRY account and data, from the app or without it.",
+  },
 ];
 
 export const customerReviews = [
