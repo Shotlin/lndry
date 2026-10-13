@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 
 /** Counts one view per browser session. Feeds the "Trending" ranking. Never blocks or breaks the page. */
 export function ViewTracker({ slug }: { slug: string }) {
@@ -14,11 +13,8 @@ export function ViewTracker({ slug }: { slug: string }) {
       } catch {
         // Private mode: still count once per page load.
       }
-      try {
-        void createBrowserSupabaseClient().rpc("record_blog_view", { p_slug: slug }).then(() => undefined, () => undefined);
-      } catch {
-        // Supabase not configured in this environment.
-      }
+      // Goes through the website's own route, which forwards to the backend.
+      fetch(`/api/blog/view/${encodeURIComponent(slug)}`, { method: "POST", keepalive: true }).catch(() => undefined);
     }, 3000); // ignore instant bounces and most bots
     return () => window.clearTimeout(timer);
   }, [slug]);

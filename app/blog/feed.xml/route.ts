@@ -11,12 +11,12 @@ export async function GET() {
   const items = posts
     .map((post) => {
       const link = absoluteUrl(`/blog/${post.slug}`);
-      const category = Array.isArray(post.blog_categories) ? post.blog_categories[0] : post.blog_categories;
+      const category = post.category;
       return `<item>
 <title>${esc(post.title)}</title>
 <link>${link}</link>
 <guid isPermaLink="true">${link}</guid>
-<pubDate>${new Date(post.published_at as string).toUTCString()}</pubDate>
+<pubDate>${new Date(post.publishedAt as string).toUTCString()}</pubDate>
 <description>${esc(post.excerpt ?? "")}</description>${category?.name ? `\n<category>${esc(category.name)}</category>` : ""}
 </item>`;
     })

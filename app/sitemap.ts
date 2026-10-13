@@ -25,7 +25,7 @@ const STATIC_PAGES: { path: string; priority: number; changeFrequency: "daily" |
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { posts, categories } = await getSitemapEntries();
-  const newest = posts[0]?.updated_at ? new Date(posts[0].updated_at) : undefined;
+  const newest = posts[0]?.updatedAt ? new Date(posts[0].updatedAt) : undefined;
 
   return [
     ...STATIC_PAGES.map((page) => ({
@@ -46,10 +46,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...posts.map((post) => ({
       url: `${SITE_URL}/blog/${post.slug}`,
-      lastModified: new Date(post.updated_at),
+      lastModified: new Date(post.updatedAt),
       changeFrequency: "monthly" as const,
       priority: 0.7,
-      ...(post.cover_image_url ? { images: [post.cover_image_url] } : {}),
+      ...(post.coverImageUrl ? { images: [post.coverImageUrl] } : {}),
     })),
   ];
 }
