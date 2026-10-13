@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { AdminLogoutButton } from "@/components/admin/AdminLogoutButton";
+import { AdminNav } from "@/components/admin/AdminNav";
 
 export function AdminShell({ children, email }: { children: ReactNode; email: string | null }) {
   return (
@@ -19,7 +20,7 @@ export function AdminShell({ children, email }: { children: ReactNode; email: st
             />
             <div className="min-w-0">
               <p className="font-display text-base font-semibold tracking-tight">LNDRY Operations</p>
-              <p className="truncate font-body text-xs text-white/60">Vendor lead management</p>
+              <p className="truncate font-body text-xs text-white/60">Leads &amp; blog</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -34,6 +35,7 @@ export function AdminShell({ children, email }: { children: ReactNode; email: st
           </div>
         </div>
       </header>
+      <AdminNav />
       <main className="mx-auto w-full max-w-[1440px] px-5 py-7 sm:px-8 sm:py-9">{children}</main>
     </div>
   );

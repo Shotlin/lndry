@@ -17,6 +17,7 @@ const NAV_ITEMS = [
   { label: "Pricing", href: "/pricing" },
   { label: "Stores", href: "/stores" },
   { label: "Partners", href: "/partners" },
+  { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
@@ -53,13 +54,13 @@ export function Header() {
             />
           </Link>
 
-          <nav className="hidden items-center gap-4 xl:flex xl:gap-6" aria-label="Primary">
+          <nav className="hidden items-center gap-3.5 xl:flex 2xl:gap-6" aria-label="Primary">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`font-body text-sm font-semibold transition-colors hover:text-violet ${
-                  pathname === item.href ? "text-violet" : "text-ink-soft"
+                className={`whitespace-nowrap font-body text-sm font-semibold transition-colors hover:text-violet ${
+                  pathname === item.href || (item.href !== "/" && pathname.startsWith(`${item.href}/`)) ? "text-violet" : "text-ink-soft"
                 }`}
               >
                 {item.label}
