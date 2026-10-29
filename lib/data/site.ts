@@ -13,6 +13,8 @@ export const company = {
   whatsappPlaceholder: "+91 92702 65669",
   supportPhoneHref: "tel:+919270265669",
   whatsappHref: "https://wa.me/919270265669",
+  // The live customer app listing on Google Play (package com.lndry.app).
+  playStoreHref: "https://play.google.com/store/apps/details?id=com.lndry.app",
   instagramHref: "https://www.instagram.com/lndry.in?stkn=MWowZDJ3eWYyZHNsNQ==",
   businessHours: "Monday–Sunday, 8:00 AM to 9:00 PM",
 };

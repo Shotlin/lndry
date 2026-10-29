@@ -11,6 +11,7 @@ import { ViewTracker } from "@/components/blog/ViewTracker";
 import { Container } from "@/components/ui/Container";
 import { getPostBySlug, getRelatedPosts, getSitemapEntries, getTrendingPosts } from "@/lib/blog/repository";
 import { absoluteUrl, DEFAULT_OG_IMAGE } from "@/lib/blog/site";
+import { sanitizePostHtml } from "@/lib/blog/sanitize";
 import { extractToc, formatBlogDate, makeExcerpt, stripHtml } from "@/lib/blog/text";
 
 export const revalidate = 300;
@@ -158,7 +159,7 @@ export default async function BlogPostPage({ params }: Props) {
                 </details>
               )}
 
-              <div className="blog-prose" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+              <div className="blog-prose" dangerouslySetInnerHTML={{ __html: sanitizePostHtml(post.contentHtml) }} />
 
               {post.tags.length > 0 && (
                 <ul className="mt-10 flex flex-wrap gap-2" aria-label="Tags">

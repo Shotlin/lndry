@@ -6,6 +6,7 @@ import { Download, Loader2, Smartphone } from "lucide-react";
 import { FaAndroid } from "react-icons/fa";
 import { Container } from "../ui/Container";
 import { PhoneFrame } from "../ui/PhoneFrame";
+import { PlayStoreButton } from "../ui/PlayStoreButton";
 import { gsap } from "@/lib/motion/gsap";
 import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 
@@ -152,7 +153,12 @@ export function AppLaunchSection() {
             in one connected experience.
           </p>
 
-          <div className="relative mt-8 overflow-hidden rounded-xl border border-ink/10 bg-ink p-3 shadow-elevated">
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <PlayStoreButton placement="apps-section" />
+            <span className="font-body text-sm text-ink-soft">The LNDRY customer app is live on Google Play.</span>
+          </div>
+
+          <div className="relative mt-6 overflow-hidden rounded-xl border border-ink/10 bg-ink p-3 shadow-elevated">
             <div
               aria-hidden="true"
               className="absolute inset-0 bg-cover bg-center opacity-60"
@@ -203,8 +209,8 @@ export function AppLaunchSection() {
           </div>
 
           <p className="mt-4 font-body text-sm leading-relaxed text-muted">
-            Not on Google Play yet — download the APK directly and install it on your Android
-            phone. Once we launch on Play Store, these buttons switch over automatically.
+            Prefer to install directly? The cards above download the Android APK for the customer and
+            partner apps. For the easiest install and automatic updates, use Google Play.
           </p>
         </div>
 

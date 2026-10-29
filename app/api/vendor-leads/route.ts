@@ -1,11 +1,24 @@
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 import { isSameOriginRequest, jsonNoStore } from "@/lib/http/security";
+import { getClientIp } from "@/lib/http/client-ip";
+import { createRateLimiter } from "@/lib/http/rate-limit";
+import { BodyTooLargeError, readJsonBody } from "@/lib/http/read-body";
 import { vendorLeadSubmissionSchema } from "@/lib/vendor-leads/schema";
 import { handoffVendorLead } from "@/lib/vendor-leads/backend-handoff";
 
 export const runtime = "nodejs";
 
 const MAX_BODY_BYTES = 32_000;
+const DUPLICATE_WINDOW_MS = 24 * 60 * 60 * 1000;
+
+// Per warm instance, per client. Blunts floods from one source; the durable
+// protection against repeat spam is the duplicate check against the database.
+const submissionLimiter = createRateLimiter({ limit: 5, windowMs: 10 * 60 * 1000 });
+
+const SUCCESS_BODY = {
+  success: true,
+  message: "Thanks. The LNDRY partner team has received your enquiry.",
+};
 
 export async function POST(request: Request) {
   if (!isSameOriginRequest(request)) {
@@ -16,15 +29,21 @@ export async function POST(request: Request) {
     return jsonNoStore({ error: "Please submit the form again." }, { status: 415 });
   }
 
-  const contentLength = Number(request.headers.get("content-length") ?? 0);
-  if (Number.isFinite(contentLength) && contentLength > MAX_BODY_BYTES) {
-    return jsonNoStore({ error: "This submission is too large." }, { status: 413 });
+  const limit = submissionLimiter.hit(getClientIp(request));
+  if (!limit.allowed) {
+    return jsonNoStore(
+      { error: "Too many submissions. Please wait a few minutes and try again." },
+      { status: 429, headers: { "Retry-After": String(limit.retryAfterSeconds) } },
+    );
   }
 
   let body: unknown;
   try {
-    body = await request.json();
-  } catch {
+    body = await readJsonBody(request, MAX_BODY_BYTES);
+  } catch (error) {
+    if (error instanceof BodyTooLargeError) {
+      return jsonNoStore({ error: "This submission is too large." }, { status: 413 });
+    }
     return jsonNoStore({ error: "Please check the form and try again." }, { status: 400 });
   }
 
@@ -52,6 +71,19 @@ export async function POST(request: Request) {
   }
 
   const lead = parsed.data;
+
+  // Same email or phone already enquired in the last 24h: acknowledge without
+  // storing again, so a repeated or scripted submit cannot flood the pipeline
+  // or the backend handoff. The response is identical, so it reveals nothing.
+  const since = new Date(Date.now() - DUPLICATE_WINDOW_MS).toISOString();
+  const [byEmail, byPhone] = await Promise.all([
+    supabase.from("vendor_leads").select("id").eq("email", lead.email).gte("created_at", since).limit(1),
+    supabase.from("vendor_leads").select("id").eq("phone", lead.phone).gte("created_at", since).limit(1),
+  ]);
+  if ((byEmail.data?.length ?? 0) > 0 || (byPhone.data?.length ?? 0) > 0) {
+    return jsonNoStore(SUCCESS_BODY, { status: 201 });
+  }
+
   const { data: savedLead, error } = await supabase.from("vendor_leads").insert({
     full_name: lead.fullName,
     business_name: lead.businessName,
@@ -95,11 +127,5 @@ export async function POST(request: Request) {
     console.error("Unable to persist canonical handoff state", handoffStateError.message);
   }
 
-  return jsonNoStore(
-    {
-      success: true,
-      message: "Thanks. The LNDRY partner team has received your enquiry.",
-    },
-    { status: 201 },
-  );
+  return jsonNoStore(SUCCESS_BODY, { status: 201 });
 }

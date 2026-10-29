@@ -11,8 +11,8 @@ export const VENDOR_LEAD_EXPORT_LIMIT = 2000;
 
 type VendorLeadQuery = ReturnType<ReturnType<SupabaseClient["from"]>["select"]>;
 
-function normalizeSearch(value: string) {
-  return value.replace(/[%,_()]/g, " ").replace(/\s+/g, " ").trim();
+export function normalizeSearch(value: string) {
+  return value.replace(/[%,_()"'\\*]/g, " ").replace(/\s+/g, " ").trim();
 }
 
 function applyFilters(query: VendorLeadQuery, filters: VendorLeadFilters) {

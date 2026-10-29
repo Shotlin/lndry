@@ -11,6 +11,7 @@ import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 import { Container } from "../ui/Container";
 import { Pill } from "../ui/Pill";
 import { Button } from "../ui/Button";
+import { PlayStoreButton } from "../ui/PlayStoreButton";
 import { PhoneFrame } from "../ui/PhoneFrame";
 import { Thread } from "../ui/Thread";
 import { HeroThreadOverlay } from "../overlays/HeroThreadOverlay";
@@ -123,6 +124,7 @@ export function Hero() {
             <Button href="/services" variant="secondary">
               View laundry services
             </Button>
+            <PlayStoreButton placement="hero" className="w-full justify-center sm:w-auto" />
           </div>
 
           <div className="hero-area hero-trust-card mt-7 max-w-xl rounded-lg border border-hairline bg-white p-4 shadow-soft will-change-transform sm:mt-8 sm:p-5">

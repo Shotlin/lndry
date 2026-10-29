@@ -12,6 +12,7 @@ import { CustomerReviewsSection } from "@/components/sections/CustomerReviewsSec
 import { PricingSupportSection } from "@/components/home/PricingSupportSection";
 import { FAQPreview } from "@/components/home/FAQPreview";
 import { OrderTrackingDemo } from "@/components/home/OrderTrackingDemo";
+import { company } from "@/lib/data/site";
 
 export const metadata: Metadata = {
   title: "Laundry Service in Pune | Dry Cleaning, Wash & Iron | LNDRY",
@@ -38,9 +39,24 @@ export const metadata: Metadata = {
   },
 };
 
+const appJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  name: "LNDRY",
+  operatingSystem: "ANDROID",
+  applicationCategory: "ShoppingApplication",
+  url: company.playStoreHref,
+  downloadUrl: company.playStoreHref,
+  description: "Book laundry pickup, dry cleaning, wash and iron, and track your order with LNDRY in Pune.",
+  inLanguage: "en-IN",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+  publisher: { "@type": "Organization", name: company.legalName, url: "https://lndry.in" },
+};
+
 export default function HomePage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appJsonLd) }} />
       <ProgressRail />
       <Hero />
       <BookingJourney />
